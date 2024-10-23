@@ -1,0 +1,57 @@
+﻿@model TourDuLich.Models.Tour;
+@{
+    Layout = "_Tours";
+}
+
+<h2>Add Tour</h2>
+
+
+<div class="container-fluid">
+
+
+    <form asp-action="AddTour" method="post">
+    <div class="mb-3">
+        <label asp-for="tour_name" class="form-label">Tour Name</label>
+        <input asp-for="tour_name" type="text" class="form-control" id="tour_name">
+        <span class="text-danger" asp-validation-for="tour_name"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="description" class="form-label">Description</label>
+        <input asp-for="description" type="text" class="form-control" id="description">
+            <span class="text-danger" asp-validation-for="description"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="price" class="form-label">Price</label>
+        <input asp-for="price" type="number" step="0.01" class="form-control" id="price">
+        <span class="text-danger" asp-validation-for="price"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="start_date" class="form-label">Start_date</label>
+        <input asp-for="start_date" type="date" class="form-control" id="start_date">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="end_date" class="form-label">End_date</label>
+        <input asp-for="end_date" type="date" class="form-control" id="end_date">
+
+    </div>
+    <div class="mb-3">
+         <label asp-for="time" class="form-label">Time</label>
+         <input asp-for="time" type="time" class="form-control" id="time">
+
+    </div>
+    <div class="mb-3">
+        <label asp-for="available_seats" class="form-label">Available_seats</label>
+        <input asp-for="available_seats" type="number" class="form-control" id="available_seats">
+    </div>
+
+        @if (TempData["msg"] != null)
+        {
+            <div class="mb-3">
+                @TempData["msg"]
+            </div>
+        }
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="/Tours/DisplayTours" class="btn btn-primary">Danh sách tours</a>
+</form>
+</div>
