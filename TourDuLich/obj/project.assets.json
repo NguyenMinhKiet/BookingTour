@@ -4045,11 +4045,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\TourDuLich\\TourDuLich.csproj",
+      "projectUniqueName": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\TourDuLich\\TourDuLich.csproj",
       "projectName": "TourDuLich",
-      "projectPath": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\TourDuLich\\TourDuLich.csproj",
+      "projectPath": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\TourDuLich\\TourDuLich.csproj",
       "packagesPath": "C:\\Users\\Minh Kiet\\.nuget\\packages\\",
-      "outputPath": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\TourDuLich\\obj\\",
+      "outputPath": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\TourDuLich\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Minh Kiet\\AppData\\Roaming\\NuGet\\NuGet.Config",
