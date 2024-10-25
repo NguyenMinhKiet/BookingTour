@@ -5,7 +5,7 @@ namespace TourDuLich.Models
     public class Employee
     {
         [Key]
-        public int id { get; set; }
+        public int employee_id { get; set; }
         [Required]
         [StringLength(100)]
         public string first_name { get; set; }
@@ -20,7 +20,7 @@ namespace TourDuLich.Models
         public string phone { get; set; }
         [Required]
         [StringLength(100)]
-        public string position {  get; set; }
+        public string position { get; set; }
         [Required]
         public string address { get; set; }
 

@@ -1,11 +1,16 @@
 using Microsoft.EntityFrameworkCore;
-using TourDuLich.Models;
+using TourDuLich.Infrastructure.DataAccess.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
+
+
+builder.Services.AddDbContext<BookingTourDbContext>(options => 
+options.UseSqlServer(builder.Configuration.GetConnectionString("BookingTour_Connection")));
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

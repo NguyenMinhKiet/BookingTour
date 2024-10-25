@@ -274,7 +274,6 @@ D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\TourDuLich\obj\Debug\ne
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\TourDuLich\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.TourDuLich.props
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\TourDuLich\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.TourDuLich.props
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\TourDuLich\obj\Debug\net8.0\staticwebassets.pack.json
-D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\TourDuLich\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\TourDuLich\obj\Debug\net8.0\scopedcss\bundle\TourDuLich.styles.css
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\TourDuLich\obj\Debug\net8.0\scopedcss\projectbundle\TourDuLich.bundle.scp.css
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\TourDuLich\obj\Debug\net8.0\TourDuLich.csproj.Up2Date
@@ -283,3 +282,4 @@ D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\TourDuLich\obj\Debug\ne
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\TourDuLich\obj\Debug\net8.0\TourDuLich.pdb
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\TourDuLich\obj\Debug\net8.0\TourDuLich.genruntimeconfig.cache
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\TourDuLich\obj\Debug\net8.0\ref\TourDuLich.dll
+D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\TourDuLich\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css

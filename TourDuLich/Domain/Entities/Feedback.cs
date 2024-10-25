@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TourDuLich.Models
+namespace TourDuLich.Domain.Entities
 {
     public class Feedback
     {

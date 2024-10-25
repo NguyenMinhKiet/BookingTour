@@ -15,4 +15,13 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Application\Interfaces\" />
+    <Folder Include="Application\Repositories\" />
+    <Folder Include="Application\Services\" />
+    <Folder Include="Domain\Services\" />
+    <Folder Include="Domain\Repositories\" />
+    <Folder Include="Infrastructure\DataAccess\Repositoties Implementations\" />
+  </ItemGroup>
+
 </Project>
