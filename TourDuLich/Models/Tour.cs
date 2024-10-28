@@ -4,21 +4,13 @@ namespace TourDuLich.Models
 {
     public class Tour
     {
-        [Key]
-        private int tour_id { get; set; }
-        [Required]
-        [StringLength(200)]
-        private string tour_name { get; set; }
-        [Required]
-        private string description { get; set; }
-        [Required]
+        public int tour_id { get; set; }
+        public string tour_name { get; set; }
+        public string description { get; set; }
         [DataType(DataType.Currency)]
-        private decimal price { get; set; }
-        [Required]
-        private DateTime start_Date { get; set; }
-        [Required]
-        private DateTime end_Date { get; set; }
-        [Required]
-        private int available_seats { get; set; }
+        public decimal price { get; set; }
+        public DateTime start_Date { get; set; }
+        public DateTime end_Date { get; set; }
+        public int available_seats { get; set; }
     }
 }

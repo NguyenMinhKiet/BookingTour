@@ -6,7 +6,7 @@ namespace TourDuLich.Domain.Services
     public interface ICustomerService
     {
         // Đăng ký khách hàng mới
-        Task<Customer> RegisterCustomerAsync(CustomerRegistrationDto customerDetails);
+        Task<Customer> RegisterCustomerAsync(CustomerCreationDto customerDetails);
 
         // Cập nhật thông tin khách hàng
         Task UpdateCustomerAsync(int customerId, CustomerUpdateDto updatedDetails);

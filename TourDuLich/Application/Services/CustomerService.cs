@@ -21,7 +21,7 @@ namespace TourDuLich.Application.Services
             throw new NotImplementedException();
         }
 
-        public Task<Customer> RegisterCustomerAsync(CustomerRegistrationDto customerDetails)
+        public Task<Customer> RegisterCustomerAsync(CustomerCreationDto customerDetails)
         {
             throw new NotImplementedException();
         }

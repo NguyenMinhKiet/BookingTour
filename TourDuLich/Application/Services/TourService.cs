@@ -16,18 +16,32 @@ namespace TourDuLich.Application.Services
 
         public async Task<Tour> CreateTourAsync(TourCreationDto tourDto)
         {
+            // Chuyển đổi DTO thành Entity
             var tour = new Tour
             {
                 tour_name = tourDto.TourName,
                 description = tourDto.Description,
                 price = tourDto.Price,
-                startDate = tourDto.StartDate,
-                endDate = tourDto.EndDate,
-                AvailableSeats = tourDto.AvailableSeats
+                start_Date = tourDto.StartDate,
+                end_Date = tourDto.EndDate,
+                availableSeats = tourDto.AvailableSeats
             };
 
+            // Thêm tour vào cơ sở dữ liệu
             await _tourRepository.AddAsync(tour);
-            return new TourCreationDto { }
+
+            // Chuyển đổi Entity thành DTO để trả về
+            var createdTourDto = new Tour
+            {
+                tour_name = tour.tour_name,
+                description = tour.description,
+                price = tour.price,
+                start_Date = tour.start_Date,
+                end_Date = tour.end_Date,
+                availableSeats = tour.availableSeats
+            };
+
+            return createdTourDto; // Trả về DTO của tour vừa tạo
         }
 
         public Task DeleteTourAsync(int tourId)

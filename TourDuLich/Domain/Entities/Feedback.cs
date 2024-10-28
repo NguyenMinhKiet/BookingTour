@@ -4,10 +4,10 @@ namespace TourDuLich.Domain.Entities
 {
     public class Feedback
     {
-        private int feedback_id { get; set; }
-        private int customer_id { get; set; }
-        private int tour_id { get; set; }
-        private int rating { get; set; }
-        private string comments { get; set; }
+        public int feedback_id { get; set; }
+        public int customer_id { get; set; }
+        public int tour_id { get; set; }
+        public int rating { get; set; }
+        public string comments { get; set; }
     }
 }

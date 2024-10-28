@@ -5,19 +5,13 @@ namespace TourDuLich.Models
 {
     public class Booking
     {
-        [Key]
-        private int Booking_id { get; set; }
-        [Required]
-        private int tour_id { get; set; }
-        [Required]
-        private int customer_id { get; set; }
-        [Required]
-        private DateTime booking_date { get; set; }
-        [Required]
-        private int num_people { get; set; }
-        [Required]
+        public int Booking_id { get; set; }
+        public int tour_id { get; set; }
+        public int customer_id { get; set; }
+        public DateTime booking_date { get; set; }
+        public int num_people { get; set; }
         [DataType(DataType.Currency)]
-        private decimal total_price { get; set; }
+        public decimal total_price { get; set; }
 
     }
 }

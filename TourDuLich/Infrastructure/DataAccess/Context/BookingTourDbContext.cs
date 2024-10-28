@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TourDuLich.Domain.Entities;
 using TourDuLich.Infrastructure.DataAccess.Configurations;
-using TourDuLich.Models;
 
 namespace TourDuLich.Infrastructure.DataAccess.Context
 {
@@ -16,6 +16,7 @@ namespace TourDuLich.Infrastructure.DataAccess.Context
         public DbSet<Payment> Payment { get; set; }
         public DbSet<Tour> Tours { get; set; }
         public DbSet<TourDestination> ToursDestination { get; set; }
+        public DbSet<TourEmployee> ToursEmployee { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,6 +29,7 @@ namespace TourDuLich.Infrastructure.DataAccess.Context
             modelBuilder.ApplyConfiguration(new PaymentConfiguration());
             modelBuilder.ApplyConfiguration(new TourConfiguration());
             modelBuilder.ApplyConfiguration(new TourDestinationConfiguration());
+            modelBuilder.ApplyConfiguration(new TourEmployeeConfiguration());
 
             base.OnModelCreating(modelBuilder);
 

@@ -4,13 +4,9 @@ namespace TourDuLich.Models
 {
     public class TourDestination
     {
-        [Key]
-        private int tourDestination_id { get; set; }
-        [Required]
-        private int tour_id { get; set; }
-        [Required]
-        private int destination_id { get; set; }
-        [Required]
-        private DateTime visit_date { get; set; }
+        public int tourDestination_id { get; set; }
+        public int tour_id { get; set; }
+        public int destination_id { get; set; }
+        public DateTime visit_date { get; set; }
     }
 }

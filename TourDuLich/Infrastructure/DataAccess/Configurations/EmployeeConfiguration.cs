@@ -33,8 +33,10 @@ namespace TourDuLich.Infrastructure.DataAccess.Configurations
 
             builder.Property(u => u.position)
                 .IsRequired()
-                .HasMaxLength (100);
+                .HasMaxLength(100);
 
+            builder.Property(u => u.address)
+                .HasMaxLength(255);
         }
     }
 }

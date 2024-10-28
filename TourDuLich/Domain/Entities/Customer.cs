@@ -2,11 +2,11 @@
 {
     public class Customer
     {
-        private int customer_id { get; set; }
-        private string first_name { get; set; }
-        private string last_name { get; set; }
-        private string email { get; set; }
-        private string phone { get; set; }
-        private string address { get; set; }
+        public int customer_id { get; set; }
+        public string first_name { get; set; }
+        public string last_name { get; set; }
+        public string email { get; set; }
+        public string phone { get; set; }
+        public string address { get; set; }
     }
 }

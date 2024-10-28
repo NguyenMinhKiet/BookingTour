@@ -2,11 +2,12 @@
 {
     public class Tour
     {
-        private int tour_id { get; set; }
-        private string tour_name { get; set; }
-        private string description { get; set; }
-        private decimal price { get; set; }
-        private DateTime start_Date { get; set; }
-        private DateTime end_Date { get; set; }
+        public int tour_id { get; set; }
+        public string tour_name { get; set; }
+        public string description { get; set; }
+        public decimal price { get; set; }
+        public DateTime start_Date { get; set; }
+        public DateTime end_Date { get; set; }
+        public int availableSeats { get; set; }
     }
 }

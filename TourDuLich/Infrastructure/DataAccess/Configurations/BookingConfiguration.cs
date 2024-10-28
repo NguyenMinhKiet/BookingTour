@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TourDuLich.Models;
+using TourDuLich.Domain.Entities;
 
 namespace TourDuLich.Infrastructure.DataAccess.Configurations
 {
@@ -10,7 +10,7 @@ namespace TourDuLich.Infrastructure.DataAccess.Configurations
         {
             builder.ToTable("Bookings");
 
-            builder.HasKey(u=>u.Booking_id);
+            builder.HasKey(u=>u.booking_id);
 
             builder.Property(u => u.customer_id)
                 .IsRequired();
