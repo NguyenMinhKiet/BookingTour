@@ -5,24 +5,24 @@ namespace TourDuLich.Models
     public class Employee
     {
         [Key]
-        public int employee_id { get; set; }
+        private int employee_id { get; set; }
         [Required]
         [StringLength(100)]
-        public string first_name { get; set; }
+        private string first_name { get; set; }
         [Required]
         [StringLength(100)]
-        public string last_name { get; set; }
+        private string last_name { get; set; }
         [Required]
         [EmailAddress]
-        public string email { get; set; }
+        private string email { get; set; }
         [Required]
         [StringLength(10, ErrorMessage = "Phone number cannot be longer than 10 digits.")]
-        public string phone { get; set; }
+        private string phone { get; set; }
         [Required]
         [StringLength(100)]
-        public string position { get; set; }
+        private string position { get; set; }
         [Required]
-        public string address { get; set; }
+        private string address { get; set; }
 
     }
 }

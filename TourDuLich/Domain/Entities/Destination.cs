@@ -2,9 +2,9 @@
 {
     public class Destination
     {
-        public int destination_id { get; set; }
-        public string destination_name { get; set; }
-        public string city { get; set; }
-        public string country { get; set; }
+        private int destination_id { get; set; }
+        private string destination_name { get; set; }
+        private string city { get; set; }
+        private string country { get; set; }
     }
 }

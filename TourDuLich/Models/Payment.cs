@@ -5,13 +5,13 @@ namespace TourDuLich.Models
     public class Payment
     {
         [Key]
-        public int payment_id { get; set; }
+        private int payment_id { get; set; }
         [Required]
-        public int booking_id { get; set; }
+        private int booking_id { get; set; }
         [Required]
-        public DateTime payment_date { get; set; }
+        private DateTime payment_date { get; set; }
         [Required]
         [StringLength(50)]
-        public string payment_method { get; set; }
+        private string payment_method { get; set; }
     }
 }

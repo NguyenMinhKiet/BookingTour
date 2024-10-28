@@ -5,14 +5,14 @@ namespace TourDuLich.Models
     public class Destination
     {
         [Key]
-        public int destination_id { get; set; }
+        private int destination_id { get; set; }
         [Required]
-        public string destination_name { get; set; }
-        [Required]
-        [StringLength(100)]
-        public string city { get; set; }
+        private string destination_name { get; set; }
         [Required]
         [StringLength(100)]
-        public string country { get; set; }
+        private string city { get; set; }
+        [Required]
+        [StringLength(100)]
+        private string country { get; set; }
     }
 }
