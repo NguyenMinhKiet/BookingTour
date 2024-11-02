@@ -33,7 +33,12 @@
 
     <div class="form-group">
         <label asp-for="position">Position</label>
-        <input asp-for="position" type="text" class="form-control" id="position" name="position" required>
+        <select asp-for="position" class="form-select" aria-label="Default select example" id="position" name="position">
+            <option value="0" selected>Chọn vị trí</option>
+            <option value="1">Quản Lý</option>
+            <option value="2">Hướng dẫn viên</option>
+            <option value="3">Tài xế</option>
+        </select>
         <span asp-validation-for="position" class="text-danger"></span>
     </div>
 

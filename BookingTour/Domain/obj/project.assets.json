@@ -2754,11 +2754,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Study\\C - sharp\\BookingTour\\Domain\\Domain.csproj",
+      "projectUniqueName": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\Domain\\Domain.csproj",
       "projectName": "Domain",
-      "projectPath": "D:\\Study\\C - sharp\\BookingTour\\Domain\\Domain.csproj",
+      "projectPath": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\Domain\\Domain.csproj",
       "packagesPath": "C:\\Users\\Minh Kiet\\.nuget\\packages\\",
-      "outputPath": "D:\\Study\\C - sharp\\BookingTour\\Domain\\obj\\",
+      "outputPath": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Minh Kiet\\AppData\\Roaming\\NuGet\\NuGet.Config",

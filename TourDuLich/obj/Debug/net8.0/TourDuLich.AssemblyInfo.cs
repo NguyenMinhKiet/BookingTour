@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TourDuLich")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+38b1214e339b8832d7db8e17adbb33c6510fa321")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+57fffdc5172b194124e8b6993d79340ccbfdcd79")]
 [assembly: System.Reflection.AssemblyProductAttribute("TourDuLich")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TourDuLich")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

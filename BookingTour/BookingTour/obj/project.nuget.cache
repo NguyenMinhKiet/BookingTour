@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bq9zJFdcVac=",
+  "dgSpecHash": "dH7mKA5vAOg=",
   "success": true,
-  "projectFilePath": "D:\\Study\\C - sharp\\BookingTour\\BookingTour\\Presentation.csproj",
+  "projectFilePath": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Presentation.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Minh Kiet\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Minh Kiet\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

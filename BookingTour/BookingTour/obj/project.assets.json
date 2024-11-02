@@ -4085,11 +4085,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Study\\C - sharp\\BookingTour\\BookingTour\\Presentation.csproj",
+      "projectUniqueName": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Presentation.csproj",
       "projectName": "Presentation",
-      "projectPath": "D:\\Study\\C - sharp\\BookingTour\\BookingTour\\Presentation.csproj",
+      "projectPath": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Presentation.csproj",
       "packagesPath": "C:\\Users\\Minh Kiet\\.nuget\\packages\\",
-      "outputPath": "D:\\Study\\C - sharp\\BookingTour\\BookingTour\\obj\\",
+      "outputPath": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Minh Kiet\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4107,8 +4107,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Study\\C - sharp\\BookingTour\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "D:\\Study\\C - sharp\\BookingTour\\Infrastructure\\Infrastructure.csproj"
+            "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }
