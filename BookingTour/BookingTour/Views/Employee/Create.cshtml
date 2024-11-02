@@ -1,0 +1,48 @@
+﻿@model Domain.Entities.Employee
+@{
+    ViewData["Title"] = "Thêm nhân viên mới";
+}
+
+<h2>Thêm nhân viên mới</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="first_name">First Name</label>
+        <input asp-for="first_name" type="text" class="form-control" id="first_name" name="first_name" required>
+        <span asp-validation-for="first_name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="last_name">Last Name</label>
+        <input asp-for="last_name"  type="text" class="form-control" id="last_name" name="last_name" required>
+        <span asp-validation-for="last_name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="email">Email</label>
+        <input asp-for="email" type="email" class="form-control" id="email" name="email" required>
+        <span asp-validation-for="email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="phone">Phone</label>
+        <input asp-for="phone" type="text" class="form-control" id="phone" name="phone" required>
+        <span asp-validation-for="phone" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="position">Position</label>
+        <input asp-for="position" type="text" class="form-control" id="position" name="position" required>
+        <span asp-validation-for="position" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="address">Address</label>
+        <input asp-for="address" type="text" class="form-control" id="address" name="address" required>
+        <span asp-validation-for="address" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Thêm nhân viên</button>
+    <a asp-controller="Employee" asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>
