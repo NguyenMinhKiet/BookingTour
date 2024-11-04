@@ -1,0 +1,47 @@
+﻿@model List<Presentation.Models.FeedbackViewModel>
+@{
+    ViewData["Title"] = "Danh sách địa điểm";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tour_id</th>
+            <th>Customer_id</th>
+            <th>Rating</th>
+            <th>Comments</th>
+            <th>Controls</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var feedback in Model)
+        {
+            <tr>
+                <td>@feedback.feedback_id</td>
+                <td>@feedback.tour_id</td>
+                <td>@feedback.customer_id</td>
+                <td>@feedback.rating</td>
+                <td>@feedback.comments</td>
+                <td>
+                    <div class="w-100 btn-group" role="group">
+                        <a asp-action="Update"
+                           asp-controller="Feedback"
+                           asp-route-feedback_id="@feedback.feedback_id"
+                           class="btn btn-primary">
+                            Cập nhật thông tin
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-controller="feedback"
+                           asp-route-feedback_id="@feedback.feedback_id"
+                           class="btn btn-danger">
+                            Xóa
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="btn btn-success" asp-action="Create">Thêm địa điểm Mới</a>

@@ -291,3 +291,5 @@ D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour\obj\Debug\net8.0\Presentation.pdb
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour\obj\Debug\net8.0\Presentation.genruntimeconfig.cache
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour\obj\Debug\net8.0\ref\Presentation.dll
+D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\Application.dll
+D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\Application.pdb

@@ -10,23 +10,21 @@ namespace Domain.Entities
     public class Employee
     {
         [Key]
-        [Display(Name = "Mã nhân viên")]
         public int employee_id { get; set; }
-        [Display(Name = "Họ")]
-        [MaxLength(100)]
+        [Required]
         public string first_name { get; set; }
-        [Display(Name = "Tên")]
-        [MaxLength(50)]
+        [Required]
         public string last_name { get; set; }
+        [Required]
+        [EmailAddress(ErrorMessage ="Sai định dạng email !!")]
         public string email { get; set; }
-        [Display(Name = "Số điện thoại")]
-        [MaxLength(10)]
+        [Required]
         public string phone { get; set; }
-        [Display(Name = "Chức vụ")]
-        [MaxLength(100)]
-        public string position { get; set; }
-        [Display(Name = "Địa chỉ")]
-        [MaxLength(150)]
+        [Required]
+        public int position { get; set; }
+        [Required]
         public string address { get; set; }
+
+        public virtual ICollection<TourEmployee> TourEmployee { get; set; }
     }
 }

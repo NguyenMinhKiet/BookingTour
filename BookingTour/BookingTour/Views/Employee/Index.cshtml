@@ -1,4 +1,4 @@
-﻿@model List<Domain.Entities.Employee>
+﻿@model List<Presentation.Models.EmployeeViewModel>
 @{
     ViewData["Title"] = "Danh sách nhân viên";
 }
@@ -26,17 +26,17 @@
                 <td>@employee.email</td>
                 <td>@employee.phone</td>
                 <td>
-                    @if (int.Parse(@employee.position) == 1)
+                    @if (@employee.position == 1)
                     {
                         <p>Quản lý</p>
                     }
 
-                    @if (int.Parse(@employee.position) == 2)
+                    @if (@employee.position == 2)
                     {
                         <p>Hướng dẫn viên</p>
                     }
 
-                    @if (int.Parse(@employee.position) == 3)
+                    @if (@employee.position == 3)
                     {
                         <p>Tài xế</p>
                     }

@@ -1,0 +1,40 @@
+﻿@model Presentation.Models.DestinationViewModel
+@{
+    ViewData["Title"] = "Chỉnh sửa thông tin địa điểm";
+}
+
+<h2>Chỉnh sửa thông tin địa điểm</h2>
+
+<form asp-action="Update" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group d-none">
+        <label asp-for="destination_id"></label>
+        <input asp-for="destination_id" type="text" class="form-control" id="destination_id" name="destination_id" required>
+    </div>
+    <div class="form-group">
+        <label asp-for="description"></label>
+        <input asp-for="description" type="text" class="form-control" id="destination_name" name="destination_name" required>
+        <span asp-validation-for="description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="city"></label>
+        <input asp-for="city" type="text" class="form-control" id="city" name="city" required>
+        <span asp-validation-for="city" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="country"></label>
+        <input asp-for="country" type="text" class="form-control" id="country" name="country" required>
+        <span asp-validation-for="country" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="destination_name"></label>
+        <input asp-for="destination_name" type="text" class="form-control" id="destination_name" name="destination_name" required>
+        <span asp-validation-for="destination_name" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-controller="Destination" asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>

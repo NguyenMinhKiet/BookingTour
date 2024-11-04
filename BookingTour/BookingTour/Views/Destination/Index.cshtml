@@ -1,0 +1,45 @@
+﻿@model List<Presentation.Models.DestinationViewModel>
+@{
+    ViewData["Title"] = "Danh sách địa điểm";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Destination Name</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Description</th>
+            <th>Controls</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var destination in Model)
+        {
+            <tr>
+                <td>@destination.destination_id</td>
+                <td>@destination.destination_name</td>
+                <td>@destination.city</td>
+                <td>@destination.country</td>
+                <td>@destination.description</td>
+                <td>
+                    <div class="w-100 btn-group" role="group">
+                        <a asp-action="Update"
+                           asp-controller="Destination"
+                           asp-route-destination_id="@destination.destination_id"
+                           class="btn btn-primary">Cập nhật thông tin
+                       </a>
+
+                        <a asp-action="Delete"
+                           asp-controller="Destination"
+                           asp-route-destination_id="@destination.destination_id"
+                           class="btn btn-danger">Xóa
+                       </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="btn btn-success" asp-action="Create">Thêm địa điểm Mới</a>
