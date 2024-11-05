@@ -9,18 +9,11 @@ namespace Domain.Entities
 {
     public class Customer
     {
-        [Key]
         public int customer_id { get; set; }
-        [Required]
         public string first_name { get; set; }
-        [Required]
         public string last_name { get; set; }
-        [Required]
-        [EmailAddress(ErrorMessage = "Sai định dạng email !!")]
         public string email { get; set; }
-        [Required]
         public string phone { get; set; }
-        [Required]
         public string address { get; set; }
 
         public virtual ICollection<Booking> Bookings { get; set; }

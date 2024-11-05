@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DataAccess.Configurations
+namespace Infrastructure.DataAccess.Configurations
 {
     public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
     {

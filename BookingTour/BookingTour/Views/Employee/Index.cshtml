@@ -26,6 +26,11 @@
                 <td>@employee.email</td>
                 <td>@employee.phone</td>
                 <td>
+                    @if (@employee.position == 5)
+                    {
+                        <p>Admin</p>
+                    }
+
                     @if (@employee.position == 1)
                     {
                         <p>Quản lý</p>

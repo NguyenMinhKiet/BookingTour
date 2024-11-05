@@ -20,11 +20,22 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("Default_Connecti
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IDestinationRepository, DestinationRepository>();
+builder.Services.AddScoped<IFeedbackRepository, FeedbackRepository>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+builder.Services.AddScoped<ITourRepository, TourRepository>();
+builder.Services.AddScoped<ITourDestinationRepository, TourDestinationRepository>();
+builder.Services.AddScoped<ITourEmployeeRepository, TourEmployeeRepository>();
+
 
 // Đăng ký các service
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IDestinationService, DestinationService>();
+builder.Services.AddScoped<IFeedbackService, FeedbackService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<ITourService, TourService>();
+builder.Services.AddScoped<ITourDestinationService, TourDestinationService>();
+builder.Services.AddScoped<ITourEmployeeService, TourEmployeeService>();
 
 // Add TempData
 builder.Services.AddControllersWithViews()

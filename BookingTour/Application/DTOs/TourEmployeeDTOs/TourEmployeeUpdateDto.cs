@@ -2,7 +2,7 @@
 {
     public class TourEmployeeUpdateDto
     {
-        public int employeeId { get; set; }
-        public string position { get; set; }
+        public int tour_id { get; set; }
+        public int employee_id { get; set; }
     }
 }

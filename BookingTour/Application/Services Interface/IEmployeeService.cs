@@ -14,5 +14,8 @@ namespace Application.Services_Interface
         public Task UpdateAsync(int customer_id, EmployeeUpdateDto dto);
 
         public Task DeleteAsync(int id);
+
+        public Task<String> GetEmployeeNameById(int id);
+        public Task<String> GetEmployeePositionById(int id);
     }
 }

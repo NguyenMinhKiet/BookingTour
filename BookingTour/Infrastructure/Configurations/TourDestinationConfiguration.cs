@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Reflection.Emit;
 
 namespace Infrastructure.DataAccess.Configurations
 {
@@ -22,6 +23,7 @@ namespace Infrastructure.DataAccess.Configurations
             builder.HasOne(td => td.Destination)
                 .WithMany(td => td.TourDestinations)
                 .HasForeignKey(td => td.destination_id);
+
         }
     }
 }

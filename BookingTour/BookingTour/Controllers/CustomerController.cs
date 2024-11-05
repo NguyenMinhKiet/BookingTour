@@ -44,23 +44,23 @@ namespace Presentation.Controllers
         {
             if (string.IsNullOrEmpty(customer?.first_name) || customer.first_name.Length < 3)
             {
-                ModelState.AddModelError("first_name", "Vui lòng nhập đầy đủ họ đệm với ít nhất 3 ký tự!");
+                ModelState.AddModelError("first_name", errorMessage: $"Vui lòng nhập đầy đủ họ đệm với ít nhất 3 ký tự, bạn đã nhập: {customer.first_name.Length} ký tự !! ");
             }
 
             if (string.IsNullOrEmpty(customer?.phone) || customer.phone.Length != 10)
             {
-                ModelState.AddModelError("phone", "Số điện thoại phải có 10 kí tự số!!");
+                ModelState.AddModelError("phone", errorMessage: $"Số điện thoại phải có 10 kí tự số, bạn đã nhập: {customer.phone.Length} ký tự !!");
             }
 
             if (string.IsNullOrEmpty(customer?.email) || !customer.email.Contains("@"))
             {
-                ModelState.AddModelError("email", "Email thiếu '@'!!");
+                ModelState.AddModelError("email", errorMessage: "Email thiếu '@'!!");
             }
 
 
             if (string.IsNullOrEmpty(customer?.last_name) || customer.last_name.Length < 3)
             {
-                ModelState.AddModelError("last_name", "Vui lòng nhập đầy đủ Tên với ít nhất 3 ký tự!!");
+                ModelState.AddModelError("last_name", errorMessage: $"Vui lòng nhập đầy đủ họ đệm với ít nhất 3 ký tự, bạn đã nhập: {customer.last_name.Length} ký tự !! ");
             }
 
             if (ModelState.IsValid)
@@ -101,22 +101,22 @@ namespace Presentation.Controllers
         {
             if (string.IsNullOrEmpty(customer?.first_name) || customer.first_name.Length < 3)
             {
-                ModelState.AddModelError("first_name", "Vui lòng nhập đầy đủ họ đệm với ít nhất 3 ký tự!");
+                ModelState.AddModelError("first_name", errorMessage: $"Vui lòng nhập đầy đủ họ đệm với ít nhất 3 ký tự, bạn đã nhập: {customer.first_name.Length} ký tự !! ");
             }
 
             if (string.IsNullOrEmpty(customer?.phone) || customer.phone.Length != 10)
             {
-                ModelState.AddModelError("phone", "Số điện thoại phải có 10 kí tự số!!");
+                ModelState.AddModelError("phone", errorMessage: $"Số điện thoại phải có 10 kí tự số, bạn đã nhập: {customer.phone.Length} ký tự !!");
             }
 
             if (string.IsNullOrEmpty(customer?.email) || !customer.email.Contains("@"))
             {
-                ModelState.AddModelError("email", "Email thiếu '@'!!");
+                ModelState.AddModelError("email", errorMessage: "Email thiếu '@'!!");
             }
 
             if (string.IsNullOrEmpty(customer?.last_name) || customer.last_name.Length < 3)
             {
-                ModelState.AddModelError("last_name", "Vui lòng nhập đầy đủ Tên với ít nhất 3 ký tự!!");
+                ModelState.AddModelError("last_name", errorMessage: $"Vui lòng nhập đầy đủ họ đệm với ít nhất 3 ký tự, bạn đã nhập: {customer.last_name.Length} ký tự !! ");
             }
 
             if (ModelState.IsValid)
@@ -136,8 +136,5 @@ namespace Presentation.Controllers
             TempData["success"] = "Đã xóa khách hàng " + customer_id;
             return RedirectToAction("Index");
         }
-
-
-        
     }
 }

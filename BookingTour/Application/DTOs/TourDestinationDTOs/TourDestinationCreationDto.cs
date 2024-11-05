@@ -1,9 +1,11 @@
-﻿namespace Application.DTOs.TourDestinationDTOs
+﻿using Domain.Entities;
+
+namespace Application.DTOs.TourDestinationDTOs
 {
     public class TourDestinationCreationDto
     {
-        public int TourId { get; set; }
-        public int DestinationId { get; set; }
-        public DateTime VisitDate { get; set; }
+        public int tour_id { get; set; }
+        public int destination_id { get; set; }
+        public DateTime visit_date { get; set; }
     }
 }

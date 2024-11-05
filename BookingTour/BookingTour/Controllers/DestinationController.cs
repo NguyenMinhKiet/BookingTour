@@ -91,7 +91,7 @@ namespace Presentation.Controllers
         // POST: /Destination/Delete?{destination_id}
         public async Task<IActionResult>Delete(int destination_id)
         {
-            //await _destinationService.DeleteAsync(destination_id);
+            await _destinationService.DeleteAsync(destination_id);
             TempData["success"] = "Xóa địa điểm " + destination_id + " thành công.";
             return RedirectToAction("Index");
         }

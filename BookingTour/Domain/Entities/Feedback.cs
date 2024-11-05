@@ -1,25 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
 {
     public class Feedback
     {
-        [Key]
-        public int feedback_id;
-        [Required]
-        public int customer_id;
-        [Required]
-        public int tour_id;
-        [Required]
-        public int rating;
-        [Required]
-        public string comments;
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int feedback_id { get; set; }
+        public int customer_id { get; set; }
+        public int tour_id { get; set; }
+        public int rating { get; set; }
+        public string comments { get; set; }
 
         public virtual Tour Tour { get; set; }
     }

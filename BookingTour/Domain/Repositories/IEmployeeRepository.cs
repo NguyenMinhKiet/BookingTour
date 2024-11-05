@@ -18,5 +18,8 @@ namespace Domain.Repositories
 
         // Phương thức xóa theo ID
         Task DeleteAsync(int id);
+
+        Task<String> GetNameByIdAsync(int id);
+        Task<String> GetPositionByIdAsync(int id);
     }
 }

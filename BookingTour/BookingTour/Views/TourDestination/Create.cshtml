@@ -1,0 +1,43 @@
+﻿@model Presentation.Models.TourDestinationViewModel
+@{
+    ViewData["Title"] = "Thêm địa điểm vào tour";
+}
+
+<h2>Thêm địa điểm vào tour</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label for="tour_id">Chọn Tour:</label>
+        <select id="tour_id" name="tour_id" class="form-control">
+            <option value="">-- Chọn Tour --</option>
+            @foreach (var tour in ViewBag.TourList as SelectList)
+            {
+                <option value="@tour.Value">@tour.Text</option>
+            }
+        </select>
+        <span asp-validation-for="tour_id" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="destination_id">Chọn địa điểm:</label>
+        <select id="destination_id" name="destination_id" class="form-control">
+            <option value="">-- Chọn địa điểm --</option>
+            @foreach (var d in ViewBag.DestinationList as SelectList)
+            {
+                <option value="@d.Value">@d.Text</option>
+            }
+        </select>
+        <span asp-validation-for="destination_id" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="visit_date"></label>
+        <input asp-for="visit_date" type="datetime-local" class="form-control" id="visit_date" name="visit_date">
+        <span asp-validation-for="visit_date" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-controller="TourDestination" asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>

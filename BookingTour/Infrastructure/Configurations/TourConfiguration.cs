@@ -33,13 +33,6 @@ namespace Infrastructure.DataAccess.Configurations
 
             builder.Property(u => u.end_Date)
                 .IsRequired();
-
-            builder.HasMany(u => u.FeedBacks)
-                .WithOne(u => u.Tour)
-                .HasForeignKey(u => u.feedback_id);
-
-
-
         }
     }
 }

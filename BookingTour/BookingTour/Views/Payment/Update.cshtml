@@ -1,0 +1,38 @@
+﻿@model Presentation.Models.PaymentViewModel
+
+@{
+    ViewData["Title"] = "Chỉnh sửa thông tin thanh toán";
+}
+
+<h2>Chỉnh sửa thông tin thanh toán</h2>
+
+<form asp-action="Update" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group d-none">
+        <label asp-for="payment_id"></label>
+        <input asp-for="payment_id" type="text" class="form-control" id="payment_id" name="payment_id" >
+        <span asp-validation-for="payment_id" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="booking_id"></label>
+        <input asp-for="booking_id" type="text" class="form-control" id="booking_id" name="booking_id">
+        <span asp-validation-for="booking_id" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="payment_method"></label>
+        <input asp-for="payment_method" type="text" class="form-control" id="payment_method" name="payment_method">
+        <span asp-validation-for="payment_method" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="payment_status"></label>
+        <textarea asp-for="payment_status" type="text" class="form-control" id="payment_status" name="payment_status"></textarea>
+        <span asp-validation-for="payment_status" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-controller="Payment" asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>

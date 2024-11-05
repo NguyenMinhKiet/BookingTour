@@ -1,0 +1,45 @@
+﻿@model List<Presentation.Models.TourDestinationViewModel>
+@{
+    ViewData["Title"] = "Danh sách địa điểm trong Tour";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tour ID</th>
+            <th>Destination ID</th>
+            <th>Visit Date</th>
+            <th>Controls</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var t in Model)
+        {
+            <tr>
+                <td>@t.tour_id</td>
+                <td>@t.destination_id</td>
+                <td>@t.visit_date</td>
+                <td>
+                    <div class="w-100 btn-group" role="group">
+                        <a asp-action="Update"
+                           asp-controller="TourDestination"
+                           asp-route-tour_id="@t.tour_id"
+                           asp-route-destination_id="@t.destination_id"
+                           class="btn btn-primary">
+                            Cập nhật thông tin
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-controller="TourDestination"
+                           asp-route-tour_id="@t.tour_id"
+                           asp-route-destination_id="@t.destination_id"
+                           class="btn btn-danger">
+                            Xóa
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="btn btn-success" asp-action="Create">Thêm thông tin địa điểm tour Mới</a>

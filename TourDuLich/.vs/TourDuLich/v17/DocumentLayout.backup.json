@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\TourDuLich\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{4CDA99F5-935D-4446-9768-0551C7911530}|TourDuLich.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\tourdulich\\infrastructure\\dataaccess\\context\\bookingtourdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CDA99F5-935D-4446-9768-0551C7911530}|TourDuLich.csproj|solutionrelative:infrastructure\\dataaccess\\context\\bookingtourdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CDA99F5-935D-4446-9768-0551C7911530}|TourDuLich.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\tourdulich\\infrastructure\\dataaccess\\configurations\\bookingconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4CDA99F5-935D-4446-9768-0551C7911530}|TourDuLich.csproj|solutionrelative:infrastructure\\dataaccess\\configurations\\bookingconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4CDA99F5-935D-4446-9768-0551C7911530}|TourDuLich.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\tourdulich\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4CDA99F5-935D-4446-9768-0551C7911530}|TourDuLich.csproj|solutionrelative:controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4CDA99F5-935D-4446-9768-0551C7911530}|TourDuLich.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\tourdulich\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4CDA99F5-935D-4446-9768-0551C7911530}|TourDuLich.csproj|solutionrelative:controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CDA99F5-935D-4446-9768-0551C7911530}|TourDuLich.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\tourdulich\\infrastructure\\dataaccess\\context\\bookingtourdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CDA99F5-935D-4446-9768-0551C7911530}|TourDuLich.csproj|solutionrelative:infrastructure\\dataaccess\\context\\bookingtourdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4CDA99F5-935D-4446-9768-0551C7911530}|TourDuLich.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\tourdulich\\application\\services\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -53,11 +57,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "BookingConfiguration.cs",
+              "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\TourDuLich\\Infrastructure\\DataAccess\\Configurations\\BookingConfiguration.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\DataAccess\\Configurations\\BookingConfiguration.cs",
+              "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\TourDuLich\\Infrastructure\\DataAccess\\Configurations\\BookingConfiguration.cs",
+              "RelativeToolTip": "Infrastructure\\DataAccess\\Configurations\\BookingConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T14:29:03.061Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "BookingController.cs",
               "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\TourDuLich\\Controllers\\BookingController.cs",
               "RelativeDocumentMoniker": "Controllers\\BookingController.cs",
@@ -69,20 +86,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "EmployeeController.cs",
               "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\TourDuLich\\Controllers\\EmployeeController.cs",
               "RelativeDocumentMoniker": "Controllers\\EmployeeController.cs",
               "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\TourDuLich\\Controllers\\EmployeeController.cs",
               "RelativeToolTip": "Controllers\\EmployeeController.cs",
-              "ViewState": "AgIAAEsAAAAAAAAAAAA4wFoAAAA/AAAAAAAAAA==",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAcwFoAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-04T09:53:58.145Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "BookingService.cs",
               "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\TourDuLich\\Application\\Services\\BookingService.cs",
               "RelativeDocumentMoniker": "Application\\Services\\BookingService.cs",
@@ -94,7 +111,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Employee.cs",
               "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\TourDuLich\\Domain\\Entities\\Employee.cs",
               "RelativeDocumentMoniker": "Domain\\Entities\\Employee.cs",
@@ -106,7 +123,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\TourDuLich\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -118,7 +135,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\TourDuLich\\appsettings.Development.json",
               "RelativeDocumentMoniker": "appsettings.Development.json",
@@ -130,7 +147,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\TourDuLich\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -142,19 +159,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "BookingTourDbContext.cs",
               "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\TourDuLich\\Infrastructure\\DataAccess\\Context\\BookingTourDbContext.cs",
               "RelativeDocumentMoniker": "Infrastructure\\DataAccess\\Context\\BookingTourDbContext.cs",
               "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\TourDuLich\\Infrastructure\\DataAccess\\Context\\BookingTourDbContext.cs",
               "RelativeToolTip": "Infrastructure\\DataAccess\\Context\\BookingTourDbContext.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACMAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAIwCMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-01T17:38:02.166Z"
+              "WhenOpened": "2024-11-01T17:38:02.166Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\abc\\Program.cs",
               "RelativeDocumentMoniker": "..\\abc\\Program.cs",
@@ -166,7 +184,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\TourDuLich\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
@@ -178,7 +196,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\TourDuLich\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Controllers\\HomeController.cs",

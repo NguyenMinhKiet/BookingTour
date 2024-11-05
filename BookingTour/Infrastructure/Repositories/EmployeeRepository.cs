@@ -42,6 +42,40 @@ namespace Infrastructure.Repositories
             return await _context.Employees.FindAsync(id);
         }
 
+        public async Task<String> GetNameByIdAsync(int id)
+        {
+            var employee = await _context.Employees
+                .Where(c=>c.employee_id == id)
+                .Select(e=> e.first_name + e.last_name)
+                .FirstOrDefaultAsync();
+
+            return employee ?? "Không tìm thấy tên nhân viên";
+        }
+
+        public async Task<String> GetPositionByIdAsync(int id)
+        {
+            var employee = await _context.Employees
+                .Where(c => c.employee_id == id)
+                .Select(e => e.position)
+                .FirstOrDefaultAsync();
+
+
+            if(employee == 2)
+            {
+                return "Hướng dẫn viên";
+            }
+
+            else if (employee == 3)
+            {
+                return "Tài xế";
+            }
+            else
+            {
+                return "Nhân viên chưa được phân chức vụ";
+            }
+
+        }
+
         public async Task UpdateAsync(Employee employee)
         {
             _context.Employees.Update(employee);

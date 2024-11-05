@@ -38,6 +38,17 @@ namespace Infrastructure.DataAccess.Configurations
             builder.HasMany(b => b.Payments)
                 .WithOne(p=>p.Booking)
                 .HasForeignKey(fk=>fk.booking_id);
+
+            builder.HasOne(b => b.Customer)
+                   .WithMany() // Nếu Customer có nhiều Booking, không cần khai báo danh sách Booking ở Customer
+                   .HasForeignKey(b => b.customer_id)
+                   .OnDelete(DeleteBehavior.Cascade); // Xoá Booking khi Customer bị xóa
+
+            // Thiết lập quan hệ N-1 với Tour
+            builder.HasOne(b => b.Tour) // Booking có 1 Tour
+                   .WithMany(t => t.Bookings) // Tour có nhiều Booking
+                   .HasForeignKey(b => b.tour_id) // Khóa ngoại
+                   .OnDelete(DeleteBehavior.Cascade); // Hành động xóa (tuỳ chọn)
         }
     }
 }

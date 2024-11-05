@@ -1,0 +1,56 @@
+﻿@model List<Presentation.Models.PaymentViewModel>
+@{
+    ViewData["Title"] = "Danh sách thanh toán";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Booking_id</th>
+            <th>Date</th>
+            <th>Method</th>
+            <th>Status</th>
+            <th>Controls</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td>@i.payment_id</td>
+                <td>@i.booking_id</td>
+                <td>@i.payment_date</td>
+                <td>@i.payment_method</td>
+                <td>
+                    @if (@i.payment_status == 0)
+                    {
+                        <p>Đã thanh toán</p>
+                    }
+                    @if (@i.payment_status == 1)
+                    {
+                        <p>Chưa thanh toán</p>
+                    }
+                </td>
+                <td>
+                    <div class="w-100 btn-group" role="group">
+                        <a asp-action="Update"
+                           asp-controller="Payment"
+                           asp-route-payment_id="@i.payment_id"
+                           class="btn btn-primary">
+                            Cập nhật thông tin
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-controller="feedback"
+                           asp-route-payment_id="@i.payment_id"
+                           class="btn btn-danger">
+                            Xóa
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="btn btn-success" asp-action="Create">Thêm thanh toán mới</a>

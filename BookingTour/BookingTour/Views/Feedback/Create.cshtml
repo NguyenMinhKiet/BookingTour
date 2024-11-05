@@ -1,0 +1,49 @@
+﻿@model Presentation.Models.FeedbackViewModel
+
+@{
+    ViewData["Title"] = "Thêm đánh giá mới";
+}
+
+<h2>Thêm đánh giá mới</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="tour_id"></label>
+        <input asp-for="tour_id" type="text" class="form-control" id="tour_id" name="tour_id">
+        <span asp-validation-for="tour_id" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="customer_id"></label>
+        <input asp-for="customer_id" type="text" class="form-control" id="customer_id" name="customer_id">
+        <span asp-validation-for="customer_id" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="customer_id">Chọn khách hàng:</label>
+        <select id="customer_id" name="customer_id" class="form-control">
+            <option value="">-- Chọn khách hàng --</option>
+            @foreach (var customer in ViewBag.CustomerList as SelectList)
+            {
+                <option value="@customer.Value">@customer.Text</option>
+            }
+        </select>
+    </div>
+    
+
+    <div class="form-group">
+        <label asp-for="rating"></label>
+        <input asp-for="rating" type="text" class="form-control" id="rating" name="rating">
+        <span asp-validation-for="rating" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="comments"></label>
+        <textarea asp-for="comments" type="text" class="form-control" id="comments" name="comments"></textarea>
+        <span asp-validation-for="comments" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-controller="Feedback" asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>

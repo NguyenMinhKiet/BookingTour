@@ -1,0 +1,37 @@
+﻿@model List<Presentation.Models.TourEmployeeViewModel>
+@{
+    ViewData["Title"] = "Danh sách nhân viên trong Tour";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tour ID</th>
+            <th>Employee Name</th>
+            <th>Position</th>
+            <th>Controls</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var t in Model)
+        {
+            <tr>
+                <td>@t.tour_id</td>
+                <td>@t.employee_name</td>
+                <td>@t.position</td>
+                <td>
+                    <div class="w-100 btn-group" role="group">
+                        <a asp-action="Delete"
+                           asp-controller="TourEmployee"
+                           asp-route-tour_id="@t.tour_id"
+                           asp-route-employee_id="@t.employee_id"
+                           class="btn btn-danger">
+                            Xóa
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="btn btn-success" asp-action="Create">Thêm nhân viên vào tour</a>

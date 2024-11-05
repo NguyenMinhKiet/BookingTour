@@ -11,6 +11,10 @@ namespace Infrastructure.DataAccess.Configurations
             builder.ToTable("Feedbacks");
 
             builder.HasKey(u=>u.feedback_id);
+                
+            builder.Property(u => u.feedback_id)
+               .ValueGeneratedOnAdd()
+               .HasColumnType("int");
 
             builder.Property(u => u.customer_id)
                 .IsRequired();
@@ -23,6 +27,11 @@ namespace Infrastructure.DataAccess.Configurations
 
             builder.Property(u => u.rating)
                 .IsRequired();
+
+            builder.HasOne(t=>t.Tour)
+                .WithMany(f=>f.FeedBacks)
+                .HasForeignKey(t=>t.tour_id)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

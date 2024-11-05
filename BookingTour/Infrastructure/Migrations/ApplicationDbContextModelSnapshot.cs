@@ -53,9 +53,31 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("customer_id");
 
+                    b.HasIndex("tour_id");
+
                     b.ToTable("Bookings", null, t =>
                         {
                             t.HasCheckConstraint("CK_Booking_NumPeople", "[num_people] >= 0");
+                        });
+
+                    b.HasData(
+                        new
+                        {
+                            booking_id = -1,
+                            booking_date = new DateTime(2024, 11, 6, 2, 27, 22, 759, DateTimeKind.Local).AddTicks(1820),
+                            customer_id = -1,
+                            num_people = 2,
+                            total_price = 3000000m,
+                            tour_id = -1
+                        },
+                        new
+                        {
+                            booking_id = -2,
+                            booking_date = new DateTime(2024, 11, 6, 2, 27, 22, 759, DateTimeKind.Local).AddTicks(1824),
+                            customer_id = -2,
+                            num_people = 1,
+                            total_price = 2000000m,
+                            tour_id = -2
                         });
                 });
 
@@ -91,6 +113,26 @@ namespace Infrastructure.Migrations
                     b.HasKey("customer_id");
 
                     b.ToTable("Customers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            customer_id = -1,
+                            address = "123 Đường Láng",
+                            email = "nguyenvana@example.com",
+                            first_name = "Nguyễn",
+                            last_name = "Văn A",
+                            phone = "0123456789"
+                        },
+                        new
+                        {
+                            customer_id = -2,
+                            address = "456 Phố Huế",
+                            email = "tranthib@example.com",
+                            first_name = "Trần",
+                            last_name = "Thị B",
+                            phone = "0987654321"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Destination", b =>
@@ -120,6 +162,24 @@ namespace Infrastructure.Migrations
                     b.HasKey("destination_id");
 
                     b.ToTable("Destinations", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            destination_id = -1,
+                            city = "Nha Trang",
+                            country = "Việt Nam",
+                            description = "Một bãi biển nổi tiếng với cát trắng và nước biển trong xanh.",
+                            destination_name = "Bãi biển Nha Trang"
+                        },
+                        new
+                        {
+                            destination_id = -2,
+                            city = "Lào Cai",
+                            country = "Việt Nam",
+                            description = "Nóc nhà Đông Dương, nơi có phong cảnh hùng vĩ và khí hậu trong lành.",
+                            destination_name = "Đỉnh Fansipan"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Employee", b =>
@@ -157,12 +217,57 @@ namespace Infrastructure.Migrations
                     b.HasKey("employee_id");
 
                     b.ToTable("Employees", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            employee_id = -4,
+                            address = "Q12 Tp.HCM",
+                            email = "nguyenminhkiet@gmail.com",
+                            first_name = "Nguyễn Minh",
+                            last_name = "Kiệt",
+                            phone = "0932881172",
+                            position = 5
+                        },
+                        new
+                        {
+                            employee_id = -1,
+                            address = "Hồ Chí Minh",
+                            email = "letung@example.com",
+                            first_name = "Lê",
+                            last_name = "Tùng",
+                            phone = "0123456780",
+                            position = 1
+                        },
+                        new
+                        {
+                            employee_id = -2,
+                            address = "Hà Nội",
+                            email = "phamhung@example.com",
+                            first_name = "Phạm",
+                            last_name = "Hùng",
+                            phone = "0987654320",
+                            position = 2
+                        },
+                        new
+                        {
+                            employee_id = -3,
+                            address = "Hà Nội",
+                            email = "phamlinh@example.com",
+                            first_name = "Phạm",
+                            last_name = "Linh",
+                            phone = "0987231220",
+                            position = 3
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Feedback", b =>
                 {
                     b.Property<int>("feedback_id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("feedback_id"));
 
                     b.Property<string>("comments")
                         .IsRequired()
@@ -179,7 +284,27 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("feedback_id");
 
+                    b.HasIndex("tour_id");
+
                     b.ToTable("Feedbacks", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            feedback_id = -1,
+                            comments = "Chuyến đi tuyệt vời!",
+                            customer_id = -1,
+                            rating = 5,
+                            tour_id = -1
+                        },
+                        new
+                        {
+                            feedback_id = -2,
+                            comments = "Hài lòng với dịch vụ.",
+                            customer_id = -2,
+                            rating = 4,
+                            tour_id = -2
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Payment", b =>
@@ -200,11 +325,32 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("payment_status")
+                        .HasColumnType("int");
+
                     b.HasKey("payment_id");
 
                     b.HasIndex("booking_id");
 
                     b.ToTable("Payments", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            payment_id = -1,
+                            booking_id = -1,
+                            payment_date = new DateTime(2024, 11, 6, 2, 27, 22, 759, DateTimeKind.Local).AddTicks(1852),
+                            payment_method = "Tiền mặt",
+                            payment_status = 0
+                        },
+                        new
+                        {
+                            payment_id = -2,
+                            booking_id = -2,
+                            payment_date = new DateTime(2024, 11, 6, 2, 27, 22, 759, DateTimeKind.Local).AddTicks(1855),
+                            payment_method = "Thẻ ví",
+                            payment_status = 0
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Tour", b =>
@@ -246,6 +392,28 @@ namespace Infrastructure.Migrations
 
                             t.HasCheckConstraint("CK_price", "[price] >= 0");
                         });
+
+                    b.HasData(
+                        new
+                        {
+                            tour_id = -1,
+                            availableSeats = 20,
+                            description = "Tour nghỉ dưỡng tại bãi biển",
+                            end_Date = new DateTime(2024, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            price = 1999000m,
+                            start_Date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            tour_name = "Du lịch biển"
+                        },
+                        new
+                        {
+                            tour_id = -2,
+                            availableSeats = 15,
+                            description = "Tour leo núi đầy thử thách",
+                            end_Date = new DateTime(2024, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            price = 2999000m,
+                            start_Date = new DateTime(2024, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            tour_name = "Thám hiểm núi"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.TourDestination", b =>
@@ -256,9 +424,6 @@ namespace Infrastructure.Migrations
                     b.Property<int>("destination_id")
                         .HasColumnType("int");
 
-                    b.Property<int>("tourDestination_id")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("visit_date")
                         .HasColumnType("datetime2");
 
@@ -267,6 +432,20 @@ namespace Infrastructure.Migrations
                     b.HasIndex("destination_id");
 
                     b.ToTable("TourDestinations", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            tour_id = -1,
+                            destination_id = -1,
+                            visit_date = new DateTime(2024, 11, 6, 2, 27, 22, 759, DateTimeKind.Local).AddTicks(1730)
+                        },
+                        new
+                        {
+                            tour_id = -2,
+                            destination_id = -2,
+                            visit_date = new DateTime(2024, 11, 6, 2, 27, 22, 759, DateTimeKind.Local).AddTicks(1750)
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.TourEmployee", b =>
@@ -277,15 +456,33 @@ namespace Infrastructure.Migrations
                     b.Property<int>("employee_id")
                         .HasColumnType("int");
 
-                    b.Property<string>("position")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("tour_id", "employee_id");
 
                     b.HasIndex("employee_id");
 
                     b.ToTable("TourEmployees", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            tour_id = -1,
+                            employee_id = -2
+                        },
+                        new
+                        {
+                            tour_id = -1,
+                            employee_id = -3
+                        },
+                        new
+                        {
+                            tour_id = -2,
+                            employee_id = -2
+                        },
+                        new
+                        {
+                            tour_id = -2,
+                            employee_id = -3
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Booking", b =>
@@ -296,14 +493,22 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Domain.Entities.Tour", "Tour")
+                        .WithMany("Bookings")
+                        .HasForeignKey("tour_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Customer");
+
+                    b.Navigation("Tour");
                 });
 
             modelBuilder.Entity("Domain.Entities.Feedback", b =>
                 {
                     b.HasOne("Domain.Entities.Tour", "Tour")
                         .WithMany("FeedBacks")
-                        .HasForeignKey("feedback_id")
+                        .HasForeignKey("tour_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -381,6 +586,8 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Tour", b =>
                 {
+                    b.Navigation("Bookings");
+
                     b.Navigation("FeedBacks");
 
                     b.Navigation("TourDestinations");

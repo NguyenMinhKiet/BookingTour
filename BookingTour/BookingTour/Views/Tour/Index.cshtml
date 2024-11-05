@@ -1,0 +1,51 @@
+﻿@model List<Presentation.Models.TourViewModel>
+@{
+    ViewData["Title"] = "Danh sách Tour";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tour Name</th>
+            <th>Description</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Price</th>
+            <th>AvaiableSeats</th>
+            <th>Controls</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var t in Model)
+        {
+            <tr>
+                <td>@t.tour_id</td>
+                <td>@t.tour_name</td>
+                <td>@t.description</td>
+                <td>@t.start_Date</td>
+                <td>@t.end_Date</td>
+                <td>@t.price</td>
+                <td>@t.availableSeats</td>
+                <td>
+                    <div class="w-100 btn-group" role="group">
+                        <a asp-action="Update"
+                           asp-controller="Tour"
+                           asp-route-tour_id="@t.tour_id"
+                           class="btn btn-primary">
+                            Cập nhật thông tin
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-controller="Tour"
+                           asp-route-tour_id="@t.tour_id"
+                           class="btn btn-danger">
+                            Xóa
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="btn btn-success" asp-action="Create">Thêm thông tin tour Mới</a>
