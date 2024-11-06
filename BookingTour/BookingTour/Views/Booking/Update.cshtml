@@ -1,0 +1,48 @@
+﻿@model Presentation.Models.BookingViewModel
+@{
+    ViewData["Title"] = "Chỉnh sửa thông tin booking";
+}
+
+<h2>Chỉnh sửa thông tin booking</h2>
+
+<form asp-action="Update" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group d-none">
+        <label asp-for="booking_id"></label>
+        <input asp-for="booking_id" type="text" class="form-control" id="booking_id" name="booking_id">
+        <span asp-validation-for="booking_id" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="customer_id"></label>
+        <input asp-for="customer_id" type="text" class="form-control" id="customer_id" name="customer_id">
+        <span asp-validation-for="customer_id" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="tour_id"></label>
+        <input asp-for="tour_id" type="text" class="form-control" id="tour_id" name="tour_id">
+        <span asp-validation-for="tour_id" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="booking_date"></label>
+        <input asp-for="booking_date" type="datetime-local" class="form-control" id="booking_date" name="booking_date">
+        <span asp-validation-for="booking_date" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="num_people"></label>
+        <input asp-for="num_people" type="number" class="form-control" id="num_people" name="num_people" min="0">
+        <span asp-validation-for="num_people" class="text-danger"></span>
+    </div>
+
+    <div class="form-group d-none">
+        <label asp-for="total_price"></label>
+        <input asp-for="total_price" type="decimal" class="form-control" id="total_price" name="total_price" min="0">
+        <span asp-validation-for="total_price" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-controller="Booking" asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>

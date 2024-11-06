@@ -25,6 +25,7 @@ builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<ITourRepository, TourRepository>();
 builder.Services.AddScoped<ITourDestinationRepository, TourDestinationRepository>();
 builder.Services.AddScoped<ITourEmployeeRepository, TourEmployeeRepository>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 
 
 // Đăng ký các service
@@ -36,6 +37,7 @@ builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<ITourService, TourService>();
 builder.Services.AddScoped<ITourDestinationService, TourDestinationService>();
 builder.Services.AddScoped<ITourEmployeeService, TourEmployeeService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
 
 // Add TempData
 builder.Services.AddControllersWithViews()

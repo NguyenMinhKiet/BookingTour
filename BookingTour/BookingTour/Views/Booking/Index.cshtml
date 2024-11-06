@@ -1,0 +1,45 @@
+﻿@model List<Presentation.Models.BookingViewModel>
+@{
+    ViewData["Title"] = "Danh sách booking";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tour ID</th>
+            <th>Customer ID</th>
+            <th>Date</th>
+            <th>Num people</th>
+            <th>Total Price</th>
+            <th>Controls</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var b in Model)
+        {
+            <tr>
+                <td>@b.booking_id</td>
+                <td>@b.tour_id</td>
+                <td>@b.customer_id</td>
+                <td>@b.booking_date</td>
+                <td>@b.num_people</td>
+                <td>@b.total_price</td>
+                <td>
+                    <div class="w-100 btn-group" role="group">
+                        <a asp-action="Update"
+                           asp-controller="Booking"
+                           asp-route-booking_id="@b.booking_id"
+                           class="btn btn-primary">Cập nhật thông tin</a>
+
+                        <a asp-action="Delete"
+                           asp-controller="Booking"
+                           asp-route-booking_id="@b.booking_id"
+                           class="btn btn-danger">Xóa</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="btn btn-success" asp-action="Create">Thêm booking Mới</a>

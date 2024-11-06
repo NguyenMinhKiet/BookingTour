@@ -11,7 +11,7 @@ namespace Presentation.Controllers
     public class PaymentController : Controller
     {
         private readonly IPaymentService _paymentService;
-        private readonly IBookingService bookingService;
+        private readonly IBookingService _bookingService;
         public PaymentController(IPaymentService paymentService)
         {
             _paymentService = paymentService;
@@ -34,7 +34,7 @@ namespace Presentation.Controllers
         }
 
         // GET: /Payment/Create
-        public  IActionResult Create()
+        public  async Task<IActionResult> CreateAsync()
         {
             var bookings = await _bookingService.GetAllAsync();
             var bookingsViewModel = bookings.Select(i => new BookingViewModel

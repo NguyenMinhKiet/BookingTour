@@ -18,6 +18,18 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Booking/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Booking/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Booking/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ1xVcGRhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Customer/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
