@@ -18,6 +18,7 @@ namespace Infrastructure.Data
         public DbSet<Feedback> Feedbacks { get; set; }
 
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -30,6 +31,7 @@ namespace Infrastructure.Data
             modelBuilder.ApplyConfiguration(new TourDestinationConfiguration());
             modelBuilder.ApplyConfiguration(new TourEmployeeConfiguration());
             modelBuilder.ApplyConfiguration(new FeedbackConfiguration());
+
 
             base.OnModelCreating(modelBuilder);
 
@@ -264,6 +266,7 @@ namespace Infrastructure.Data
                 }
             );
 
+            
         }
     }
 }

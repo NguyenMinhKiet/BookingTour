@@ -4,6 +4,7 @@ using Domain.Repositories;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Specialized;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("Default_Connection")));
+
 
 
 
@@ -42,7 +44,14 @@ builder.Services.AddScoped<IBookingService, BookingService>();
 // Add TempData
 builder.Services.AddControllersWithViews()
     .AddSessionStateTempDataProvider();
-builder.Services.AddSession();
+
+// Cấu hình các dịch vụ (ConfigureServices)
+builder.Services.AddDistributedMemoryCache(); // Đăng ký dịch vụ cache trong bộ nhớ, session sẽ sử dụng nó
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = "MinhKiet"; // Đặt tên cookie cho session
+    options.IdleTimeout = TimeSpan.FromMinutes(20); // Thời gian tồn tại của session
+});
 
 var app = builder.Build();
 
@@ -60,6 +69,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseSession();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(

@@ -1,6 +1,8 @@
-using Presentation.Models;
+﻿using Presentation.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Domain.Entities;
+using Newtonsoft.Json;
 
 namespace Presentation.Controllers
 {
@@ -15,6 +17,11 @@ namespace Presentation.Controllers
 
         public IActionResult Index()
         {
+            //String userData = HttpContext.Session.GetString("user");
+            //if (userData != null)
+            //{
+            //    User user = JsonConvert.DeserializeObject<User>(userData);
+            //}
             return View();
         }
 
