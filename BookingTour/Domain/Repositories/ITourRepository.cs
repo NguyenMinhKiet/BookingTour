@@ -5,7 +5,7 @@ namespace Domain.Repositories
     public interface ITourRepository
     {
         // Phương thức lấy theo ID
-        Task<Tour> GetByIdAsync(int id);
+        Task<Tour> GetByIdAsync(Guid id);
 
         // Phương thức lấy tất cả
         Task<IEnumerable<Tour>> GetAllAsync();
@@ -17,6 +17,6 @@ namespace Domain.Repositories
         Task UpdateAsync(Tour tour);
 
         // Phương thức xóa theo ID
-        Task DeleteAsync(int id);
+        Task DeleteAsync(Guid id);
     }
 }

@@ -10,15 +10,15 @@ namespace Infrastructure.DataAccess.Configurations
         {
             builder.ToTable("TourEmployees");
             
-            builder.HasKey(u=> new {u.tour_id, u.employee_id});
+            builder.HasKey(u=> new {u.TourID, u.EmployeeID});
 
             builder.HasOne(td => td.Tour)
                 .WithMany(td => td.TourEmployees)
-                .HasForeignKey(td => td.tour_id);
+                .HasForeignKey(td => td.TourID);
 
             builder.HasOne(td => td.Employee)
                 .WithMany(td => td.TourEmployee)
-                .HasForeignKey(td => td.employee_id);
+                .HasForeignKey(td => td.EmployeeID);
         }
     }
 }

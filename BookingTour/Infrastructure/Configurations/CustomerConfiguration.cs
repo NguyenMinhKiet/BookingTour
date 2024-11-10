@@ -10,28 +10,27 @@ namespace Infrastructure.DataAccess.Configurations
         {
             builder.ToTable("Customers");
 
-            builder.HasKey(u=>u.customer_id);
+            builder.HasKey(u=>u.CustomerID);
 
-            builder.Property(u => u.first_name)
+            builder.Property(u => u.FirstName)
                 .IsRequired();
 
-            builder.Property(u => u.last_name)
-                .IsRequired();
-
-            builder.Property(u => u.email)
+            builder.Property(u => u.LastName)
                 .IsRequired();
                
-            builder.Property(u => u.address)
+            builder.Property(u => u.Address)
                 .IsRequired();
-
-            builder.Property(u => u.phone)
-                .IsRequired()
-                .HasMaxLength(10);
 
             // Cấu hình mối quan hệ một-nhiều giữa Customer và Booking
             builder.HasMany(c => c.Bookings) // Customer có nhiều Booking
                 .WithOne(b => b.Customer)   // Mỗi Booking thuộc về một Customer
-                .HasForeignKey(b => b.customer_id); // Đặt khóa ngoại
+                .HasForeignKey(b => b.CustomerID)
+                .OnDelete(DeleteBehavior.Cascade);// Đặt khóa ngoại
+
+            builder.HasOne(i => i.Account)
+                .WithOne()
+                .HasForeignKey<Customer>(u => u.AccountID)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

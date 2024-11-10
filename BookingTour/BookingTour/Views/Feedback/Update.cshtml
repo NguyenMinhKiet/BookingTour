@@ -8,37 +8,20 @@
 
 <form asp-action="Update" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input asp-for="FeedbackID" type="hidden" class="form-control" id="FeedbackID" name="FeedbackID" value="@Model.FeedbackID">
+    <input asp-for="TourID" type="hidden" class="form-control" id="TourID" name="TourID" value="@Model.TourID">
+    <input asp-for="CustomerID" type="hidden" class="form-control" id="CustomerID" name="CustomerID" value="@Model.CustomerID">
 
-    <div class="form-group d-none">
-        <label asp-for="feedback_id"></label>
-        <input asp-for="feedback_id" type="text" class="form-control" id="feedback_id" name="feedback_id" >
-        <span asp-validation-for="feedback_id" class="text-danger"></span>
+    <div class="form-group">
+        <label asp-for="Rating"></label>
+        <input asp-for="Rating" type="text" class="form-control" id="Rating" name="Rating" Required>
+        <span asp-validation-for="Rating" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="tour_id"></label>
-        <input asp-for="tour_id" type="text" class="form-control" id="tour_id" name="tour_id">
-        <span asp-validation-for="tour_id" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="customer_id"></label>
-        <input asp-for="customer_id" type="text" class="form-control" id="customer_id" name="customer_id">
-        <span asp-validation-for="customer_id" class="text-danger"></span>
-    </div>
-
-
-
-    <div class="form-group">
-        <label asp-for="rating"></label>
-        <input asp-for="rating" type="text" class="form-control" id="rating" name="rating">
-        <span asp-validation-for="rating" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="comments"></label>
-        <textarea asp-for="comments" type="text" class="form-control" id="comments" name="comments"></textarea>
-        <span asp-validation-for="comments" class="text-danger"></span>
+        <label asp-for="Comments"></label>
+        <textarea asp-for="Comments" type="text" class="form-control" id="Comments" name="Comments"></textarea>
+        <span asp-validation-for="Comments" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Lưu</button>

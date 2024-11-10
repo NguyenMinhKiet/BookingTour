@@ -23,11 +23,11 @@ namespace Presentation.Controllers
             var payments = await _paymentService.GetAllAsync();
             var paymentsViewModel = payments.Select(i => new PaymentViewModel
             {
-                payment_id = i.payment_id,
-                booking_id = i.booking_id,
-                payment_date = i.payment_date,
-                payment_method = i.payment_method,
-                payment_status = i.payment_status
+                PaymentID = i.PaymentID,
+                BookingID = i.BookingID,
+                CreateAt = i.CreateAt,
+                Method = i.Method,
+                Status = i.Status
             }).ToList();
 
             return View(paymentsViewModel);
@@ -39,10 +39,10 @@ namespace Presentation.Controllers
             var bookings = await _bookingService.GetAllAsync();
             var bookingsViewModel = bookings.Select(i => new BookingViewModel
             {
-                booking_id = i.booking_id,
+                BookingID = i.BookingID,
 
             }).ToList();
-            var bookingsSelectList = new SelectList(bookingsViewModel, "booking_id", "booking_id");
+            var bookingsSelectList = new SelectList(bookingsViewModel, "BookingID", "BookingID");
 
             ViewBag.TourList = bookingsSelectList;
 
@@ -64,33 +64,35 @@ namespace Presentation.Controllers
         }
 
         // GET: /Payment/Update?{payment_id}
-        public async Task<IActionResult> Update(int payment_id)
+        public async Task<IActionResult> Update(Guid PaymentID)
         {
-            var payment = await _paymentService.GetById(payment_id);
+            var payment = await _paymentService.GetById(PaymentID);
             if(payment == null)
             {
-                TempData["error"] = "Không tìm thấy thông tin thanh toán " + payment_id;
+                TempData["error"] = "Không tìm thấy thông tin thanh toán " + PaymentID;
                 return RedirectToAction("Index");
             }
 
             var paymentViewModel = new PaymentViewModel
             {
-                booking_id = payment.booking_id,
-                payment_date = payment.payment_date,
-                payment_method = payment.payment_method,
-                payment_status = payment.payment_status
+                PaymentID = payment.PaymentID,
+                BookingID = payment.BookingID,
+                Method = payment.Method,
+                Status = payment.Status,
+                CreateAt = payment.CreateAt,
+                ModifyAt = payment.ModifyAt
             };
 
             return View(paymentViewModel);
         }
 
-        // POST: /Payment/Update?{payment_id}
+        // POST: /Payment/Update?{PaymentID}
         [HttpPost]
-        public async Task<IActionResult> Update(int payment_id, PaymentUpdateDto dto)
+        public async Task<IActionResult> Update(Guid PaymentID, PaymentUpdateDto dto)
         {
             if(ModelState.IsValid)
             {
-                await _paymentService.UpdateAsync(payment_id, dto);
+                await _paymentService.UpdateAsync(PaymentID, dto);
                 TempData["success"] = "Cập nhật thông tin thanh toán thành công !!";
                 return RedirectToAction("Index");
             }
@@ -98,11 +100,11 @@ namespace Presentation.Controllers
             return View();
         }
 
-        // POST: /Payment/Delete?{payment_id}
-        public async Task<IActionResult> Delete(int payment_id)
+        // POST: /Payment/Delete?{PaymentID}
+        public async Task<IActionResult> Delete(Guid PaymentID)
         {
-            await _paymentService.DeleteAsync(payment_id);
-            TempData["success"] = "Xóa địa điểm " + payment_id + " thành công.";
+            await _paymentService.DeleteAsync(PaymentID);
+            TempData["success"] = "Xóa địa điểm " + PaymentID + " thành công.";
             return RedirectToAction("Index");
         }
     }

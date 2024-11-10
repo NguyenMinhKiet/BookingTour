@@ -23,15 +23,16 @@ namespace Application.Services
         {
             var destination = new Destination
             {
-                destination_name = dto.destination_name,
-                city = dto.city,
-                country = dto.country,
+                DestinationID = new Guid(),
+                Name = dto.Name,
+                City = dto.City,
+                Country = dto.Country,
             };
             await _destinationRepository.AddAsync(destination);
             return destination;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Guid id)
         {
             await _destinationRepository.DeleteAsync(id);
         }
@@ -41,19 +42,19 @@ namespace Application.Services
             return await _destinationRepository.GetAllAsync();
         }
 
-        public async Task<Destination> GetById(int id)
+        public async Task<Destination> GetById(Guid id)
         {
             return await _destinationRepository.GetByIdAsync(id);
         }
 
-        public async Task UpdateAsync(int id, DestinationUpdateDto dto)
+        public async Task UpdateAsync(Guid id, DestinationUpdateDto dto)
         {
             var destiantion = await _destinationRepository.GetByIdAsync(id);
             if (destiantion != null)
             {
-                destiantion.destination_name = dto.destination_name;
-                destiantion.city = dto.city;
-                destiantion.country = dto.country;
+                destiantion.Name = dto.Name;
+                destiantion.City = dto.City;
+                destiantion.Country = dto.Country;
 
                 await _destinationRepository.UpdateAsync(destiantion);
             }

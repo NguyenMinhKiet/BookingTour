@@ -29,3 +29,19 @@ D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\Infrastruct
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\Infrastructure\obj\Debug\net8.0\refint\Infrastructure.dll
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\Infrastructure\obj\Debug\net8.0\Infrastructure.pdb
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\Infrastructure\obj\Debug\net8.0\ref\Infrastructure.dll
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Infrastructure\bin\Debug\net8.0\Infrastructure.deps.json
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Infrastructure\bin\Debug\net8.0\Infrastructure.dll
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Infrastructure\bin\Debug\net8.0\Infrastructure.pdb
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Infrastructure\bin\Debug\net8.0\Domain.dll
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Infrastructure\bin\Debug\net8.0\Domain.pdb
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Infrastructure\obj\Debug\net8.0\Infrastructure.csproj.AssemblyReference.cache
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Infrastructure\obj\Debug\net8.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Infrastructure\obj\Debug\net8.0\Infrastructure.AssemblyInfoInputs.cache
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Infrastructure\obj\Debug\net8.0\Infrastructure.AssemblyInfo.cs
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Infrastructure\obj\Debug\net8.0\Infrastructure.csproj.CoreCompileInputs.cache
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Infrastructure\obj\Debug\net8.0\Infrastructure.sourcelink.json
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Infrastructure\obj\Debug\net8.0\Infrastr.15EFFBFE.Up2Date
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Infrastructure\obj\Debug\net8.0\Infrastructure.dll
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Infrastructure\obj\Debug\net8.0\refint\Infrastructure.dll
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Infrastructure\obj\Debug\net8.0\Infrastructure.pdb
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Infrastructure\obj\Debug\net8.0\ref\Infrastructure.dll

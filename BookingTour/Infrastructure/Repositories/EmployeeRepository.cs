@@ -20,7 +20,7 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Guid id)
         {
             var employee = await GetByIdAsync(id);
             if (employee == null)
@@ -37,42 +37,29 @@ namespace Infrastructure.Repositories
             return await _context.Employees.ToListAsync();
         }
 
-        public async Task<Employee> GetByIdAsync(int id)
+        public async Task<Employee> GetByIdAsync(Guid id)
         {
             return await _context.Employees.FindAsync(id);
         }
 
-        public async Task<String> GetNameByIdAsync(int id)
+        public async Task<String> GetNameByIdAsync(Guid id)
         {
             var employee = await _context.Employees
-                .Where(c=>c.employee_id == id)
-                .Select(e=> e.first_name + e.last_name)
+                .Where(c=>c.EmployeeID == id)
+                .Select(e=> e.FirstName + e.LastName)
                 .FirstOrDefaultAsync();
 
             return employee ?? "Không tìm thấy tên nhân viên";
         }
 
-        public async Task<String> GetPositionByIdAsync(int id)
+        public async Task<String> GetPositionByIdAsync(Guid id)
         {
-            var employee = await _context.Employees
-                .Where(c => c.employee_id == id)
-                .Select(e => e.position)
+            var position = await _context.Employees
+                .Where(c => c.EmployeeID == id)
+                .Select(e => e.Position)
                 .FirstOrDefaultAsync();
 
-
-            if(employee == 2)
-            {
-                return "Hướng dẫn viên";
-            }
-
-            else if (employee == 3)
-            {
-                return "Tài xế";
-            }
-            else
-            {
-                return "Nhân viên chưa được phân chức vụ";
-            }
+            return position;
 
         }
 

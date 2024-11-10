@@ -10,28 +10,27 @@ namespace Infrastructure.DataAccess.Configurations
         {
             builder.ToTable("Employees");
 
-            builder.HasKey(u => u.employee_id);
+            builder.HasKey(u => u.EmployeeID);
 
-            builder.Property(u => u.first_name)
+            builder.Property(u => u.FirstName)
                 .IsRequired();
 
-            builder.Property(u => u.last_name)
+            builder.Property(u => u.LastName)
+                .IsRequired();
+           
+            builder.Property(u => u.Address)
                 .IsRequired();
 
-            builder.Property(u => u.email)
+            builder.Property(u => u.Position)
                 .IsRequired();
 
-            builder.Property(u => u.address)
+            builder.Property(u=> u.AccountID)
                 .IsRequired();
 
-            builder.Property(u => u.phone)
-                .IsRequired()
-                .HasMaxLength(10);
-
-            builder.Property(u => u.position)
-                .IsRequired();
-
-            builder.Property(u => u.address);
+            builder.HasOne(i => i.Account)
+                .WithOne()
+                .HasForeignKey<Employee>(u => u.AccountID)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

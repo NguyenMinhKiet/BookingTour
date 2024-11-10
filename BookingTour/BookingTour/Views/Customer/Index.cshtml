@@ -2,7 +2,6 @@
 @{
     ViewData["Title"] = "Danh sách khách hàng";
 }
-
 <table class="table">
     <thead>
         <tr>
@@ -12,6 +11,10 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Address</th>
+            <th>AccountID</th>
+            <th>UserName</th>
+            <th>Password</th>
+            <th>IsActive</th>
             <th>Controls</th>
         </tr>
     </thead>
@@ -19,21 +22,27 @@
         @foreach (var customer in Model)
         {
             <tr>
-                <td>@customer.customer_id</td>
-                <td>@customer.first_name</td>
-                <td>@customer.last_name</td>
-                <td>@customer.email</td>
-                <td>@customer.phone</td>
-                <td>@customer.address</td>
+                <td>@customer.CustomerID</td>
+                <td>@customer.FirstName</td>
+                <td>@customer.LastName</td>
+                <td>@customer.Email</td>
+                <td>@customer.Phone</td>
+                <td>@customer.Address</td>
+                <td>@customer.AccountID</td>
+                <td>@customer.Username</td>
+                <td>@customer.Password</td>
+                <td>@customer.isActive</td>
                 <td>
                     <div class="w-100 btn-group" role="group">
                         <a asp-action="Update"
                            asp-controller="Customer"
-                           asp-route-customer_id="@customer.customer_id"
+                           asp-route-CustomerID="@customer.CustomerID"
+                           asp-route-AccountID="@customer.AccountID"
                            class="btn btn-primary">Cập nhật thông tin</a>
+
                         <a asp-action="Delete"
                            asp-controller="Customer"
-                           asp-route-customer_id="@customer.customer_id"
+                           asp-route-CustomerID="@customer.CustomerID"
                            class="btn btn-danger">Xóa</a>
                     </div>
                 </td>

@@ -2,6 +2,7 @@
 using Application.Services_Interface;
 using Domain.Entities;
 using Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Services
 {
@@ -14,7 +15,7 @@ namespace Application.Services
             _customerRepository = customerRepository;
         }
 
-        public async Task<Customer> GetById(int id)
+        public async Task<Customer> GetById(Guid id)
         {
             return await _customerRepository.GetByIdAsync(id);
         }
@@ -28,32 +29,30 @@ namespace Application.Services
         {
             var newCustomer = new Customer()
             {
-                first_name = customerCreationDto.first_name,
-                last_name = customerCreationDto.last_name,
-                email = customerCreationDto.email,
-                phone = customerCreationDto.phone,
-                address = customerCreationDto.address,
+                CustomerID = new Guid(),
+                FirstName = customerCreationDto.FirstName,
+                LastName = customerCreationDto.LastName,
+                Address = customerCreationDto.Address,
+                AccountID = customerCreationDto.AccountID,
             };
             await _customerRepository.AddAsync(newCustomer);
             return newCustomer;
         }
 
-        public async Task UpdateAsync(int customer_id, CustomerUpdateDto customerUpdateDto)
+        public async Task UpdateAsync(Guid customer_id, CustomerUpdateDto customerUpdateDto)
         {
             var customer = await _customerRepository.GetByIdAsync(customer_id);
             if( customer != null)
             {
-                customer.first_name = customerUpdateDto.first_name;
-                customer.last_name = customerUpdateDto.last_name;
-                customer.email = customerUpdateDto.email;
-                customer.phone = customerUpdateDto.phone;
-                customer.address = customerUpdateDto.address;
+                customer.FirstName = customerUpdateDto.FirstName;
+                customer.LastName = customerUpdateDto.LastName;
+                customer.Address = customerUpdateDto.Address;
 
                 await _customerRepository.UpdateAsync(customer);
             }
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Guid id)
         {
             await _customerRepository.DeleteAsync(id);
         }

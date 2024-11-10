@@ -10,16 +10,22 @@ namespace Infrastructure.DataAccess.Configurations
         {
             builder.ToTable("Payments");
 
-            builder.HasKey(u=>u.payment_id);
-
-            builder.Property(u => u.payment_method)
+            builder.HasKey(u=>u.PaymentID);
+            builder.Property(u => u.BookingID)
                 .IsRequired();
 
-            builder.Property(u=>u.payment_date)
+            builder.Property(u => u.Method)
                 .IsRequired();
 
-            builder.Property(u => u.payment_method)
+            builder.Property(u=>u.CreateAt)
                 .IsRequired();
+
+            builder.HasOne(i => i.Booking)
+                .WithOne(i => i.Payment)
+                .HasForeignKey<Payment>(i => i.BookingID);
+                
+                
+                
         }
     }
 }

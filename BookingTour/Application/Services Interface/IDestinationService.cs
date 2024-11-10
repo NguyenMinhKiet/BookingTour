@@ -6,14 +6,14 @@ namespace Application.Services_Interface
 {
     public interface IDestinationService
     {
-        public Task<Destination> GetById(int id);
+        public Task<Destination> GetById(Guid id);
 
         public Task<IEnumerable<Destination>> GetAllAsync();
 
         public Task<Destination> CreateAsync(DestinationCreationDto dto);
 
-        public Task UpdateAsync(int id, DestinationUpdateDto dto);
+        public Task UpdateAsync(Guid id, DestinationUpdateDto dto);
 
-        public Task DeleteAsync(int id);
+        public Task DeleteAsync(Guid id);
     }
 }

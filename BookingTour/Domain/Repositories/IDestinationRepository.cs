@@ -5,7 +5,7 @@ namespace Domain.Repositories
     public interface IDestinationRepository
     {
         // Phương thức lấy theo ID
-        Task<Destination> GetByIdAsync(int id);
+        Task<Destination> GetByIdAsync(Guid id);
 
         // Phương thức lấy tất cả
         Task<IEnumerable<Destination>> GetAllAsync();
@@ -17,6 +17,6 @@ namespace Domain.Repositories
         Task UpdateAsync(Destination destination);
 
         // Phương thức xóa theo ID
-        Task DeleteAsync(int id);
+        Task DeleteAsync(Guid id);
     }
 }

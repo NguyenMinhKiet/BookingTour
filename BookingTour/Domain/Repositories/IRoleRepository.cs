@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace Domain.Repositories
 {
-    public interface IRoleRepository
+    public  interface IRoleRepository
     {
         // Phương thức lấy theo ID
-        Task<Account> GetByIdAsync(Guid id);
+        Task<Role> GetByIdAsync(Guid RoleID);
 
         // Phương thức lấy tất cả
-        Task<IEnumerable<Account>> GetAllAsync();
+        Task<IEnumerable<Role>> GetAllAsync();
 
         // Phương thức thêm
-        Task AddAsync(Account booking);
+        Task AddAsync(Role role);
 
         // Phương thức cập nhật
-        Task UpdateAsync(Account booking);
+        Task UpdateAsync(Role role);
 
         // Phương thức xóa theo ID
-        Task DeleteAsync(Guid id);
+        Task DeleteAsync(Guid RoleID);
     }
 }

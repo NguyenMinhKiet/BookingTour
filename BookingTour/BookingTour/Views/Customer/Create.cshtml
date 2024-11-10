@@ -8,33 +8,47 @@
 <form asp-action="Create" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
-        <label asp-for="first_name"></label>
-        <input asp-for="first_name" type="text" class="form-control" id="first_name" name="first_name">
-        <span asp-validation-for="first_name" class="text-danger"></span>
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" type="text" class="form-control" id="FirstName" name="FirstName" Required>
+        <span asp-validation-for="FirstName" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="last_name"></label>
-        <input asp-for="last_name" type="text" class="form-control" id="last_name" name="last_name">
-        <span asp-validation-for="last_name" class="text-danger"></span>
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" type="text" class="form-control" id="LastName" name="LastName" Required>
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+    
+
+    <div class="form-group">
+        <label asp-for="Address"></label>
+        <input asp-for="Address" type="text" class="form-control" id="Address" name="Address" Required>
+        <span asp-validation-for="Address" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="email"></label>
-        <input asp-for="email" type="email" class="form-control" id="email" name="email">
-        <span asp-validation-for="email" class="text-danger"></span>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" type="email" class="form-control" id="Email" name="Email" Required>
+        <span asp-validation-for="Email" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="phone"></label>
-        <input asp-for="phone" type="text" class="form-control" id="phone" name="phone">
-        <span asp-validation-for="phone" class="text-danger"></span>
+        <label asp-for="Phone"></label>
+        <input asp-for="Phone" type="text" class="form-control" id="Phone" name="Phone" Required>
+        <span asp-validation-for="Phone" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="address"></label>
-        <input asp-for="address" type="text" class="form-control" id="address" name="address" >
-        <span asp-validation-for="address" class="text-danger"></span>
+        <label asp-for="Username"></label>
+        <input asp-for="Username" type="text" class="form-control" id="Username" name="Username" Required>
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="text" class="form-control" id="Password" name="Password" Required>
+        <span asp-validation-for="Password" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Lưu</button>

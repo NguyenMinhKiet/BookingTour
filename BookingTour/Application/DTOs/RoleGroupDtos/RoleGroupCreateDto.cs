@@ -4,15 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Entities
+namespace Application.DTOs.RoleGroupDtos
 {
-    public class PermissionGroup
+    public class RoleGroupCreateDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public Guid ParentId { get; set; }
-        public Guid CreateBy { get; set; }
-        public DateTime CreateOn { get; set; }
-
+        public Guid RoleID { get; set; }
     }
 }

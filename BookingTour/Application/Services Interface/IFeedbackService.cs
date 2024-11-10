@@ -11,14 +11,14 @@ namespace Application.Services_Interface
 {
     public interface IFeedbackService
     {
-        public Task<Feedback> GetById(int id);
+        public Task<Feedback> GetById(Guid id);
 
         public Task<IEnumerable<Feedback>> GetAllAsync();
 
         public Task<Feedback> CreateAsync(FeedbackCreationDto dto);
 
-        public Task UpdateAsync(int id, FeedbackUpdateDto dto);
+        public Task UpdateAsync(Guid id, FeedbackUpdateDto dto);
 
-        public Task DeleteAsync(int id);
+        public Task DeleteAsync(Guid id);
     }
 }

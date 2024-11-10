@@ -32,20 +32,14 @@ namespace Presentation.Controllers
 
             {
                 // Tìm kiếm nhân viên một lần và lưu vào biến
-                var employee = employees.FirstOrDefault(a => a.employee_id == i.employee_id);
+                var employee = employees.FirstOrDefault(a => a.EmployeeID == i.EmployeeID);
 
                 return new TourEmployeeViewModel
                 {
-                    tour_id = i.tour_id,
-                    employee_id = i.employee_id,
-                    // Sử dụng toán tử null-coalescing để xử lý trường hợp employee null
-                    employee_name = employee != null ? $"{employee.first_name} {employee.last_name}" : "N/A",
-                    position = employee?.position switch
-                    {
-                        2 => "Hướng dẫn viên",
-                        3 => "Tài xế",
-                        _ => "N/A"
-                    }
+                    TourID = i.TourID,
+                    EmployeeID = i.EmployeeID,
+                    Name = employee.LastName,
+                    Position = employee.Position
                 };
             }).ToList();
 
@@ -58,19 +52,19 @@ namespace Presentation.Controllers
             var tours = await _tourService.GetAllAsync();
             var toursViewModel = tours.Select(i => new TourViewModel
             {
-                tour_name = i.tour_name,
-                tour_id = i.tour_id,
+                Title = i.Title,
+                TourID = i.TourID,
 
             }).ToList();
-            var toursSelectList = new SelectList(toursViewModel, "tour_id", "tour_name");
+            var toursSelectList = new SelectList(toursViewModel, "TourID", "Title");
 
             var employees = await _employeeService.GetAllAsync();
             var employeesViewModel = employees.Select(i => new EmployeeViewModel
             {
-                employee_id = i.employee_id,
-                full_name = i.first_name + " " + i.last_name
+                EmployeeID = i.EmployeeID,
+                Position = i.Position
             }).ToList();
-            var employeesSelectList = new SelectList(employeesViewModel, "employee_id", "full_name");
+            var employeesSelectList = new SelectList(employeesViewModel, "EmployeeID", "Position");
 
             ViewBag.TourList = toursSelectList;
             ViewBag.EmployeeList = employeesSelectList;
@@ -85,14 +79,14 @@ namespace Presentation.Controllers
             if (ModelState.IsValid)
             {
                 await _tourEmployeeService.CreateAsync(dto);
-                TempData["success"] = $"Thêm nhân viên {dto.employee_id} vào tour {dto.tour_id} thành công.";
+                TempData["success"] = $"Thêm nhân viên {dto.EmployeeID} vào tour {dto.TourID} thành công.";
                 return RedirectToAction("Index");
             }
-            TempData["error"] = $"Thêm nhân viên {dto.employee_id} vào tour {dto.tour_id} thất bại.";
+            TempData["error"] = $"Thêm nhân viên {dto.EmployeeID} vào tour {dto.TourID} thất bại.";
             return View();
         }
 
-        public async Task<IActionResult> Delete(int tour_id, int employee_id)
+        public async Task<IActionResult> Delete(Guid tour_id, Guid employee_id)
         {
             await _tourEmployeeService.DeleteAsync(tour_id, employee_id);
             TempData["success"] = $"Xóa nhân viên {employee_id} trong tour {tour_id} thành công.";

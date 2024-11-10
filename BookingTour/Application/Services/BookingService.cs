@@ -3,6 +3,7 @@ using Application.Services_Interface;
 using Domain.Entities;
 using Domain.Repositories;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,23 +21,25 @@ namespace Application.Services
             _bookingRepository = bookingRepository;
             _tourRepository = tourRepository;
         }
-
         public async Task<Booking> CreateAsync(BookingCreationDto dto)
         {
-            var tourPrice = (await _tourRepository.GetByIdAsync(dto.tour_id)).price;
+            var price = (await _tourRepository.GetByIdAsync(dto.TourID)).Price;
+            var childPrice = price * 50 / 100;
             var booking = new Booking()
             {
-                tour_id = dto.tour_id,
-                customer_id = dto.customer_id,
-                booking_date = dto.booking_date,
-                num_people = dto.num_people,
-                total_price = tourPrice * dto.num_people,
+                BookingID = new Guid(),
+                TourID = dto.TourID,
+                CustomerID = dto.CustomerID,
+                CreateAt = new DateTime(),
+                Adult = dto.Adult,
+                Child = dto.Child,
+                TotalPrice = price * dto.Adult + childPrice * dto.Child
             };
             await _bookingRepository.AddAsync(booking);
             return booking;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Guid id)
         {
             await _bookingRepository.DeleteAsync(id);
         }
@@ -46,25 +49,25 @@ namespace Application.Services
             return await _bookingRepository.GetAllAsync();
         }
 
-        public async Task<Booking> GetById(int id)
+        public async Task<Booking> GetById(Guid id)
         {
             return await _bookingRepository.GetByIdAsync(id);
         }
 
-        public async Task UpdateAsync(int booking_id, BookingUpdateDto dto)
+        public async Task UpdateAsync(Guid booking_id, BookingUpdateDto dto)
         {
             var booking = await _bookingRepository.GetByIdAsync(booking_id);
             if (booking == null)
             {
                 throw new Exception($"Không tìm thấy booking: {booking_id} !!");
             }
-            var tourPrice = (await _tourRepository.GetByIdAsync(dto.tour_id)).price;
+            var price = (await _tourRepository.GetByIdAsync(booking.TourID)).Price;
+            var childPrice = price * 50 / 100;
 
-            booking.customer_id = dto.customer_id;
-            booking.booking_date = dto.booking_date;
-            booking.total_price = tourPrice * dto.num_people;
-            booking.tour_id = dto.tour_id;
-            booking.num_people = dto.num_people;
+            booking.ModifyAt = new DateTime();
+            booking.Adult = dto.Adult;
+            booking.Child = dto.Child;
+            booking.TotalPrice = price * dto.Adult + childPrice * dto.Child;
 
             await _bookingRepository.UpdateAsync(booking);
         }

@@ -22,11 +22,13 @@ namespace Presentation.Controllers
             var feedbacks = await _feedbackService.GetAllAsync();
             var feedbacksViewModel = feedbacks.Select(i => new FeedbackViewModel
             {
-                feedback_id = i.feedback_id,
-                customer_id = i.customer_id,
-                tour_id = i.tour_id,
-                rating = i.rating,
-                comments = i.comments,
+                FeedbackID = i.FeedbackID,
+                CustomerID = i.CustomerID,
+                TourID = i.TourID,
+                Rating = i.Rating,
+                Comments = i.Comments,
+                CreateAt = i.CreateAt,
+                ModifyAt = i.ModifyAt
             }).ToList();
 
             return View(feedbacksViewModel);
@@ -40,12 +42,12 @@ namespace Presentation.Controllers
             // Customer
             var customersViewModel = customers.Select(i=> new CustomerViewModel
             {
-                customer_id = i.customer_id,
-                full_name = i.last_name +" "+ i.first_name
+                CustomerID = i.CustomerID,
+                LastName = i.LastName,
             }).ToList();
 
             // Tạo SelectList cho dropdown khách hàng
-            var customersSelectList = new SelectList(customersViewModel, "customer_id", "full_name");
+            var customersSelectList = new SelectList(customersViewModel, "CustomerID", "LastName");
 
             // Đưa SelectList vào ViewBag
             ViewBag.CustomerList = customersSelectList;
@@ -68,33 +70,35 @@ namespace Presentation.Controllers
             return View();
         }
 
-        // GET: /Feedback/Update?{feedback_id}
-        public async Task<IActionResult> Update(int feedback_id)
+        // GET: /Feedback/Update?{FeedbackID}
+        public async Task<IActionResult> Update(Guid FeedbackID)
         {
-            var feedback = await _feedbackService.GetById(feedback_id);
+            var feedback = await _feedbackService.GetById(FeedbackID);
             if(feedback != null)
             {
                 var feedbackViewModel = new FeedbackViewModel
                 {
-                    feedback_id = feedback.feedback_id,
-                    customer_id = feedback.customer_id,
-                    tour_id = feedback.tour_id,
-                    rating = feedback.rating,
-                    comments = feedback.comments,
+                    FeedbackID = feedback.FeedbackID,
+                    CustomerID = feedback.CustomerID,
+                    TourID = feedback.TourID,
+                    Rating = feedback.Rating,
+                    Comments = feedback.Comments,
+                    CreateAt = feedback.CreateAt,
+                    ModifyAt = feedback.ModifyAt
                 };
                 return View(feedbackViewModel);
             }
             return RedirectToAction("Error", "Shared");
         }
 
-        // POST: /Feedback/Update?{feedback_id}
+        // POST: /Feedback/Update?{FeedbackID}
         [HttpPost]
-        public async Task<IActionResult> Update(int feedback_id, FeedbackUpdateDto dto)
+        public async Task<IActionResult> Update(Guid FeedbackID, FeedbackUpdateDto dto)
         {
             if(ModelState.IsValid)
             {
-                await _feedbackService.UpdateAsync(feedback_id, dto);
-                TempData["success"] = "Thay đổi thông tin khách hàng " + feedback_id + " thành công.";
+                await _feedbackService.UpdateAsync(FeedbackID, dto);
+                TempData["success"] = "Thay đổi thông tin khách hàng " + FeedbackID + " thành công.";
                 return RedirectToAction("Index");
             }
             TempData["error"] = "Không tìm thấy khách hàng !!";

@@ -1,44 +1,50 @@
 ﻿using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
-    class RoleRepository : IRoleRepository
+    public class RoleRepository : IRoleRepository
     {
         private readonly ApplicationDbContext _context;
         public RoleRepository(ApplicationDbContext context)
         {
             _context = context;
         }
-        public Task AddAsync(Role booking)
+
+
+        public async Task AddAsync(Role tour)
         {
-            throw new NotImplementedException();
+            await _context.Roles.AddAsync(tour);
+            await _context.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var tour = await GetByIdAsync(id);
+            if (tour == null)
+            {
+                throw new Exception($"Tour with id {id} not found.");
+            }
+            _context.Roles.Remove(tour);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<Role>> GetAllAsync()
+        public async Task<IEnumerable<Role>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Roles.ToListAsync();
         }
 
-        public Task<Role> GetByIdAsync(Guid id)
+        public async Task<Role> GetByIdAsync(Guid tour_id)
         {
-            throw new NotImplementedException();
+            return await _context.Roles.FindAsync(tour_id);
         }
 
-        public Task UpdateAsync(Role booking)
+        public async Task UpdateAsync(Role tour)
         {
-            throw new NotImplementedException();
+            _context.Roles.Update(tour);
+            await _context.SaveChangesAsync();
         }
     }
 }

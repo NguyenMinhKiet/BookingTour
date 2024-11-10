@@ -4,11 +4,11 @@ namespace Presentation.Models
 {
     public class TourEmployeeViewModel
     {
-        public int tour_id { get; set; }
-        public int employee_id { get; set; }
+        public Guid TourID { get; set; }
+        public Guid EmployeeID { get; set; }
 
-        public string employee_name { get; set; }
-        public string position { get; set; }
-       
+        public string Name {  get; set; }
+        public string Position {  get; set; }
+
     }
 }

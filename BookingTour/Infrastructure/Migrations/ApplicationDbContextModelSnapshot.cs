@@ -22,480 +22,403 @@ namespace Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Domain.Entities.Account", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("Phone")
+                        .IsUnique();
+
+                    b.ToTable("Accounts", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.Authorized", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AccountID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("GroupID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountID")
+                        .IsUnique();
+
+                    b.HasIndex("GroupID")
+                        .IsUnique();
+
+                    b.HasIndex("AccountID", "GroupID")
+                        .IsUnique();
+
+                    b.ToTable("Authorizeds", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Entities.Booking", b =>
                 {
-                    b.Property<int>("booking_id")
+                    b.Property<Guid>("BookingID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("booking_id"));
-
-                    b.Property<DateTime>("booking_date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("customer_id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("num_people")
+                    b.Property<int>("Adult")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValue(0);
 
-                    b.Property<decimal>("total_price")
+                    b.Property<int>("Child")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<DateTime>("CreateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CustomerID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ModifyAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("TotalPrice")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("decimal(10,2)")
                         .HasDefaultValue(0m);
 
-                    b.Property<int>("tour_id")
-                        .HasColumnType("int");
+                    b.Property<Guid>("TourID")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("booking_id");
+                    b.HasKey("BookingID");
 
-                    b.HasIndex("customer_id");
+                    b.HasIndex("CustomerID");
 
-                    b.HasIndex("tour_id");
+                    b.HasIndex("TourID");
 
                     b.ToTable("Bookings", null, t =>
                         {
-                            t.HasCheckConstraint("CK_Booking_NumPeople", "[num_people] >= 0");
-                        });
+                            t.HasCheckConstraint("CK_Booking_Adult", "[Adult] >= 0");
 
-                    b.HasData(
-                        new
-                        {
-                            booking_id = -1,
-                            booking_date = new DateTime(2024, 11, 6, 2, 27, 22, 759, DateTimeKind.Local).AddTicks(1820),
-                            customer_id = -1,
-                            num_people = 2,
-                            total_price = 3000000m,
-                            tour_id = -1
-                        },
-                        new
-                        {
-                            booking_id = -2,
-                            booking_date = new DateTime(2024, 11, 6, 2, 27, 22, 759, DateTimeKind.Local).AddTicks(1824),
-                            customer_id = -2,
-                            num_people = 1,
-                            total_price = 2000000m,
-                            tour_id = -2
+                            t.HasCheckConstraint("CK_Booking_Child", "[Child] >= 0");
                         });
                 });
 
             modelBuilder.Entity("Domain.Entities.Customer", b =>
                 {
-                    b.Property<int>("customer_id")
+                    b.Property<Guid>("CustomerID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("customer_id"));
+                    b.Property<Guid>("AccountID")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("address")
+                    b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("email")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("first_name")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("last_name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("CustomerID");
 
-                    b.Property<string>("phone")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.HasKey("customer_id");
+                    b.HasIndex("AccountID")
+                        .IsUnique();
 
                     b.ToTable("Customers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            customer_id = -1,
-                            address = "123 Đường Láng",
-                            email = "nguyenvana@example.com",
-                            first_name = "Nguyễn",
-                            last_name = "Văn A",
-                            phone = "0123456789"
-                        },
-                        new
-                        {
-                            customer_id = -2,
-                            address = "456 Phố Huế",
-                            email = "tranthib@example.com",
-                            first_name = "Trần",
-                            last_name = "Thị B",
-                            phone = "0987654321"
-                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Destination", b =>
                 {
-                    b.Property<int>("destination_id")
+                    b.Property<Guid>("DestinationID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("destination_id"));
-
-                    b.Property<string>("city")
+                    b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("country")
+                    b.Property<string>("Country")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("description")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("destination_name")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("destination_id");
+                    b.HasKey("DestinationID");
 
                     b.ToTable("Destinations", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            destination_id = -1,
-                            city = "Nha Trang",
-                            country = "Việt Nam",
-                            description = "Một bãi biển nổi tiếng với cát trắng và nước biển trong xanh.",
-                            destination_name = "Bãi biển Nha Trang"
-                        },
-                        new
-                        {
-                            destination_id = -2,
-                            city = "Lào Cai",
-                            country = "Việt Nam",
-                            description = "Nóc nhà Đông Dương, nơi có phong cảnh hùng vĩ và khí hậu trong lành.",
-                            destination_name = "Đỉnh Fansipan"
-                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Employee", b =>
                 {
-                    b.Property<int>("employee_id")
+                    b.Property<Guid>("EmployeeID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("employee_id"));
+                    b.Property<Guid>("AccountID")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("address")
+                    b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("email")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("first_name")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("last_name")
+                    b.Property<string>("Position")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("phone")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                    b.HasKey("EmployeeID");
 
-                    b.Property<int>("position")
-                        .HasColumnType("int");
-
-                    b.HasKey("employee_id");
+                    b.HasIndex("AccountID")
+                        .IsUnique();
 
                     b.ToTable("Employees", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            employee_id = -4,
-                            address = "Q12 Tp.HCM",
-                            email = "nguyenminhkiet@gmail.com",
-                            first_name = "Nguyễn Minh",
-                            last_name = "Kiệt",
-                            phone = "0932881172",
-                            position = 5
-                        },
-                        new
-                        {
-                            employee_id = -1,
-                            address = "Hồ Chí Minh",
-                            email = "letung@example.com",
-                            first_name = "Lê",
-                            last_name = "Tùng",
-                            phone = "0123456780",
-                            position = 1
-                        },
-                        new
-                        {
-                            employee_id = -2,
-                            address = "Hà Nội",
-                            email = "phamhung@example.com",
-                            first_name = "Phạm",
-                            last_name = "Hùng",
-                            phone = "0987654320",
-                            position = 2
-                        },
-                        new
-                        {
-                            employee_id = -3,
-                            address = "Hà Nội",
-                            email = "phamlinh@example.com",
-                            first_name = "Phạm",
-                            last_name = "Linh",
-                            phone = "0987231220",
-                            position = 3
-                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Feedback", b =>
                 {
-                    b.Property<int>("feedback_id")
+                    b.Property<Guid>("FeedbackID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("feedback_id"));
-
-                    b.Property<string>("comments")
+                    b.Property<string>("Comments")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("customer_id")
+                    b.Property<DateTime>("CreateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CustomerID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ModifyAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<int>("rating")
-                        .HasColumnType("int");
+                    b.Property<Guid>("TourID")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("tour_id")
-                        .HasColumnType("int");
+                    b.HasKey("FeedbackID");
 
-                    b.HasKey("feedback_id");
-
-                    b.HasIndex("tour_id");
+                    b.HasIndex("TourID");
 
                     b.ToTable("Feedbacks", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            feedback_id = -1,
-                            comments = "Chuyến đi tuyệt vời!",
-                            customer_id = -1,
-                            rating = 5,
-                            tour_id = -1
-                        },
-                        new
-                        {
-                            feedback_id = -2,
-                            comments = "Hài lòng với dịch vụ.",
-                            customer_id = -2,
-                            rating = 4,
-                            tour_id = -2
-                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Payment", b =>
                 {
-                    b.Property<int>("payment_id")
+                    b.Property<Guid>("PaymentID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("payment_id"));
+                    b.Property<Guid>("BookingID")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("booking_id")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("payment_date")
+                    b.Property<DateTime>("CreateAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("payment_method")
+                    b.Property<string>("Method")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("payment_status")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("ModifyAt")
+                        .HasColumnType("datetime2");
 
-                    b.HasKey("payment_id");
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
 
-                    b.HasIndex("booking_id");
+                    b.HasKey("PaymentID");
+
+                    b.HasIndex("BookingID")
+                        .IsUnique();
 
                     b.ToTable("Payments", (string)null);
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            payment_id = -1,
-                            booking_id = -1,
-                            payment_date = new DateTime(2024, 11, 6, 2, 27, 22, 759, DateTimeKind.Local).AddTicks(1852),
-                            payment_method = "Tiền mặt",
-                            payment_status = 0
-                        },
-                        new
-                        {
-                            payment_id = -2,
-                            booking_id = -2,
-                            payment_date = new DateTime(2024, 11, 6, 2, 27, 22, 759, DateTimeKind.Local).AddTicks(1855),
-                            payment_method = "Thẻ ví",
-                            payment_status = 0
-                        });
+            modelBuilder.Entity("Domain.Entities.Role", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.RoleGroup", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("RoleID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RoleGroups", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Tour", b =>
                 {
-                    b.Property<int>("tour_id")
+                    b.Property<Guid>("TourID")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("AvailableSeats")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("tour_id"));
-
-                    b.Property<int>("availableSeats")
-                        .HasColumnType("int");
-
-                    b.Property<string>("description")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("end_Date")
+                    b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("price")
+                    b.Property<decimal>("Price")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("decimal(10,2)")
                         .HasDefaultValue(0m);
 
-                    b.Property<DateTime>("start_Date")
+                    b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("tour_name")
+                    b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("tour_id");
+                    b.HasKey("TourID");
 
                     b.ToTable("Tours", null, t =>
                         {
-                            t.HasCheckConstraint("CK_Tour_EndDate_StartDate", "[end_Date] >= [start_Date]");
+                            t.HasCheckConstraint("CK_Tour_EndDate_StartDate", "[EndDate] >= [StartDate]");
 
-                            t.HasCheckConstraint("CK_price", "[price] >= 0");
-                        });
-
-                    b.HasData(
-                        new
-                        {
-                            tour_id = -1,
-                            availableSeats = 20,
-                            description = "Tour nghỉ dưỡng tại bãi biển",
-                            end_Date = new DateTime(2024, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            price = 1999000m,
-                            start_Date = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            tour_name = "Du lịch biển"
-                        },
-                        new
-                        {
-                            tour_id = -2,
-                            availableSeats = 15,
-                            description = "Tour leo núi đầy thử thách",
-                            end_Date = new DateTime(2024, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            price = 2999000m,
-                            start_Date = new DateTime(2024, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            tour_name = "Thám hiểm núi"
+                            t.HasCheckConstraint("CK_price", "[Price] >= 0");
                         });
                 });
 
             modelBuilder.Entity("Domain.Entities.TourDestination", b =>
                 {
-                    b.Property<int>("tour_id")
-                        .HasColumnType("int");
+                    b.Property<Guid>("TourID")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("destination_id")
-                        .HasColumnType("int");
+                    b.Property<Guid>("DestinationID")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("visit_date")
+                    b.Property<DateTime>("VisitDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("tour_id", "destination_id");
+                    b.HasKey("TourID", "DestinationID");
 
-                    b.HasIndex("destination_id");
+                    b.HasIndex("DestinationID");
 
                     b.ToTable("TourDestinations", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            tour_id = -1,
-                            destination_id = -1,
-                            visit_date = new DateTime(2024, 11, 6, 2, 27, 22, 759, DateTimeKind.Local).AddTicks(1730)
-                        },
-                        new
-                        {
-                            tour_id = -2,
-                            destination_id = -2,
-                            visit_date = new DateTime(2024, 11, 6, 2, 27, 22, 759, DateTimeKind.Local).AddTicks(1750)
-                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.TourEmployee", b =>
                 {
-                    b.Property<int>("tour_id")
-                        .HasColumnType("int");
+                    b.Property<Guid>("TourID")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("employee_id")
-                        .HasColumnType("int");
+                    b.Property<Guid>("EmployeeID")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("tour_id", "employee_id");
+                    b.HasKey("TourID", "EmployeeID");
 
-                    b.HasIndex("employee_id");
+                    b.HasIndex("EmployeeID");
 
                     b.ToTable("TourEmployees", (string)null);
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            tour_id = -1,
-                            employee_id = -2
-                        },
-                        new
-                        {
-                            tour_id = -1,
-                            employee_id = -3
-                        },
-                        new
-                        {
-                            tour_id = -2,
-                            employee_id = -2
-                        },
-                        new
-                        {
-                            tour_id = -2,
-                            employee_id = -3
-                        });
+            modelBuilder.Entity("Domain.Entities.Authorized", b =>
+                {
+                    b.HasOne("Domain.Entities.Account", "Account")
+                        .WithOne()
+                        .HasForeignKey("Domain.Entities.Authorized", "AccountID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.RoleGroup", "RoleGroup")
+                        .WithOne()
+                        .HasForeignKey("Domain.Entities.Authorized", "GroupID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+
+                    b.Navigation("RoleGroup");
                 });
 
             modelBuilder.Entity("Domain.Entities.Booking", b =>
                 {
                     b.HasOne("Domain.Entities.Customer", "Customer")
                         .WithMany("Bookings")
-                        .HasForeignKey("customer_id")
+                        .HasForeignKey("CustomerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Tour", "Tour")
                         .WithMany("Bookings")
-                        .HasForeignKey("tour_id")
+                        .HasForeignKey("TourID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -504,11 +427,33 @@ namespace Infrastructure.Migrations
                     b.Navigation("Tour");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Customer", b =>
+                {
+                    b.HasOne("Domain.Entities.Account", "Account")
+                        .WithOne()
+                        .HasForeignKey("Domain.Entities.Customer", "AccountID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Employee", b =>
+                {
+                    b.HasOne("Domain.Entities.Account", "Account")
+                        .WithOne()
+                        .HasForeignKey("Domain.Entities.Employee", "AccountID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+                });
+
             modelBuilder.Entity("Domain.Entities.Feedback", b =>
                 {
                     b.HasOne("Domain.Entities.Tour", "Tour")
                         .WithMany("FeedBacks")
-                        .HasForeignKey("tour_id")
+                        .HasForeignKey("TourID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -518,25 +463,34 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Payment", b =>
                 {
                     b.HasOne("Domain.Entities.Booking", "Booking")
-                        .WithMany("Payments")
-                        .HasForeignKey("booking_id")
+                        .WithOne("Payment")
+                        .HasForeignKey("Domain.Entities.Payment", "BookingID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Booking");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Role", b =>
+                {
+                    b.HasOne("Domain.Entities.RoleGroup", null)
+                        .WithMany("Roles")
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Domain.Entities.TourDestination", b =>
                 {
                     b.HasOne("Domain.Entities.Destination", "Destination")
                         .WithMany("TourDestinations")
-                        .HasForeignKey("destination_id")
+                        .HasForeignKey("DestinationID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Tour", "Tour")
                         .WithMany("TourDestinations")
-                        .HasForeignKey("tour_id")
+                        .HasForeignKey("TourID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -549,13 +503,13 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Domain.Entities.Employee", "Employee")
                         .WithMany("TourEmployee")
-                        .HasForeignKey("employee_id")
+                        .HasForeignKey("EmployeeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Tour", "Tour")
                         .WithMany("TourEmployees")
-                        .HasForeignKey("tour_id")
+                        .HasForeignKey("TourID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -566,7 +520,8 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Booking", b =>
                 {
-                    b.Navigation("Payments");
+                    b.Navigation("Payment")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.Customer", b =>
@@ -582,6 +537,11 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Employee", b =>
                 {
                     b.Navigation("TourEmployee");
+                });
+
+            modelBuilder.Entity("Domain.Entities.RoleGroup", b =>
+                {
+                    b.Navigation("Roles");
                 });
 
             modelBuilder.Entity("Domain.Entities.Tour", b =>

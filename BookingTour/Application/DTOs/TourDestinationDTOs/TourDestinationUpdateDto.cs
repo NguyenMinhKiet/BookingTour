@@ -2,6 +2,6 @@
 {
     public class TourDestinationUpdateDto
     {
-        public DateTime visit_date { get; set; }
+        public DateTime VisitDate { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int tour_id, int destination_id)
+        public async Task DeleteAsync(Guid tour_id, Guid destination_id)
         {
             var tourDestination = await GetByIdAsync(tour_id,destination_id);
             if (tourDestination == null)
@@ -35,7 +35,7 @@ namespace Infrastructure.Repositories
             return await _context.ToursDestination.ToListAsync();
         }
 
-        public async Task<TourDestination> GetByIdAsync(int tour_id, int destination_id)
+        public async Task<TourDestination> GetByIdAsync(Guid tour_id, Guid destination_id)
         {
             return await _context.ToursDestination.FindAsync(tour_id, destination_id);
         }

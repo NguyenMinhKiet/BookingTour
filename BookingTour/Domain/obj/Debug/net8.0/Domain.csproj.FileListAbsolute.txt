@@ -23,3 +23,16 @@ D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\Domain\obj\
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\Domain\obj\Debug\net8.0\refint\Domain.dll
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\Domain\obj\Debug\net8.0\Domain.pdb
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\Domain\obj\Debug\net8.0\ref\Domain.dll
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Domain\bin\Debug\net8.0\Domain.deps.json
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Domain\bin\Debug\net8.0\Domain.dll
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Domain\bin\Debug\net8.0\Domain.pdb
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Domain\obj\Debug\net8.0\Domain.csproj.AssemblyReference.cache
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Domain\obj\Debug\net8.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Domain\obj\Debug\net8.0\Domain.AssemblyInfoInputs.cache
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Domain\obj\Debug\net8.0\Domain.AssemblyInfo.cs
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Domain\obj\Debug\net8.0\Domain.csproj.CoreCompileInputs.cache
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Domain\obj\Debug\net8.0\Domain.sourcelink.json
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Domain\obj\Debug\net8.0\Domain.dll
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Domain\obj\Debug\net8.0\refint\Domain.dll
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Domain\obj\Debug\net8.0\Domain.pdb
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Domain\obj\Debug\net8.0\ref\Domain.dll

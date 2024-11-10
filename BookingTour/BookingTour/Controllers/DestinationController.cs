@@ -20,11 +20,11 @@ namespace Presentation.Controllers
             var destiations = await _destinationService.GetAllAsync();
             var destinationsViewModel = destiations.Select(i=> new DestinationViewModel
             {
-                destination_id = i.destination_id,
-                destination_name = i.destination_name,
-                description = i.description,
-                city = i.city,
-                country = i.country,
+                DestinationID = i.DestinationID,
+                Name = i.Name,
+                Description = i.Description,
+                City = i.City,
+                Country = i.Country,
             }).ToList();
 
             return View(destinationsViewModel);
@@ -51,36 +51,36 @@ namespace Presentation.Controllers
         }
 
 
-        // GET: /Destination/Update?{destination_id}
-        public async Task<IActionResult> Update(int destination_id)
+        // GET: /Destination/Update?{DestinationID}
+        public async Task<IActionResult> Update(Guid DestinationID)
         {
-            var destination = await _destinationService.GetById(destination_id);
+            var destination = await _destinationService.GetById(DestinationID);
 
             if(destination == null) {
-                TempData["error"] = "Không tìm thấy địa điểm " + destination_id;
+                TempData["error"] = "Không tìm thấy địa điểm " + DestinationID;
                 return RedirectToAction("Index");
             }
 
             var destinationViewModel = new DestinationViewModel
             {
-                destination_id = destination.destination_id,
-                destination_name = destination.destination_name,
-                city = destination.city,
-                description = destination.description,
-                country = destination.country,
+                DestinationID = destination.DestinationID,
+                Name = destination.Name,
+                City = destination.City,
+                Description = destination.Description,
+                Country = destination.Country,
             };
 
             return View(destinationViewModel);
         }
 
 
-        // POST: /Destinantion/Update?{destination_id}
+        // POST: /Destinantion/Update?{DestinationID}
         [HttpPost]
-        public async Task<IActionResult> Update(int destination_id, DestinationUpdateDto destinationData)
+        public async Task<IActionResult> Update(Guid DestinationID, DestinationUpdateDto destinationData)
         {
             if(ModelState.IsValid)
             {
-                await _destinationService.UpdateAsync(destination_id, destinationData);
+                await _destinationService.UpdateAsync(DestinationID, destinationData);
                 TempData["success"] = "Thay đổi thông tin địa điểm thành công.";
                 return RedirectToAction("Index");
             }
@@ -88,11 +88,11 @@ namespace Presentation.Controllers
             return View();
         }
 
-        // POST: /Destination/Delete?{destination_id}
-        public async Task<IActionResult>Delete(int destination_id)
+        // POST: /Destination/Delete?{DestinationID}
+        public async Task<IActionResult>Delete(Guid DestinationID)
         {
-            await _destinationService.DeleteAsync(destination_id);
-            TempData["success"] = "Xóa địa điểm " + destination_id + " thành công.";
+            await _destinationService.DeleteAsync(DestinationID);
+            TempData["success"] = "Xóa địa điểm " + DestinationID + " thành công.";
             return RedirectToAction("Index");
         }
     }

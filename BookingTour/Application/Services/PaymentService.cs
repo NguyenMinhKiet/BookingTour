@@ -17,10 +17,12 @@ namespace Application.Services
         {
             var payment = new Payment()
             {
-                booking_id = dto.booking_id,
-                payment_date = dto.payment_date,
-                payment_method = dto.payment_method,
-                payment_status = dto.payment_status
+                PaymentID = new Guid(),
+                BookingID = dto.BookingID,
+                CreateAt = new DateTime(),
+                Method = dto.Method,
+                Status = dto.Status
+
             };
             await _paymentRepository.AddAsync(payment);
             return payment;
@@ -31,25 +33,23 @@ namespace Application.Services
             return await _paymentRepository.GetAllAsync();
         }
 
-        public async Task<Payment> GetById(int id)
+        public async Task<Payment> GetById(Guid id)
         {
             return await _paymentRepository.GetByIdAsync(id);
         }
 
-        public async Task UpdateAsync(int id, PaymentUpdateDto dto)
+        public async Task UpdateAsync(Guid id, PaymentUpdateDto dto)
         {
             var payment = await _paymentRepository.GetByIdAsync(id);
             if (payment != null)
             {
-                payment.booking_id = dto.booking_id;
-                payment.payment_method = dto.payment_method;
-                payment.payment_date = dto.payment_date;
-                payment.payment_status = dto.payment_status;
-
+                payment.ModifyAt = new DateTime();
+                payment.Method = dto.Method;
+                payment.Status = dto.Status;
                 await _paymentRepository.UpdateAsync(payment);
             }
         }
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Guid id)
         {
             await _paymentRepository.DeleteAsync(id);
         }

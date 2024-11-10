@@ -31,7 +31,7 @@ namespace Infrastructure.Repositories
             return await _context.Destinations.ToListAsync();
         }
 
-        public async Task<Destination> GetByIdAsync(int id)
+        public async Task<Destination> GetByIdAsync(Guid id)
         {
             return await _context.Destinations.FindAsync(id);
         }
@@ -42,7 +42,7 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Guid id)
         {
             var destinnation = await GetByIdAsync(id);
             if (destinnation == null)

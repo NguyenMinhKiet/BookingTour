@@ -23,5 +23,8 @@ namespace Domain.Repositories
 
         // Phương thức xóa theo ID
         Task DeleteAsync(Guid id);
+
+        public Task<Account> GetByEmailAsync(string email);
+        public Task<Account> GetByPhoneAsync(string phone);
     }
 }

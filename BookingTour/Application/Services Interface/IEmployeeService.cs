@@ -5,17 +5,17 @@ namespace Application.Services_Interface
 {
     public interface IEmployeeService
     {
-        public Task<Employee> GetById(int id);
+        public Task<Employee> GetById(Guid id);
 
         public Task<IEnumerable<Employee>> GetAllAsync();
 
         public Task<Employee> CreateAsync(EmployeeCreationDto dto);
 
-        public Task UpdateAsync(int customer_id, EmployeeUpdateDto dto);
+        public Task UpdateAsync(Guid customer_id, EmployeeUpdateDto dto);
 
-        public Task DeleteAsync(int id);
+        public Task DeleteAsync(Guid id);
 
-        public Task<String> GetEmployeeNameById(int id);
-        public Task<String> GetEmployeePositionById(int id);
+        public Task<String> GetEmployeeNameById(Guid id);
+        public Task<String> GetEmployeePositionById(Guid id);
     }
 }

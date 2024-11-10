@@ -20,7 +20,7 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Guid id)
         {
             var customer = await GetByIdAsync(id);
             if(customer == null)
@@ -36,7 +36,7 @@ namespace Infrastructure.Repositories
             return await _context.Customers.ToListAsync();
         }
 
-        public async Task<Customer> GetByIdAsync(int customer_id)
+        public async Task<Customer> GetByIdAsync(Guid customer_id)
         {
             return await _context.Customers.FindAsync(customer_id);
         }
@@ -46,5 +46,7 @@ namespace Infrastructure.Repositories
             _context.Customers.Update(customer);
             await _context.SaveChangesAsync();
         }
+
+
     }
 }

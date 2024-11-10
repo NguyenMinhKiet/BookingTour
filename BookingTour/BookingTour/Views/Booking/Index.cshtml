@@ -9,9 +9,11 @@
             <th>ID</th>
             <th>Tour ID</th>
             <th>Customer ID</th>
-            <th>Date</th>
-            <th>Num people</th>
-            <th>Total Price</th>
+            <th>CreateAt</th>
+            <th>ModifyAt</th>
+            <th>Adult</th>
+            <th>Child</th>
+            <th>TotalPrice</th>
             <th>Controls</th>
         </tr>
     </thead>
@@ -19,22 +21,24 @@
         @foreach (var b in Model)
         {
             <tr>
-                <td>@b.booking_id</td>
-                <td>@b.tour_id</td>
-                <td>@b.customer_id</td>
-                <td>@b.booking_date</td>
-                <td>@b.num_people</td>
-                <td>@b.total_price</td>
+                <td>@b.BookingID</td>
+                <td>@b.TourID</td>
+                <td>@b.CustomerID</td>
+                <td>@b.CreateAt</td>
+                <td>@b.ModifyAt</td>
+                <td>@b.Adult</td>
+                <td>@b.Child</td>
+                <td>@b.TotalPrice</td>
                 <td>
                     <div class="w-100 btn-group" role="group">
                         <a asp-action="Update"
                            asp-controller="Booking"
-                           asp-route-booking_id="@b.booking_id"
+                           asp-route-BookingID="@b.BookingID"
                            class="btn btn-primary">Cập nhật thông tin</a>
 
                         <a asp-action="Delete"
                            asp-controller="Booking"
-                           asp-route-booking_id="@b.booking_id"
+                           asp-route-BookingID="@b.BookingID"
                            class="btn btn-danger">Xóa</a>
                     </div>
                 </td>

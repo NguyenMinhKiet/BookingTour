@@ -1,10 +1,15 @@
 ﻿using Application.Services;
 using Application.Services_Interface;
+using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Collections.Specialized;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +33,10 @@ builder.Services.AddScoped<ITourRepository, TourRepository>();
 builder.Services.AddScoped<ITourDestinationRepository, TourDestinationRepository>();
 builder.Services.AddScoped<ITourEmployeeRepository, TourEmployeeRepository>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IRoleGroupRepository, RoleGroupRepository>();
+builder.Services.AddScoped<IAuthorizedRepository, AuthorizedRepository>();
 
 
 // Đăng ký các service
@@ -40,6 +49,10 @@ builder.Services.AddScoped<ITourService, TourService>();
 builder.Services.AddScoped<ITourDestinationService, TourDestinationService>();
 builder.Services.AddScoped<ITourEmployeeService, TourEmployeeService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<IRoleGroupService, RoleGroupService>();
+builder.Services.AddScoped<IAuthorizedService, AuthorizedService>();    
 
 // Add TempData
 builder.Services.AddControllersWithViews()

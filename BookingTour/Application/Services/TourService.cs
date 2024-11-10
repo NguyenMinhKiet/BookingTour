@@ -4,6 +4,7 @@ using Domain.Entities;
 using Domain.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,18 +23,19 @@ namespace Application.Services
         {
             var tour = new Tour()
             {
-                tour_name = dto.tour_name,
-                description = dto.description,
-                price = dto.price,
-                end_Date = dto.end_Date,
-                start_Date = dto.start_Date,
-                availableSeats = dto.availableSeats,
+                TourID = new Guid(),
+                Title = dto.Title,
+                Description = dto.Description,
+                Price = dto.Price,
+                StartDate = dto.StartDate,
+                EndDate = dto.EndDate,
+                AvailableSeats = dto.AvailableSeats
             };
             await _tourRepository.AddAsync(tour);
             return tour;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Guid id)
         {
             await _tourRepository.DeleteAsync(id);
         }
@@ -43,23 +45,22 @@ namespace Application.Services
             return await _tourRepository.GetAllAsync();
         }
 
-        public async Task<Tour> GetById(int id)
+        public async Task<Tour> GetById(Guid id)
         {
             return await _tourRepository.GetByIdAsync(id);
         }
 
-        public async Task UpdateAsync(int id, TourUpdateDto dto)
+        public async Task UpdateAsync(Guid id, TourUpdateDto dto)
         {
             var tour = await _tourRepository.GetByIdAsync(id);
             if(tour != null)
             {
-                tour.tour_name = dto.tour_name;
-                tour.description = dto.description;
-                tour.price = dto.price;
-                tour.start_Date = dto.start_Date;
-                tour.end_Date = dto.end_Date;
-                tour.description = dto.description;
-                tour.availableSeats = dto.availableSeats;
+                tour.Title = dto.Title;
+                tour.Description = dto.Description;
+                tour.Price = dto.Price;
+                tour.StartDate = dto.StartDate;
+                tour.EndDate = dto.EndDate;
+                tour.AvailableSeats = dto.AvailableSeats;
 
                 await _tourRepository.UpdateAsync(tour);
 

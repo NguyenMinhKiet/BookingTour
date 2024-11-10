@@ -11,5 +11,7 @@ namespace Domain.Entities
         public Guid Id { get; set; }
         public string Name { get; set; }
         public Guid RoleID { get; set; }
+
+        public virtual ICollection<Role> Roles { get; set; }
     }
 }

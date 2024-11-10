@@ -10,27 +10,23 @@ namespace Infrastructure.DataAccess.Configurations
         {
             builder.ToTable("Feedbacks");
 
-            builder.HasKey(u=>u.feedback_id);
+            builder.HasKey(u=>u.FeedbackID);
                 
-            builder.Property(u => u.feedback_id)
-               .ValueGeneratedOnAdd()
-               .HasColumnType("int");
-
-            builder.Property(u => u.customer_id)
+            builder.Property(u => u.CustomerID)
                 .IsRequired();
 
-            builder.Property(u=>u.tour_id)
+            builder.Property(u=>u.TourID)
                 .IsRequired();
 
-            builder.Property(u => u.comments)
+            builder.Property(u => u.Comments)
                 .IsRequired();
 
-            builder.Property(u => u.rating)
+            builder.Property(u => u.Rating)
                 .IsRequired();
 
             builder.HasOne(t=>t.Tour)
                 .WithMany(f=>f.FeedBacks)
-                .HasForeignKey(t=>t.tour_id)
+                .HasForeignKey(t=>t.TourID)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

@@ -1,5 +1,6 @@
 ﻿using Application.DTOs.BookingDTOs;
 using Application.Services_Interface;
+using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
 
@@ -19,13 +20,14 @@ namespace Presentation.Controllers
             var bookings = await _bookingService.GetAllAsync();
             var bookingsViewModel = bookings.Select(i => new BookingViewModel
             {
-                tour_id = i.tour_id,
-                booking_id = i.booking_id,
-                customer_id = i.customer_id,
-                booking_date = i.booking_date,
-                num_people = i.num_people,
-                total_price = i.total_price,
-
+                BookingID = i.BookingID,
+                CustomerID = i.CustomerID,
+                TourID = i.TourID,
+                Adult = i.Adult,
+                Child = i.Child,
+                CreateAt = i.CreateAt,
+                ModifyAt = i.ModifyAt,
+                TotalPrice = i.TotalPrice
             }).ToList();
 
             return View(bookingsViewModel);
@@ -49,53 +51,55 @@ namespace Presentation.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Update(int booking_id)
+        public async Task<IActionResult> Update(Guid BookingID)
         {
-            var booking = await _bookingService.GetById(booking_id);
+            var booking = await _bookingService.GetById(BookingID);
             if (booking != null)
             {
                 var bookingViewModel = new BookingViewModel
                 {
-                    booking_id = booking.booking_id,
-                    tour_id = booking.tour_id,
-                    customer_id = booking.customer_id,
-                    booking_date = booking.booking_date,
-                    total_price = booking.total_price,
-                    num_people = booking.num_people,
+                    BookingID = booking.BookingID,
+                    CustomerID = booking.CustomerID,
+                    TourID = booking.TourID,
+                    Adult = booking.Adult,
+                    Child = booking.Child,
+                    CreateAt = booking.CreateAt,
+                    ModifyAt = booking.ModifyAt,
+                    TotalPrice = booking.TotalPrice
                 };
 
                 return View(bookingViewModel);
             }
             else
             {
-                throw new Exception($"Không tìm thấy booking: {booking_id}");
+                throw new Exception($"Không tìm thấy booking: {BookingID}");
             }
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(int booking_id, BookingUpdateDto dto)
+        public async Task<IActionResult> Update(Guid BookingID, BookingUpdateDto dto)
         {
-            var booking = await _bookingService.GetById(booking_id);
+            var booking = await _bookingService.GetById(BookingID);
             if(booking == null)
             {
-                TempData["success"] = $"Không tìm thấy booking: {booking_id}";
+                TempData["success"] = $"Không tìm thấy booking: {BookingID}";
                 return RedirectToAction("Index");
             }
 
-            await _bookingService.UpdateAsync(booking_id, dto);
+            await _bookingService.UpdateAsync(BookingID, dto);
             TempData["success"] = "Chỉnh sửa thông tin booking thành công.";
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> Delete(int booking_id)
+        public async Task<IActionResult> Delete(Guid BookingID)
         {
-            var booking = await _bookingService.GetById(booking_id);
+            var booking = await _bookingService.GetById(BookingID);
             if(booking == null)
             {
-                throw new Exception($"Không tìm thấy booking {booking_id}");
+                throw new Exception($"Không tìm thấy booking {BookingID}");
             }
-            await _bookingService.DeleteAsync(booking_id);
-            TempData["success"] = $"Xóa thông tin booking {booking_id} thành công.";
+            await _bookingService.DeleteAsync(BookingID);
+            TempData["success"] = $"Xóa thông tin booking {BookingID} thành công.";
             return RedirectToAction("Index");
         }
     }

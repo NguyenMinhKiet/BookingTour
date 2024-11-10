@@ -9,45 +9,55 @@ namespace Infrastructure.DataAccess.Configurations
         public void Configure(EntityTypeBuilder<Booking> builder)
         {
             builder.ToTable("Bookings", 
-                t=> t.HasCheckConstraint("CK_Booking_NumPeople", "[num_people] >= 0"));
+                t=>
+                {
+                    t.HasCheckConstraint("CK_Booking_Adult", "[Adult] >= 0");
+                    t.HasCheckConstraint("CK_Booking_Child", "[Child] >= 0");
+                });
 
-            builder.HasKey(u=>u.booking_id);
+            builder.HasKey(u=>u.BookingID);
 
-            builder.Property(u => u.customer_id)
+            builder.Property(u => u.CustomerID)
                 .IsRequired();
 
-            builder.Property(u => u.tour_id)
+            builder.Property(u => u.TourID)
                 .IsRequired();
 
-            builder.Property(u => u.booking_date)
+            builder.Property(u => u.CreateAt)
                 .IsRequired();
 
-            builder.Property(u => u.num_people)
+            builder.Property(u => u.Adult)
                 .IsRequired()
                 .HasDefaultValue(0);
 
-            builder.Property(u => u.total_price)
+            builder.Property(u => u.Child)
+                .IsRequired()
+                .HasDefaultValue(0);
+
+            builder.Property(u => u.TotalPrice)
                 .IsRequired()
                 .HasDefaultValue(0)
                 .HasColumnType("decimal(10,2)");
 
             builder.HasOne(c => c.Customer)    // Mỗi Booking thuộc về một Customer
                    .WithMany(b => b.Bookings)      // Customer có nhiều Booking
-                   .HasForeignKey(b => b.customer_id); // Đặt khóa ngoại
+                   .HasForeignKey(b => b.CustomerID)
+                   .OnDelete(DeleteBehavior.Cascade);// Đặt khóa ngoại
 
-            builder.HasMany(b => b.Payments)
+            builder.HasOne(b => b.Payment)
                 .WithOne(p=>p.Booking)
-                .HasForeignKey(fk=>fk.booking_id);
+                .HasForeignKey<Payment>(fk => fk.BookingID)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(b => b.Customer)
                    .WithMany() // Nếu Customer có nhiều Booking, không cần khai báo danh sách Booking ở Customer
-                   .HasForeignKey(b => b.customer_id)
+                   .HasForeignKey(b => b.CustomerID)
                    .OnDelete(DeleteBehavior.Cascade); // Xoá Booking khi Customer bị xóa
 
             // Thiết lập quan hệ N-1 với Tour
             builder.HasOne(b => b.Tour) // Booking có 1 Tour
                    .WithMany(t => t.Bookings) // Tour có nhiều Booking
-                   .HasForeignKey(b => b.tour_id) // Khóa ngoại
+                   .HasForeignKey(b => b.TourID) // Khóa ngoại
                    .OnDelete(DeleteBehavior.Cascade); // Hành động xóa (tuỳ chọn)
         }
     }

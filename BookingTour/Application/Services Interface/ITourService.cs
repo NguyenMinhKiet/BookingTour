@@ -5,14 +5,14 @@ namespace Application.Services_Interface
 {
     public interface ITourService
     {
-        public Task<Tour> GetById(int id);
+        public Task<Tour> GetById(Guid id);
 
         public Task<IEnumerable<Tour>> GetAllAsync();
 
         public Task<Tour> CreateAsync(TourCreationDto dto);
 
-        public Task UpdateAsync(int id, TourUpdateDto dto);
+        public Task UpdateAsync(Guid id, TourUpdateDto dto);
 
-        public Task DeleteAsync(int id);
+        public Task DeleteAsync(Guid id);
     }
 }

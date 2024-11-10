@@ -24,9 +24,9 @@ namespace Application.Services
         {
             var tourDestination = new TourDestination()
             {
-                tour_id = dto.tour_id,
-                destination_id  = dto.destination_id,
-                visit_date = dto.visit_date
+                TourID = dto.TourID,
+                DestinationID = dto.DestinationID,
+                VisitDate = dto.VisitDate
             };
             await _tourDestinationRepository.AddAsync(tourDestination);
             return tourDestination;
@@ -39,26 +39,22 @@ namespace Application.Services
             return await _tourDestinationRepository.GetAllAsync();
         }
 
-        public async Task<TourDestination> GetById(int tour_id, int destination_id)
+        public async Task<TourDestination> GetById(Guid tour_id, Guid destination_id)
         {
             return await _tourDestinationRepository.GetByIdAsync(tour_id, destination_id);
         }
 
-        public async Task UpdateAsync(int tour_id, int destination_id, TourDestinationUpdateDto dto)
+        public async Task UpdateAsync(Guid tour_id, Guid destination_id, TourDestinationUpdateDto dto)
         {
             var tourDestination = await _tourDestinationRepository.GetByIdAsync(tour_id, destination_id);
             if( tourDestination != null)
             {
-                tourDestination.tour_id = tour_id;
-                tourDestination.destination_id = destination_id;
-
-                tourDestination.visit_date = dto.visit_date;
-
+                tourDestination.VisitDate = dto.VisitDate;
                 await _tourDestinationRepository.UpdateAsync(tourDestination);
             }
         }
 
-        public async Task DeleteAsync(int tour_id, int destination_id)
+        public async Task DeleteAsync(Guid tour_id, Guid destination_id)
         {
             await _tourDestinationRepository.DeleteAsync(tour_id, destination_id);
         }
