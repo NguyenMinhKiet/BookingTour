@@ -1,6 +1,7 @@
 ﻿using Application.DTOs.EmployeeDTOs;
 using Application.Services;
 using Application.Services_Interface;
+using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
 
@@ -20,13 +21,15 @@ namespace Presentation.Controllers
             var employees = await _employeeService.GetAllAsync();
             var employeesViewModel = employees.Select(c => new EmployeeViewModel
             {
-                employee_id = c.employee_id,
-                first_name = c.first_name,
-                last_name = c.last_name,
-                email = c.email,
-                phone = c.phone,
-                position = c.position,
-                address = c.address,
+                EmployeeID = c.EmployeeID,
+                FirstName = c.FirstName,
+                LastName = c.LastName,
+                Email = c.Email,
+                Phone = c.Phone,
+                Position = c.Position,
+                Address = c.Address,
+                AccountID = c.AccountID
+
             }).ToList();
             return View(employeesViewModel);
         }
@@ -41,30 +44,30 @@ namespace Presentation.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(EmployeeCreationDto employee)
         {
-            if (string.IsNullOrEmpty(employee?.first_name) || employee.first_name.Length < 3)
-            {
-                ModelState.AddModelError("first_name", "Vui lòng nhập đầy đủ họ đệm với ít nhất 3 ký tự !");
-            }
+            //if (string.IsNullOrEmpty(employee?.first_name) || employee.first_name.Length < 3)
+            //{
+            //    ModelState.AddModelError("first_name", "Vui lòng nhập đầy đủ họ đệm với ít nhất 3 ký tự !");
+            //}
 
-            if (string.IsNullOrEmpty(employee?.phone) || employee.phone.Length != 10)
-            {
-                ModelState.AddModelError("phone", "Số điện thoại phải có 10 kí tự số, bạn đang có " + employee.phone.Length +" ký tự !!");
-            }
+            //if (string.IsNullOrEmpty(employee?.phone) || employee.phone.Length != 10)
+            //{
+            //    ModelState.AddModelError("phone", "Số điện thoại phải có 10 kí tự số, bạn đang có " + employee.phone.Length +" ký tự !!");
+            //}
 
-            if (string.IsNullOrEmpty(employee?.email) || !employee.email.Contains("@"))
-            {
-                ModelState.AddModelError("email", "Email thiếu '@' !!");
-            }
+            //if (string.IsNullOrEmpty(employee?.email) || !employee.email.Contains("@"))
+            //{
+            //    ModelState.AddModelError("email", "Email thiếu '@' !!");
+            //}
 
-            if (string.IsNullOrEmpty(employee?.last_name) || employee.last_name.Length < 3)
-            {
-                ModelState.AddModelError("last_name", "Vui lòng nhập đầy đủ Tên với ít nhất 3 ký tự !!");
-            }
+            //if (string.IsNullOrEmpty(employee?.last_name) || employee.last_name.Length < 3)
+            //{
+            //    ModelState.AddModelError("last_name", "Vui lòng nhập đầy đủ Tên với ít nhất 3 ký tự !!");
+            //}
 
-            if (employee?.position == 0)
-            {
-                ModelState.AddModelError("position", "Chọn vị trí !!");
-            }
+            //if (employee?.position == 0)
+            //{
+            //    ModelState.AddModelError("position", "Chọn vị trí !!");
+            //}
 
             if (ModelState.IsValid)
             {
@@ -78,7 +81,7 @@ namespace Presentation.Controllers
 
 
         // GET: /Employee/Update?{customer_id}
-        public async Task<IActionResult>  Update(int employee_id)
+        public async Task<IActionResult>  Update(Guid employee_id)
         {
             
             var employee = await _employeeService.GetById(employee_id);
@@ -89,13 +92,14 @@ namespace Presentation.Controllers
 
             var employeeViewData = new EmployeeViewModel
             {
-                employee_id = employee.employee_id,
-                first_name = employee.first_name,
-                last_name = employee.last_name,
-                email = employee.email,
-                phone = employee.phone,
-                position = employee.position,
-                address = employee.address,
+                EmployeeID = employee.EmployeeID,
+                FirstName = employee.FirstName,
+                LastName = employee.LastName,
+                Email = employee.Email,
+                Phone = employee.Phone,
+                Position = employee.Position,
+                Address = employee.Address,
+                AccountID = employee.AccountID
             };
 
             return View(employeeViewData);
@@ -103,27 +107,27 @@ namespace Presentation.Controllers
 
         // POST: /Employee/Update?{customer_id}
         [HttpPost]
-        public async Task<IActionResult>  Update(int employee_id, EmployeeUpdateDto employee)
+        public async Task<IActionResult>  Update(Guid employee_id, EmployeeUpdateDto employee)
         {
-            if (string.IsNullOrEmpty(employee?.first_name) || employee.first_name.Length < 3)
-            {
-                ModelState.AddModelError("first_name", "Vui lòng nhập đầy đủ họ đệm với ít nhất 3 ký tự!");
-            }
+            //if (string.IsNullOrEmpty(employee?.first_name) || employee.first_name.Length < 3)
+            //{
+            //    ModelState.AddModelError("first_name", "Vui lòng nhập đầy đủ họ đệm với ít nhất 3 ký tự!");
+            //}
 
-            if (string.IsNullOrEmpty(employee?.phone) || employee.phone.Length != 10)
-            {
-                ModelState.AddModelError("phone", "Số điện thoại phải có 10 kí tự số, bạn đang có " + employee.phone.Length + " ký tự !!");
-            }
+            //if (string.IsNullOrEmpty(employee?.phone) || employee.phone.Length != 10)
+            //{
+            //    ModelState.AddModelError("phone", "Số điện thoại phải có 10 kí tự số, bạn đang có " + employee.phone.Length + " ký tự !!");
+            //}
 
-            if (string.IsNullOrEmpty(employee?.email) || !employee.email.Contains("@"))
-            {
-                ModelState.AddModelError("email", "Email thiếu '@'!!");
-            }
+            //if (string.IsNullOrEmpty(employee?.email) || !employee.email.Contains("@"))
+            //{
+            //    ModelState.AddModelError("email", "Email thiếu '@'!!");
+            //}
 
-            if (string.IsNullOrEmpty(employee?.last_name) || employee.last_name.Length < 3)
-            {
-                ModelState.AddModelError("last_name", "Vui lòng nhập đầy đủ Tên với ít nhất 3 ký tự!!");
-            }
+            //if (string.IsNullOrEmpty(employee?.last_name) || employee.last_name.Length < 3)
+            //{
+            //    ModelState.AddModelError("last_name", "Vui lòng nhập đầy đủ Tên với ít nhất 3 ký tự!!");
+            //}
 
             if (ModelState.IsValid)
             {
@@ -142,7 +146,7 @@ namespace Presentation.Controllers
             return View();
         }
 
-        public async Task<IActionResult>  Delete(int employee_id)
+        public async Task<IActionResult>  Delete(Guid employee_id)
         {
             await _employeeService.DeleteAsync(employee_id);
             TempData["success"] = "Đã xóa nhân viên " + employee_id;

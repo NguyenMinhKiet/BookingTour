@@ -2,11 +2,13 @@
 {
     public class BookingViewModel
     {
-        public int booking_id { get; set; }
-        public int tour_id { get; set; }
-        public int customer_id { get; set; }
-        public DateTime booking_date { get; set; }
-        public int num_people { get; set; }
-        public decimal total_price { get; set; }
+        public Guid BookingID { get; set; }
+        public Guid TourID { get; set; }
+        public Guid CustomerID { get; set; }
+        public int Adult { get; set; }
+        public int Child { get; set; }
+        public decimal TotalPrice { get; set; }
+        public DateTime CreateAt { get; set; }
+        public DateTime ModifyAt { get; set; }
     }
 }

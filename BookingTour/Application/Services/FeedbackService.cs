@@ -24,16 +24,18 @@ namespace Application.Services
         {
             var newFeedback = new Feedback()
             {
-                customer_id = dto.customer_id,
-                tour_id = dto.tour_id,
-                rating = dto.rating,
-                comments = dto.comments,
+                FeedbackID = new Guid(),
+                CustomerID = dto.CustomerID,
+                TourID = dto.TourID,
+                Rating = dto.Rating,
+                Comments = dto.Comments,
+                CreateAt = new DateTime()
             };
             await _feedbackRepository.AddAsync(newFeedback);
             return newFeedback;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Guid id)
         {
             await _feedbackRepository.DeleteAsync(id);
         }
@@ -43,19 +45,19 @@ namespace Application.Services
             return await  _feedbackRepository.GetAllAsync();
         }
 
-        public async Task<Feedback> GetById(int id)
+        public async Task<Feedback> GetById(Guid id)
         {
             return await _feedbackRepository.GetByIdAsync(id);
         }
 
-        public async Task UpdateAsync(int id, FeedbackUpdateDto dto)
+        public async Task UpdateAsync(Guid id, FeedbackUpdateDto dto)
         {
             var feedback = await _feedbackRepository.GetByIdAsync(id);
             if (feedback != null)
             {
-                feedback.tour_id = dto.tour_id;
-                feedback.rating = dto.rating;
-                feedback.comments = dto.comments;
+                feedback.ModifyAt = new DateTime();
+                feedback.Rating = dto.Rating;
+                feedback.Comments = dto.Comments;
                 await _feedbackRepository.UpdateAsync(feedback);
             }
 

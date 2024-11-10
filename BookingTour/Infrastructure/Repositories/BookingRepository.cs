@@ -21,7 +21,7 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Guid id)
         {
             var booking = await GetByIdAsync(id);
             if( booking == null)
@@ -37,7 +37,7 @@ namespace Infrastructure.Repositories
             return await _context.Bookings.ToListAsync();
         }
 
-        public async Task<Booking> GetByIdAsync(int id)
+        public async Task<Booking> GetByIdAsync(Guid id)
         {
             return await _context.Bookings.FindAsync(id);
         }

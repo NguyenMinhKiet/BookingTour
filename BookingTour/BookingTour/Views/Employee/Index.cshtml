@@ -10,6 +10,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
+            <th>AccountID</th>
             <th>Phone</th>
             <th>Position</th>
             <th>Address</th>
@@ -20,49 +21,25 @@
         @foreach (var employee in Model)
         {
             <tr>
-                <td>@employee.employee_id</td>
-                <td>@employee.first_name</td>
-                <td>@employee.last_name</td>
-                <td>@employee.email</td>
-                <td>@employee.phone</td>
-                <td>
-                    @if (@employee.position == 5)
-                    {
-                        <p>Admin</p>
-                    }
-
-                    @if (@employee.position == 1)
-                    {
-                        <p>Quản lý</p>
-                    }
-
-                    @if (@employee.position == 2)
-                    {
-                        <p>Hướng dẫn viên</p>
-                    }
-
-                    @if (@employee.position == 3)
-                    {
-                        <p>Tài xế</p>
-                    }
-                    
-
-                </td>
-                <td>@employee.address</td>
+                <td>@employee.EmployeeID</td>
+                <td>@employee.FirstName</td>
+                <td>@employee.LastName</td>
+                <td>@employee.Email</td>
+                <td>@employee.AccountID</td>
+                <td>@employee.Phone</td>
+                <td>@employee.Position</td>
+                <td>@employee.Address</td>
                 <td>
                     <div class="w-100 btn-group" role="group">
-                    <a 
-                        asp-action="Update" 
-                        asp-controller="Employee"
-                        asp-route-employee_id="@employee.employee_id"
-                        class="btn btn-primary"
-                    >Cập nhật thông tin</a>
-                    <a 
-                        asp-action="Delete" 
-                        asp-controller="Employee"
-                        asp-route-employee_id="@employee.employee_id"
-                        class="btn btn-danger"
-                    >Xóa</a>
+                        <a asp-action="Update"
+                           asp-controller="Employee"
+                           asp-route-employee_id="@employee.EmployeeID"
+                           class="btn btn-primary">Cập nhật thông tin</a>
+
+                        <a asp-action="Delete"
+                           asp-controller="Employee"
+                           asp-route-employee_id="@employee.EmployeeID"
+                           class="btn btn-danger">Xóa</a>
                     </div>
                 </td>
             </tr>

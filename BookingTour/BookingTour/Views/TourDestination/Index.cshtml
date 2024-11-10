@@ -16,23 +16,23 @@
         @foreach (var t in Model)
         {
             <tr>
-                <td>@t.tour_id</td>
-                <td>@t.destination_id</td>
-                <td>@t.visit_date</td>
+                <td>@t.TourID</td>
+                <td>@t.DestinationID</td>
+                <td>@t.VisitDate</td>
                 <td>
                     <div class="w-100 btn-group" role="group">
                         <a asp-action="Update"
                            asp-controller="TourDestination"
-                           asp-route-tour_id="@t.tour_id"
-                           asp-route-destination_id="@t.destination_id"
+                           asp-route-tour_id="@t.TourID"
+                           asp-route-destination_id="@t.DestinationID"
                            class="btn btn-primary">
                             Cập nhật thông tin
                         </a>
 
                         <a asp-action="Delete"
                            asp-controller="TourDestination"
-                           asp-route-tour_id="@t.tour_id"
-                           asp-route-destination_id="@t.destination_id"
+                           asp-route-tour_id="@t.TourID"
+                           asp-route-destination_id="@t.DestinationID"
                            class="btn btn-danger">
                             Xóa
                         </a>

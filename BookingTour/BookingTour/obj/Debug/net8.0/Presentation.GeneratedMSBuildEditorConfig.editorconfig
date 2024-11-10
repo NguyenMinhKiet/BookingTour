@@ -9,143 +9,143 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Presentation
 build_property.RootNamespace = Presentation
-build_property.ProjectDir = D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour\
+build_property.ProjectDir = D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour
+build_property.MSBuildProjectDirectory = D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Booking/Create.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Booking/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Booking/Index.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Booking/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Booking/Update.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Booking/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ1xVcGRhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Customer/Create.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Customer/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Customer/Index.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Customer/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Customer/Update.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Customer/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcVXBkYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Destination/Create.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Destination/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzdGluYXRpb25cQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Destination/Index.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Destination/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzdGluYXRpb25cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Destination/Update.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Destination/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzdGluYXRpb25cVXBkYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Employee/Create.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Employee/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Employee/Index.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Employee/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Employee/Update.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Employee/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcVXBkYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Feedback/Create.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Feedback/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmVlZGJhY2tcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Feedback/Index.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Feedback/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmVlZGJhY2tcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Feedback/Update.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Feedback/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmVlZGJhY2tcVXBkYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Home/Index.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Home/Privacy.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Payment/Create.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Payment/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Payment/Index.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Payment/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Payment/Update.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Payment/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudFxVcGRhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Shared/Error.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/TourDestination/Create.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/TourDestination/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG91ckRlc3RpbmF0aW9uXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/TourDestination/Index.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/TourDestination/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG91ckRlc3RpbmF0aW9uXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/TourDestination/Update.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/TourDestination/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG91ckRlc3RpbmF0aW9uXFVwZGF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/TourEmployee/Create.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/TourEmployee/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG91ckVtcGxveWVlXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/TourEmployee/Index.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/TourEmployee/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG91ckVtcGxveWVlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Tour/Create.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Tour/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG91clxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Tour/Index.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Tour/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG91clxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Tour/Update.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Tour/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG91clxVcGRhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/_ViewImports.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/_ViewStart.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Shared/_Layout.cshtml]
+[D:/Kiet/Study/N5_HK1/DotNet/BookingTour/BookingTour/BookingTour/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-fhvjq1vla1

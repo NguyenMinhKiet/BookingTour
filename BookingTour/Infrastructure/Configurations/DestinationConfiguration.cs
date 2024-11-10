@@ -10,12 +10,12 @@ namespace Infrastructure.DataAccess.Configurations
         {
             builder.ToTable("Destinations");
 
-            builder.HasKey(u => u.destination_id);
-            builder.Property(u => u.destination_name)
+            builder.HasKey(u => u.DestinationID);
+            builder.Property(u => u.Name)
                 .IsRequired();
-            builder.Property(u=>u.country)
+            builder.Property(u=>u.Country)
                 .IsRequired();
-            builder.Property(u => u.city)
+            builder.Property(u => u.City)
                 .IsRequired();
 
         }

@@ -25,7 +25,7 @@ namespace Infrastructure.Repositories
             return await _context.Feedbacks.ToListAsync();
         }
 
-        public async Task<Feedback> GetByIdAsync(int id)
+        public async Task<Feedback> GetByIdAsync(Guid id)
         {
             return await _context.Feedbacks.FindAsync(id);
         }
@@ -36,7 +36,7 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Guid id)
         {
             var feedback = await GetByIdAsync(id);
             if (feedback == null)

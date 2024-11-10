@@ -22,11 +22,13 @@ namespace Presentation.Controllers
             var feedbacks = await _feedbackService.GetAllAsync();
             var feedbacksViewModel = feedbacks.Select(i => new FeedbackViewModel
             {
-                feedback_id = i.feedback_id,
-                customer_id = i.customer_id,
-                tour_id = i.tour_id,
-                rating = i.rating,
-                comments = i.comments,
+                FeedbackID = i.FeedbackID,
+                CustomerID = i.CustomerID,
+                TourID = i.TourID,
+                Rating = i.Rating,
+                Comments = i.Comments,
+                CreateAt = i.CreateAt,
+                ModifyAt = i.ModifyAt
             }).ToList();
 
             return View(feedbacksViewModel);
@@ -40,12 +42,12 @@ namespace Presentation.Controllers
             // Customer
             var customersViewModel = customers.Select(i=> new CustomerViewModel
             {
-                customer_id = i.customer_id,
-                full_name = i.last_name +" "+ i.first_name
+                CustomerID = i.CustomerID,
+                LastName = i.LastName,
             }).ToList();
 
             // Tạo SelectList cho dropdown khách hàng
-            var customersSelectList = new SelectList(customersViewModel, "customer_id", "full_name");
+            var customersSelectList = new SelectList(customersViewModel, "CustomerID", "LastName");
 
             // Đưa SelectList vào ViewBag
             ViewBag.CustomerList = customersSelectList;
@@ -69,18 +71,20 @@ namespace Presentation.Controllers
         }
 
         // GET: /Feedback/Update?{feedback_id}
-        public async Task<IActionResult> Update(int feedback_id)
+        public async Task<IActionResult> Update(Guid feedback_id)
         {
             var feedback = await _feedbackService.GetById(feedback_id);
             if(feedback != null)
             {
                 var feedbackViewModel = new FeedbackViewModel
                 {
-                    feedback_id = feedback.feedback_id,
-                    customer_id = feedback.customer_id,
-                    tour_id = feedback.tour_id,
-                    rating = feedback.rating,
-                    comments = feedback.comments,
+                    FeedbackID = feedback.FeedbackID,
+                    CustomerID = feedback.CustomerID,
+                    TourID = feedback.TourID,
+                    Rating = feedback.Rating,
+                    Comments = feedback.Comments,
+                    CreateAt = feedback.CreateAt,
+                    ModifyAt = feedback.ModifyAt
                 };
                 return View(feedbackViewModel);
             }
@@ -89,7 +93,7 @@ namespace Presentation.Controllers
 
         // POST: /Feedback/Update?{feedback_id}
         [HttpPost]
-        public async Task<IActionResult> Update(int feedback_id, FeedbackUpdateDto dto)
+        public async Task<IActionResult> Update(Guid feedback_id, FeedbackUpdateDto dto)
         {
             if(ModelState.IsValid)
             {

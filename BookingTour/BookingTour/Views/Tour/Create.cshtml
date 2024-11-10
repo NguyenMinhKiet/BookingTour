@@ -8,39 +8,39 @@
 <form asp-action="Create" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
-        <label asp-for="tour_name"></label>
-        <input asp-for="tour_name" type="text" class="form-control" id="tour_name" name="tour_name" >
-        <span asp-validation-for="tour_name" class="text-danger"></span>
+        <label asp-for="Title"></label>
+        <input asp-for="Title" type="text" class="form-control" id="Title" name="Title" Required>
+        <span asp-validation-for="Title" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="start_Date"></label>
-        <input asp-for="start_Date" type="datetime-local" class="form-control" id="start_Date" name="start_Date">
-        <span asp-validation-for="start_Date" class="text-danger"></span>
+        <label asp-for="Description"></label>
+        <input asp-for="Description" type="datetime-local" class="form-control" id="Description" name="Description" Required>
+        <span asp-validation-for="Description" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="end_Date"></label>
-        <input asp-for="end_Date" type="datetime-local" class="form-control" id="end_Date" name="end_Date">
-        <span asp-validation-for="end_Date" class="text-danger"></span>
+        <label asp-for="StartDate"></label>
+        <input asp-for="StartDate" type="datetime-local" class="form-control" id="StartDate" name="StartDate" Required>
+        <span asp-validation-for="StartDate" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="price"></label>
-        <input asp-for="price" type="decimal" class="form-control" id="price" name="price" min="0" value="0">
-        <span asp-validation-for="price" class="text-danger"></span>
+        <label asp-for="EndDate"></label>
+        <input asp-for="EndDate" type="datetime-local" class="form-control" id="EndDate" name="EndDate" Required>
+        <span asp-validation-for="EndDate" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="availableSeats"></label>
-        <input asp-for="availableSeats" type="number" class="form-control" id="price" name="price" min="0" value="0">
-        <span asp-validation-for="availableSeats" class="text-danger"></span>
+        <label asp-for="Price"></label>
+        <input asp-for="Price" type="decimal" class="form-control" id="Price" name="Price" min="0" value="0" Required>
+        <span asp-validation-for="Price" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="description"></label>
-        <textarea asp-for="description" type="text" class="form-control" id="description" name="description" ></textarea>
-        <span asp-validation-for="description" class="text-danger"></span>
+        <label asp-for="AvailableSeats"></label>
+        <input asp-for="AvailableSeats" type="number" class="form-control" id="AvailableSeats" name="AvailableSeats" min="0" value="0" Required>
+        <span asp-validation-for="AvailableSeats" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Lưu</button>

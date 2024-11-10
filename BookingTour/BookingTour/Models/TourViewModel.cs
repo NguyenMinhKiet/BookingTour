@@ -2,12 +2,12 @@
 {
     public class TourViewModel
     {
-        public int tour_id { get; set; }
-        public string tour_name { get; set; }
-        public string description { get; set; }
-        public decimal price { get; set; }
-        public DateTime start_Date { get; set; }
-        public DateTime end_Date { get; set; }
-        public int availableSeats { get; set; }
+        public Guid TourID { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public decimal Price { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public int AvailableSeats { get; set; }
     }
 }

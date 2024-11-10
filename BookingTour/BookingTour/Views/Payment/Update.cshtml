@@ -8,29 +8,34 @@
 
 <form asp-action="Update" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
     <div class="form-group d-none">
-        <label asp-for="payment_id"></label>
-        <input asp-for="payment_id" type="text" class="form-control" id="payment_id" name="payment_id" >
-        <span asp-validation-for="payment_id" class="text-danger"></span>
+        <label asp-for="PaymentID"></label>
+        <input asp-for="PaymentID" type="text" class="form-control" id="PaymentID" name="PaymentID">
+        <span asp-validation-for="PaymentID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group d-none">
+        <label asp-for="BookingID"></label>
+        <input asp-for="BookingID" type="text" class="form-control" id="BookingID" name="BookingID" Required>
+        <span asp-validation-for="BookingID" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="booking_id"></label>
-        <input asp-for="booking_id" type="text" class="form-control" id="booking_id" name="booking_id">
-        <span asp-validation-for="booking_id" class="text-danger"></span>
-    </div>
+        <label asp-for="Method"></label>
+        <select asp-for="Method" type="text" class="form-select" id="Method" name="Method" Required>
+            <option value="">-- Chọn phương thức thanh toán --</option>
+            <option value="0">Thẻ ví</option>
+            <option value="1">Tiền mặt</option>
+        </select>
 
-
-    <div class="form-group">
-        <label asp-for="payment_method"></label>
-        <input asp-for="payment_method" type="text" class="form-control" id="payment_method" name="payment_method">
-        <span asp-validation-for="payment_method" class="text-danger"></span>
+        <span asp-validation-for="Method" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="payment_status"></label>
-        <textarea asp-for="payment_status" type="text" class="form-control" id="payment_status" name="payment_status"></textarea>
-        <span asp-validation-for="payment_status" class="text-danger"></span>
+        <label asp-for="Status"></label>
+        <input asp-for="Status" type="text" class="form-control" id="Status" name="Status" Required>
+        <span asp-validation-for="Status" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Lưu</button>

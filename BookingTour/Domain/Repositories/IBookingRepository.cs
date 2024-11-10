@@ -5,7 +5,7 @@ namespace Domain.Repositories
     public interface IBookingRepository
     {
         // Phương thức lấy theo ID
-        Task<Booking> GetByIdAsync(int id);
+        Task<Booking> GetByIdAsync(Guid id);
 
         // Phương thức lấy tất cả
         Task<IEnumerable<Booking>> GetAllAsync();
@@ -17,6 +17,6 @@ namespace Domain.Repositories
         Task UpdateAsync(Booking booking);
 
         // Phương thức xóa theo ID
-        Task DeleteAsync(int id);
+        Task DeleteAsync(Guid id);
     }
 }

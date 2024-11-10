@@ -19,18 +19,20 @@ namespace Application.Services
         {
             var employee = new Employee()
             {
-                first_name = dto.first_name,
-                last_name = dto.last_name,
-                email = dto.email,
-                phone = dto.phone,
-                position = dto.position,
-                address = dto.address,
+                EmployeeID = new Guid(),
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                Email = dto.Email,
+                Phone = dto.Phone,
+                Position = dto.Position,
+                Address = dto.Address,
+                AccountID = dto.AccountID,
             };
             await _employeeRepository.AddAsync(employee);
             return employee;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Guid id)
         {
             await _employeeRepository.DeleteAsync(id);
         }
@@ -40,32 +42,32 @@ namespace Application.Services
             return await _employeeRepository.GetAllAsync();
         }
 
-        public async Task<Employee> GetById(int id)
+        public async Task<Employee> GetById(Guid id)
         {
             return await _employeeRepository.GetByIdAsync(id);
         }
 
-        public async Task<String> GetEmployeeNameById(int id)
+        public async Task<String> GetEmployeeNameById(Guid id)
         {
             return await _employeeRepository.GetNameByIdAsync(id);
         }
 
-        public async Task<String> GetEmployeePositionById(int id)
+        public async Task<String> GetEmployeePositionById(Guid id)
         {
             return await _employeeRepository.GetPositionByIdAsync(id);
         }
 
-        public async Task UpdateAsync(int customer_id, EmployeeUpdateDto dto)
+        public async Task UpdateAsync(Guid customer_id, EmployeeUpdateDto dto)
         {
             var employee = await _employeeRepository.GetByIdAsync(customer_id);
             if (employee != null)
             {
-                employee.first_name = dto.first_name;
-                employee.last_name = dto.last_name;
-                employee.email = dto.email;
-                employee.phone = dto.phone;
-                employee.position = dto.position;
-                employee.address = dto.address;
+                employee.FirstName = dto.FirstName;
+                employee.LastName = dto.LastName;
+                employee.Email = dto.Email;
+                employee.Phone = dto.Phone;
+                employee.Position = dto.Position;
+                employee.Address = dto.Address;
 
                 await _employeeRepository.UpdateAsync(employee);
             }

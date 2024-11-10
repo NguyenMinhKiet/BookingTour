@@ -25,9 +25,9 @@ namespace Presentation.Controllers
             var tourDestinations = await _tourDestinationService.GetAllAsync();
             var tourDestinationsViewModel = tourDestinations.Select(i => new TourDestinationViewModel
             {
-                tour_id = i.tour_id,
-                destination_id = i.destination_id,
-                visit_date = i.visit_date
+                TourID = i.TourID,
+                DestinationID = i.DestinationID,
+                VisitDate = i.VisitDate
             }).ToList();
 
             return View(tourDestinationsViewModel);
@@ -39,20 +39,20 @@ namespace Presentation.Controllers
             var tours = await _tourService.GetAllAsync();
             var toursViewModel = tours.Select(i => new TourViewModel
             {
-                tour_name = i.tour_name,
-                tour_id = i.tour_id,
+                Title = i.Title,
+                TourID = i.TourID,
 
             }).ToList();
-            var toursSelectList = new SelectList(toursViewModel, "tour_id", "tour_name");
+            var toursSelectList = new SelectList(toursViewModel, "TourID", "Title");
 
             var destinations = await _destinationService.GetAllAsync();
             var destinationsViewModel = destinations.Select(i => new DestinationViewModel
             {
-                destination_id = i.destination_id,
-                destination_name = i.destination_name,
+                DestinationID = i.DestinationID,
+                Name = i.Name,
 
             }).ToList();
-            var destinationsSelectList = new SelectList(destinationsViewModel, "destination_id", "destination_name");
+            var destinationsSelectList = new SelectList(destinationsViewModel, "DestinationID", "Name");
 
             ViewBag.TourList = toursSelectList;
             ViewBag.DestinationList = destinationsSelectList;
@@ -64,9 +64,6 @@ namespace Presentation.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(TourDestinationCreationDto dto)
         {
-            
-
-
             if (ModelState.IsValid)
             {
                 await _tourDestinationService.CreateAsync(dto);
@@ -78,16 +75,16 @@ namespace Presentation.Controllers
         }
 
         // GET: /TourDestination/Update?{tour_id, destination_id)
-        public async Task<IActionResult> Update(int tour_id, int destination_id)
+        public async Task<IActionResult> Update(Guid tour_id, Guid destination_id)
         {
             var tourDestination = await _tourDestinationService.GetById(tour_id,destination_id);
             if(tourDestination != null)
             {
                 var tourDestinationViewModel = new TourDestinationViewModel
                 {
-                    tour_id = tourDestination.tour_id,
-                    destination_id = tourDestination.destination_id,
-                    visit_date = tourDestination.visit_date
+                    TourID = tourDestination.TourID,
+                    DestinationID = tourDestination.DestinationID,
+                    VisitDate = tourDestination.VisitDate
                 };
                 return View(tourDestinationViewModel);
             }
@@ -96,12 +93,12 @@ namespace Presentation.Controllers
 
         // POST: /TourDestination/Update?{tour_id,destination_id}
         [HttpPost]
-        public async Task<IActionResult> Update(int tour_id, int destination_id, TourDestinationUpdateDto dto)
+        public async Task<IActionResult> Update(Guid TourID, Guid DestinationID, TourDestinationUpdateDto dto)
         {
             if (ModelState.IsValid)
             {
-                await _tourDestinationService.UpdateAsync(tour_id, destination_id, dto);
-                TempData["success"] = $"Thay đổi thời gian đến tại địa điểm {destination_id} của tour {tour_id} thành công.";
+                await _tourDestinationService.UpdateAsync(TourID, DestinationID, dto);
+                TempData["success"] = $"Thay đổi thời gian đến tại địa điểm {DestinationID} của tour {TourID} thành công.";
                 return RedirectToAction("Index");
             }
             TempData["error"] = "Thay đổi thông tin địa điểm tour thất bại !!";
@@ -109,7 +106,7 @@ namespace Presentation.Controllers
         }
 
         // POST: /TourDestination/Delete?{tour_id,destination_id}
-        public async Task<IActionResult> Delete(int tour_id, int destination_id)
+        public async Task<IActionResult> Delete(Guid tour_id, Guid destination_id)
         {
             await _tourDestinationService.DeleteAsync(tour_id, destination_id);
             TempData["success"] = $"Đã xóa thông tin địa điểm {destination_id} trong tour {tour_id} thành công.";

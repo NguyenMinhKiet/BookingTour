@@ -22,12 +22,14 @@ namespace Presentation.Controllers
             var customers = await _customerService.GetAllAsync();
             var customersViewModel = customers.Select(c => new CustomerViewModel
             {
-                customer_id = c.customer_id,
-                first_name = c.first_name,
-                last_name = c.last_name,
-                email = c.email,
-                phone = c.phone,
-                address = c.address,
+                CustomerID = c.CustomerID,
+                FirstName = c.FirstName,
+                LastName = c.LastName,
+                Email = c.Email,
+                Phone = c.Phone,
+                Address = c.Address,
+                AccountID = c.AccountID,
+
             }).ToList();
             return View(customersViewModel);
         }
@@ -42,26 +44,26 @@ namespace Presentation.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CustomerCreationDto customer)
         {
-            if (string.IsNullOrEmpty(customer?.first_name) || customer.first_name.Length < 3)
-            {
-                ModelState.AddModelError("first_name", errorMessage: $"Vui lòng nhập đầy đủ họ đệm với ít nhất 3 ký tự, bạn đã nhập: {customer.first_name.Length} ký tự !! ");
-            }
+            //if (string.IsNullOrEmpty(customer?.FirstName))
+            //{
+            //    ModelState.AddModelError("first_name", errorMessage: $"Vui lòng nhập đầy đủ họ đệm bạn đã nhập: {customer.first_name.Length} ký tự !! ");
+            //}
 
-            if (string.IsNullOrEmpty(customer?.phone) || customer.phone.Length != 10)
-            {
-                ModelState.AddModelError("phone", errorMessage: $"Số điện thoại phải có 10 kí tự số, bạn đã nhập: {customer.phone.Length} ký tự !!");
-            }
+            //if (string.IsNullOrEmpty(customer?.Phone) || customer.Phone.Length != 10)
+            //{
+            //    ModelState.AddModelError("phone", errorMessage: $"Số điện thoại phải có 10 kí tự số, bạn đã nhập: {customer.phone.Length} ký tự !!");
+            //}
 
-            if (string.IsNullOrEmpty(customer?.email) || !customer.email.Contains("@"))
-            {
-                ModelState.AddModelError("email", errorMessage: "Email thiếu '@'!!");
-            }
+            //if (string.IsNullOrEmpty(customer?.Email) || !customer.Email.Contains("@"))
+            //{
+            //    ModelState.AddModelError("email", errorMessage: "Email thiếu '@'!!");
+            //}
 
 
-            if (string.IsNullOrEmpty(customer?.last_name) || customer.last_name.Length < 3)
-            {
-                ModelState.AddModelError("last_name", errorMessage: $"Vui lòng nhập đầy đủ họ đệm với ít nhất 3 ký tự, bạn đã nhập: {customer.last_name.Length} ký tự !! ");
-            }
+            //if (string.IsNullOrEmpty(customer?.LastName))
+            //{
+            //    ModelState.AddModelError("last_name", errorMessage: $"Vui lòng nhập đầy đủ họ đệm, bạn đã nhập: {customer.last_name.Length} ký tự !! ");
+            //}
 
             if (ModelState.IsValid)
             {
@@ -75,7 +77,7 @@ namespace Presentation.Controllers
         }
 
         // GET: /Customer/Update?{customer_id}
-        public async Task<IActionResult> Update(int customer_id)
+        public async Task<IActionResult> Update(Guid customer_id)
         {
             var customer = await _customerService.GetById(customer_id);
             if(customer == null)
@@ -85,39 +87,41 @@ namespace Presentation.Controllers
 
             var customerViewModel = new CustomerViewModel
             {
-                customer_id = customer.customer_id,
-                first_name = customer.first_name,
-                last_name = customer.last_name,
-                email = customer.email,
-                phone = customer.phone,
-                address = customer.address,
+                CustomerID = customer.CustomerID,
+                FirstName = customer.FirstName,
+                LastName = customer.LastName,
+                Email = customer.Email,
+                Phone = customer.Phone,
+                Address = customer.Address,
+                AccountID = customer.AccountID,
             };
             return View(customerViewModel);
         }
 
         // POST: /Customer/Update?{customer_id}
         [HttpPost]
-        public async Task<IActionResult> Update(int customer_id, CustomerUpdateDto customer)
+        public async Task<IActionResult> Update(Guid customer_id, CustomerUpdateDto customer)
         {
-            if (string.IsNullOrEmpty(customer?.first_name) || customer.first_name.Length < 3)
-            {
-                ModelState.AddModelError("first_name", errorMessage: $"Vui lòng nhập đầy đủ họ đệm với ít nhất 3 ký tự, bạn đã nhập: {customer.first_name.Length} ký tự !! ");
-            }
+            //if (string.IsNullOrEmpty(customer?.FirstName))
+            //{
+            //    ModelState.AddModelError("first_name", errorMessage: $"Vui lòng nhập đầy đủ họ đệm bạn đã nhập: {customer.first_name.Length} ký tự !! ");
+            //}
 
-            if (string.IsNullOrEmpty(customer?.phone) || customer.phone.Length != 10)
-            {
-                ModelState.AddModelError("phone", errorMessage: $"Số điện thoại phải có 10 kí tự số, bạn đã nhập: {customer.phone.Length} ký tự !!");
-            }
+            //if (string.IsNullOrEmpty(customer?.Phone) || customer.Phone.Length != 10)
+            //{
+            //    ModelState.AddModelError("phone", errorMessage: $"Số điện thoại phải có 10 kí tự số, bạn đã nhập: {customer.phone.Length} ký tự !!");
+            //}
 
-            if (string.IsNullOrEmpty(customer?.email) || !customer.email.Contains("@"))
-            {
-                ModelState.AddModelError("email", errorMessage: "Email thiếu '@'!!");
-            }
+            //if (string.IsNullOrEmpty(customer?.Email) || !customer.Email.Contains("@"))
+            //{
+            //    ModelState.AddModelError("email", errorMessage: "Email thiếu '@'!!");
+            //}
 
-            if (string.IsNullOrEmpty(customer?.last_name) || customer.last_name.Length < 3)
-            {
-                ModelState.AddModelError("last_name", errorMessage: $"Vui lòng nhập đầy đủ họ đệm với ít nhất 3 ký tự, bạn đã nhập: {customer.last_name.Length} ký tự !! ");
-            }
+
+            //if (string.IsNullOrEmpty(customer?.LastName))
+            //{
+            //    ModelState.AddModelError("last_name", errorMessage: $"Vui lòng nhập đầy đủ họ đệm, bạn đã nhập: {customer.last_name.Length} ký tự !! ");
+            //}
 
             if (ModelState.IsValid)
             {
@@ -130,7 +134,7 @@ namespace Presentation.Controllers
         }
 
         // POST: /Customer/Delete?{customer_id}
-        public async Task<IActionResult> Delete(int customer_id)
+        public async Task<IActionResult> Delete(Guid customer_id)
         {
             await _customerService.DeleteAsync(customer_id);
             TempData["success"] = "Đã xóa khách hàng " + customer_id;

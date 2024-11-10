@@ -5,7 +5,7 @@ namespace Domain.Repositories
     public interface IPaymentRepository
     {
         // Phương thức lấy theo ID
-        Task<Payment> GetByIdAsync(int id);
+        Task<Payment> GetByIdAsync(Guid id);
 
         // Phương thức lấy tất cả
         Task<IEnumerable<Payment>> GetAllAsync();
@@ -17,6 +17,6 @@ namespace Domain.Repositories
         Task UpdateAsync(Payment payment);
 
         // Phương thức xóa theo ID
-        Task DeleteAsync(int id);
+        Task DeleteAsync(Guid id);
     }
 }

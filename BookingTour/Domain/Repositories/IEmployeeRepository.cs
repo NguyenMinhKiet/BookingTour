@@ -5,7 +5,7 @@ namespace Domain.Repositories
     public interface IEmployeeRepository
     {
         // Phương thức lấy theo ID
-        Task<Employee> GetByIdAsync(int id);
+        Task<Employee> GetByIdAsync(Guid id);
 
         // Phương thức lấy tất cả
         Task<IEnumerable<Employee>> GetAllAsync();
@@ -17,9 +17,9 @@ namespace Domain.Repositories
         Task UpdateAsync(Employee employee);
 
         // Phương thức xóa theo ID
-        Task DeleteAsync(int id);
+        Task DeleteAsync(Guid id);
 
-        Task<String> GetNameByIdAsync(int id);
-        Task<String> GetPositionByIdAsync(int id);
+        Task<String> GetNameByIdAsync(Guid id);
+        Task<String> GetPositionByIdAsync(Guid id);
     }
 }

@@ -8,29 +8,27 @@
 <form asp-action="Create" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
-        <label asp-for="destination_name"></label>
-        <input asp-for="destination_name" type="text" class="form-control" id="destination_name" name="destination_name" required>
-        <span asp-validation-for="destination_name" class="text-danger"></span>
-    </div>
-
-    
-
-    <div class="form-group">
-        <label asp-for="city"></label>
-        <input asp-for="city" type="text" class="form-control" id="city" name="city" required>
-        <span asp-validation-for="city" class="text-danger"></span>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" type="text" class="form-control" id="Name" name="Name" required>
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="country"></label>
-        <input asp-for="country" type="text" class="form-control" id="country" name="country" required>
-        <span asp-validation-for="country" class="text-danger"></span>
+        <label asp-for="City"></label>
+        <input asp-for="City" type="text" class="form-control" id="city" name="city" required>
+        <span asp-validation-for="City" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="description"></label>
-        <input asp-for="description" type="text" class="form-control" id="destination_name" name="destination_name" required>
-        <span asp-validation-for="description" class="text-danger"></span>
+        <label asp-for="Country"></label>
+        <input asp-for="Country" type="text" class="form-control" id="country" name="country" required>
+        <span asp-validation-for="Country" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" type="text" class="form-control" id="destination_name" name="destination_name" required>
+        <span asp-validation-for="Description" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Lưu</button>

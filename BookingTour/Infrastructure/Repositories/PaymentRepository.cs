@@ -24,7 +24,7 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Guid id)
         {
             var payment = await _context.Payments.FindAsync(id);
             if(payment is null)
@@ -40,7 +40,7 @@ namespace Infrastructure.Repositories
             return await _context.Payments.ToListAsync();
         }
 
-        public async Task<Payment> GetByIdAsync(int id)
+        public async Task<Payment> GetByIdAsync(Guid id)
         {
             return await _context.Payments.FindAsync(id);
         }

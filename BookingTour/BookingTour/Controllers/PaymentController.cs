@@ -23,11 +23,11 @@ namespace Presentation.Controllers
             var payments = await _paymentService.GetAllAsync();
             var paymentsViewModel = payments.Select(i => new PaymentViewModel
             {
-                payment_id = i.payment_id,
-                booking_id = i.booking_id,
-                payment_date = i.payment_date,
-                payment_method = i.payment_method,
-                payment_status = i.payment_status
+                PaymentID = i.PaymentID,
+                BookingID = i.BookingID,
+                CreateAt = i.CreateAt,
+                Method = i.Method,
+                Status = i.Status
             }).ToList();
 
             return View(paymentsViewModel);
@@ -39,7 +39,7 @@ namespace Presentation.Controllers
             var bookings = await _bookingService.GetAllAsync();
             var bookingsViewModel = bookings.Select(i => new BookingViewModel
             {
-                booking_id = i.booking_id,
+                BookingID = i.BookingID,
 
             }).ToList();
             var bookingsSelectList = new SelectList(bookingsViewModel, "booking_id", "booking_id");
@@ -64,7 +64,7 @@ namespace Presentation.Controllers
         }
 
         // GET: /Payment/Update?{payment_id}
-        public async Task<IActionResult> Update(int payment_id)
+        public async Task<IActionResult> Update(Guid payment_id)
         {
             var payment = await _paymentService.GetById(payment_id);
             if(payment == null)
@@ -75,10 +75,12 @@ namespace Presentation.Controllers
 
             var paymentViewModel = new PaymentViewModel
             {
-                booking_id = payment.booking_id,
-                payment_date = payment.payment_date,
-                payment_method = payment.payment_method,
-                payment_status = payment.payment_status
+                PaymentID = payment.PaymentID,
+                BookingID = payment.BookingID,
+                Method = payment.Method,
+                Status = payment.Status,
+                CreateAt = payment.CreateAt,
+                ModifyAt = payment.ModifyAt
             };
 
             return View(paymentViewModel);
@@ -86,7 +88,7 @@ namespace Presentation.Controllers
 
         // POST: /Payment/Update?{payment_id}
         [HttpPost]
-        public async Task<IActionResult> Update(int payment_id, PaymentUpdateDto dto)
+        public async Task<IActionResult> Update(Guid payment_id, PaymentUpdateDto dto)
         {
             if(ModelState.IsValid)
             {
@@ -99,7 +101,7 @@ namespace Presentation.Controllers
         }
 
         // POST: /Payment/Delete?{payment_id}
-        public async Task<IActionResult> Delete(int payment_id)
+        public async Task<IActionResult> Delete(Guid payment_id)
         {
             await _paymentService.DeleteAsync(payment_id);
             TempData["success"] = "Xóa địa điểm " + payment_id + " thành công.";

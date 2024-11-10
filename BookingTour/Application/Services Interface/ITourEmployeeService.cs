@@ -11,12 +11,12 @@ namespace Application.Services_Interface
 {
     public interface ITourEmployeeService
     {
-        public Task<TourEmployee> GetById(int tour_id, int employee_id);
+        public Task<TourEmployee> GetById(Guid tour_id, Guid employee_id);
 
         public Task<IEnumerable<TourEmployee>> GetAllAsync();
 
         public Task<TourEmployee> CreateAsync(TourEmployeeCreationDto dto);
 
-        public Task DeleteAsync(int tour_id, int employee_id);
+        public Task DeleteAsync(Guid tour_id, Guid employee_id);
     }
 }

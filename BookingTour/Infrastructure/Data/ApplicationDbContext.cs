@@ -1,10 +1,13 @@
 ﻿using Domain.Entities;
+using Infrastructure.Configurations;
 using Infrastructure.DataAccess.Configurations;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
         public DbSet<Employee> Employees { get; set; }
@@ -16,7 +19,10 @@ namespace Infrastructure.Data
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
-
+        //public DbSet<Account> Accounts { get; set; }
+        //public DbSet<Role> Roles { get; set; }
+        //public DbSet<RoleGroup> RoleGroups { get; set; }
+        //public DbSet<Authorized> Authorizeds { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -31,242 +37,61 @@ namespace Infrastructure.Data
             modelBuilder.ApplyConfiguration(new TourDestinationConfiguration());
             modelBuilder.ApplyConfiguration(new TourEmployeeConfiguration());
             modelBuilder.ApplyConfiguration(new FeedbackConfiguration());
+            //modelBuilder.ApplyConfiguration(new AccountConfiguration());
+            //modelBuilder.ApplyConfiguration(new RoleConfiguration());
+            //modelBuilder.ApplyConfiguration(new RoleGroupConfiguration());
+            //modelBuilder.ApplyConfiguration(new AuthorizedConfiguration());
 
+            
 
             base.OnModelCreating(modelBuilder);
 
-
-            // Seed dữ liệu cho bảng Khách hàng
-            modelBuilder.Entity<Customer>().HasData(
-                new Customer 
-                { 
-                    customer_id = -1, 
-                    first_name = "Nguyễn", 
-                    last_name = "Văn A", 
-                    email = "nguyenvana@example.com", 
-                    phone = "0123456789", 
-                    address = "123 Đường Láng" 
-                },
-                new Customer 
-                { 
-                    customer_id = -2, 
-                    first_name = "Trần", 
-                    last_name = "Thị B", 
-                    email = "tranthib@example.com", 
-                    phone = "0987654321", 
-                    address = "456 Phố Huế" 
-                }
-            );
-
-            // Seed data cho Employees
-            // position: 1: Quản lý, 2: Hướng dẫn viên, 3: Tài xế, 5: Admin
-            modelBuilder.Entity<Employee>().HasData(
-
-                new Employee
-                {
-                    employee_id = -4,
-                    first_name = "Nguyễn Minh",
-                    last_name = "Kiệt",
-                    email = "nguyenminhkiet@gmail.com",
-                    phone = "0932881172",
-                    position = 5,
-                    address = "Q12 Tp.HCM"
-                },
-
-                new Employee 
-                { 
-                    employee_id = -1, 
-                    first_name = "Lê", 
-                    last_name = "Tùng",
-                    email = "letung@example.com", 
-                    phone = "0123456780", 
-                    position = 1, 
-                    address = "Hồ Chí Minh" 
-                },
-
-                new Employee 
-                { 
-                    employee_id = -2, 
-                    first_name = "Phạm", 
-                    last_name = "Hùng", 
-                    email = "phamhung@example.com", 
-                    phone = "0987654320", 
-                    position = 2, 
-                    address = "Hà Nội" 
-                },
-
-                new Employee
-                {
-                    employee_id = -3,
-                    first_name = "Phạm",
-                    last_name = "Linh",
-                    email = "phamlinh@example.com",
-                    phone = "0987231220",
-                    position = 3,
-                    address = "Hà Nội"
-                }
-            );
-
-            // Seed dữ liệu cho bảng Điểm đến
-            modelBuilder.Entity<Destination>().HasData(
-
-                new Destination 
-                { 
-                    destination_id = -1, 
-                    destination_name = "Bãi biển Nha Trang", 
-                    city = "Nha Trang", 
-                    country = "Việt Nam",
-                    description = "Một bãi biển nổi tiếng với cát trắng và nước biển trong xanh."
-                },
-
-                new Destination 
-                { 
-                    destination_id = -2, 
-                    destination_name = "Đỉnh Fansipan", 
-                    city = "Lào Cai", 
-                    country = "Việt Nam",
-                    description = "Nóc nhà Đông Dương, nơi có phong cảnh hùng vĩ và khí hậu trong lành."
-                }
-            );
-
-            // Seed dữ liệu cho bảng Tour
-            modelBuilder.Entity<Tour>().HasData(
-
-                new Tour
-                {
-                    tour_id = -1,
-                    tour_name = "Du lịch biển",
-                    description = "Tour nghỉ dưỡng tại bãi biển",
-                    price = 1999000m,
-                    start_Date = new DateTime(2024, 1, 15),
-                    end_Date = new DateTime(2024, 1, 20),
-                    availableSeats = 20
-                },
-
-                new Tour
-                {
-                    tour_id = -2,
-                    tour_name = "Thám hiểm núi",
-                    description = "Tour leo núi đầy thử thách",
-                    price = 2999000m,
-                    start_Date = new DateTime(2024, 2, 10),
-                    end_Date = new DateTime(2024, 2, 15),
-                    availableSeats = 15
-                }
-            );
-
-            // Seed data cho TourDestinations
-            modelBuilder.Entity<TourDestination>().HasData(
-                new TourDestination
-                {
-                    tour_id = -1,
-                    destination_id = -1,
-                    visit_date = DateTime.Now
-                },
-                new TourDestination
-                {
-                    tour_id = -2,
-                    destination_id = -2,
-                    visit_date = DateTime.Now
-                }
-            );
-
-            // Seed data cho TourEmployees
-            modelBuilder.Entity<TourEmployee>().HasData(
-
-                new TourEmployee
-                {
-                    tour_id = -1,
-                    employee_id = -2,
-                },
-
-                new TourEmployee
-                {
-                    tour_id = -1,
-                    employee_id = -3,
-                },
-
-                new TourEmployee
-                {
-                    tour_id = -2,
-                    employee_id = -2,
-                },
-
-                new TourEmployee
-                {
-                    tour_id = -2,
-                    employee_id = -3,
-                }
-            );
-
-            // Seed data cho Bookings (must be seeded before Payments)
-            modelBuilder.Entity<Booking>().HasData(
-
-                new Booking
-                {
-                    booking_id = -1,
-                    tour_id = -1,
-                    customer_id = -1,
-                    booking_date = DateTime.Now,
-                    num_people = 2,
-                    total_price = 3000000
-                },
-
-                new Booking
-                {
-                    booking_id = -2,
-                    tour_id = -2,
-                    customer_id = -2,
-                    booking_date = DateTime.Now,
-                    num_people = 1,
-                    total_price = 2000000
-                }
-            );
-
-            // Seed data cho Payments (after Bookings)
-            modelBuilder.Entity<Payment>().HasData(
-
-                new Payment
-                {
-                    payment_id = -1,
-                    booking_id = -1,
-                    payment_date = DateTime.Now,
-                    payment_method = "Tiền mặt"
-                },
-
-                new Payment
-                {
-                    payment_id = -2,
-                    booking_id = -2,
-                    payment_date = DateTime.Now,
-                    payment_method = "Thẻ ví"
-                }
-            );
+            //// Thêm dữ liệu mẫu cho bảng Destinations
+            //modelBuilder.Entity<Destination>().HasData(
+            //    new Destination
+            //    {
+            //        DestinationID = Guid.NewGuid(),
+            //        Name = "Hạ Long",
+            //        City = "Quảng Ninh",
+            //        Country = "Việt Nam",
+            //        Description = "Vịnh Hạ Long, di sản thiên nhiên thế giới nổi tiếng với các hòn đảo đá vôi."
+            //    },
+            //    new Destination
+            //    {
+            //        DestinationID = Guid.NewGuid(),
+            //        Name = "Hồ Chí Minh",
+            //        City = "Hồ Chí Minh",
+            //        Country = "Việt Nam",
+            //        Description = "Thành phố Hồ Chí Minh, trung tâm kinh tế và văn hóa lớn nhất Việt Nam."
+            //    }
+            //);
 
 
-            // Seed data cho Feedbacks
-            modelBuilder.Entity<Feedback>().HasData(
+            //// Thêm dữ liệu mẫu cho bảng Tours
+            //modelBuilder.Entity<Tour>().HasData(
+            //    new Tour
+            //    {
+            //        TourID = Guid.NewGuid(),
+            //        Title = "Tour Hồ Chí Minh",
+            //        Description = "Khám phá thành phố Hồ Chí Minh với các điểm tham quan nổi bật như Chợ Bến Thành, Nhà Thờ Đức Bà.",
+            //        Price = 1000000,
+            //        StartDate = new DateTime(2024, 11, 10),
+            //        EndDate = new DateTime(2024, 11, 12),
+            //        AvailableSeats = 20
+            //    },
+            //    new Tour
+            //    {
+            //        TourID = Guid.NewGuid(),
+            //        Title = "Tour Hạ Long",
+            //        Description = "Tham quan vịnh Hạ Long, kỳ quan thiên nhiên của thế giới với các hang động đẹp như Đầu Gỗ, Sung Sốt.",
+            //        Price = 2000000,
+            //        StartDate = new DateTime(2024, 11, 10),
+            //        EndDate = new DateTime(2024, 11, 11),
+            //        AvailableSeats = 15
+            //    }
+            //);
 
-                new Feedback
-                {
-                    feedback_id = -1,
-                    comments = "Chuyến đi tuyệt vời!",
-                    customer_id = -1,
-                    rating = 5,
-                    tour_id = -1
-                },
 
-                new Feedback
-                {
-                    feedback_id = -2,
-                    comments = "Hài lòng với dịch vụ.",
-                    customer_id = -2,
-                    rating = 4,
-                    tour_id = -2
-                }
-            );
-
-            
         }
     }
 }

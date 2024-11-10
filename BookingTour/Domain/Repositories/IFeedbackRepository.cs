@@ -5,7 +5,7 @@ namespace Domain.Repositories
     public interface IFeedbackRepository
     {
         // Phương thức lấy theo ID
-        Task<Feedback> GetByIdAsync(int id);
+        Task<Feedback> GetByIdAsync(Guid id);
 
         // Phương thức lấy tất cả
         Task<IEnumerable<Feedback>> GetAllAsync();
@@ -17,6 +17,6 @@ namespace Domain.Repositories
         Task UpdateAsync(Feedback feedback);
 
         // Phương thức xóa theo ID
-        Task DeleteAsync(int id);
+        Task DeleteAsync(Guid id);
     }
 }

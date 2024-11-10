@@ -23,14 +23,14 @@ namespace Application.Services
         {
             var tourEmployee = new TourEmployee()
             {
-                tour_id = dto.tour_id,
-                employee_id = dto.employee_id
+                TourID = dto.TourID,
+                EmployeeID = dto.EmployeeID
             };
             await _tourEmployeeRepository.AddAsync(tourEmployee);
             return tourEmployee;
         }
 
-        public async Task DeleteAsync(int tour_id, int employee_id)
+        public async Task DeleteAsync(Guid tour_id, Guid employee_id)
         {
             await _tourEmployeeRepository.DeleteAsync(tour_id, employee_id);
         }
@@ -40,7 +40,7 @@ namespace Application.Services
             return _tourEmployeeRepository.GetAllAsync();
         }
 
-        public Task<TourEmployee> GetById(int tour_id, int employee_id)
+        public Task<TourEmployee> GetById(Guid tour_id, Guid employee_id)
         {
             return _tourEmployeeRepository.GetByIdAsync(tour_id, employee_id);
         }

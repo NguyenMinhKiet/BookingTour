@@ -19,7 +19,7 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int tour_id, int employee_id)
+        public async Task DeleteAsync(Guid tour_id, Guid employee_id)
         {
             var tourEmployee = await GetByIdAsync(tour_id, employee_id);
             if (tourEmployee == null)
@@ -35,12 +35,12 @@ namespace Infrastructure.Repositories
             return await _context.ToursEmployee.ToListAsync();
         }
 
-        public async Task<TourEmployee> GetByIdAsync(int tour_id, int employee_id)
+        public async Task<TourEmployee> GetByIdAsync(Guid tour_id, Guid employee_id)
         {
             return await _context.ToursEmployee.FindAsync(tour_id, employee_id);
         }
 
-        public Task<TourEmployee> GetByIdAsync(int id)
+        public Task<TourEmployee> GetByIdAsync(Guid id)
         {
             throw new NotImplementedException();
         }

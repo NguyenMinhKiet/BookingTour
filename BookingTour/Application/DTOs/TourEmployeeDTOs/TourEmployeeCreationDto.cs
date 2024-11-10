@@ -2,7 +2,7 @@
 {
     public class TourEmployeeCreationDto
     {
-        public int tour_id { get; set; }
-        public int employee_id { get; set; }
+        public Guid TourID { get; set; }
+        public Guid EmployeeID { get; set; }
     }
 }

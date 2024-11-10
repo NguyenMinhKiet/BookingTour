@@ -10,35 +10,45 @@
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="form-group d-none">
-        <label asp-for="feedback_id"></label>
-        <input asp-for="feedback_id" type="text" class="form-control" id="feedback_id" name="feedback_id" >
-        <span asp-validation-for="feedback_id" class="text-danger"></span>
+        <label asp-for="FeedbackID"></label>
+        <input asp-for="FeedbackID" type="text" class="form-control" id="FeedbackID" name="FeedbackID">
+        <span asp-validation-for="FeedbackID" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="tour_id"></label>
-        <input asp-for="tour_id" type="text" class="form-control" id="tour_id" name="tour_id">
-        <span asp-validation-for="tour_id" class="text-danger"></span>
+        <label asp-for="TourID"></label>
+        <input asp-for="TourID" type="text" class="form-control" id="TourID" name="TourID">
+        <span asp-validation-for="TourID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group d-none">
+        <label asp-for="CustomerID"></label>
+        <input asp-for="CustomerID" type="text" class="form-control" id="CustomerID" name="CustomerID">
+        <span asp-validation-for="CustomerID" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="customer_id"></label>
-        <input asp-for="customer_id" type="text" class="form-control" id="customer_id" name="customer_id">
-        <span asp-validation-for="customer_id" class="text-danger"></span>
-    </div>
-
-
-
-    <div class="form-group">
-        <label asp-for="rating"></label>
-        <input asp-for="rating" type="text" class="form-control" id="rating" name="rating">
-        <span asp-validation-for="rating" class="text-danger"></span>
+        <label asp-for="Rating"></label>
+        <input asp-for="Rating" type="text" class="form-control" id="Rating" name="Rating" Required>
+        <span asp-validation-for="Rating" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="comments"></label>
-        <textarea asp-for="comments" type="text" class="form-control" id="comments" name="comments"></textarea>
-        <span asp-validation-for="comments" class="text-danger"></span>
+        <label asp-for="Comments"></label>
+        <textarea asp-for="Comments" type="text" class="form-control" id="Comments" name="Comments"></textarea>
+        <span asp-validation-for="Comments" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CreateAt"></label>
+        <input asp-for="CreateAt" type="datetime-local" class="form-control" id="CreateAt" name="CreateAt">
+        <span asp-validation-for="CreateAt" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ModifyAt"></label>
+        <input asp-for="ModifyAt" type="datetime-local" class="form-control" id="ModifyAt" name="ModifyAt">
+        <span asp-validation-for="ModifyAt" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Lưu</button>

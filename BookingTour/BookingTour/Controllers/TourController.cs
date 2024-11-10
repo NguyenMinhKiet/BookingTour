@@ -19,13 +19,13 @@ namespace Presentation.Controllers
             var tours = await _tourService.GetAllAsync();
             var toursViewModel = tours.Select(i=> new TourViewModel
             {
-                tour_id = i.tour_id,
-                tour_name = i.tour_name,
-                description = i.description,
-                start_Date = i.start_Date,
-                price = i.price,
-                end_Date = i.end_Date,
-                availableSeats = i.availableSeats,
+                TourID = i.TourID,
+                Title = i.Title,
+                Description = i.Description,
+                Price = i.Price,
+                AvailableSeats = i.AvailableSeats,
+                StartDate = i.StartDate,
+                EndDate = i.EndDate,
 
             }).ToList();
 
@@ -53,17 +53,18 @@ namespace Presentation.Controllers
         }
 
         // GET: /Tour/Update?{tour_id}
-        public async Task<IActionResult> Update(int tour_id)
+        public async Task<IActionResult> Update(Guid tour_id)
         {
-            var tour = await _tourService.GetById(tour_id);
+            var i = await _tourService.GetById(tour_id);
             var tourViewModel = new TourViewModel
             {
-                tour_name = tour.tour_name,
-                description = tour.description,
-                start_Date = tour.start_Date,
-                end_Date = tour.end_Date,
-                price = tour.price,
-                availableSeats = tour.availableSeats
+                TourID = i.TourID,
+                Title = i.Title,
+                Description = i.Description,
+                Price = i.Price,
+                AvailableSeats = i.AvailableSeats,
+                StartDate = i.StartDate,
+                EndDate = i.EndDate,
             };
             return View(tourViewModel);
 
@@ -71,7 +72,7 @@ namespace Presentation.Controllers
 
         // POST: /Tour/Update?{tour_id}
         [HttpPost]
-        public async Task<IActionResult> Update(int tour_id, TourUpdateDto dto)
+        public async Task<IActionResult> Update(Guid tour_id, TourUpdateDto dto)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +85,7 @@ namespace Presentation.Controllers
         }
 
         // POST: /Tour/Delete?{tour_id}
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             await _tourService.DeleteAsync(id);
             TempData["success"] = "Xóa tour: " + id + " thành công.";

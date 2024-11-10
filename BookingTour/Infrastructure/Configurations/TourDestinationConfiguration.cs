@@ -11,18 +11,18 @@ namespace Infrastructure.DataAccess.Configurations
         {
             builder.ToTable("TourDestinations");
 
-            builder.HasKey(u=> new {u.tour_id, u.destination_id});
+            builder.HasKey(u=> new {u.TourID, u.DestinationID});
 
-            builder.Property(u=>u.visit_date)
+            builder.Property(u=>u.VisitDate)
                 .IsRequired();
 
             builder.HasOne(td => td.Tour) 
                 .WithMany(td => td.TourDestinations)
-                .HasForeignKey(td => td.tour_id);
+                .HasForeignKey(td => td.TourID);
 
             builder.HasOne(td => td.Destination)
                 .WithMany(td => td.TourDestinations)
-                .HasForeignKey(td => td.destination_id);
+                .HasForeignKey(td => td.DestinationID);
 
         }
     }

@@ -10,29 +10,33 @@ namespace Infrastructure.DataAccess.Configurations
         {
             builder.ToTable("Tours", t =>
             {
-                t.HasCheckConstraint("CK_Tour_EndDate_StartDate", "[end_Date] >= [start_Date]");
-                t.HasCheckConstraint("CK_price", "[price] >= 0");
+                t.HasCheckConstraint("CK_Tour_EndDate_StartDate", "[EndDate] >= [StartDate]");
+                t.HasCheckConstraint("CK_price", "[Price] >= 0");
             });
 
-            builder.HasKey(u => u.tour_id);
+            builder.HasKey(u => u.TourID);
 
-            builder.Property(u => u.tour_name)
-                .IsRequired()
-                .HasMaxLength(200);
-
-            builder.Property(u=>u.description)
+            builder.Property(u => u.Title)
                 .IsRequired();
 
-            builder.Property(u => u.price)
+            builder.Property(u=>u.Description)
+                .IsRequired();
+
+            builder.Property(u => u.Price)
                 .IsRequired()
                 .HasDefaultValue(0)
                 .HasColumnType("decimal(10,2)");
 
-            builder.Property(u => u.start_Date)
+            builder.Property(u => u.StartDate)
                 .IsRequired();
 
-            builder.Property(u => u.end_Date)
+            builder.Property(u => u.EndDate)
                 .IsRequired();
+
+            builder.Property(u=>u.AvailableSeats)
+                .IsRequired();
+
+
         }
     }
 }

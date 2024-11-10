@@ -6,11 +6,9 @@ namespace Domain.Entities
     public class TourDestination
     {
         
-        public int tour_id { get; set; }
-        public int destination_id { get; set; }
-        public DateTime visit_date { get; set; }
-
-
+        public Guid TourID { get; set; }
+        public Guid DestinationID { get; set; }
+        public DateTime VisitDate { get; set; }
 
         public virtual Tour Tour { get; set; }
 

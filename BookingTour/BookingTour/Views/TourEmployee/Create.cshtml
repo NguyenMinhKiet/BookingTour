@@ -9,27 +9,27 @@
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="form-group">
-        <label for="tour_id">Chọn Tour:</label>
-        <select id="tour_id" name="tour_id" class="form-control">
+        <label for="TourID">Chọn Tour:</label>
+        <select id="TourID" name="TourID" class="form-control" Required>
             <option value="">-- Chọn Tour --</option>
             @foreach (var tour in ViewBag.TourList as SelectList)
             {
                 <option value="@tour.Value">@tour.Text</option>
             }
         </select>
-        <span asp-validation-for="tour_id" class="text-danger"></span>
+        <span asp-validation-for="TourID" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label for="employee_id">Chọn nhân viên:</label>
-        <select id="employee_id" name="employee_id" class="form-control">
+        <label for="EmployeeID">Chọn nhân viên:</label>
+        <select id="EmployeeID" name="employee_id" class="form-control" Required>
             <option value="">-- Chọn nhân viên --</option>
             @foreach (var d in ViewBag.EmployeeList as SelectList)
             {
                 <option value="@d.Value">@d.Text</option>
             }
         </select>
-        <span asp-validation-for="employee_id" class="text-danger"></span>
+        <span asp-validation-for="EmployeeID" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Lưu</button>

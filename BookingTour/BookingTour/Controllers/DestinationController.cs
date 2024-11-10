@@ -20,11 +20,11 @@ namespace Presentation.Controllers
             var destiations = await _destinationService.GetAllAsync();
             var destinationsViewModel = destiations.Select(i=> new DestinationViewModel
             {
-                destination_id = i.destination_id,
-                destination_name = i.destination_name,
-                description = i.description,
-                city = i.city,
-                country = i.country,
+                DestinationID = i.DestinationID,
+                Name = i.Name,
+                Description = i.Description,
+                City = i.City,
+                Country = i.Country,
             }).ToList();
 
             return View(destinationsViewModel);
@@ -52,7 +52,7 @@ namespace Presentation.Controllers
 
 
         // GET: /Destination/Update?{destination_id}
-        public async Task<IActionResult> Update(int destination_id)
+        public async Task<IActionResult> Update(Guid destination_id)
         {
             var destination = await _destinationService.GetById(destination_id);
 
@@ -63,11 +63,11 @@ namespace Presentation.Controllers
 
             var destinationViewModel = new DestinationViewModel
             {
-                destination_id = destination.destination_id,
-                destination_name = destination.destination_name,
-                city = destination.city,
-                description = destination.description,
-                country = destination.country,
+                DestinationID = destination.DestinationID,
+                Name = destination.Name,
+                City = destination.City,
+                Description = destination.Description,
+                Country = destination.Country,
             };
 
             return View(destinationViewModel);
@@ -76,7 +76,7 @@ namespace Presentation.Controllers
 
         // POST: /Destinantion/Update?{destination_id}
         [HttpPost]
-        public async Task<IActionResult> Update(int destination_id, DestinationUpdateDto destinationData)
+        public async Task<IActionResult> Update(Guid destination_id, DestinationUpdateDto destinationData)
         {
             if(ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace Presentation.Controllers
         }
 
         // POST: /Destination/Delete?{destination_id}
-        public async Task<IActionResult>Delete(int destination_id)
+        public async Task<IActionResult>Delete(Guid destination_id)
         {
             await _destinationService.DeleteAsync(destination_id);
             TempData["success"] = "Xóa địa điểm " + destination_id + " thành công.";

@@ -4,11 +4,12 @@ namespace Domain.Entities
 {
     public class Payment
     {
-        public int payment_id { get; set; }
-        public int booking_id { get; set; }
-        public DateTime payment_date { get; set; }
-        public string payment_method { get; set; }
-        public int payment_status { get; set; }
+        public Guid PaymentID { get; set; }
+        public Guid BookingID { get; set; }
+        public string Method { get; set; }
+        public bool Status { get; set; }
+        public DateTime CreateAt { get; set; }
+        public DateTime ModifyAt { get; set; }
 
         public virtual Booking Booking { get; set; }
     }

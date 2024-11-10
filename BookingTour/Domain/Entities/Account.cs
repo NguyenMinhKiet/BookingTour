@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,15 +7,13 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Account
+    public class Account : IdentityUser
     {
-        public Guid Id { get; set; }
-        public string Username { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public Guid GroupID { get; set; }
-        public DateTime CreateDate { get; set; }
-        public bool isActive {  get; set; }
+        public virtual Employee Employee { get; set; }
+        public virtual Customer Customer { get; set; }
+
+        //public virtual RoleGroup RoleGroup { get; set; }
+        //public virtual ICollection<Authorized> AuthorizedRoles { get; set; }
 
     }
 }

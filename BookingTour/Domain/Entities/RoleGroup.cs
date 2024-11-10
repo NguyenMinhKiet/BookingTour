@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class PermissionGroup
+    public class RoleGroup
     {
-        public Guid Id { get; set; }
+        public Guid GroupID { get; set; }
         public string Name { get; set; }
-        public Guid ParentId { get; set; }
-        public Guid CreateBy { get; set; }
-        public DateTime CreateOn { get; set; }
+        public Guid RoleID { get; set; }
 
+        public virtual ICollection<Role> Roles { get; set; }
     }
 }

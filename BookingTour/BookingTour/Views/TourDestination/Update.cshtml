@@ -7,22 +7,23 @@
 
 <form asp-action="Update" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group d-none">
-        <label asp-for="tour_id"></label>
-        <input asp-for="tour_id" type="text" class="form-control" id="tour_id" name="tour_id">
-        <span asp-validation-for="tour_id" class="text-danger"></span>
-    </div>
 
     <div class="form-group d-none">
-        <label asp-for="destination_id "></label>
-        <input asp-for="destination_id" type="text" class="form-control" id="destination_id" name="destination_id">
-        <span asp-validation-for="destination_id" class="text-danger"></span>
+        <label asp-for="TourID"></label>
+        <input asp-for="TourID" type="datetime-local" class="form-control" id="TourID" name="TourID">
+        <span asp-validation-for="TourID" class="text-danger"></span>
+    </div>
+    <div class="form-group d-none">
+        <label asp-for="DestinationID"></label>
+        <input asp-for="DestinationID" type="datetime-local" class="form-control" id="DestinationID" name="DestinationID">
+        <span asp-validation-for="DestinationID" class="text-danger"></span>
     </div>
 
+ 
     <div class="form-group">
-        <label asp-for="visit_date"></label>
-        <input asp-for="visit_date" type="datetime-local" class="form-control" id="visit_date" name="visit_date">
-        <span asp-validation-for="visit_date" class="text-danger"></span>
+        <label asp-for="VisitDate"></label>
+        <input asp-for="VisitDate" type="datetime-local" class="form-control" id="VisitDate" name="VisitDate" Required>
+        <span asp-validation-for="VisitDate" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Lưu</button>
