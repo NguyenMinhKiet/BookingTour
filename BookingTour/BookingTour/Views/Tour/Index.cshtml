@@ -13,6 +13,7 @@
             <th>End Date</th>
             <th>Price</th>
             <th>AvaiableSeats</th>
+            <th>Category</th>
             <th>Controls</th>
         </tr>
     </thead>
@@ -27,6 +28,7 @@
                 <td>@t.EndDate</td>
                 <td>@t.Price</td>
                 <td>@t.AvailableSeats</td>
+                <td>@t.Category</td>
                 <td>
                     <div class="w-100 btn-group" role="group">
                         <a asp-action="Update"
@@ -41,6 +43,13 @@
                            asp-route-TourID="@t.TourID"
                            class="btn btn-danger">
                             Xóa
+                        </a>
+
+                        <a asp-action="Create"
+                           asp-controller="TourDestination"
+                           asp-route-TourID="@t.TourID"
+                           class="btn btn-success">
+                            Thêm Địa điểm
                         </a>
                     </div>
                 </td>

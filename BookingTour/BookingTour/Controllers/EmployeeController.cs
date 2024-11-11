@@ -22,16 +22,29 @@ namespace Presentation.Controllers
         public async Task<IActionResult> Index()
         {
             var employees = await _employeeService.GetAllAsync();
-            var employeesViewModel = employees.Select(c => new EmployeeViewModel
-            {
-                EmployeeID = c.EmployeeID,
-                FirstName = c.FirstName,
-                LastName = c.LastName,
-                Position = c.Position,
-                Address = c.Address,
-                AccountID = c.AccountID
+            var employeesViewModel = new List<EmployeeViewModel>();
 
-            }).ToList();
+            foreach (var c in employees)
+            {
+                var acc = await _accountService.GetById(c.AccountID);
+                var employeeModelView = new EmployeeViewModel
+                {
+                    EmployeeID = c.EmployeeID,
+                    FirstName = c.FirstName,
+                    LastName = c.LastName,
+                    Position = c.Position,
+                    Address = c.Address,
+                    AccountID = acc.Id,
+                    Phone = acc.Phone,
+                    Username = acc.Username,
+                    Password = acc.Password,
+                    Email = acc.Email,
+                    isActive = acc.isActive
+
+                };
+                employeesViewModel.Add(employeeModelView);
+            }
+
             return View(employeesViewModel);
         }
 
@@ -43,7 +56,7 @@ namespace Presentation.Controllers
 
         // POST: /Employee/Create
         [HttpPost]
-        public async Task<IActionResult> Create(EmployeeCreationDto employee)
+        public async Task<IActionResult> Create(EmployeeCreationDto employee, AccountCreateDto acc)
         {
             //if (string.IsNullOrEmpty(employee?.first_name) || employee.first_name.Length < 3)
             //{
@@ -72,9 +85,16 @@ namespace Presentation.Controllers
 
             if (ModelState.IsValid)
             {
-                await _employeeService.CreateAsync(employee);
-                TempData["success"] = "Thêm nhân viên mới thành công.";
-                return RedirectToAction("Index");
+                var CreateAccount = await _accountService.CreateAsync(acc);
+                if(CreateAccount != null)
+                {
+                    employee.AccountID = CreateAccount.Id;
+                    await _employeeService.CreateAsync(employee);
+                    TempData["success"] = "Thêm nhân viên mới thành công.";
+                    return RedirectToAction("Index");
+                }
+                TempData["error"] = "Tạo Tài khoản mới thất bại !!";
+                return View();
             }
             TempData["error"] = "Thêm nhân viên thất bại !!";
             return View();
@@ -90,7 +110,7 @@ namespace Presentation.Controllers
             {
                 return RedirectToAction("Error", "Shared");
             }
-
+            var acc = await _accountService.GetById(employee.AccountID);
             var employeeViewData = new EmployeeViewModel
             {
                 EmployeeID = employee.EmployeeID,
@@ -98,7 +118,12 @@ namespace Presentation.Controllers
                 LastName = employee.LastName,
                 Position = employee.Position,
                 Address = employee.Address,
-                AccountID = employee.AccountID
+                AccountID = acc.Id,
+                Username = acc.Username,
+                Password = acc.Password,
+                Phone = acc.Phone,
+                Email = acc.Email,
+                isActive = acc.isActive
             };
 
             return View(employeeViewData);
@@ -130,11 +155,9 @@ namespace Presentation.Controllers
 
             if (ModelState.IsValid)
             {
-
-
                 await _accountService.UpdateAsync(AccountID, account);
                 await _employeeService.UpdateAsync(EmployeeID, employee);
-                TempData["error"] = "Cập nhật thông tin nhân viên " + EmployeeID + " thành công !!";
+                TempData["error"] = $"Cập nhật thông tin nhân viên {employee.Email} thành công !!";
                 return RedirectToAction("Index");
 
             }
@@ -144,9 +167,17 @@ namespace Presentation.Controllers
 
         public async Task<IActionResult>  Delete(Guid EmployeeID)
         {
-            await _employeeService.DeleteAsync(EmployeeID);
-            TempData["success"] = "Đã xóa nhân viên " + EmployeeID;
+            var customer = await _employeeService.GetById(EmployeeID);
+            if(customer != null)
+            {
+                await _accountService.DeleteAsync(customer.AccountID);
+                await _employeeService.DeleteAsync(EmployeeID);
+                TempData["success"] = $"Xóa nhân viên {customer.LastName} thành công !!";
+                return RedirectToAction("Index");
+            }
+            TempData["error"] = $"Xóa nhân viên {EmployeeID} thất bại !!";
             return RedirectToAction("Index");
+
         }
     }
 }

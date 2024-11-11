@@ -5,7 +5,7 @@ namespace Application.Services_Interface
 {
     public interface ITourService
     {
-        public Task<Tour> GetById(Guid id);
+        public Task<Tour> GetByIdAsync(Guid id);
 
         public Task<IEnumerable<Tour>> GetAllAsync();
 

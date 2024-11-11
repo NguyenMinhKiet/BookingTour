@@ -29,7 +29,7 @@ namespace Application.Services
                 TourID = dto.TourID,
                 Rating = dto.Rating,
                 Comments = dto.Comments,
-                CreateAt = new DateTime()
+                CreateAt = DateTime.Now
             };
             await _feedbackRepository.AddAsync(newFeedback);
             return newFeedback;
@@ -55,7 +55,7 @@ namespace Application.Services
             var feedback = await _feedbackRepository.GetByIdAsync(id);
             if (feedback != null)
             {
-                feedback.ModifyAt = new DateTime();
+                feedback.ModifyAt = DateTime.Now;
                 feedback.Rating = dto.Rating;
                 feedback.Comments = dto.Comments;
                 await _feedbackRepository.UpdateAsync(feedback);

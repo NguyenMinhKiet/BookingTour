@@ -8,6 +8,7 @@
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int AvailableSeats { get; set; }
+        public string Category { get; set; }
 
     }
 }

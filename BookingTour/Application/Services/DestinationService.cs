@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Application.Services
 {
+
     public class DestinationService : IDestinationService
     {
         private readonly IDestinationRepository _destinationRepository;
@@ -26,7 +27,9 @@ namespace Application.Services
                 DestinationID = new Guid(),
                 Name = dto.Name,
                 City = dto.City,
+                Description = dto.Description,
                 Country = dto.Country,
+                Category = dto.Category,
             };
             await _destinationRepository.AddAsync(destination);
             return destination;
@@ -42,6 +45,11 @@ namespace Application.Services
             return await _destinationRepository.GetAllAsync();
         }
 
+        public async Task<IEnumerable<Destination>> GetByCategoryAsync(string Category)
+        {
+            return await _destinationRepository.GetByCategoryAsync(Category);
+        }
+
         public async Task<Destination> GetById(Guid id)
         {
             return await _destinationRepository.GetByIdAsync(id);
@@ -55,9 +63,13 @@ namespace Application.Services
                 destiantion.Name = dto.Name;
                 destiantion.City = dto.City;
                 destiantion.Country = dto.Country;
+                destiantion.Description = dto.Description;
+                destiantion.Category = dto.Category;
 
                 await _destinationRepository.UpdateAsync(destiantion);
             }
         }
+
+        
     }
 }

@@ -7,27 +7,10 @@
 
 <form asp-action="Create" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-    <div class="form-group">
-        <label for="TourID">Chọn Tour:</label>
-        <select id="TourID" name="TourID" class="form-control" Required>
-            <option value="">-- Chọn Tour --</option>
-            @foreach (var tour in ViewBag.TourList as SelectList)
-            {
-                <option value="@tour.Value">@tour.Text</option>
-            }
-        </select>
-        <span asp-validation-for="TourID" class="text-danger"></span>
-    </div>
-
     <div class="form-group">
         <label for="DestinationID">Chọn địa điểm:</label>
         <select id="DestinationID" name="DestinationID" class="form-control" Required>
             <option value="">-- Chọn địa điểm --</option>
-            @foreach (var d in ViewBag.DestinationList as SelectList)
-            {
-                <option value="@d.Value">@d.Text</option>
-            }
         </select>
         <span asp-validation-for="DestinationID" class="text-danger"></span>
     </div>
@@ -41,3 +24,39 @@
     <button type="submit" class="btn btn-primary">Lưu</button>
     <a asp-controller="TourDestination" asp-action="Index" class="btn btn-secondary">Hủy</a>
 </form>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+    var tourId = '@ViewData["TourID"]';  // Lấy giá trị từ ViewData
+    $.ajax({
+        url: '@Url.Action("GetDestinationsByTour", "TourDestination")',
+        type: 'GET',
+        data: { tourId: tourId }, // Gửi đúng giá trị tourId vào data
+        success: function (data) {
+            console.log(data); // Kiểm tra dữ liệu trả về
+            var destinationSelect = $('#DestinationID');
+            destinationSelect.empty(); // Xóa danh sách cũ
+            destinationSelect.append(
+                    $('<option>', {
+                        value: "",
+                        text:  "-- Chọn 1 địa điểm --"
+                    })
+                )
+            // Thêm các tùy chọn mới vào select
+            $.each(data, function (index, destination) {
+                destinationSelect.append(
+                    $('<option>', {
+                        value: destination.destinationID,
+                        text: destination.name
+                    })
+                );
+            });
+        },
+        error: function (xhr, status, error) {
+            console.error('Error: ', error);  // Hiển thị lỗi nếu có
+        }
+    });
+});
+    </script>
+}
+

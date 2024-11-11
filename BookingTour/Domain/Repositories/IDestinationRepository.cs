@@ -18,5 +18,6 @@ namespace Domain.Repositories
 
         // Phương thức xóa theo ID
         Task DeleteAsync(Guid id);
+        Task<IEnumerable<Destination>> GetByCategoryAsync(string Category);
     }
 }

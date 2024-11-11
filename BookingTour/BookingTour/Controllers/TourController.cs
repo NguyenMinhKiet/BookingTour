@@ -26,6 +26,7 @@ namespace Presentation.Controllers
                 AvailableSeats = i.AvailableSeats,
                 StartDate = i.StartDate,
                 EndDate = i.EndDate,
+                Category = i.Category
 
             }).ToList();
 
@@ -51,11 +52,10 @@ namespace Presentation.Controllers
             TempData["error"] = "Thêm tour mới thất bại !!";
             return View();
         }
-
         // GET: /Tour/Update?{TourID}
         public async Task<IActionResult> Update(Guid TourID)
         {
-            var i = await _tourService.GetById(TourID);
+            var i = await _tourService.GetByIdAsync(TourID);
             var tourViewModel = new TourViewModel
             {
                 TourID = i.TourID,
@@ -65,6 +65,7 @@ namespace Presentation.Controllers
                 AvailableSeats = i.AvailableSeats,
                 StartDate = i.StartDate,
                 EndDate = i.EndDate,
+                Category = i.Category
             };
             return View(tourViewModel);
 

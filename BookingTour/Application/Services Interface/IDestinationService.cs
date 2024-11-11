@@ -15,5 +15,7 @@ namespace Application.Services_Interface
         public Task UpdateAsync(Guid id, DestinationUpdateDto dto);
 
         public Task DeleteAsync(Guid id);
+
+        public Task<IEnumerable<Destination>> GetByCategoryAsync(string Category);
     }
 }

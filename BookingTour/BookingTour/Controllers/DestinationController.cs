@@ -25,6 +25,7 @@ namespace Presentation.Controllers
                 Description = i.Description,
                 City = i.City,
                 Country = i.Country,
+                Category = i.Category,
             }).ToList();
 
             return View(destinationsViewModel);
@@ -68,6 +69,7 @@ namespace Presentation.Controllers
                 City = destination.City,
                 Description = destination.Description,
                 Country = destination.Country,
+                Category = destination.Category,
             };
 
             return View(destinationViewModel);

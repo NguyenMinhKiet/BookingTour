@@ -62,9 +62,9 @@ namespace Presentation.Controllers
             var employeesViewModel = employees.Select(i => new EmployeeViewModel
             {
                 EmployeeID = i.EmployeeID,
-                Position = i.Position
+                FirstName = i.FirstName
             }).ToList();
-            var employeesSelectList = new SelectList(employeesViewModel, "EmployeeID", "Position");
+            var employeesSelectList = new SelectList(employeesViewModel, "EmployeeID", "FirstName");
 
             ViewBag.TourList = toursSelectList;
             ViewBag.EmployeeList = employeesSelectList;
@@ -92,5 +92,7 @@ namespace Presentation.Controllers
             TempData["success"] = $"Xóa nhân viên {employee_id} trong tour {tour_id} thành công.";
             return RedirectToAction("Index");
         }
+
+        
     }
 }

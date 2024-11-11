@@ -157,7 +157,7 @@ namespace Presentation.Controllers
             {
                 await _accountService.UpdateAsync(AccountID, account);
                 await _customerService.UpdateAsync(CustomerID, customer);
-                TempData["success"] = "Thay đổi thông tin khách hàng " + CustomerID + " thành công.";
+                TempData["success"] = $"Thay đổi thông tin khách hàng {CustomerID} thành công.";
                 return RedirectToAction("Index");
             }
             TempData["error"] = "Không tìm thấy khách hàng !!";
@@ -172,10 +172,10 @@ namespace Presentation.Controllers
             {
                 await _customerService.DeleteAsync(CustomerID);
                 await _accountService.DeleteAsync(customer.AccountID);
-                TempData["success"] = "Đã xóa khách hàng " + CustomerID;
+                TempData["success"] = $"Xóa khách hàng {CustomerID} thành công.";
                 return RedirectToAction("Index");
             }
-            TempData["error"] = "Lỗi khi xóa khách hàng " + CustomerID;
+            TempData["error"] = $"Xóa khách hàng { CustomerID} thất bại !!";
             return RedirectToAction("Index");
 
         }

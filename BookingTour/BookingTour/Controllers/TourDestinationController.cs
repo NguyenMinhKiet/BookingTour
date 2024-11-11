@@ -1,5 +1,6 @@
 ﻿using Application.DTOs.TourDestinationDTOs;
 using Application.Services_Interface;
+using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Presentation.Models;
@@ -34,29 +35,25 @@ namespace Presentation.Controllers
         }
 
         // GET: /TourDestination/Create
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(Guid TourID)
         {
-            var tours = await _tourService.GetAllAsync();
-            var toursViewModel = tours.Select(i => new TourViewModel
-            {
-                Title = i.Title,
-                TourID = i.TourID,
+            //var ToursSelect = new List<TourViewModel>();
+            //var DestinationsSelect = new List<TourViewModel>();
 
-            }).ToList();
-            var toursSelectList = new SelectList(toursViewModel, "TourID", "Title");
 
-            var destinations = await _destinationService.GetAllAsync();
-            var destinationsViewModel = destinations.Select(i => new DestinationViewModel
-            {
-                DestinationID = i.DestinationID,
-                Name = i.Name,
+            //var Tours = await _tourService.GetAllAsync();
+            //foreach (var tour in Tours)
+            //{
+            //    var tourViewModel = new TourViewModel
+            //    {
+            //        TourID = tour.TourID,
+            //        Title = tour.Title,
+            //    };
+            //    ToursSelect.Add(tourViewModel);
+            //}
+            //ViewBag.TourList = new SelectList(ToursSelect,"TourID","Title");
 
-            }).ToList();
-            var destinationsSelectList = new SelectList(destinationsViewModel, "DestinationID", "Name");
-
-            ViewBag.TourList = toursSelectList;
-            ViewBag.DestinationList = destinationsSelectList;
-
+            ViewData["TourID"] = TourID; ;
             return View();
         }
 
@@ -68,7 +65,7 @@ namespace Presentation.Controllers
             {
                 await _tourDestinationService.CreateAsync(dto);
                 TempData["success"] = "Thêm địa điểm vào tour thành công.";
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Tour");
             }
             TempData["error"] = "Thêm địa điểm vào tour thất bại !!";
             return View();
@@ -106,11 +103,27 @@ namespace Presentation.Controllers
         }
 
         // POST: /TourDestination/Delete?{TourID,DestinantionID}
-        public async Task<IActionResult> Delete(Guid TourID, Guid DestinantionID)
+        public async Task<IActionResult> Delete(Guid TourID, Guid DestinationID)
         {
-            await _tourDestinationService.DeleteAsync(TourID, DestinantionID);
-            TempData["success"] = $"Đã xóa thông tin địa điểm {DestinantionID} trong tour {TourID} thành công.";
+            await _tourDestinationService.DeleteAsync(TourID, DestinationID);
+            TempData["success"] = $"Đã xóa thông tin địa điểm {DestinationID} trong tour {TourID} thành công.";
             return RedirectToAction("Index");
+        }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetDestinationsByTour(Guid TourID)
+        {
+            var tour = await _tourService.GetByIdAsync(TourID);
+            var destinations = await _destinationService.GetByCategoryAsync(tour.Category);
+            var destinationViewModels = destinations.Select(i =>
+            new DestinationViewModel
+            {
+                DestinationID = i.DestinationID,
+                Name = i.Name,
+            });
+            return Json(destinationViewModels);
         }
     }
 }

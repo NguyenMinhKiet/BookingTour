@@ -2,11 +2,6 @@
 using Domain.Repositories;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
@@ -53,5 +48,9 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<Destination>> GetByCategoryAsync(string Category)
+        {
+            return await _context.Destinations.Where(x => x.Category == Category).ToListAsync();
+        }
     }
 }

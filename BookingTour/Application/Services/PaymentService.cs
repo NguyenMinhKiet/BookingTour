@@ -19,7 +19,7 @@ namespace Application.Services
             {
                 PaymentID = new Guid(),
                 BookingID = dto.BookingID,
-                CreateAt = new DateTime(),
+                CreateAt = DateTime.Now,
                 Method = dto.Method,
                 Status = dto.Status
 
@@ -43,7 +43,7 @@ namespace Application.Services
             var payment = await _paymentRepository.GetByIdAsync(id);
             if (payment != null)
             {
-                payment.ModifyAt = new DateTime();
+                payment.ModifyAt = DateTime.Now;
                 payment.Method = dto.Method;
                 payment.Status = dto.Status;
                 await _paymentRepository.UpdateAsync(payment);

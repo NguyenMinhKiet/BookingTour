@@ -30,7 +30,7 @@ namespace Application.Services
                 BookingID = new Guid(),
                 TourID = dto.TourID,
                 CustomerID = dto.CustomerID,
-                CreateAt = new DateTime(),
+                CreateAt = DateTime.Now,
                 Adult = dto.Adult,
                 Child = dto.Child,
                 TotalPrice = price * dto.Adult + childPrice * dto.Child
@@ -64,7 +64,7 @@ namespace Application.Services
             var price = (await _tourRepository.GetByIdAsync(booking.TourID)).Price;
             var childPrice = price * 50 / 100;
 
-            booking.ModifyAt = new DateTime();
+            booking.ModifyAt = DateTime.Now;
             booking.Adult = dto.Adult;
             booking.Child = dto.Child;
             booking.TotalPrice = price * dto.Adult + childPrice * dto.Child;

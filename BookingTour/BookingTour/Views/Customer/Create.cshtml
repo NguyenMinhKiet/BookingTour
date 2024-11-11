@@ -47,8 +47,14 @@
 
     <div class="form-group">
         <label asp-for="Password"></label>
-        <input asp-for="Password" type="text" class="form-control" id="Password" name="Password" Required>
+        <input asp-for="Password" type="password" class="form-control" id="Password" name="Password" Required>
         <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ConfirmPassword" class="form-label"></label>
+        <input asp-for="ConfirmPassword" type="text" class="form-control" id="ConfirmPassword" name="ConfirmPassword" Required>
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Lưu</button>

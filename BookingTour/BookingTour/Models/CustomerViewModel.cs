@@ -12,6 +12,7 @@ namespace Presentation.Models
         public Guid AccountID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public string ConfirmPassword { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
         public bool isActive { get; set; }

@@ -29,7 +29,8 @@ namespace Application.Services
                 Price = dto.Price,
                 StartDate = dto.StartDate,
                 EndDate = dto.EndDate,
-                AvailableSeats = dto.AvailableSeats
+                AvailableSeats = dto.AvailableSeats,
+                Category = dto.Category
             };
             await _tourRepository.AddAsync(tour);
             return tour;
@@ -45,7 +46,7 @@ namespace Application.Services
             return await _tourRepository.GetAllAsync();
         }
 
-        public async Task<Tour> GetById(Guid id)
+        public async Task<Tour> GetByIdAsync(Guid id)
         {
             return await _tourRepository.GetByIdAsync(id);
         }
@@ -61,6 +62,7 @@ namespace Application.Services
                 tour.StartDate = dto.StartDate;
                 tour.EndDate = dto.EndDate;
                 tour.AvailableSeats = dto.AvailableSeats;
+                tour.Category = dto.Category;
 
                 await _tourRepository.UpdateAsync(tour);
 

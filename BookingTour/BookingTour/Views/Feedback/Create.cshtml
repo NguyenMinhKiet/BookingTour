@@ -33,18 +33,6 @@
         <span asp-validation-for="Comments" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <label asp-for="CreateAt"></label>
-        <input asp-for="CreateAt" type="datetime-local" class="form-control" id="CreateAt" name="CreateAt">
-        <span asp-validation-for="CreateAt" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="ModifyAt"></label>
-        <input asp-for="ModifyAt" type="datetime-local" class="form-control" id="ModifyAt" name="ModifyAt">
-        <span asp-validation-for="ModifyAt" class="text-danger"></span>
-    </div>
-
     <button type="submit" class="btn btn-primary">Lưu</button>
     <a asp-controller="Feedback" asp-action="Index" class="btn btn-secondary">Hủy</a>
 </form>

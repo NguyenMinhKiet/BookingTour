@@ -6,7 +6,6 @@ namespace Domain.Entities
     {
         public Guid TourID { get; set; }
         public Guid EmployeeID { get; set; }
-
         public virtual Tour Tour { get; set; }
         public virtual Employee Employee { get; set; }
     }

@@ -52,7 +52,8 @@ builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IRoleGroupService, RoleGroupService>();
-builder.Services.AddScoped<IAuthorizedService, AuthorizedService>();    
+builder.Services.AddScoped<IAuthorizedService, AuthorizedService>();
+builder.Services.AddScoped<LocationService>();
 
 // Add TempData
 builder.Services.AddControllersWithViews()
@@ -65,6 +66,11 @@ builder.Services.AddSession(options =>
     options.Cookie.Name = "MinhKiet"; // Đặt tên cookie cho session
     options.IdleTimeout = TimeSpan.FromMinutes(20); // Thời gian tồn tại của session
 });
+
+// Thêm logging vào console
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.SetMinimumLevel(LogLevel.Information);
 
 var app = builder.Build();
 
@@ -90,3 +96,4 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+

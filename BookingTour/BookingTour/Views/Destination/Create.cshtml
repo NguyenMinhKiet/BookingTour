@@ -8,27 +8,37 @@
 <form asp-action="Create" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
-        <label asp-for="Name"></label>
+        <label asp-for="Name" class="form-label"></label>
         <input asp-for="Name" type="text" class="form-control" id="Name" name="Name" required>
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="City"></label>
-        <input asp-for="City" type="text" class="form-control" id="city" name="city" required>
+        <label asp-for="City" class="form-label"></label>
+        <input asp-for="City" type="text" class="form-control" id="City" name="City" required>
         <span asp-validation-for="City" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Country"></label>
-        <input asp-for="Country" type="text" class="form-control" id="country" name="country" required>
+        <label asp-for="Country" class="form-label"></label>
+        <input asp-for="Country" type="text" class="form-control" id="Country" name="Country" required>
         <span asp-validation-for="Country" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Description"></label>
-        <input asp-for="Description" type="text" class="form-control" id="destination_name" name="destination_name" required>
+        <label asp-for="Description" class="form-label"></label>
+        <input asp-for="Description" type="text" class="form-control" id="Description" name="Description" required>
         <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Category" class="form-label"></label>
+        <select asp-for="Category" class="form-select" id="Category" name="Category">
+            <option value="" disabled selected>-- Chọn loại địa điểm --</option>
+            <option value="Mountain">Núi</option>
+            <option value="Beach">Biển</option>
+        </select>
+        <span asp-validation-for="Category" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Lưu</button>
