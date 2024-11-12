@@ -79,17 +79,23 @@ namespace Presentation.Controllers
             if (ModelState.IsValid)
             {
                 await _tourEmployeeService.CreateAsync(dto);
-                TempData["success"] = $"Thêm nhân viên {dto.EmployeeID} vào tour {dto.TourID} thành công.";
+                TempData["NotificationType"] = "success";
+                TempData["NotificationTitle"] = "Thành Công!";
+                TempData["NotificationMessage"] = "Thêm nhân viên vào Tour thành công!";
                 return RedirectToAction("Index");
             }
-            TempData["error"] = $"Thêm nhân viên {dto.EmployeeID} vào tour {dto.TourID} thất bại.";
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
             return View();
         }
 
         public async Task<IActionResult> Delete(Guid tour_id, Guid employee_id)
         {
             await _tourEmployeeService.DeleteAsync(tour_id, employee_id);
-            TempData["success"] = $"Xóa nhân viên {employee_id} trong tour {tour_id} thành công.";
+            TempData["NotificationType"] = "success";
+            TempData["NotificationTitle"] = "Thành Công!";
+            TempData["NotificationMessage"] = "Xóa nhân viên trong Tour thành công!";
             return RedirectToAction("Index");
         }
 

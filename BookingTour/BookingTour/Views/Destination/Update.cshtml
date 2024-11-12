@@ -1,9 +1,41 @@
 ﻿@model Presentation.Models.DestinationViewModel
 @{
     ViewData["Title"] = "Chỉnh sửa thông tin địa điểm";
+    Layout = "_ContentLayout";
 }
 
-<h2>Chỉnh sửa thông tin địa điểm</h2>
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Sửa Thông Tin Địa Điểm</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-asp-controller="HomeController"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <a asp-controller="Customer"
+               asp-action="Index">
+                Khách hàng
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            Update
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <p class="text-secondary">id: @Model.DestinationID</p>
+        </li>
+    </ul>
+</div>
 
 <form asp-action="Update" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -46,3 +78,24 @@
     <button type="submit" class="btn btn-primary">Lưu</button>
     <a asp-controller="Destination" asp-action="Index" class="btn btn-secondary">Hủy</a>
 </form>
+
+@section script {
+    <script>
+        $(document).ready(function () {
+            $('.toggle-password').on('click', function () {
+                // Lấy ID của trường mật khẩu tương ứng từ thuộc tính data-target
+                var passwordInput = $($(this).data('target'));
+                var icon = $(this).find('i');
+
+                // Thay đổi thuộc tính 'type' và biểu tượng của icon
+                if (passwordInput.attr('type') === 'password') {
+                    passwordInput.attr('type', 'text');
+                    icon.removeClass('fa-eye').addClass('fa-eye-slash'); // Đổi biểu tượng
+                } else {
+                    passwordInput.attr('type', 'password');
+                    icon.removeClass('fa-eye-slash').addClass('fa-eye'); // Đổi lại biểu tượng
+                }
+            });
+        });
+    </script>
+}

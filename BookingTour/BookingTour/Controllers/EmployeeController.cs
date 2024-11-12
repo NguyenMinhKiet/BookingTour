@@ -89,15 +89,18 @@ namespace Presentation.Controllers
                 if(CreateAccount != null)
                 {
                     employee.AccountID = CreateAccount.Id;
-                    await _employeeService.CreateAsync(employee);
-                    TempData["success"] = "Thêm nhân viên mới thành công.";
+                    TempData["NotificationType"] = "success";
+                    TempData["NotificationTitle"] = "Thành công!";
+                    TempData["NotificationMessage"] = "Thêm nhân viên thành công";
                     return RedirectToAction("Index");
                 }
-                TempData["error"] = "Tạo Tài khoản mới thất bại !!";
+                TempData["NotificationType"] = "error";
+                TempData["NotificationTitle"] = "Thất bại!";
+                TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
                 return View();
             }
             TempData["error"] = "Thêm nhân viên thất bại !!";
-            return View();
+            return RedirectToAction("Index");
         }
 
 
@@ -108,7 +111,10 @@ namespace Presentation.Controllers
             var employee = await _employeeService.GetById(EmployeeID);
             if (employee == null)
             {
-                return RedirectToAction("Error", "Shared");
+                TempData["NotificationType"] = "danger";
+                TempData["NotificationTitle"] = "Thất bại!";
+                TempData["NotificationMessage"] = $"Không tìm thấy dữ liệu địa điểm id: {EmployeeID}";
+                return RedirectToAction("Index");
             }
             var acc = await _accountService.GetById(employee.AccountID);
             var employeeViewData = new EmployeeViewModel
@@ -157,7 +163,9 @@ namespace Presentation.Controllers
             {
                 await _accountService.UpdateAsync(AccountID, account);
                 await _employeeService.UpdateAsync(EmployeeID, employee);
-                TempData["error"] = $"Cập nhật thông tin nhân viên {employee.Email} thành công !!";
+                TempData["NotificationType"] = "success";
+                TempData["NotificationTitle"] = "Thành công!";
+                TempData["NotificationMessage"] = "Cập nhật thông tin nhân viên thành công";
                 return RedirectToAction("Index");
 
             }
@@ -172,10 +180,14 @@ namespace Presentation.Controllers
             {
                 await _accountService.DeleteAsync(customer.AccountID);
                 await _employeeService.DeleteAsync(EmployeeID);
-                TempData["success"] = $"Xóa nhân viên {customer.LastName} thành công !!";
+                TempData["NotificationType"] = "success";
+                TempData["NotificationTitle"] = "Thành công!";
+                TempData["NotificationMessage"] = "Xóa nhân viên thành công";
                 return RedirectToAction("Index");
             }
-            TempData["error"] = $"Xóa nhân viên {EmployeeID} thất bại !!";
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = $"Không tìm thấy dữ liệu địa điểm id: {EmployeeID}";
             return RedirectToAction("Index");
 
         }

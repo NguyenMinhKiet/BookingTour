@@ -2,9 +2,41 @@
 
 @{
     ViewData["Title"] = "Chỉnh sửa đánh giá";
+    Layout = "_ContentLayout";
 }
 
-<h2>Chỉnh sửa đánh giá</h2>
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Sửa Thông Tin Đánh Giá</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-asp-controller="HomeController"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <a asp-controller="Feedback"
+               asp-action="Index">
+                Đánh giá
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            Update
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <p class="text-secondary">id: @Model.FeedbackID</p>
+        </li>
+    </ul>
+</div>
 
 <form asp-action="Update" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>

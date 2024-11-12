@@ -1,9 +1,36 @@
 ﻿@model Presentation.Models.BookingViewModel
 @{
     ViewData["Title"] = "Thêm booking mới";
+    Layout = "_ContentLayout";
 }
 
-<h2>Thêm booking mới</h2>
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Đặt Tour</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-asp-controller="HomeController"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <a asp-controller="Booking"
+               asp-action="Index">
+                Nhân Viên
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            Create
+        </li>
+        
+    </ul>
+</div>
 
 <form asp-action="Create" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -15,21 +42,33 @@
 
     <div class="form-group">
         <label asp-for="TourID"></label>
-        <input asp-for="TourID" type="text" class="form-control" id="TourID" name="TourID" Required>
+        <select asp-for="TourID" class="form-select" id="TourID" name="TourID" asp-items="ViewBag.ListTour" required>
+            <option value="">-- Chọn Tour --</option>
+            
+        </select>
         <span asp-validation-for="TourID" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <label asp-for="Adult"></label>
-        <input asp-for="Adult" type="number" class="form-control" id="Adult" name="Adult" min="0" Required>
-        <span asp-validation-for="Adult" class="text-danger"></span>
-    </div>
 
-    <div class="form-group">
-        <label asp-for="Child"></label>
-        <input asp-for="Child" type="number" class="form-control" id="Child" name="Child" min="0" Required>
-        <span asp-validation-for="Child" class="text-danger"></span>
+    <div class="row">
+        <div class="col col-md-6">
+            <div class="form-group">
+                <label asp-for="Adult"></label>
+                <input asp-for="Adult" type="number" class="form-control" id="Adult" name="Adult" min="0" placeholder="Nhập số lượng người lớn" Required>
+                <span asp-validation-for="Adult" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col col-md-6">
+            <div class="form-group">
+                <label asp-for="Child"></label>
+                <input asp-for="Child" type="number" class="form-control" id="Child" name="Child" min="0" placeholder="Nhập số lượng trẻ em" Required>
+                <span asp-validation-for="Child" class="text-danger"></span>
+            </div>
+        </div>
     </div>
+    
+
+    
 
     <button type="submit" class="btn btn-primary">Lưu</button>
     <a asp-controller="Booking" asp-action="Index" class="btn btn-secondary">Hủy</a>

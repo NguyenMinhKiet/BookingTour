@@ -1,9 +1,35 @@
 ﻿@model Presentation.Models.TourDestinationViewModel
 @{
     ViewData["Title"] = "Thêm địa điểm vào tour";
+    Layout = "_ContentLayout";
 }
 
-<h2>Thêm địa điểm vào tour</h2>
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Thêm Địa điểm Tour</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-asp-controller="HomeController"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <a asp-controller="TourDestination"
+               asp-action="Index">
+                Địa điểm chuyến đi
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            Create
+        </li>
+    </ul>
+</div>
 
 <form asp-action="Create" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -22,9 +48,10 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Lưu</button>
-    <a asp-controller="TourDestination" asp-action="Index" class="btn btn-secondary">Hủy</a>
+    <a asp-controller="Tour" asp-action="Index" class="btn btn-secondary">Hủy</a>
 </form>
-@section Scripts {
+
+@section Script {
     <script>
         $(document).ready(function () {
     var tourId = '@ViewData["TourID"]';  // Lấy giá trị từ ViewData

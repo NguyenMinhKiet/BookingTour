@@ -2,9 +2,35 @@
 
 @{
     ViewData["Title"] = "Thêm thông tin thanh toán mới";
+    Layout = "_ContentLayout";
 }
 
-<h2>Thêm thông tin thanh toán mới</h2>
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Thêm Thanh Toán</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-asp-controller="HomeController"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <a asp-controller="Payment"
+               asp-action="Index">
+                Thanh toán
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            Create
+        </li>
+    </ul>
+</div>
 
 <form asp-action="Create" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -34,8 +60,13 @@
 
     <div class="form-group">
         <label asp-for="Status"></label>
-        <input asp-for="Status" type="text" class="form-control" id="Status" name="Status" Required>
-        <span asp-validation-for="Status" class="text-danger"></span>
+        <select asp-for="Status" type="text" class="form-select" id="Status" name="Status" Required>
+            <option value="">-- Chọn phương thức thanh toán --</option>
+            <option value="false">Chưa thanh toán</option>
+            <option value="true">Đã thanh toán</option>
+        </select>
+
+        <span asp-validation-for="Method" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Lưu</button>

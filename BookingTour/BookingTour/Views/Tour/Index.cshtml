@@ -1,60 +1,172 @@
 ﻿@model List<Presentation.Models.TourViewModel>
 @{
     ViewData["Title"] = "Danh sách Tour";
+    Layout = "_ContentLayout";
 }
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Danh sách Chuyến đi</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-asp-controller="HomeController"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            Danh sách
+        </li>
+    </ul>
+</div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Price</th>
-            <th>AvaiableSeats</th>
-            <th>Category</th>
-            <th>Controls</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var t in Model)
-        {
-            <tr>
-                <td>@t.TourID</td>
-                <td>@t.Title</td>
-                <td>@t.Description</td>
-                <td>@t.StartDate</td>
-                <td>@t.EndDate</td>
-                <td>@t.Price</td>
-                <td>@t.AvailableSeats</td>
-                <td>@t.Category</td>
-                <td>
-                    <div class="w-100 btn-group" role="group">
-                        <a asp-action="Update"
-                           asp-controller="Tour"
-                           asp-route-TourID="@t.TourID"
-                           class="btn btn-primary">
-                            Cập nhật thông tin
-                        </a>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Danh sách Filters</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="multi-filter-select"
+                           class="display table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Price</th>
+                                <th>AvaiableSeats</th>
+                                <th>Category</th>
+                            </tr>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Price</th>
+                                <th>AvaiableSeats</th>
+                                <th>Category</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var t in Model)
+                            {
+                                <tr>
+                                    <td>@t.TourID</td>
+                                    <td>@t.Title</td>
+                                    <td>@t.Description</td>
+                                    <td>@t.StartDate</td>
+                                    <td>@t.EndDate</td>
+                                    <td>@t.Price</td>
+                                    <td>@t.AvailableSeats</td>
+                                    <td>@t.Category</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                        <a asp-action="Delete"
-                           asp-controller="Tour"
-                           asp-route-TourID="@t.TourID"
-                           class="btn btn-danger">
-                            Xóa
-                        </a>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex align-items-center">
+                    <h4 class="card-title">Thông tin chi tiết</h4>
+                    <a class="btn btn-primary btn-round ms-auto"
+                       asp-action="Create"
+                       asp-controller="Tour">
+                        <i class="fa fa-plus"></i>
+                        Thêm Tour
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="add-row"
+                           class="display table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Price</th>
+                                <th>AvaiableSeats</th>
+                                <th>Category</th>
+                                <th style="width: 10%">Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Price</th>
+                                <th>AvaiableSeats</th>
+                                <th>Category</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var t in Model)
+                            {
+                                <tr>
+                                    <td>@t.Title</td>
+                                    <td>@t.Description</td>
+                                    <td>@t.StartDate</td>
+                                    <td>@t.EndDate</td>
+                                    <td>@t.Price</td>
+                                    <td>@t.AvailableSeats</td>
+                                    <td>@t.Category</td>
+                                    <td>
+                                        <div class="form-button-action">
 
-                        <a asp-action="Create"
-                           asp-controller="TourDestination"
-                           asp-route-TourID="@t.TourID"
-                           class="btn btn-success">
-                            Thêm Địa điểm
-                        </a>
-                    </div>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-<a class="btn btn-success" asp-action="Create">Thêm thông tin tour Mới</a>
+                                            <a class="btn btn-link btn-primary " type="button"
+                                               asp-route-TourID=@t.TourID
+                                               asp-controller="TourEmployee"
+                                               asp-action="Create">
+                                                <i class="fa fa-user"></i>
+                                            </a>
+
+                                            <a class="btn btn-link btn-danger " type="button"
+                                               asp-route-TourID=@t.TourID
+                                               asp-controller="TourDestination"
+                                               asp-action="Create">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                            </a>
+
+                                            <a class="btn btn-link btn-primary" type="button"
+                                               asp-route-TourID=@t.TourID
+                                               asp-controller="Tour"
+                                               asp-action="Update">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a class="btn btn-link btn-danger " type="button"
+                                               asp-route-TourID=@t.TourID
+                                               asp-controller="Tour"
+                                               asp-action="Delete">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,9 +1,36 @@
 ﻿@model Presentation.Models.DestinationViewModel
 @{
     ViewData["Title"] = "Thêm địa điểm mới";
+    Layout = "_ContentLayout";
 }
 
-<h2>Thêm địa điểm mới</h2>
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Thêm Địa Điểm Mới</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-asp-controller="HomeController"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <a asp-controller="Destination"
+               asp-action="Index">
+                Địa điểm
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            Create
+        </li>
+
+    </ul>
+</div>
 
 <form asp-action="Create" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -44,3 +71,25 @@
     <button type="submit" class="btn btn-primary">Lưu</button>
     <a asp-controller="Destination" asp-action="Index" class="btn btn-secondary">Hủy</a>
 </form>
+
+
+@section script {
+    <script>
+        $(document).ready(function () {
+            $('.toggle-password').on('click', function () {
+                // Lấy ID của trường mật khẩu tương ứng từ thuộc tính data-target
+                var passwordInput = $($(this).data('target'));
+                var icon = $(this).find('i');
+
+                // Thay đổi thuộc tính 'type' và biểu tượng của icon
+                if (passwordInput.attr('type') === 'password') {
+                    passwordInput.attr('type', 'text');
+                    icon.removeClass('fa-eye').addClass('fa-eye-slash'); // Đổi biểu tượng
+                } else {
+                    passwordInput.attr('type', 'password');
+                    icon.removeClass('fa-eye-slash').addClass('fa-eye'); // Đổi lại biểu tượng
+                }
+            });
+        });
+    </script>
+}

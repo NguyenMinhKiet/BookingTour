@@ -2,6 +2,7 @@
 using Application.DTOs.AccountDTOs;
 using Application.DTOs.CustomerDTOs;
 using Application.Services_Interface;
+using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
 
@@ -92,14 +93,23 @@ namespace Presentation.Controllers
                     customer.AccountID = CreateAccount.Id;
                     
                     await _customerService.CreateAsync(customer);
-                    TempData["success"] = "Thêm khách hàng mới thành công.";
+
+                    TempData["NotificationType"] = "success";
+                    TempData["NotificationTitle"] = "Thành Công!";
+                    TempData["NotificationMessage"] = "Thêm nhân viên thành công!";
+
                     return RedirectToAction("Index");
                 }
-                TempData["error"] = "Tạo Tài khoản mới thất bại !!";
-                return View();
+
+                TempData["NotificationType"] = "danger";
+                TempData["NotificationTitle"] = "Thất bại!";
+                TempData["NotificationMessage"] = "Không thể thêm nhân viên, hãy kiểm tra lại các thông tin!";
+
+                return RedirectToAction("Index");
             }
-            
-            TempData["error"] = "Thêm khách hàng mới thất bại !!";
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ!";
             return View();
         }
 
@@ -109,7 +119,10 @@ namespace Presentation.Controllers
             var customer = await _customerService.GetById(CustomerID);
             if(customer == null)
             {
-                return RedirectToAction("Error", "Shared");
+                TempData["NotificationType"] = "danger";
+                TempData["NotificationTitle"] = "Thất bại!";
+                TempData["NotificationMessage"] = $"Không thể lấy giữ liệu từ id: {CustomerID}";
+                return View();
             }
             var acc = await _accountService.GetById(customer.AccountID);
             var customerViewModel = new CustomerViewModel
@@ -132,35 +145,20 @@ namespace Presentation.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(Guid CustomerID,Guid AccountID, CustomerUpdateDto customer, AccountUpdateDto account)
         {
-            //if (string.IsNullOrEmpty(customer?.FirstName))
-            //{
-            //    ModelState.AddModelError("first_name", errorMessage: $"Vui lòng nhập đầy đủ họ đệm bạn đã nhập: {customer.first_name.Length} ký tự !! ");
-            //}
-
-            //if (string.IsNullOrEmpty(customer?.Phone) || customer.Phone.Length != 10)
-            //{
-            //    ModelState.AddModelError("phone", errorMessage: $"Số điện thoại phải có 10 kí tự số, bạn đã nhập: {customer.phone.Length} ký tự !!");
-            //}
-
-            //if (string.IsNullOrEmpty(customer?.Email) || !customer.Email.Contains("@"))
-            //{
-            //    ModelState.AddModelError("email", errorMessage: "Email thiếu '@'!!");
-            //}
-
-
-            //if (string.IsNullOrEmpty(customer?.LastName))
-            //{
-            //    ModelState.AddModelError("last_name", errorMessage: $"Vui lòng nhập đầy đủ họ đệm, bạn đã nhập: {customer.last_name.Length} ký tự !! ");
-            //}
-
             if (ModelState.IsValid)
             {
                 await _accountService.UpdateAsync(AccountID, account);
                 await _customerService.UpdateAsync(CustomerID, customer);
-                TempData["success"] = $"Thay đổi thông tin khách hàng {CustomerID} thành công.";
+
+                TempData["NotificationType"] = "success";
+                TempData["NotificationTitle"] = "Thành Công!";
+                TempData["NotificationMessage"] = $"Cập nhật thông tin nhân viên {customer.FirstName} thành công!";
                 return RedirectToAction("Index");
             }
-            TempData["error"] = "Không tìm thấy khách hàng !!";
+
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ!";
             return View();
         }
 
@@ -172,10 +170,15 @@ namespace Presentation.Controllers
             {
                 await _customerService.DeleteAsync(CustomerID);
                 await _accountService.DeleteAsync(customer.AccountID);
-                TempData["success"] = $"Xóa khách hàng {CustomerID} thành công.";
+                TempData["NotificationType"] = "success";
+                TempData["NotificationTitle"] = "Thành Công!";
+                TempData["NotificationMessage"] = $"Xóa nhân viên {customer.FirstName}!";
                 return RedirectToAction("Index");
             }
-            TempData["error"] = $"Xóa khách hàng { CustomerID} thất bại !!";
+
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = "Không tìm thấy khách hàng";
             return RedirectToAction("Index");
 
         }

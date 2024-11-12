@@ -2,19 +2,21 @@
 using Application.Services_Interface;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Presentation.Models;
+using System.Net.WebSockets;
 
 namespace Presentation.Controllers
 {
     public class BookingController : Controller
     {
         private readonly IBookingService _bookingService;
-        public BookingController (IBookingService bookingService)
+        private readonly ITourService _tourService;
+        public BookingController (IBookingService bookingService, ITourService tourService)
         {
             _bookingService = bookingService;
+            _tourService = tourService; 
         }
-
-        
         public async Task<IActionResult> Index()
         {
             var bookings = await _bookingService.GetAllAsync();
@@ -33,8 +35,19 @@ namespace Presentation.Controllers
             return View(bookingsViewModel);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var tours = await _tourService.GetAllAsync();
+            if(tours != null)
+            {
+                var listTour = tours.Select(tour => new TourViewModel
+                {
+                    TourID = tour.TourID,
+                    Title = tour.Title
+                }).ToList();
+
+                ViewBag.ListTour = new SelectList(listTour, "TourID", "Title");
+            }
             return View();
         }
 
@@ -44,10 +57,17 @@ namespace Presentation.Controllers
             if(ModelState.IsValid)
             {
                 await _bookingService.CreateAsync(dto);
-                TempData["success"] = "Thêm thông tin booking thành công.";
+
+                TempData["NotificationType"] = "success";
+                TempData["NotificationTitle"] = "Thành công!";
+                TempData["NotificationMessage"] = "Đặt Tour thành công!";
+
                 return RedirectToAction("Index");
             }
-            TempData["error"] = "Thêm thông tin booking thất bại !!";
+
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = "Đặt Tour thất bại, hãy kiểm tra lại các thông tin!";
             return View();
         }
 
@@ -70,25 +90,28 @@ namespace Presentation.Controllers
 
                 return View(bookingViewModel);
             }
-            else
-            {
-                throw new Exception($"Không tìm thấy booking: {BookingID}");
-            }
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = $"Không thể lấy giữ liệu từ id: {BookingID}";
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
         public async Task<IActionResult> Update(Guid BookingID, BookingUpdateDto dto)
         {
-            var booking = await _bookingService.GetById(BookingID);
-            if(booking == null)
+            if(ModelState.IsValid)
             {
-                TempData["success"] = $"Không tìm thấy booking: {BookingID}";
+                await _bookingService.UpdateAsync(BookingID, dto);
+                TempData["NotificationType"] = "success";
+                TempData["NotificationTitle"] = "Thành Công!";
+                TempData["NotificationMessage"] = "Cập nhật thông tin đặt tour thành công!";
                 return RedirectToAction("Index");
             }
 
-            await _bookingService.UpdateAsync(BookingID, dto);
-            TempData["success"] = "Chỉnh sửa thông tin booking thành công.";
-            return RedirectToAction("Index");
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ!";
+            return View();
         }
 
         public async Task<IActionResult> Delete(Guid BookingID)
@@ -96,10 +119,17 @@ namespace Presentation.Controllers
             var booking = await _bookingService.GetById(BookingID);
             if(booking == null)
             {
-                throw new Exception($"Không tìm thấy booking {BookingID}");
+                TempData["NotificationType"] = "danger";
+                TempData["NotificationTitle"] = "Thất bại!";
+                TempData["NotificationMessage"] = "Xóa thông tin đặt Tour thất bại, Không tìm thấy dữ liệu"; ;
+                return RedirectToAction("Index");
             }
             await _bookingService.DeleteAsync(BookingID);
-            TempData["success"] = $"Xóa thông tin booking {BookingID} thành công.";
+
+            TempData["NotificationType"] = "success";
+            TempData["NotificationTitle"] = "Thành công!";
+            TempData["NotificationMessage"] = "Xóa thông tin đặt tour thành công";
+
             return RedirectToAction("Index");
         }
     }

@@ -46,16 +46,27 @@ namespace Presentation.Controllers
             if (ModelState.IsValid)
             {
                 await _tourService.CreateAsync(dto);
-                TempData["success"] = "Thêm tour mới thành công.";
+                TempData["NotificationType"] = "success";
+                TempData["NotificationTitle"] = "Thành Công!";
+                TempData["NotificationMessage"] = "Thêm Tour thành công!";
                 return RedirectToAction("Index");
             }
-            TempData["error"] = "Thêm tour mới thất bại !!";
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
             return View();
         }
         // GET: /Tour/Update?{TourID}
         public async Task<IActionResult> Update(Guid TourID)
         {
             var i = await _tourService.GetByIdAsync(TourID);
+            if(i == null)
+            {
+                TempData["NotificationType"] = "danger";
+                TempData["NotificationTitle"] = "Thất bại!";
+                TempData["NotificationMessage"] = $"Không tìm thấy Tour ID: {TourID}";
+                return RedirectToAction("Index");
+            }
             var tourViewModel = new TourViewModel
             {
                 TourID = i.TourID,
@@ -78,10 +89,14 @@ namespace Presentation.Controllers
             if (ModelState.IsValid)
             {
                 await _tourService.UpdateAsync(TourID, dto);
-                TempData["success"] = "Thay đổi thông tin tour thành công.";
+                TempData["NotificationType"] = "success";
+                TempData["NotificationTitle"] = "Thành Công!";
+                TempData["NotificationMessage"] = "Cập nhật thông tin Tour thành công!";
                 return RedirectToAction("Index");
             }
-            TempData["error"] = "Thay đổi thông tin tour thất bại !!";
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
             return View();
         }
 
@@ -89,7 +104,9 @@ namespace Presentation.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             await _tourService.DeleteAsync(id);
-            TempData["success"] = "Xóa tour: " + id + " thành công.";
+            TempData["NotificationType"] = "success";
+            TempData["NotificationTitle"] = "Thành Công!";
+            TempData["NotificationMessage"] = "Xóa Tour thành công!";
             return RedirectToAction("Index");
         }
     }

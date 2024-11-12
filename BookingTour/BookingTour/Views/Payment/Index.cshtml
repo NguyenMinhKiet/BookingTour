@@ -1,49 +1,146 @@
 ﻿@model List<Presentation.Models.PaymentViewModel>
 @{
     ViewData["Title"] = "Danh sách thanh toán";
+    Layout = "_ContentLayout";
 }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Booking ID</th>
-            <th>Method</th>
-            <th>Status</th>
-            <th>CreateAt</th>
-            <th>ModifyAt</th>
-            <th>Controls</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var i in Model)
-        {
-            <tr>
-                <td>@i.PaymentID</td>
-                <td>@i.BookingID</td>
-                <td>@i.Method</td>
-                <td>@i.Status</td>
-                <td>@i.CreateAt</td>
-                <td>@i.ModifyAt</td>
-                <td>
-                    <div class="w-100 btn-group" role="group">
-                        <a asp-action="Update"
-                           asp-controller="Payment"
-                           asp-route-PaymentID="@i.PaymentID"
-                           class="btn btn-primary">
-                            Cập nhật thông tin
-                        </a>
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Danh sách Đánh Giá</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-asp-controller="HomeController"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            Danh sách
+        </li>
+    </ul>
+</div>
 
-                        <a asp-action="Delete"
-                           asp-controller="feedback"
-                           asp-route-PaymentID="@i.PaymentID"
-                           class="btn btn-danger">
-                            Xóa
-                        </a>
-                    </div>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-<a class="btn btn-success" asp-action="Create">Thêm thanh toán mới</a>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Danh sách Filters</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="multi-filter-select"
+                           class="display table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Booking ID</th>
+                                <th>Method</th>
+                                <th>Status</th>
+                                <th>CreateAt</th>
+                                <th>ModifyAt</th>
+                            </tr>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Booking ID</th>
+                                <th>Method</th>
+                                <th>Status</th>
+                                <th>CreateAt</th>
+                                <th>ModifyAt</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var i in Model)
+                            {
+                                <tr>
+                                    <td>@i.PaymentID</td>
+                                    <td>@i.BookingID</td>
+                                    <td>@i.Method</td>
+                                    <td>@i.Status</td>
+                                    <td>@i.CreateAt</td>
+                                    <td>@i.ModifyAt</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex align-items-center">
+                    <h4 class="card-title">Thông tin chi tiết</h4>
+                    <a class="btn btn-primary btn-round ms-auto"
+                       asp-action="Create"
+                       asp-controller="Payment">
+                        <i class="fa fa-plus"></i>
+                        Thêm thanh toán
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="add-row"
+                           class="display table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Method</th>
+                                <th>Status</th>
+                                <th>CreateAt</th>
+                                <th>ModifyAt</th>
+                                <th style="width: 10%">Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Method</th>
+                                <th>Status</th>
+                                <th>CreateAt</th>
+                                <th>ModifyAt</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var i in Model)
+                            {
+                                <tr>
+                                    <td>@i.BookingID</td>
+                                    <td>@i.Method</td>
+                                    <td>@i.Status</td>
+                                    <td>@i.CreateAt</td>
+                                    <td>@i.ModifyAt</td>
+                                    <td>
+                                        <div class="form-button-action">
+                                            <a class="btn btn-link btn-primary" type="button"
+                                               asp-route-PaymentID=@i.PaymentID
+                                               asp-controller="Payment"
+                                               asp-action="Update">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a class="btn btn-link btn-danger " type="button"
+                                               asp-route-CustomerID=@i.PaymentID
+                                               asp-controller="Payment"
+                                               asp-action="Delete">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

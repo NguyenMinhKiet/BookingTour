@@ -2,9 +2,35 @@
 
 @{
     ViewData["Title"] = "Thêm đánh giá mới";
+    Layout = "_ContentLayout";
 }
 
-<h2>Thêm đánh giá mới</h2>
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Thêm Đánh Giá</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-asp-controller="HomeController"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <a asp-controller="Feedback"
+               asp-action="Index">
+                Đánh giá
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            Create
+        </li>
+    </ul>
+</div>
 
 <form asp-action="Create" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>

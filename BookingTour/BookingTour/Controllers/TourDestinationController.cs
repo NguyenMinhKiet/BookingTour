@@ -64,10 +64,14 @@ namespace Presentation.Controllers
             if (ModelState.IsValid)
             {
                 await _tourDestinationService.CreateAsync(dto);
-                TempData["success"] = "Thêm địa điểm vào tour thành công.";
+                TempData["NotificationType"] = "success";
+                TempData["NotificationTitle"] = "Thành Công!";
+                TempData["NotificationMessage"] = "Thêm địa điểm vào Tour thành công!";
                 return RedirectToAction("Index","Tour");
             }
-            TempData["error"] = "Thêm địa điểm vào tour thất bại !!";
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
             return View();
         }
 
@@ -85,7 +89,10 @@ namespace Presentation.Controllers
                 };
                 return View(tourDestinationViewModel);
             }
-            return RedirectToAction("Error", "Shared");
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = $"Không tìm thấy TourID: {TourID} và DestinationID: {DestinantionID}";
+            return RedirectToAction("Index");
         }
 
         // POST: /TourDestination/Update?{TourID,DestinantionID}
@@ -95,10 +102,14 @@ namespace Presentation.Controllers
             if (ModelState.IsValid)
             {
                 await _tourDestinationService.UpdateAsync(TourID, DestinationID, dto);
-                TempData["success"] = $"Thay đổi thời gian đến tại địa điểm {DestinationID} của tour {TourID} thành công.";
+                TempData["NotificationType"] = "success";
+                TempData["NotificationTitle"] = "Thành Công!";
+                TempData["NotificationMessage"] = "Cập nhật thông tin thời gian đến địa điểm tour thành công!";
                 return RedirectToAction("Index");
             }
-            TempData["error"] = "Thay đổi thông tin địa điểm tour thất bại !!";
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
             return View();
         }
 
@@ -106,7 +117,9 @@ namespace Presentation.Controllers
         public async Task<IActionResult> Delete(Guid TourID, Guid DestinationID)
         {
             await _tourDestinationService.DeleteAsync(TourID, DestinationID);
-            TempData["success"] = $"Đã xóa thông tin địa điểm {DestinationID} trong tour {TourID} thành công.";
+            TempData["NotificationType"] = "success";
+            TempData["NotificationTitle"] = "Thành Công!";
+            TempData["NotificationMessage"] = "Xóa địa điểm trong tour thành công!";
             return RedirectToAction("Index");
         }
 

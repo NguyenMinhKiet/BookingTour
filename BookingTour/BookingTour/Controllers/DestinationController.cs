@@ -1,5 +1,6 @@
 ﻿using Application.DTOs.DestinationDTOs;
 using Application.Services_Interface;
+using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
 
@@ -44,11 +45,15 @@ namespace Presentation.Controllers
             if (ModelState.IsValid)
             {
                 await _destinationService.CreateAsync(destination);
-                TempData["success"] = "Thêm địa điểm mới thành công.";
+                TempData["NotificationType"] = "success";
+                TempData["NotificationTitle"] = "Thành công!";
+                TempData["NotificationMessage"] = "Thêm địa điểm thành công";
                 return RedirectToAction("Index");
             }
-            TempData["error"] = "Thêm địa điểm mới thất bại.";
-            return View();
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ!";
+            return RedirectToAction("Index");
         }
 
 
@@ -58,7 +63,9 @@ namespace Presentation.Controllers
             var destination = await _destinationService.GetById(DestinationID);
 
             if(destination == null) {
-                TempData["error"] = "Không tìm thấy địa điểm " + DestinationID;
+                TempData["NotificationType"] = "danger";
+                TempData["NotificationTitle"] = "Thất bại!";
+                TempData["NotificationMessage"] = $"Không tìm thấy dữ liệu địa điểm id: {DestinationID}";
                 return RedirectToAction("Index");
             }
 
@@ -83,10 +90,16 @@ namespace Presentation.Controllers
             if(ModelState.IsValid)
             {
                 await _destinationService.UpdateAsync(DestinationID, destinationData);
-                TempData["success"] = "Thay đổi thông tin địa điểm thành công.";
+
+                TempData["NotificationType"] = "success";
+                TempData["NotificationTitle"] = "Thành công!";
+                TempData["NotificationMessage"] = "Cập nhật thông tin địa điểm thành công";
+
                 return RedirectToAction("Index");
             }
-            TempData["error"] = "Không tìm thấy địa điểm !!";
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = $"Không tìm thấy dữ liệu địa điểm id: {DestinationID}";
             return View();
         }
 
@@ -94,7 +107,9 @@ namespace Presentation.Controllers
         public async Task<IActionResult>Delete(Guid DestinationID)
         {
             await _destinationService.DeleteAsync(DestinationID);
-            TempData["success"] = "Xóa địa điểm " + DestinationID + " thành công.";
+            TempData["NotificationType"] = "success";
+            TempData["NotificationTitle"] = "Thành công!";
+            TempData["NotificationMessage"] = "Xóa địa điểm thành công";
             return RedirectToAction("Index");
         }
     }

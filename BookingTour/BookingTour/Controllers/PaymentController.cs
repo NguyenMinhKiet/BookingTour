@@ -12,9 +12,10 @@ namespace Presentation.Controllers
     {
         private readonly IPaymentService _paymentService;
         private readonly IBookingService _bookingService;
-        public PaymentController(IPaymentService paymentService)
+        public PaymentController(IPaymentService paymentService, IBookingService bookingService)
         {
             _paymentService = paymentService;
+            _bookingService = bookingService;
         }
 
         // GET: /Payment/
@@ -43,9 +44,7 @@ namespace Presentation.Controllers
 
             }).ToList();
             var bookingsSelectList = new SelectList(bookingsViewModel, "BookingID", "BookingID");
-
-            ViewBag.TourList = bookingsSelectList;
-
+            ViewBag.BookingList = bookingsSelectList;
             return View();
         }
 
@@ -56,10 +55,16 @@ namespace Presentation.Controllers
             if(ModelState.IsValid)
             {
                 await _paymentService.CreateAsync(dto);
-                TempData["success"] = "Thêm thông tin thanh toán mới thành công.";
+
+                TempData["NotificationType"] = "success";
+                TempData["NotificationTitle"] = "Thành Công!";
+                TempData["NotificationMessage"] = "Thêm thanh toán thành công!";
+
                 return RedirectToAction("Index");
             }
-            TempData["error"] = "Thêm thông tin thanh toán mới thất bại.";
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
             return View();
         }
 
@@ -69,7 +74,9 @@ namespace Presentation.Controllers
             var payment = await _paymentService.GetById(PaymentID);
             if(payment == null)
             {
-                TempData["error"] = "Không tìm thấy thông tin thanh toán " + PaymentID;
+                TempData["NotificationType"] = "danger";
+                TempData["NotificationTitle"] = "Thất bại!";
+                TempData["NotificationMessage"] = $"Không tìm thấy đánh giá id: {PaymentID}";
                 return RedirectToAction("Index");
             }
 
@@ -93,10 +100,14 @@ namespace Presentation.Controllers
             if(ModelState.IsValid)
             {
                 await _paymentService.UpdateAsync(PaymentID, dto);
-                TempData["success"] = "Cập nhật thông tin thanh toán thành công !!";
+                TempData["NotificationType"] = "success";
+                TempData["NotificationTitle"] = "Thành Công!";
+                TempData["NotificationMessage"] = "Cập nhật thông tin thanh toán thành công!";
                 return RedirectToAction("Index");
             }
-            TempData["error"] = "Cập nhật thông tin thanh toán thất bại !!";
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = "Cập nhật thông tin thanh toán thất bại";
             return View();
         }
 
@@ -104,7 +115,9 @@ namespace Presentation.Controllers
         public async Task<IActionResult> Delete(Guid PaymentID)
         {
             await _paymentService.DeleteAsync(PaymentID);
-            TempData["success"] = "Xóa địa điểm " + PaymentID + " thành công.";
+            TempData["NotificationType"] = "success";
+            TempData["NotificationTitle"] = "Thành Công!";
+            TempData["NotificationMessage"] = "Xóa thông tin thanh toán thành công!";
             return RedirectToAction("Index");
         }
     }

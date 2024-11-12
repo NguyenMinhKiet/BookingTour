@@ -1,9 +1,35 @@
 ﻿@model Presentation.Models.TourViewModel
 @{
     ViewData["Title"] = "Thêm tour mới";
+    Layout = "_ContentLayout";
 }
 
-<h2>Thêm tour mới</h2>
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Thêm Tour</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-asp-controller="HomeController"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <a asp-controller="Tour"
+               asp-action="Index">
+                Chuyến đi
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            Create
+        </li>
+    </ul>
+</div>
 
 <form asp-action="Create" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>

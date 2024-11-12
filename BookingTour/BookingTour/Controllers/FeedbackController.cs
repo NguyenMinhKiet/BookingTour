@@ -1,5 +1,6 @@
 ﻿using Application.DTOs.FeedbackDTOs;
 using Application.Services_Interface;
+using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Presentation.Models;
@@ -63,10 +64,14 @@ namespace Presentation.Controllers
             if(ModelState.IsValid)
             {
                 await _feedbackService.CreateAsync(dto);
-                TempData["success"] = "Thêm đánh giá mới thành công.";
+                TempData["NotificationType"] = "success";
+                TempData["NotificationTitle"] = "Thành công!";
+                TempData["NotificationMessage"] = $"Thêm đánh giá cho Tour {dto.TourID} thành công";
                 return RedirectToAction("Index");
             }
-            TempData["error"] = "Thêm đánh giá mới thất bại !!";
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = $"Dữ liệu nhập không hợp lệ";
             return View();
         }
 
@@ -88,7 +93,10 @@ namespace Presentation.Controllers
                 };
                 return View(feedbackViewModel);
             }
-            return RedirectToAction("Error", "Shared");
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = $"Không tìm thấy đánh giá id: {FeedbackID}";
+            return RedirectToAction("Index");
         }
 
         // POST: /Feedback/Update?{FeedbackID}
@@ -98,10 +106,14 @@ namespace Presentation.Controllers
             if(ModelState.IsValid)
             {
                 await _feedbackService.UpdateAsync(FeedbackID, dto);
-                TempData["success"] = "Thay đổi thông tin khách hàng " + FeedbackID + " thành công.";
+                TempData["NotificationType"] = "success";
+                TempData["NotificationTitle"] = "Thành công!";
+                TempData["NotificationMessage"] = $"Cập nhật thông tin đánh giá thành công";
                 return RedirectToAction("Index");
             }
-            TempData["error"] = "Không tìm thấy khách hàng !!";
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
             return View();
         }
     }

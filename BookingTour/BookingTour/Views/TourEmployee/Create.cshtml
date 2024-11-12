@@ -1,37 +1,48 @@
 ﻿@model Presentation.Models.TourEmployeeViewModel
 @{
     ViewData["Title"] = "Thêm nhân viên vào tour";
+    Layout = "_ContentLayout";
 }
 
-<h2>Thêm nhân viên vào tour</h2>
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Thêm Nhân Viênn Tour</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-asp-controller="HomeController"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <a asp-controller="TourEmployee"
+               asp-action="Index">
+                Nhân viên chuyến đi
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            Create
+        </li>
+    </ul>
+</div>
 
 <form asp-action="Create" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="form-group">
-        <label for="TourID">Chọn Tour:</label>
-        <select id="TourID" name="TourID" class="form-control" Required>
-            <option value="">-- Chọn Tour --</option>
-            @foreach (var tour in ViewBag.TourList as SelectList)
-            {
-                <option value="@tour.Value">@tour.Text</option>
-            }
-        </select>
-        <span asp-validation-for="TourID" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
         <label for="EmployeeID">Chọn nhân viên:</label>
-        <select id="EmployeeID" name="EmployeeID" class="form-control" Required>
+        <select id="EmployeeID" name="EmployeeID" class="form-control" asp-items="@ViewBag.EmployeeList" Required>
             <option value="">-- Chọn nhân viên --</option>
-            @foreach (var d in ViewBag.EmployeeList as SelectList)
-            {
-                <option value="@d.Value">@d.Text</option>
-            }
+            
         </select>
         <span asp-validation-for="EmployeeID" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Lưu</button>
-    <a asp-controller="TourEmployee" asp-action="Index" class="btn btn-secondary">Hủy</a>
+    <a asp-controller="Tour" asp-action="Index" class="btn btn-secondary">Hủy</a>
 </form>
