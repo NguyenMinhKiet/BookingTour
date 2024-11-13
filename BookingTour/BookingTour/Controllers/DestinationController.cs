@@ -1,7 +1,10 @@
 ﻿using Application.DTOs.DestinationDTOs;
+using Application.Services;
 using Application.Services_Interface;
 using Domain.Entities;
+using Domain.Entities.Location;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Presentation.Models;
 
 namespace Presentation.Controllers
@@ -9,10 +12,14 @@ namespace Presentation.Controllers
     public class DestinationController : Controller
     {
         private readonly IDestinationService _destinationService;
+        private readonly ILocationService _locationService;
+        private readonly ILogger<DestinationController> _logger;
 
-        public DestinationController(IDestinationService destinationService)
+        public DestinationController(IDestinationService destinationService, ILocationService locationService, ILogger<DestinationController> logger)
         {
             _destinationService = destinationService;
+            _locationService = locationService;
+            _logger = logger;
         }
 
         // GET: /Destination/
@@ -33,8 +40,17 @@ namespace Presentation.Controllers
         }
 
         // GET: /Destination/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var locationData = await _locationService.LoadAllCitysAsync();
+            var cities = new List<City>();
+
+            foreach (var i in locationData)
+            {
+                cities.Add(i);
+            }
+            // Log dữ liệu ra console
+            ViewData["Cities"] = cities;
             return View();
         }
 
@@ -44,6 +60,7 @@ namespace Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 await _destinationService.CreateAsync(destination);
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành công!";
@@ -53,7 +70,7 @@ namespace Presentation.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ!";
-            return RedirectToAction("Index");
+            return View();
         }
 
 

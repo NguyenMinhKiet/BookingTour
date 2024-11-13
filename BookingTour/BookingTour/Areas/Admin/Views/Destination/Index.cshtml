@@ -1,0 +1,152 @@
+﻿@model List<Areas.Admin.Models.DestinationViewModel>
+@{
+    ViewData["Title"] = "Danh sách địa điểm";
+    Layout = "_AdminContentLayout";
+}
+
+
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Danh sách Địa Điểm</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-area="Admin"
+               asp-controller="Home"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            Danh sách
+        </li>
+    </ul>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Danh sách Filters</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="multi-filter-select"
+                           class="display table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>City</th>
+                                <th>Country</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                            </tr>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>City</th>
+                                <th>Country</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var destination in Model)
+                            {
+                                <tr>
+                                    <td>@destination.DestinationID</td>
+                                    <td>@destination.Name</td>
+                                    <td>@destination.City</td>
+                                    <td>@destination.Country</td>
+                                    <td>@destination.Description</td>
+                                    <td>@destination.Category</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex align-items-center">
+                    <h4 class="card-title">Thông tin chi tiết</h4>
+                    <a class="btn btn-primary btn-round ms-auto"
+                       asp-area="Admin"
+                       asp-action="Create"
+                       asp-controller="Destination">
+                        <i class="fa fa-plus"></i>
+                        Thêm địa điểm
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="add-row"
+                           class="display table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>City</th>
+                                <th>Country</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th style="width: 10%">Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Name</th>
+                                <th>City</th>
+                                <th>Country</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var destination in Model)
+                            {
+                                <tr>
+                                    <td>@destination.DestinationID</td>
+                                    <td>@destination.Name</td>
+                                    <td>@destination.City</td>
+                                    <td>@destination.Country</td>
+                                    <td>@destination.Description</td>
+                                    <td>@destination.Category</td>
+                                    <td>
+                                        <div class="form-button-action">
+                                            <a class="btn btn-link btn-primary" type="button"
+                                               asp-area="Admin"
+                                               asp-route-DestinationID=@destination.DestinationID
+                                               asp-controller="Destination"
+                                               asp-action="Update">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a class="btn btn-link btn-danger " type="button"
+                                               asp-area="Admin"
+                                               asp-route-DestinationID=@destination.DestinationID
+                                               asp-controller="Destination"
+                                               asp-action="Delete">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

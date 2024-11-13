@@ -1,0 +1,168 @@
+﻿@model List<Areas.Admin.Models.CustomerViewModel>
+@{
+    ViewData["Title"] = "Danh sách khách hàng";
+    Layout = "_AdminContentLayout";
+}
+
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Danh sách khách hàng</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-area="Admin"
+               asp-controller="Home"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Danh sách Filters</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="multi-filter-select"
+                           class="display table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>AccountID</th>
+                                <th>UserName</th>
+                                <th>Password</th>
+                                <th>IsActive</th>
+                            </tr>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>AccountID</th>
+                                <th>UserName</th>
+                                <th>Password</th>
+                                <th>IsActive</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var customer in Model)
+                            {
+                                <tr>
+                                    <td>@customer.CustomerID</td>
+                                    <td>@customer.FirstName</td>
+                                    <td>@customer.LastName</td>
+                                    <td>@customer.Email</td>
+                                    <td>@customer.Phone</td>
+                                    <td>@customer.Address</td>
+                                    <td>@customer.AccountID</td>
+                                    <td>@customer.Username</td>
+                                    <td>@customer.Password</td>
+                                    <td>@customer.isActive</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex align-items-center">
+                    <h4 class="card-title">Thông tin chi tiết</h4>
+                    <a class="btn btn-primary btn-round ms-auto"
+                       asp-area="Admin"
+                            asp-action="Create"
+                            asp-controller="Customer">
+                        <i class="fa fa-plus"></i>
+                        Thêm khách hàng
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="add-row"
+                           class="display table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>AccountID</th>
+                                <th>UserName</th>
+                                <th>Password</th>
+                                <th>IsActive</th>
+                                <th style="width: 10%">Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>AccountID</th>
+                                <th>UserName</th>
+                                <th>Password</th>
+                                <th>IsActive</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var customer in Model)
+                            {
+                                <tr>
+                                    <td>@customer.FirstName</td>
+                                    <td>@customer.LastName</td>
+                                    <td>@customer.Email</td>
+                                    <td>@customer.Phone</td>
+                                    <td>@customer.Address</td>
+                                    <td>@customer.AccountID</td>
+                                    <td>@customer.Username</td>
+                                    <td>@customer.Password</td>
+                                    <td>@customer.isActive</td>
+                                    <td>
+                                        <div class="form-button-action">
+                                            <a class="btn btn-link btn-primary" type="button"
+                                            asp-area="Admin"
+                                                    asp-route-CustomerID=@customer.CustomerID
+                                                    asp-controller="Customer"
+                                                    asp-action="Update">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a class="btn btn-link btn-danger " type="button"
+                                               asp-area="Admin"
+                                                   asp-route-CustomerID=@customer.CustomerID
+                                                   asp-controller="Customer"
+                                                   asp-action="Delete">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

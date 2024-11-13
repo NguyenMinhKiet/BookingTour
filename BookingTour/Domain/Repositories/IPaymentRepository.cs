@@ -18,5 +18,8 @@ namespace Domain.Repositories
 
         // Phương thức xóa theo ID
         Task DeleteAsync(Guid id);
+        Task ChangeStatus(Guid id, bool status);
+        Task<bool> GetStatus(Guid bookingID);
+        Task<Payment> GetByBookingId(Guid bookingID);
     }
 }

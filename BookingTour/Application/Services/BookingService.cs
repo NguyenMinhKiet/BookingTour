@@ -3,6 +3,7 @@ using Application.Services_Interface;
 using Domain.Entities;
 using Domain.Repositories;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System;
 using System.Collections.Generic;
@@ -12,18 +13,22 @@ using System.Threading.Tasks;
 
 namespace Application.Services
 {
+
     public class BookingService : IBookingService
     {
         private readonly IBookingRepository _bookingRepository;
-        private readonly ITourRepository _tourRepository;
-        public BookingService(IBookingRepository bookingRepository, ITourRepository tourRepository)
+        private readonly ITourService _TourService;
+        public BookingService(IBookingRepository bookingRepository, ITourService tourService)
         {
             _bookingRepository = bookingRepository;
-            _tourRepository = tourRepository;
+            _TourService = tourService;
         }
+
+        
+
         public async Task<Booking> CreateAsync(BookingCreationDto dto)
         {
-            var price = (await _tourRepository.GetByIdAsync(dto.TourID)).Price;
+            var price = (await _TourService.GetByIdAsync(dto.TourID)).Price;
             var childPrice = price * 50 / 100;
             var booking = new Booking()
             {
@@ -35,6 +40,8 @@ namespace Application.Services
                 Child = dto.Child,
                 TotalPrice = price * dto.Adult + childPrice * dto.Child
             };
+            var numpeople = dto.Adult + dto.Child;
+            await _TourService.ReducePeople(dto.TourID, numpeople);
             await _bookingRepository.AddAsync(booking);
             return booking;
         }
@@ -54,22 +61,49 @@ namespace Application.Services
             return await _bookingRepository.GetByIdAsync(id);
         }
 
-        public async Task UpdateAsync(Guid booking_id, BookingUpdateDto dto)
+        public async Task<bool> UpdateAsync(Guid booking_id, BookingUpdateDto dto)
         {
             var booking = await _bookingRepository.GetByIdAsync(booking_id);
             if (booking == null)
             {
-                throw new Exception($"Không tìm thấy booking: {booking_id} !!");
+                return false;
             }
-            var price = (await _tourRepository.GetByIdAsync(booking.TourID)).Price;
+            var price = (await _TourService.GetByIdAsync(booking.TourID)).Price;
             var childPrice = price * 50 / 100;
+
+            var numPeopleOld = booking.Adult + booking.Child;
 
             booking.ModifyAt = DateTime.Now;
             booking.Adult = dto.Adult;
             booking.Child = dto.Child;
             booking.TotalPrice = price * dto.Adult + childPrice * dto.Child;
 
+
             await _bookingRepository.UpdateAsync(booking);
+
+            var numPeopleNew = dto.Adult + dto.Child;
+
+            await _TourService.IncreasePeople(booking.TourID,numPeopleOld);
+            var reduce = await _TourService.ReducePeople(booking.TourID, numPeopleNew);
+            if (!reduce)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public async Task<bool> CancelBooking(Guid id)
+        {
+            var booking = await GetById(id);
+            if (booking != null)
+            {
+                var numPeople = booking.Adult + booking.Child;
+
+                await _TourService.IncreasePeople(booking.TourID, numPeople);
+                await DeleteAsync(id);
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -2,11 +2,6 @@
 using Application.Services_Interface;
 using Domain.Entities;
 using Domain.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services
 {
@@ -28,7 +23,7 @@ namespace Application.Services
                 Name = dto.Name,
                 City = dto.City,
                 Description = dto.Description,
-                Country = dto.Country,
+                Country = "Việt Nam",
                 Category = dto.Category,
             };
             await _destinationRepository.AddAsync(destination);
@@ -61,10 +56,10 @@ namespace Application.Services
             if (destiantion != null)
             {
                 destiantion.Name = dto.Name;
-                destiantion.City = dto.City;
                 destiantion.Country = dto.Country;
                 destiantion.Description = dto.Description;
                 destiantion.Category = dto.Category;
+                destiantion.City = dto.City;
 
                 await _destinationRepository.UpdateAsync(destiantion);
             }

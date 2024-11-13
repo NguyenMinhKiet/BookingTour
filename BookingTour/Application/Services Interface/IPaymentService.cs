@@ -14,5 +14,8 @@ namespace Application.Services_Interface
         public Task UpdateAsync(Guid id, PaymentUpdateDto dto);
 
         public Task DeleteAsync(Guid id);
+        public Task ChangeStatus(Guid PaymentID, bool status);
+        public Task<bool> GetStatus(Guid BookingID);
+        public Task<Payment> GetByBookingId(Guid bookingID);
     }
 }

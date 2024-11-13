@@ -38,6 +38,8 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>City</th>
+                                <th>District</th>
+                                <th>Ward</th>
                                 <th>Country</th>
                                 <th>Description</th>
                                 <th>Category</th>
@@ -49,6 +51,8 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>City</th>
+                                <th>District</th>
+                                <th>Ward</th>
                                 <th>Country</th>
                                 <th>Description</th>
                                 <th>Category</th>
@@ -61,6 +65,8 @@
                                     <td>@destination.DestinationID</td>
                                     <td>@destination.Name</td>
                                     <td>@destination.City</td>
+                                    <td>@destination.District</td>
+                                    <td>@destination.Ward</td>
                                     <td>@destination.Country</td>
                                     <td>@destination.Description</td>
                                     <td>@destination.Category</td>
@@ -94,6 +100,8 @@
                             <tr>
                                 <th>Name</th>
                                 <th>City</th>
+                                <th>District</th>
+                                <th>Ward</th>
                                 <th>Country</th>
                                 <th>Description</th>
                                 <th>Category</th>
@@ -104,6 +112,8 @@
                             <tr>
                                 <th>Name</th>
                                 <th>City</th>
+                                <th>District</th>
+                                <th>Ward</th>
                                 <th>Country</th>
                                 <th>Description</th>
                                 <th>Category</th>
@@ -114,9 +124,10 @@
                             @foreach (var destination in Model)
                             {
                                 <tr>
-                                    <td>@destination.DestinationID</td>
                                     <td>@destination.Name</td>
                                     <td>@destination.City</td>
+                                    <td>@destination.District</td>
+                                    <td>@destination.Ward</td>
                                     <td>@destination.Country</td>
                                     <td>@destination.Description</td>
                                     <td>@destination.Category</td>

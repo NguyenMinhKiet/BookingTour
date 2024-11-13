@@ -1,0 +1,66 @@
+﻿@model Areas.Admin.Models.FeedbackViewModel
+
+@{
+    ViewData["Title"] = "Thêm đánh giá mới";
+    Layout = "_AdminContentLayout";
+}
+
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Thêm Đánh Giá</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-area="Admin"
+            asp-controller="HomeController"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Admin" 
+            asp-controller="Feedback"
+               asp-action="Index">
+                Đánh giá
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            Create
+        </li>
+    </ul>
+</div>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="TourID"></label>
+        <input asp-for="TourID" type="text" class="form-control" id="TourID" name="TourID" Required>
+        <span asp-validation-for="TourID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CustomerID"></label>
+        <input asp-for="CustomerID" type="text" class="form-control" id="CustomerID" name="CustomerID" Required>
+        <span asp-validation-for="CustomerID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Rating"></label>
+        <input asp-for="Rating" type="text" class="form-control" id="Rating" name="Rating" Required>
+        <span asp-validation-for="Rating" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Comments"></label>
+        <textarea asp-for="Comments" type="text" class="form-control" id="Comments" name="Comments"></textarea>
+        <span asp-validation-for="Comments" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-area="Admin" asp-controller="Feedback" asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>

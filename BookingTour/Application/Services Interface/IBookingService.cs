@@ -12,8 +12,10 @@ namespace Application.Services_Interface
 
         public Task<Booking> CreateAsync(BookingCreationDto dto);
 
-        public Task UpdateAsync(Guid booking_id, BookingUpdateDto dto);
+        public Task<bool> UpdateAsync(Guid booking_id, BookingUpdateDto dto);
 
         public Task DeleteAsync(Guid id);
+
+        public Task<bool> CancelBooking(Guid id);
     }
 }

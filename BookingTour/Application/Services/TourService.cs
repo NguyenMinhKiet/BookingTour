@@ -68,5 +68,31 @@ namespace Application.Services
 
             }
         }
+
+        public async Task<bool> ReducePeople(Guid TourID, int numPeople)
+        {
+            var tour = await _tourRepository.GetByIdAsync(TourID);
+            if(tour != null)
+            {
+                if(tour.AvailableSeats < numPeople)
+                {
+                    return false;
+                }
+                tour.AvailableSeats = tour.AvailableSeats - numPeople;
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<bool> IncreasePeople(Guid TourID, int numPeople)
+        {
+            var tour = await _tourRepository.GetByIdAsync(TourID);
+            if (tour != null)
+            {
+                tour.AvailableSeats = tour.AvailableSeats + numPeople;
+                return true;
+            }
+            return false;
+        }
     }
 }

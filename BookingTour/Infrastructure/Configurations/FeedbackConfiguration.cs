@@ -18,11 +18,7 @@ namespace Infrastructure.DataAccess.Configurations
             builder.Property(u=>u.TourID)
                 .IsRequired();
 
-            builder.Property(u => u.Comments)
-                .IsRequired();
-
-            builder.Property(u => u.Rating)
-                .IsRequired();
+           
 
             builder.HasOne(t=>t.Tour)
                 .WithMany(f=>f.FeedBacks)

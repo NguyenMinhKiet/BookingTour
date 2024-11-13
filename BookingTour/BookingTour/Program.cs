@@ -21,8 +21,6 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("Default_Connecti
 
 
 
-
-
 // Đăng ký các repository
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
@@ -53,7 +51,7 @@ builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IRoleGroupService, RoleGroupService>();
 builder.Services.AddScoped<IAuthorizedService, AuthorizedService>();
-builder.Services.AddScoped<LocationService>();
+builder.Services.AddScoped<ILocationService, LocationService>();
 
 // Add TempData
 builder.Services.AddControllersWithViews()
@@ -91,9 +89,25 @@ app.UseSession();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+// Cấu hình route cho các Area
+app.UseEndpoints(endpoints =>
+{
+    // Cấu hình cho các Area
+    endpoints.MapControllerRoute(
+        name: "Admin",
+        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+
+    // Cấu hình cho các controller không thuộc Area
+
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});
+
+
+
+
 
 app.Run();
 

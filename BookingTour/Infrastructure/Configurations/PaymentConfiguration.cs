@@ -14,12 +14,6 @@ namespace Infrastructure.DataAccess.Configurations
             builder.Property(u => u.BookingID)
                 .IsRequired();
 
-            builder.Property(u => u.Method)
-                .IsRequired();
-
-            builder.Property(u=>u.CreateAt)
-                .IsRequired();
-
             builder.HasOne(i => i.Booking)
                 .WithOne(i => i.Payment)
                 .HasForeignKey<Payment>(i => i.BookingID);

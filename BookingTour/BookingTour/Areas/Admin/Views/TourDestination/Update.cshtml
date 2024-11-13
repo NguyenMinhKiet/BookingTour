@@ -1,0 +1,61 @@
+﻿@model Areas.Admin.Models.TourDestinationViewModel
+@{
+    ViewData["Title"] = "Chỉnh sửa thông tin thời gian địa điểm tour";
+    Layout = "_AdminContentLayout";
+}
+
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Sửa Thông Tin Địa Điểm</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-area="Admin"
+            asp-controller="HomeController"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Admin"
+            asp-controller="TourDestination"
+               asp-action="Index">
+                Địa điểm chuyến đi
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            Update
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <p class="text-secondary">TourID: @Model.TourID</p>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <p class="text-secondary">DestinationID: @Model.DestinationID</p>
+        </li>
+    </ul>
+</div>
+
+<form asp-action="Update" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input asp-for="TourID" type="text" class="form-control" id="TourID" name="TourID" value="@Model.TourID">
+    <input asp-for="DestinationID" type="text" class="form-control" id="DestinationID" name="DestinationID" value="@Model.DestinationID">
+
+    <div class="form-group">
+        <label asp-for="VisitDate"></label>
+        <input asp-for="VisitDate" type="datetime-local" class="form-control" id="VisitDate" name="VisitDate" Required>
+        <span asp-validation-for="VisitDate" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a  asp-area="Admin" asp-controller="Tour" asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>

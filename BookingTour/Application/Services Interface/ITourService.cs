@@ -14,5 +14,7 @@ namespace Application.Services_Interface
         public Task UpdateAsync(Guid id, TourUpdateDto dto);
 
         public Task DeleteAsync(Guid id);
+        Task<bool> ReducePeople(Guid TourID, int numPeople);
+        Task<bool> IncreasePeople(Guid TourID, int numPeople);
     }
 }

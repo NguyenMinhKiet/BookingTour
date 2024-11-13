@@ -2,6 +2,7 @@
 using Application.Services_Interface;
 using Domain.Entities;
 using Domain.Repositories;
+using Microsoft.Identity.Client;
 
 namespace Application.Services
 {
@@ -52,6 +53,21 @@ namespace Application.Services
         public async Task DeleteAsync(Guid id)
         {
             await _paymentRepository.DeleteAsync(id);
+        }
+
+        public async Task ChangeStatus(Guid PaymentID, bool status)
+        {
+            await _paymentRepository.ChangeStatus(PaymentID, status);
+        }
+
+        public async Task<bool> GetStatus(Guid BookingID)
+        {
+            return await _paymentRepository.GetStatus(BookingID);
+        }
+
+        public async Task<Payment> GetByBookingId(Guid bookingID)
+        {
+            return await _paymentRepository.GetByBookingId(bookingID);
         }
     }
 }

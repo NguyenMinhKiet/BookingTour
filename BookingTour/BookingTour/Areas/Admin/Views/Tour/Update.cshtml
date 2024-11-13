@@ -1,0 +1,94 @@
+﻿@model Areas.Admin.Models.TourViewModel
+@{
+    ViewData["Title"] = "Chỉnh sửa thông tin tour";
+    Layout = "_AdminContentLayout";
+}
+
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Sửa Thông Tin Tour</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-area="Admin"
+            asp-controller="HomeController"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Admin" 
+            asp-controller="Tour"
+               asp-action="Index">
+                Chuyến đi
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            Update
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <p class="text-secondary">id: @Model.TourID</p>
+        </li>
+    </ul>
+</div>
+
+<form asp-action="Update" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input asp-for="TourID" type="hidden" class="form-control" id="TourID" name="TourID" value="@Model.TourID">
+
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" type="text" class="form-control" id="Title" name="Title" placeholder="Nhập tựa đề của tour ..." Required>
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" type="text" class="form-control" id="Description" name="Description" placeholder="Nhập mô tả ..." Required>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StartDate"></label>
+        <input asp-for="StartDate" type="datetime-local" class="form-control" id="StartDate" name="StartDate" Required>
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EndDate"></label>
+        <input asp-for="EndDate" type="datetime-local" class="form-control" id="EndDate" name="EndDate" Required>
+        <span asp-validation-for="EndDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Price"></label>
+        <input asp-for="Price" type="decimal" class="form-control" id="Price" name="Price" min="0" Required>
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AvailableSeats"></label>
+        <input asp-for="AvailableSeats" type="number" class="form-control" id="AvailableSeats" name="AvailableSeats" min="0" Required>
+        <span asp-validation-for="AvailableSeats" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Category" class="form-label"></label>
+        <select asp-for="Category" class="form-select" id="Category" name="Category" Required>
+            <option value="" disabled selected>-- Chọn loại địa điểm --</option>
+            <option value="Mountain">Núi</option>
+            <option value="Beach">Biển</option>
+        </select>
+        <span asp-validation-for="Category" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-area="Admin" asp-controller="Tour" asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>

@@ -1,0 +1,141 @@
+﻿@model Areas.Admin.Models.CustomerViewModel
+@{
+    ViewData["Title"] = "Thêm khách hàng mới";
+    Layout = "_AdminContentLayout";
+}
+
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Thêm Khách Hàng Mới</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-area="Admin"
+            asp-controller="HomeController"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Admin"
+            asp-controller="Customer"
+               asp-action="Index">
+                Khách hàng
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            Create
+        </li>
+
+    </ul>
+</div>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" type="text" class="form-control" id="FirstName" name="FirstName" Required>
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" type="text" class="form-control" id="LastName" name="LastName" Required>
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address"></label>
+        <input asp-for="Address" type="text" class="form-control" id="Address" name="Address" Required>
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" type="email" class="form-control" id="Email" name="Email" Required>
+        <span asp-validation-for="Email" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Phone"></label>
+        <input asp-for="Phone" type="text" class="form-control" id="Phone" name="Phone" Required>
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <div class="input-icon">
+            <span class="input-icon-addon">
+                <i class="fa fa-user"></i>
+            </span>
+            <input type="text"
+                   class="form-control"
+                   placeholder="Username" 
+                   asp-for="Username" 
+                   id="Username" name="Username" Required />
+        </div>
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <div class="input-icon">
+            <span class="input-icon-addon">
+                <i class="fas fa-key"></i>
+            </span>
+            <input type="password"
+                   class="form-control"
+                   placeholder="Password"
+                   asp-for="Password"
+                   id="Password" name="Password" Required />
+            <span class="input-icon-addon toggle-password" data-target="#Password">
+                <i class="fas fa-eye"></i>
+            </span>
+        </div>
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <div class="input-icon">
+            <span class="input-icon-addon">
+                <i class="fas fa-key"></i>
+            </span>
+            <input type="password"
+                   class="form-control"
+                   placeholder="ConfirmPassword"
+                   asp-for="ConfirmPassword"
+                   id="ConfirmPassword" name="ConfirmPassword" Required />
+            <span class="input-icon-addon toggle-password" data-target="#ConfirmPassword">
+                <i class="fas fa-eye"></i>
+            </span>
+        </div>
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-area="Admin"  asp-controller="Customer" asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>
+
+@section script{
+    <script>
+        $(document).ready(function () {
+            $('.toggle-password').on('click', function () {
+                // Lấy ID của trường mật khẩu tương ứng từ thuộc tính data-target
+                var passwordInput = $($(this).data('target'));
+                var icon = $(this).find('i');
+
+                // Thay đổi thuộc tính 'type' và biểu tượng của icon
+                if (passwordInput.attr('type') === 'password') {
+                    passwordInput.attr('type', 'text');
+                    icon.removeClass('fa-eye').addClass('fa-eye-slash'); // Đổi biểu tượng
+                } else {
+                    passwordInput.attr('type', 'password');
+                    icon.removeClass('fa-eye-slash').addClass('fa-eye'); // Đổi lại biểu tượng
+                }
+            });
+        });
+    </script>
+}

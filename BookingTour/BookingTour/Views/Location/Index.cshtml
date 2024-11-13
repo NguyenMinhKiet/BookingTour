@@ -1,19 +1,82 @@
-﻿@model Domain.Entities.Location.City
-
-
-
-
-<h2>City: @Model.Name</h2>
-<h2>Code: @Model.Code</h2>
-<h2>Districts: </h2>
-@foreach (var d in Model.District)
-{
-    <h3>District: @d.Name</h3>
-    <h3>Pre: @d.Pre</h3>
-    <h3>Wards: </h3>
-    @foreach (var w in @d.Ward)
-    {
-        <h4>Name: @w.Name</h4>
-        <h4>Pre: @w.Pre</h4>
-    }
+﻿@model List<Domain.Entities.Location.City>
+@{
+    var cities = ViewData["Cities"] as List<Domain.Entities.Location.City>;
+    Layout = "_ContentLayout";
 }
+
+<select id="citySelect" class="form-select">
+    <option value="">Chọn Thành Phố</option>
+    @foreach (var city in cities)
+    {
+        <option value="@city.Code">@city.Name</option>
+    }
+</select>
+
+<select id="districtSelect" class="form-select" disabled>
+    <option value="">Chọn Quận/Huyện</option>
+</select>
+
+<select id="wardSelect" class="form-select" disabled>
+    <option value="">Chọn Phường/Xã</option>
+</select>
+
+@section script{
+    <script>
+        $(document).ready(function () {
+            // Truyền dữ liệu vào JavaScript từ ViewData
+            var cities = @Html.Raw(Json.Serialize(ViewData["Cities"]));
+            console.log(cities)
+            // Khi trang được tải, populate thành phố
+            cities.forEach(function (city) {
+                $('#citySelect').append(`<option value="${city.code}">${city.name}</option>`);
+            });
+
+            // Khi chọn thành phố
+            $('#citySelect').change(function () {
+                var cityCode = $(this).val();
+
+                // Clear district and ward dropdowns
+                $('#districtSelect').empty().append('<option value="">Chọn Quận/Huyện</option>').prop('disabled', false);
+                $('#wardSelect').empty().append('<option value="">Chọn Phường/Xã</option>').prop('disabled', true);
+
+                if (cityCode) {
+                    // Lấy danh sách quận từ thành phố đã chọn
+                    var selectedCity = cities.find(city => city.code === cityCode);
+                    // Kiểm tra nếu districts là đối tượng thay vì mảng
+                    var districts = Array.isArray(selectedCity.district) ? selectedCity.district : Object.values(selectedCity.district);
+
+                    // Lặp qua danh sách quận
+                    districts.forEach(function (district) {
+                        $('#districtSelect').append(`<option value="${district.name}">${district.name}</option>`);
+                    });
+                }
+            });
+
+            // Khi chọn quận
+            $('#districtSelect').change(function () {
+                var cityCode = $('#citySelect').val();
+                var districtName = $(this).val();
+
+                // Clear ward dropdown
+                $('#wardSelect').empty().append('<option value="">Chọn Phường/Xã</option>').prop('disabled', false);
+
+                if (districtName) {
+                    var selectedCity = cities.find(city => city.code === cityCode);
+                    var selectedDistrict = selectedCity.district.find(district => district.name === districtName);
+
+                    // Kiểm tra nếu districts là đối tượng thay vì mảng
+                    if (selectedDistrict && selectedDistrict.ward) {
+                        var wards = Array.isArray(selectedDistrict.ward) ? selectedDistrict.ward : Object.values(selectedDistrict.ward);
+
+                        // Populate wards
+                        wards.forEach(function (ward) {
+                            $('#wardSelect').append(`<option value="${ward.pre}">${ward.name}</option>`);
+                        });
+                    }
+                }
+            });
+
+        });
+    </script>
+}
+
