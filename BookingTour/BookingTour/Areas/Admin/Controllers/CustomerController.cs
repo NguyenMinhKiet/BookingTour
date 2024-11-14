@@ -1,11 +1,14 @@
 ﻿using Application.DTOs.AccountDTOs;
 using Application.DTOs.CustomerDTOs;
 using Application.Services_Interface;
-using Areas.Admin.Models;
+using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.Areas.Admin.Models;
 
-namespace Areas.Admin.Controllers
+namespace Presentation.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class CustomerController : Controller
     {
@@ -16,7 +19,7 @@ namespace Areas.Admin.Controllers
             _customerService = customerService;
             _accountService = accountService;
         }
-
+        [Authorize(Policy = "customer-view")]
         public async Task<IActionResult> Index()
         {
             // Lấy tất cả khách hàng
@@ -28,7 +31,6 @@ namespace Areas.Admin.Controllers
             // Duyệt qua từng khách hàng và lấy thông tin tài khoản
             foreach (var c in customers)
             {
-                var acc = await _accountService.GetById(c.AccountID);
 
                 // Tạo CustomerViewModel từ thông tin khách hàng và tài khoản
                 var customerViewModel = new CustomerViewModel
@@ -37,12 +39,6 @@ namespace Areas.Admin.Controllers
                     FirstName = c.FirstName,
                     LastName = c.LastName,
                     Address = c.Address,
-                    AccountID = acc.Id,
-                    Phone = acc.Phone,
-                    Username = acc.Username,
-                    Password = acc.Password,
-                    Email = acc.Email,
-                    isActive = acc.isActive
                 };
 
                 // Thêm vào danh sách
@@ -53,6 +49,7 @@ namespace Areas.Admin.Controllers
             return View(customersViewModel);
         }
 
+        [Authorize(Policy = "customer-add")]
         // GET: /Customer/Create
         public IActionResult Create()
         {
@@ -61,7 +58,8 @@ namespace Areas.Admin.Controllers
 
         // POST: /Customer/Create
         [HttpPost]
-        public async Task<IActionResult> Create(CustomerCreationDto customer, AccountCreateDto acc)
+        [Authorize(Policy = "customer-add")]
+        public async Task<IActionResult> Create(CustomerCreationDto customer)
         {
             //if (string.IsNullOrEmpty(customer?.FirstName))
             //{
@@ -86,13 +84,11 @@ namespace Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                var CreateAccount = await _accountService.CreateAsync(acc);
-                if (CreateAccount != null)
+                var accountResult = await _accountService.CreateUserAsync(customer);
+                if (accountResult.Result.Succeeded)
                 {
-                    customer.AccountID = CreateAccount.Id;
-
+                    customer.AccountID = accountResult.UserId;
                     await _customerService.CreateAsync(customer);
-
                     TempData["NotificationType"] = "success";
                     TempData["NotificationTitle"] = "Thành Công!";
                     TempData["NotificationMessage"] = "Thêm nhân viên thành công!";
@@ -100,11 +96,16 @@ namespace Areas.Admin.Controllers
                     return RedirectToAction("Index");
                 }
 
-                TempData["NotificationType"] = "danger";
+                TempData["NotificationType"] = "error";
                 TempData["NotificationTitle"] = "Thất bại!";
-                TempData["NotificationMessage"] = "Không thể thêm nhân viên, hãy kiểm tra lại các thông tin!";
+                TempData["NotificationMessage"] = "Không thể tạo tài khoản!";
+                // Xử lý nếu tạo tài khoản không thành công
+                foreach (var error in accountResult.Result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                return View(customer);
 
-                return RedirectToAction("Index");
             }
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
@@ -112,6 +113,7 @@ namespace Areas.Admin.Controllers
             return View();
         }
 
+        [Authorize(Policy = "customer-update")]
         // GET: /Customer/Update?{customer_id}
         public async Task<IActionResult> Update(Guid CustomerID)
         {
@@ -123,30 +125,23 @@ namespace Areas.Admin.Controllers
                 TempData["NotificationMessage"] = $"Không thể lấy giữ liệu từ id: {CustomerID}";
                 return View();
             }
-            var acc = await _accountService.GetById(customer.AccountID);
             var customerViewModel = new CustomerViewModel
             {
                 CustomerID = customer.CustomerID,
                 FirstName = customer.FirstName,
                 LastName = customer.LastName,
                 Address = customer.Address,
-                AccountID = acc.Id,
-                Username = acc.Username,
-                Password = acc.Password,
-                Phone = acc.Phone,
-                Email = acc.Email,
-                isActive = acc.isActive
             };
             return View(customerViewModel);
         }
 
         // POST: /Customer/Update?{CustomerID}
         [HttpPost]
-        public async Task<IActionResult> Update(Guid CustomerID, Guid AccountID, CustomerUpdateDto customer, AccountUpdateDto account)
+        [Authorize(Policy = "customer-update")]
+        public async Task<IActionResult> Update(Guid CustomerID, CustomerUpdateDto customer)
         {
             if (ModelState.IsValid)
             {
-                await _accountService.UpdateAsync(AccountID, account);
                 await _customerService.UpdateAsync(CustomerID, customer);
 
                 TempData["NotificationType"] = "success";
@@ -158,17 +153,24 @@ namespace Areas.Admin.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ!";
+
+            // Lấy tất cả lỗi từ ModelState và thêm chúng vào TempData để hiển thị
+            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+            foreach (var error in errors)
+            {
+                ModelState.AddModelError(string.Empty, error);
+            }
             return View();
         }
 
         // POST: /Customer/Delete?{customer_id}
+        [Authorize(Policy = "customer-delete")]
         public async Task<IActionResult> Delete(Guid CustomerID)
         {
             var customer = await _customerService.GetById(CustomerID);
             if (customer != null)
             {
                 await _customerService.DeleteAsync(CustomerID);
-                await _accountService.DeleteAsync(customer.AccountID);
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành Công!";
                 TempData["NotificationMessage"] = $"Xóa nhân viên {customer.FirstName}!";

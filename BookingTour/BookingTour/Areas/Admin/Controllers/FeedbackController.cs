@@ -1,11 +1,12 @@
 ﻿using Application.DTOs.FeedbackDTOs;
 using Application.Services_Interface;
-using Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using Presentation.Areas.Admin.Models;
 
-namespace Areas.Admin.Controllers
+namespace Presentation.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class FeedbackController : Controller
     {
@@ -16,6 +17,7 @@ namespace Areas.Admin.Controllers
         }
 
         // GET: /Feedback/
+        [Authorize(Policy = "feedback-view")]
         public async Task<IActionResult> Index()
         {
             var feedbacks = await _feedbackService.GetAllAsync();
@@ -35,6 +37,7 @@ namespace Areas.Admin.Controllers
 
 
         // GET: /Feedback/Create
+        [Authorize(Policy = "feedback-add")]
         public async Task<IActionResult> Create()
         {
             return View();
@@ -43,6 +46,7 @@ namespace Areas.Admin.Controllers
 
         // POST: /Feedback/Create
         [HttpPost]
+        [Authorize(Policy = "feedback-add")]
         public async Task<IActionResult> Create(FeedbackCreationDto dto)
         {
             if (ModelState.IsValid)
@@ -56,10 +60,18 @@ namespace Areas.Admin.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = $"Dữ liệu nhập không hợp lệ";
+
+            // Lấy tất cả lỗi từ ModelState và thêm chúng vào TempData để hiển thị
+            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+            foreach (var error in errors)
+            {
+                ModelState.AddModelError(string.Empty, error);
+            }
             return View();
         }
 
         // GET: /Feedback/Update?{FeedbackID}
+        [Authorize(Policy = "feedback-update")]
         public async Task<IActionResult> Update(Guid FeedbackID)
         {
             var feedback = await _feedbackService.GetById(FeedbackID);
@@ -85,6 +97,7 @@ namespace Areas.Admin.Controllers
 
         // POST: /Feedback/Update?{FeedbackID}
         [HttpPost]
+        [Authorize(Policy = "feedback-update")]
         public async Task<IActionResult> Update(Guid FeedbackID, FeedbackUpdateDto dto)
         {
             if (ModelState.IsValid)

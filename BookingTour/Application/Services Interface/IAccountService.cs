@@ -1,26 +1,21 @@
 ﻿
 using Application.DTOs.AccountDTOs;
-using Domain.Entities;
+using Application.DTOs.CustomerDTOs;
+using Application.DTOs.EmployeeDTOs;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Application.Services_Interface
 {
     public interface IAccountService
     {
-        public Task<Account> GetById(Guid id);
-
-        public Task<Account> CreateAsync(AccountCreateDto dto);
-
-        public Task UpdateAsync(Guid BookingID, AccountUpdateDto dto);
-
-        public Task DeleteAsync(Guid id);
-        public Task<Account> GetByEmailAsync(string email);
-        public Task<Account> GetByPhoneAsync(string phone);
-
+        public Task<AccountCreationResult> CreateUserAsync(CustomerCreationDto accountDto);
+        public Task<AccountCreationResult> CreateUserAsync(EmployeeCreationDto accountDto);
+        public Task<IdentityResult> RegisterAsync(RegisterModelDto model);
+        public Task<SignInResult> LoginAsync(LoginModelDto model);
+        public Task LogoutAsync();
+        public Task<IdentityResult> ConfirmEmailAsync(string userId, string token);
+        public Task<string> GeneratePasswordResetTokenAsync(string email);
+        public Task<IdentityResult> ResetPasswordAsync(string email, string token, string newPassword);
+        public Task<IdentityResult> UpdateUserProfileAsync(string userId, UpdateProfileModel model);
+        public Task<IdentityResult> ChangePasswordAsync(string userId, string currentPassword, string newPassword);
     }
 }

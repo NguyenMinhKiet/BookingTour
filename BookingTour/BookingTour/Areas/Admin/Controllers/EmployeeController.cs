@@ -1,11 +1,12 @@
-﻿using Application.DTOs.AccountDTOs;
-using Application.DTOs.EmployeeDTOs;
+﻿using Application.DTOs.EmployeeDTOs;
 using Application.Services_Interface;
-using Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.Areas.Admin.Models;
 
-namespace Areas.Admin.Controllers
+namespace Presentation.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class EmployeeController : Controller
     {
@@ -18,6 +19,7 @@ namespace Areas.Admin.Controllers
             _accountService = accountService;
         }
 
+        [Authorize(Policy = "employee-view")]
         public async Task<IActionResult> Index()
         {
             var employees = await _employeeService.GetAllAsync();
@@ -25,7 +27,6 @@ namespace Areas.Admin.Controllers
 
             foreach (var c in employees)
             {
-                var acc = await _accountService.GetById(c.AccountID);
                 var employeeModelView = new EmployeeViewModel
                 {
                     EmployeeID = c.EmployeeID,
@@ -33,12 +34,6 @@ namespace Areas.Admin.Controllers
                     LastName = c.LastName,
                     Position = c.Position,
                     Address = c.Address,
-                    AccountID = acc.Id,
-                    Phone = acc.Phone,
-                    Username = acc.Username,
-                    Password = acc.Password,
-                    Email = acc.Email,
-                    isActive = acc.isActive
 
                 };
                 employeesViewModel.Add(employeeModelView);
@@ -47,6 +42,7 @@ namespace Areas.Admin.Controllers
             return View(employeesViewModel);
         }
 
+        [Authorize(Policy = "employee-add")]
         public IActionResult Create()
         {
             return View();
@@ -55,57 +51,53 @@ namespace Areas.Admin.Controllers
 
         // POST: /Employee/Create
         [HttpPost]
-        public async Task<IActionResult> Create(EmployeeCreationDto employee, AccountCreateDto acc)
+        [Authorize(Policy = "employee-add")]
+        public async Task<IActionResult> Create(EmployeeCreationDto employee)
         {
-            //if (string.IsNullOrEmpty(employee?.first_name) || employee.first_name.Length < 3)
-            //{
-            //    ModelState.AddModelError("first_name", "Vui lòng nhập đầy đủ họ đệm với ít nhất 3 ký tự !");
-            //}
+            var employeeModelView = new EmployeeViewModel
+            {
+                FirstName = employee.FirstName,
+                LastName = employee.LastName,
+                Position = employee.Position,
+                Address = employee.Address,
 
-            //if (string.IsNullOrEmpty(employee?.phone) || employee.phone.Length != 10)
-            //{
-            //    ModelState.AddModelError("phone", "Số điện thoại phải có 10 kí tự số, bạn đang có " + employee.phone.Length +" ký tự !!");
-            //}
-
-            //if (string.IsNullOrEmpty(employee?.email) || !employee.email.Contains("@"))
-            //{
-            //    ModelState.AddModelError("email", "Email thiếu '@' !!");
-            //}
-
-            //if (string.IsNullOrEmpty(employee?.last_name) || employee.last_name.Length < 3)
-            //{
-            //    ModelState.AddModelError("last_name", "Vui lòng nhập đầy đủ Tên với ít nhất 3 ký tự !!");
-            //}
-
-            //if (employee?.position == 0)
-            //{
-            //    ModelState.AddModelError("position", "Chọn vị trí !!");
-            //}
+            };
 
             if (ModelState.IsValid)
             {
-                var CreateAccount = await _accountService.CreateAsync(acc);
-                if (CreateAccount != null)
+                var accountResult = await _accountService.CreateUserAsync(employee);
+                if (accountResult.Result.Succeeded)
                 {
+
+                    employeeModelView.AccountID = accountResult.UserId;
+
+                    employee.AccountID = accountResult.UserId;
+
+                    Console.WriteLine($"AccountID: {employee.AccountID}");
                     await _employeeService.CreateAsync(employee);
                     TempData["NotificationType"] = "success";
                     TempData["NotificationTitle"] = "Thành công!";
-                    TempData["NotificationMessage"] = "Thêm nhân viên thành công";
+                    TempData["NotificationMessage"] = "Thêm nhân viên  thành công";
                     return RedirectToAction("Index");
                 }
                 TempData["NotificationType"] = "error";
                 TempData["NotificationTitle"] = "Thất bại!";
-                TempData["NotificationMessage"] = "không thể tạo tài khoản";
-                return View();
+                TempData["NotificationMessage"] = "Không thể tạo tài khoản hoặc email đã tồn tại !";
+
+                return View(employeeModelView);
+
             }
             TempData["NotificationType"] = "error";
             TempData["NotificationTitle"] = "Thất bại!";
-            TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
-            return View();
+            TempData["NotificationMessage"] = $"Dữ liệu nhập không hợp lệ";
+
+
+            return View(employeeModelView);
         }
 
 
         // GET: /Employee/Update?{customer_id}
+        [Authorize(Policy = "employee-update")]
         public async Task<IActionResult> Update(Guid EmployeeID)
         {
 
@@ -117,7 +109,6 @@ namespace Areas.Admin.Controllers
                 TempData["NotificationMessage"] = $"Không tìm thấy dữ liệu địa điểm id: {EmployeeID}";
                 return RedirectToAction("Index");
             }
-            var acc = await _accountService.GetById(employee.AccountID);
             var employeeViewData = new EmployeeViewModel
             {
                 EmployeeID = employee.EmployeeID,
@@ -125,12 +116,6 @@ namespace Areas.Admin.Controllers
                 LastName = employee.LastName,
                 Position = employee.Position,
                 Address = employee.Address,
-                AccountID = acc.Id,
-                Username = acc.Username,
-                Password = acc.Password,
-                Phone = acc.Phone,
-                Email = acc.Email,
-                isActive = acc.isActive
             };
 
             return View(employeeViewData);
@@ -138,31 +123,12 @@ namespace Areas.Admin.Controllers
 
         // POST: /Employee/Update?{customer_id}
         [HttpPost]
-        public async Task<IActionResult> Update(Guid EmployeeID, Guid AccountID, EmployeeUpdateDto employee, AccountUpdateDto account)
+        [Authorize(Policy = "employee-update")]
+        public async Task<IActionResult> Update(Guid EmployeeID, EmployeeUpdateDto employee)
         {
-            //if (string.IsNullOrEmpty(employee?.first_name) || employee.first_name.Length < 3)
-            //{
-            //    ModelState.AddModelError("first_name", "Vui lòng nhập đầy đủ họ đệm với ít nhất 3 ký tự!");
-            //}
-
-            //if (string.IsNullOrEmpty(employee?.phone) || employee.phone.Length != 10)
-            //{
-            //    ModelState.AddModelError("phone", "Số điện thoại phải có 10 kí tự số, bạn đang có " + employee.phone.Length + " ký tự !!");
-            //}
-
-            //if (string.IsNullOrEmpty(employee?.email) || !employee.email.Contains("@"))
-            //{
-            //    ModelState.AddModelError("email", "Email thiếu '@'!!");
-            //}
-
-            //if (string.IsNullOrEmpty(employee?.last_name) || employee.last_name.Length < 3)
-            //{
-            //    ModelState.AddModelError("last_name", "Vui lòng nhập đầy đủ Tên với ít nhất 3 ký tự!!");
-            //}
 
             if (ModelState.IsValid)
             {
-                await _accountService.UpdateAsync(AccountID, account);
                 await _employeeService.UpdateAsync(EmployeeID, employee);
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành công!";
@@ -174,12 +140,12 @@ namespace Areas.Admin.Controllers
             return View();
         }
 
+        [Authorize(Policy = "employee-delete")]
         public async Task<IActionResult> Delete(Guid EmployeeID)
         {
             var customer = await _employeeService.GetById(EmployeeID);
             if (customer != null)
             {
-                await _accountService.DeleteAsync(customer.AccountID);
                 await _employeeService.DeleteAsync(EmployeeID);
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành công!";

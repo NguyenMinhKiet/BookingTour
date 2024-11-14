@@ -1,60 +1,91 @@
-﻿using Application.DTOs.RoleDTOs;
-using Application.Services_Interface;
+﻿using Application.Services_Interface;
 using Domain.Entities;
-using Domain.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Application.Services
 {
     public class RoleService : IRoleService
     {
-        private readonly IRoleRepository _Repository;
-        public RoleService(IRoleRepository repository)
-        {
-            _Repository = repository;
-        }
-        public async Task<Role> CreateAsync(RoleCreateDto dto)
-        {
+        private readonly UserManager<Account> _userManager;
+        private readonly RoleManager<Role> _roleManager;
 
-            var acc = new Role()
+        public RoleService(UserManager<Account> userManager, RoleManager<Role> roleManager)
+        {
+            _userManager = userManager;
+            _roleManager = roleManager;
+        }
+
+        public async Task<List<Role>> GetAllRolesAsync()
+        {
+            return await _roleManager.Roles.ToListAsync();
+        }
+
+        public async Task<IList<string>> GetUserRolesAsync(Account user)
+        {
+            return await _userManager.GetRolesAsync(user);
+        }
+
+        public async Task<IList<Account>> GetUsersInRoleAsync(string roleName)
+        {
+            return await _userManager.GetUsersInRoleAsync(roleName);
+        }
+
+        public async Task<bool> CreateRoleAsync(string roleName, string roleDescription)
+        {
+            if (await _roleManager.RoleExistsAsync(roleName))
+                return false; // Vai trò đã tồn tại
+
+            var result = await _roleManager.CreateAsync(new Role(roleName, roleDescription));
+            return result.Succeeded;
+        }
+
+        public async Task<bool> DeleteRoleAsync(string roleName)
+        {
+            var role = await _roleManager.FindByNameAsync(roleName);
+            if (role == null) return false;
+
+            var result = await _roleManager.DeleteAsync(role);
+            return result.Succeeded;
+        }
+
+        public async Task<bool> UpdateRoleNameAsync(string oldRoleName, string newRoleName)
+        {
+            var role = await _roleManager.FindByNameAsync(oldRoleName);
+            if (role == null) return false;
+
+            role.Name = newRoleName;
+            var result = await _roleManager.UpdateAsync(role);
+            return result.Succeeded;
+        }
+
+
+
+        public async Task<bool> AssignUserToRoleAsync(Account user, string role)
+        {
+            if (!await _roleManager.RoleExistsAsync(role))
             {
-                Id = new Guid(),
-                Name = dto.Name,
-                Code = dto.Code,
-            };
-            await _Repository.AddAsync(acc);
-            return acc;
-        }
-
-        public async Task DeleteAsync(Guid id)
-        {
-            await _Repository.DeleteAsync(id);
-        }
-
-        public async Task<IEnumerable<Role>> GetAllAsync()
-        {
-            return await _Repository.GetAllAsync();
-        }
-
-        public async Task<Role> GetById(Guid id)
-        {
-            return await _Repository.GetByIdAsync(id);
-        }
-
-        public async Task UpdateAsync(Guid id, RoleUpdateDto dto)
-        {
-            var acc = await _Repository.GetByIdAsync(id);
-            if (acc == null)
-            {
-                throw new Exception($"Không tìm thấy Role: {id} !!");
+                await _roleManager.CreateAsync(new Role(role,"Cần Thêm Mô Tả"));
             }
-            acc.Name = dto.Name;
-            acc.Code = dto.Code;
-            await _Repository.UpdateAsync(acc);
+
+            var result = await _userManager.AddToRoleAsync(user, role);
+            return result.Succeeded;
         }
+
+        public async Task<bool> RemoveUserFromRoleAsync(Account user, string roleName)
+        {
+            if (!await _userManager.IsInRoleAsync(user, roleName)) return false;
+
+            var result = await _userManager.RemoveFromRoleAsync(user, roleName);
+            return result.Succeeded;
+        }
+
+        public async Task<bool> IsUserInRoleAsync(Account user, string roleName)
+        {
+            return await _userManager.IsInRoleAsync(user, roleName);
+        }
+
     }
+
 }

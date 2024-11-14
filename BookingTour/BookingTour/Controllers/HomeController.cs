@@ -1,8 +1,4 @@
-﻿using Presentation.Models;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using Domain.Entities;
-using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.Controllers
 {
@@ -33,7 +29,7 @@ namespace Presentation.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
         }
     }
 }

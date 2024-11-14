@@ -26,5 +26,7 @@ namespace Domain.Repositories
 
         public Task<Account> GetByEmailAsync(string email);
         public Task<Account> GetByPhoneAsync(string phone);
+        public Task<Account> LoginByUserNameAsync(string userName, string password);
+        public Task<Account> LoginByEmailAsync(string email, string password);
     }
 }

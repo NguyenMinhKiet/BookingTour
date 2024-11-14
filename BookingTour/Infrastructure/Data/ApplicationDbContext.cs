@@ -1,5 +1,4 @@
 ﻿using Domain.Entities;
-using Infrastructure.Configurations;
 using Infrastructure.DataAccess.Configurations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -7,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<Account, Role, string>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
         public DbSet<Employee> Employees { get; set; }
@@ -19,10 +18,6 @@ namespace Infrastructure.Data
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
-        public DbSet<Account> Accounts { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<RoleGroup> RoleGroups { get; set; }
-        public DbSet<Authorized> Authorizeds { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -37,10 +32,10 @@ namespace Infrastructure.Data
             modelBuilder.ApplyConfiguration(new TourDestinationConfiguration());
             modelBuilder.ApplyConfiguration(new TourEmployeeConfiguration());
             modelBuilder.ApplyConfiguration(new FeedbackConfiguration());
-            modelBuilder.ApplyConfiguration(new AccountConfiguration());
-            modelBuilder.ApplyConfiguration(new RoleConfiguration());
-            modelBuilder.ApplyConfiguration(new RoleGroupConfiguration());
-            modelBuilder.ApplyConfiguration(new AuthorizedConfiguration());
+            //modelBuilder.ApplyConfiguration(new AccountConfiguration());
+            //modelBuilder.ApplyConfiguration(new RoleConfiguration());
+            //modelBuilder.ApplyConfiguration(new RoleGroupConfiguration());
+            //modelBuilder.ApplyConfiguration(new AuthorizedConfiguration());
 
             
 
@@ -92,6 +87,31 @@ namespace Infrastructure.Data
             //);
 
 
+        }
+    }
+    public class SeedData
+    {
+        public static async Task Initialize(IServiceProvider serviceProvider, UserManager<Account> userManager)
+        {
+
+            var adminUser = new Account
+            {
+                UserName = "admin",
+                Email = "nguyenminhkiet642002@gmail.com",
+                Password = "Kiet123123",
+                Phone = "0932667135",
+                isActive = true,
+            };
+
+            var user = await userManager.FindByEmailAsync(adminUser.Email);
+            if (user == null)
+            {
+                var result = await userManager.CreateAsync(adminUser, "Kiet123123");
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(adminUser, "Admin");
+                }
+            }
         }
     }
 }

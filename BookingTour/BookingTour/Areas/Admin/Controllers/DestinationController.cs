@@ -1,10 +1,12 @@
 ﻿using Application.DTOs.DestinationDTOs;
 using Application.Services_Interface;
-using Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.Areas.Admin.Models;
 
-namespace Areas.Admin.Controllers
+namespace Presentation.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class DestinationController : Controller
     {
@@ -20,6 +22,7 @@ namespace Areas.Admin.Controllers
         }
 
         // GET: /Destination/
+        [Authorize(Policy = "destination-view")]
         public async Task<IActionResult> Index()
         {
             var destiations = await _destinationService.GetAllAsync();
@@ -37,6 +40,7 @@ namespace Areas.Admin.Controllers
         }
 
         // GET: /Destination/Create
+        [Authorize(Policy = "destination-add")]
         public async Task<IActionResult> Create()
         {
             var listCity = await _locationService.LoadAllCitysAsync();
@@ -46,6 +50,7 @@ namespace Areas.Admin.Controllers
 
         // POST: /Destination/Create
         [HttpPost]
+        [Authorize(Policy = "destination-add")]
         public async Task<IActionResult> Create(DestinationCreationDto destination)
         {
             if (ModelState.IsValid)
@@ -64,6 +69,7 @@ namespace Areas.Admin.Controllers
 
 
         // GET: /Destination/Update?{DestinationID}
+        [Authorize(Policy = "destination-update")]
         public async Task<IActionResult> Update(Guid DestinationID)
         {
             var destination = await _destinationService.GetById(DestinationID);
@@ -92,6 +98,7 @@ namespace Areas.Admin.Controllers
 
         // POST: /Destinantion/Update?{DestinationID}
         [HttpPost]
+        [Authorize(Policy = "destination-update")]
         public async Task<IActionResult> Update(Guid DestinationID, DestinationUpdateDto destinationData)
         {
             if (ModelState.IsValid)
@@ -111,6 +118,7 @@ namespace Areas.Admin.Controllers
         }
 
         // POST: /Destination/Delete?{DestinationID}
+        [Authorize(Policy = "destination-delete")]
         public async Task<IActionResult> Delete(Guid DestinationID)
         {
             await _destinationService.DeleteAsync(DestinationID);

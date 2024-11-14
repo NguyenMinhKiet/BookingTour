@@ -1,12 +1,14 @@
 ﻿using Application.DTOs.BookingDTOs;
 using Application.Services_Interface;
-using Areas.Admin.Models;
-using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Presentation.Areas.Admin.Models;
 
-namespace Areas.Admin.Controllers
+namespace Presentation.Areas.Admin.Controllers
 {
+
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class BookingController : Controller
     {
@@ -19,6 +21,7 @@ namespace Areas.Admin.Controllers
             _tourService = tourService;
             _paymentService = paymentService;
         }
+        [Authorize(Policy = "booking-view")]
         public async Task<IActionResult> Index()
         {
             var bookings = await _bookingService.GetAllAsync();
@@ -41,7 +44,7 @@ namespace Areas.Admin.Controllers
             }
             return View(bookingsViewModel);
         }
-
+        [Authorize(Policy = "booking-add")]
         public async Task<IActionResult> Create()
         {
             var tours = await _tourService.GetAllAsync();
@@ -59,6 +62,7 @@ namespace Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "booking-add")]
         public async Task<IActionResult> Create(BookingCreationDto dto)
         {
             if (ModelState.IsValid)
@@ -75,9 +79,15 @@ namespace Areas.Admin.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Đặt Tour thất bại, hãy kiểm tra lại các thông tin!";
+            // Lấy tất cả lỗi từ ModelState và thêm chúng vào TempData để hiển thị
+            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+            foreach (var error in errors)
+            {
+                ModelState.AddModelError(string.Empty, error);
+            }
             return View();
         }
-
+        [Authorize(Policy = "booking-update")]
         public async Task<IActionResult> Update(Guid BookingID)
         {
             var booking = await _bookingService.GetById(BookingID);
@@ -104,6 +114,7 @@ namespace Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "booking-update")]
         public async Task<IActionResult> Update(Guid BookingID, BookingUpdateDto dto)
         {
             if (ModelState.IsValid)
@@ -128,9 +139,15 @@ namespace Areas.Admin.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ!";
+            // Lấy tất cả lỗi từ ModelState và thêm chúng vào TempData để hiển thị
+            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+            foreach (var error in errors)
+            {
+                ModelState.AddModelError(string.Empty, error);
+            }
             return RedirectToAction("Index");
         }
-
+        [Authorize(Policy = "booking-delete")]
         public async Task<IActionResult> Delete(Guid BookingID)
         {
             var booking = await _bookingService.GetById(BookingID);

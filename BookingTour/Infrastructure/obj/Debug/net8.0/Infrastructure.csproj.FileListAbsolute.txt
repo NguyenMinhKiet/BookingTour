@@ -45,3 +45,5 @@ D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Infrastructure\obj\Debug\net
 D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Infrastructure\obj\Debug\net8.0\refint\Infrastructure.dll
 D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Infrastructure\obj\Debug\net8.0\Infrastructure.pdb
 D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\Infrastructure\obj\Debug\net8.0\ref\Infrastructure.dll
+D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\Infrastructure\bin\Debug\net8.0\Application.dll
+D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\Infrastructure\bin\Debug\net8.0\Application.pdb

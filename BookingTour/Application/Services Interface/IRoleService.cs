@@ -1,23 +1,17 @@
-﻿using Application.DTOs.RoleDTOs;
-using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 namespace Application.Services_Interface
 {
     public interface IRoleService
     {
-        public Task<Role> GetById(Guid id);
-
-        public Task<IEnumerable<Role>> GetAllAsync();
-
-        public Task<Role> CreateAsync(RoleCreateDto dto);
-
-        public Task UpdateAsync(Guid id, RoleUpdateDto dto);
-
-        public Task DeleteAsync(Guid id);
+        public Task<List<Role>> GetAllRolesAsync();
+        public Task<IList<string>> GetUserRolesAsync(Account user);
+        public Task<IList<Account>> GetUsersInRoleAsync(string roleName);
+        public Task<bool> CreateRoleAsync(string roleName, string roleDescription);
+        public Task<bool> DeleteRoleAsync(string roleName);
+        public Task<bool> UpdateRoleNameAsync(string oldRoleName, string newRoleName);
+        public Task<bool> AssignUserToRoleAsync(Account user, string role);
+        public Task<bool> RemoveUserFromRoleAsync(Account user, string roleName);
+        public Task<bool> IsUserInRoleAsync(Account user, string roleName);
     }
 }

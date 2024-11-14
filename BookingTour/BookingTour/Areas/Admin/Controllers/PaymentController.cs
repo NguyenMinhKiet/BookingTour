@@ -1,13 +1,12 @@
 ﻿using Application.DTOs.PaymentDTOs;
 using Application.Services_Interface;
-using Areas.Admin.Models;
-using Humanizer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Identity.Client;
+using Presentation.Areas.Admin.Models;
 
-namespace Areas.Admin.Controllers
+namespace Presentation.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class PaymentController : Controller
     {
@@ -20,6 +19,7 @@ namespace Areas.Admin.Controllers
         }
 
         // GET: /Payment/
+        [Authorize(Policy = "payment-view")]
         public async Task<IActionResult> Index()
         {
             var payments = await _paymentService.GetAllAsync();
@@ -36,6 +36,7 @@ namespace Areas.Admin.Controllers
         }
 
         // GET: /Payment/Create
+        [Authorize(Policy = "payment-add")]
         public async Task<IActionResult> CreateAsync(Guid BookingID)
         {
             return View();
@@ -43,6 +44,7 @@ namespace Areas.Admin.Controllers
 
         // POST: /Payment/Create
         [HttpPost]
+        [Authorize(Policy = "payment-add")]
         public async Task<IActionResult> Create(PaymentCreationDto dto)
         {
             if (ModelState.IsValid)
@@ -58,10 +60,17 @@ namespace Areas.Admin.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
-            return View();
+            // Lấy tất cả lỗi từ ModelState và thêm chúng vào TempData để hiển thị
+            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+            foreach (var error in errors)
+            {
+                ModelState.AddModelError(string.Empty, error);
+            }
+            return View(dto);
         }
 
         // GET: /Payment/Update?{payment_id}
+        [Authorize(Policy = "payment-update")]
         public async Task<IActionResult> Update(Guid PaymentID)
         {
             var payment = await _paymentService.GetById(PaymentID);
@@ -88,6 +97,7 @@ namespace Areas.Admin.Controllers
 
         // POST: /Payment/Update?{PaymentID}
         [HttpPost]
+        [Authorize(Policy = "payment-update")]
         public async Task<IActionResult> Update(Guid PaymentID, PaymentUpdateDto dto)
         {
             if (ModelState.IsValid)
@@ -105,6 +115,7 @@ namespace Areas.Admin.Controllers
         }
 
         // POST: /Payment/Delete?{PaymentID}
+        [Authorize(Policy = "payment-delete")]
         public async Task<IActionResult> Delete(Guid PaymentID)
         {
             await _paymentService.DeleteAsync(PaymentID);

@@ -1,4 +1,4 @@
-﻿@model Areas.Admin.Models.CustomerViewModel
+﻿@model Presentation.Areas.Admin.Models.CustomerViewModel
 @{
     ViewData["Title"] = "Cập nhật thông tin khách hàng";
     Layout = "_AdminContentLayout";
@@ -66,60 +66,7 @@
         <span asp-validation-for="Address" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <label asp-for="Email"></label>
-        <input asp-for="Email" type="email" class="form-control" id="Email" name="Email" Required>
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Phone"></label>
-        <input asp-for="Phone" type="text" class="form-control" id="Phone" name="Phone" Required>
-        <span asp-validation-for="Phone" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <div class="input-icon">
-            <span class="input-icon-addon">
-                <i class="fas fa-key"></i>
-            </span>
-            <input type="password"
-                   class="form-control"
-                   placeholder="Password"
-                   asp-for="Password"
-                   id="Password" name="Password" Required />
-            <span class="input-icon-addon toggle-password" data-target="#Password">
-                <i class="fas fa-eye"></i>
-            </span>
-        </div>
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <div class="input-icon">
-            <span class="input-icon-addon">
-                <i class="fas fa-key"></i>
-            </span>
-            <input type="password"
-                   class="form-control"
-                   placeholder="ConfirmPassword"
-                   asp-for="ConfirmPassword"
-                   id="ConfirmPassword" name="ConfirmPassword" Required />
-            <span class="input-icon-addon toggle-password" data-target="#ConfirmPassword">
-                <i class="fas fa-eye"></i>
-            </span>
-        </div>
-        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="isActive"></label>
-        <select asp-for="isActive" id="isActive" name="isActive" class="form-select" required> 
-            <option value="false">false</option>
-            <option value="true">true</option>
-        </select>
-        <span asp-validation-for="isActive" class="text-danger"></span>
-    </div>
+    
 
     <button type="submit" class="btn btn-primary">Lưu</button>
     <a asp-area="Admin" asp-controller="Customer" asp-action="Index" class="btn btn-secondary">Hủy</a>

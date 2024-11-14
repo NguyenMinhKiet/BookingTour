@@ -14,7 +14,7 @@ namespace Domain.Entities
         public string LastName { get; set; }
         public string Address { get; set; }
         public string Position { get; set; }
-        public Guid AccountID { get; set; }
+        public string? AccountID { get; set; }
 
         public virtual ICollection<TourEmployee> TourEmployee { get; set; }
         public virtual Account Account { get; set; }

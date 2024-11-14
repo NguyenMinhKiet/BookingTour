@@ -1,5 +1,5 @@
 ﻿
-namespace Areas.Admin.Models
+namespace Presentation.Areas.Admin.Models
 {
     public class PaymentViewModel
     {

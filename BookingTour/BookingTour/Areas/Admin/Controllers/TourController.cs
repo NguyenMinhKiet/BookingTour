@@ -1,10 +1,12 @@
 ﻿using Application.DTOs.TourDTOs;
 using Application.Services_Interface;
-using Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.Areas.Admin.Models;
 
-namespace Areas.Admin.Controllers
+namespace Presentation.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class TourController : Controller
     {
@@ -15,6 +17,7 @@ namespace Areas.Admin.Controllers
         }
 
         // GET: /Tour/
+        [Authorize(Policy = "tour-view")]
         public async Task<IActionResult> Index()
         {
             var tours = await _tourService.GetAllAsync();
@@ -35,6 +38,7 @@ namespace Areas.Admin.Controllers
         }
 
         // GET: /Tour/Create
+        [Authorize(Policy = "tour-add")]
         public IActionResult Create()
         {
             return View();
@@ -42,6 +46,7 @@ namespace Areas.Admin.Controllers
 
         // POST: /Tour/Create
         [HttpPost]
+        [Authorize(Policy = "tour-add")]
         public async Task<IActionResult> Create(TourCreationDto dto)
         {
             if (ModelState.IsValid)
@@ -55,9 +60,16 @@ namespace Areas.Admin.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
+            // Lấy tất cả lỗi từ ModelState và thêm chúng vào TempData để hiển thị
+            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+            foreach (var error in errors)
+            {
+                ModelState.AddModelError(string.Empty, error);
+            }
             return View();
         }
         // GET: /Tour/Update?{TourID}
+        [Authorize(Policy = "tour-update")]
         public async Task<IActionResult> Update(Guid TourID)
         {
             var i = await _tourService.GetByIdAsync(TourID);
@@ -85,6 +97,7 @@ namespace Areas.Admin.Controllers
 
         // POST: /Tour/Update?{TourID}
         [HttpPost]
+        [Authorize(Policy = "tour-update")]
         public async Task<IActionResult> Update(Guid TourID, TourUpdateDto dto)
         {
             if (ModelState.IsValid)
@@ -102,6 +115,7 @@ namespace Areas.Admin.Controllers
         }
 
         // POST: /Tour/Delete?{TourID}
+        [Authorize(Policy = "tour-delete")]
         public async Task<IActionResult> Delete(Guid id)
         {
             await _tourService.DeleteAsync(id);

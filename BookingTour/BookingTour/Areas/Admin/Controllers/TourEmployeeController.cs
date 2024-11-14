@@ -1,11 +1,13 @@
 ﻿using Application.DTOs.TourEmployeeDTOs;
 using Application.Services_Interface;
-using Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Presentation.Areas.Admin.Models;
 
-namespace Areas.Admin.Controllers
+namespace Presentation.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class TourEmployeeController : Controller
     {
@@ -21,6 +23,7 @@ namespace Areas.Admin.Controllers
         }
 
         // GET: /TourEmployee/
+        [Authorize(Policy = "tour-employee-view")]
         public async Task<IActionResult> Index()
         {
             var employees = await _employeeService.GetAllAsync();
@@ -46,6 +49,7 @@ namespace Areas.Admin.Controllers
             return View(tourEmployeesViewModel);
         }
 
+        [Authorize(Policy = "tour-employee-add")]
         public async Task<IActionResult> Create()
         {
             var tours = await _tourService.GetAllAsync();
@@ -73,6 +77,7 @@ namespace Areas.Admin.Controllers
 
         // POST: /TourEmployee/Create
         [HttpPost]
+        [Authorize(Policy = "tour-employee-add")]
         public async Task<IActionResult> Create(TourEmployeeCreationDto dto)
         {
             if (ModelState.IsValid)
@@ -86,9 +91,16 @@ namespace Areas.Admin.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
+            // Lấy tất cả lỗi từ ModelState và thêm chúng vào TempData để hiển thị
+            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+            foreach (var error in errors)
+            {
+                ModelState.AddModelError(string.Empty, error);
+            }
             return View();
         }
 
+        [Authorize(Policy = "tour-employee-delete")]
         public async Task<IActionResult> Delete(Guid tour_id, Guid employee_id)
         {
             await _tourEmployeeService.DeleteAsync(tour_id, employee_id);

@@ -1,4 +1,4 @@
-﻿@model List<Areas.Admin.Models.EmployeeViewModel>
+﻿@model List<Presentation.Areas.Admin.Models.EmployeeViewModel>
 @{
     ViewData["Title"] = "Danh sách nhân viên";
     Layout = "_AdminContentLayout";
@@ -38,14 +38,9 @@
                                 <th>ID</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
                                 <th>Position</th>
                                 <th>Address</th>
                                 <th>AccountID</th>
-                                <th>UserName</th>
-                                <th>Password</th>
-                                <th>IsActive</th>
                             </tr>
                             </tr>
                         </thead>
@@ -54,14 +49,9 @@
                                 <th>ID</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
                                 <th>Position</th>
                                 <th>Address</th>
                                 <th>AccountID</th>
-                                <th>UserName</th>
-                                <th>Password</th>
-                                <th>IsActive</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -70,14 +60,9 @@
                                 <tr>
                                     <td>@employee.FirstName</td>
                                     <td>@employee.LastName</td>
-                                    <td>@employee.Email</td>
-                                    <td>@employee.Phone</td>
                                     <td>@employee.Position</td>
                                     <td>@employee.Address</td>
                                     <td>@employee.AccountID</td>
-                                    <td>@employee.Username</td>
-                                    <td>@employee.Password</td>
-                                    <td>@employee.isActive</td>
                                 </tr>
                             }
                         </tbody>
@@ -109,14 +94,9 @@
                             <tr>
                                 <th>First Name</th>
                                 <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
                                 <th>Position</th>
                                 <th>Address</th>
                                 <th>AccountID</th>
-                                <th>UserName</th>
-                                <th>Password</th>
-                                <th>IsActive</th>
                                 <th style="width: 10%">Action</th>
                             </tr>
                         </thead>
@@ -124,14 +104,9 @@
                             <tr>
                                 <th>First Name</th>
                                 <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
                                 <th>Position</th>
                                 <th>Address</th>
                                 <th>AccountID</th>
-                                <th>UserName</th>
-                                <th>Password</th>
-                                <th>IsActive</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
@@ -141,14 +116,9 @@
                                 <tr>
                                     <td>@employee.FirstName</td>
                                     <td>@employee.LastName</td>
-                                    <td>@employee.Email</td>
-                                    <td>@employee.Phone</td>
                                     <td>@employee.Position</td>
                                     <td>@employee.Address</td>
                                     <td>@employee.AccountID</td>
-                                    <td>@employee.Username</td>
-                                    <td>@employee.Password</td>
-                                    <td>@employee.isActive</td>
                                     <td>
                                         <div class="form-button-action">
                                             <a class="btn btn-link btn-primary" type="button"

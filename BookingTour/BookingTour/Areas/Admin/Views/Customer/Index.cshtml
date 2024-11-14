@@ -1,4 +1,4 @@
-﻿@model List<Areas.Admin.Models.CustomerViewModel>
+﻿@model List<Presentation.Areas.Admin.Models.CustomerViewModel>
 @{
     ViewData["Title"] = "Danh sách khách hàng";
     Layout = "_AdminContentLayout";
@@ -32,13 +32,8 @@
                                 <th>ID</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
                                 <th>Address</th>
                                 <th>AccountID</th>
-                                <th>UserName</th>
-                                <th>Password</th>
-                                <th>IsActive</th>
                             </tr>
                             </tr>
                         </thead>
@@ -47,13 +42,8 @@
                                 <th>ID</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
                                 <th>Address</th>
                                 <th>AccountID</th>
-                                <th>UserName</th>
-                                <th>Password</th>
-                                <th>IsActive</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -63,13 +53,8 @@
                                     <td>@customer.CustomerID</td>
                                     <td>@customer.FirstName</td>
                                     <td>@customer.LastName</td>
-                                    <td>@customer.Email</td>
-                                    <td>@customer.Phone</td>
                                     <td>@customer.Address</td>
                                     <td>@customer.AccountID</td>
-                                    <td>@customer.Username</td>
-                                    <td>@customer.Password</td>
-                                    <td>@customer.isActive</td>
                                 </tr>
                             }
                         </tbody>
@@ -101,13 +86,8 @@
                             <tr>
                                 <th>First Name</th>
                                 <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
                                 <th>Address</th>
                                 <th>AccountID</th>
-                                <th>UserName</th>
-                                <th>Password</th>
-                                <th>IsActive</th>
                                 <th style="width: 10%">Action</th>
                             </tr>
                         </thead>
@@ -115,13 +95,8 @@
                             <tr>
                                 <th>First Name</th>
                                 <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
                                 <th>Address</th>
                                 <th>AccountID</th>
-                                <th>UserName</th>
-                                <th>Password</th>
-                                <th>IsActive</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
@@ -131,13 +106,8 @@
                                 <tr>
                                     <td>@customer.FirstName</td>
                                     <td>@customer.LastName</td>
-                                    <td>@customer.Email</td>
-                                    <td>@customer.Phone</td>
                                     <td>@customer.Address</td>
                                     <td>@customer.AccountID</td>
-                                    <td>@customer.Username</td>
-                                    <td>@customer.Password</td>
-                                    <td>@customer.isActive</td>
                                     <td>
                                         <div class="form-button-action">
                                             <a class="btn btn-link btn-primary" type="button"
