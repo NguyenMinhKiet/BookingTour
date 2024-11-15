@@ -34,6 +34,7 @@ namespace Presentation.Areas.Admin.Controllers
                     LastName = c.LastName,
                     Position = c.Position,
                     Address = c.Address,
+                    AccountID = c.AccountID
 
                 };
                 employeesViewModel.Add(employeeModelView);

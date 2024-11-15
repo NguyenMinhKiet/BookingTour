@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Presentation.Areas.Admin.Models.AccountViewModel>
+@{
     ViewData["Title"] = "Danh sách User";
     Layout = "_AdminContentLayout";
 }
@@ -15,5 +16,140 @@
         </li>
     </ul>
 </div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Danh sách Filters</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="multi-filter-select"
+                           class="display table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>UserName</th>
+                                <th>Password</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Roles</th>
+                                <th>isActive</th>
+                            </tr>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>UserName</th>
+                                <th>Password</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Roles</th>
+                                <th>isActive</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var customer in Model)
+                            {
+                                <tr>
+                                    <td>@customer.Id</td>
+                                    <td>@customer.Username</td>
+                                    <td>@customer.Password</td>
+                                    <td>@customer.Email</td>
+                                    <td>@customer.Phone</td>
+                                    <th> @foreach (var role in @customer.Roles)
+                                        {
+                                            @role<br />
+                                        }
+                                    </th>
+                                    <td>@customer.isActive</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Danh sách chi tiết</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="add-row"
+                           class="display table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>UserName</th>
+                                <th>Password</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Roles</th>
+                                <th>isActive</th>
+                                <th style="width: 10%">Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>UserName</th>
+                                <th>Password</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Roles</th>
+                                <th>isActive</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var customer in Model)
+                            {
+                                <tr>
+                                    <td>@customer.Id</td>
+                                    <td>@customer.Username</td>
+                                    <td>@customer.Password</td>
+                                    <td>@customer.Email</td>
+                                    <td>@customer.Phone</td>
+                                    <td>
+                                        @foreach (var role in @customer.Roles)
+                                        {
+                                            @role <br />
+                                        }
+                                    </td>
+                                    <td>@customer.isActive</td>
+                                    <td>
+                                        <div class="form-button-action">
+                                            <a class="btn btn-link btn-primary" type="button"
+                                               asp-area="Admin"
+                                               asp-route-AccountID=@customer.Id
+                                               asp-controller="Account"
+                                               asp-action="Update">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a class="btn btn-link btn-danger " type="button"
+                                               asp-area="Admin"
+                                               asp-route-CustomerID=@customer.Id
+                                               asp-controller="Account"
+                                               asp-action="Delete">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 

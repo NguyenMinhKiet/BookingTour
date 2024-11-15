@@ -4,11 +4,12 @@ using Application.DTOs.EmployeeDTOs;
 using Application.Services_Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.Areas.Admin.Models;
 
 namespace Presentation.Areas.Admin.Controllers
 {
-    [Area("Admin")]
     [Authorize(Roles = "Admin")]
+    [Area("Admin")]
     public class AccountController : Controller
     {
         private IAccountService _accountService;
@@ -20,9 +21,27 @@ namespace Presentation.Areas.Admin.Controllers
 
 
         [Authorize(Policy = "account-view")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var listAccount = await _accountService.GetAllAccountWithRolesAsync();
+            var listView = new List<AccountViewModel>();
+
+            foreach(var account in listAccount)
+            {
+                var acc = new AccountViewModel
+                {
+                    Id = account.Id,
+                    Username = account.UserName,
+                    Password = account.Password,
+                    Email = account.Email,
+                    Phone = account.Phone,
+                    Roles = account.Roles,
+                    isActive = account.isActive
+                };
+                listView.Add(acc);
+            }
+            
+            return View(listView);
         }
 
         [Authorize(Policy = "account-add")]

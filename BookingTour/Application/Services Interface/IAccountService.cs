@@ -2,6 +2,7 @@
 using Application.DTOs.AccountDTOs;
 using Application.DTOs.CustomerDTOs;
 using Application.DTOs.EmployeeDTOs;
+using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 namespace Application.Services_Interface
 {
@@ -17,5 +18,7 @@ namespace Application.Services_Interface
         public Task<IdentityResult> ResetPasswordAsync(string email, string token, string newPassword);
         public Task<IdentityResult> UpdateUserProfileAsync(string userId, UpdateProfileModel model);
         public Task<IdentityResult> ChangePasswordAsync(string userId, string currentPassword, string newPassword);
+
+        public Task<IEnumerable<AccountWithRolesViewModel>> GetAllAccountWithRolesAsync();
     }
 }

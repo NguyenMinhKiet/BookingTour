@@ -4,6 +4,7 @@ using Application.DTOs.EmployeeDTOs;
 using Application.Services_Interface;
 using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Application.Services
@@ -166,6 +167,37 @@ namespace Application.Services
 
             return await _userManager.ChangePasswordAsync(user, currentPassword, newPassword);
         }
+
+        public async Task<IEnumerable<AccountWithRolesViewModel>> GetAllAccountWithRolesAsync()
+        {
+            // Lấy danh sách tất cả người dùng
+            var users = await _userManager.Users.ToListAsync();
+
+            // Tạo danh sách kết quả kèm theo vai trò
+            var userWithRoles = new List<AccountWithRolesViewModel>();
+
+            foreach (var user in users)
+            {
+                // Lấy danh sách vai trò của từng user
+                var roles = await _userManager.GetRolesAsync(user);
+
+                // Thêm vào danh sách kết quả
+                userWithRoles.Add(new AccountWithRolesViewModel
+                {
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    Phone = user.Phone,
+                    Password = user.Password,
+                    isActive = user.isActive,
+                    
+                    Roles = roles.ToList() // Convert sang List<string> nếu cần
+                });
+            }
+
+            return userWithRoles;
+        }
+
 
     }
 

@@ -84,59 +84,64 @@
                             <div class="collapse" id="base">
                                 <ul class="nav nav-collapse">
                                     <li>
-                                        <a href="@Url.Action("Index", "Employee", new { area = "Admin" })">
+                                        <a asp-action="Index" asp-controller="Employee" asp-area="Admin">
                                             <span class="sub-item">Nhân viên</span>
                                         </a>
                                     </li>
 
                                     <li>
-                                        <a href="@Url.Action("Index", "Customer", new { area = "Admin" })">
+                                        <a asp-action="Index" asp-controller="Customer" asp-area="Admin">
                                             <span class="sub-item">Khách hàng</span>
                                         </a>
                                     </li>
 
                                     <li>
-                                        <a href="@Url.Action("Index", "Destination", new { area = "Admin" })">
+                                        <a asp-action="Index" asp-controller="Destination" asp-area="Admin">
                                             <span class="sub-item">Địa điểm</span>
                                         </a>
                                     </li>
 
                                     <li>
-                                        <a href="@Url.Action("Index", "Tour", new { area = "Admin" })">
+                                        <a asp-action="Index" asp-controller="Tour" asp-area="Admin">
                                             <span class="sub-item">Tour</span>
                                         </a>
                                     </li>
 
                                     <li>
-                                        <a href="@Url.Action("Index", "TourDestination", new { area = "Admin" })">
+                                        <a asp-action="Index" asp-controller="TourDestination" asp-area="Admin">
                                             <span class="sub-item">Địa điểm trong Tour</span>
                                         </a>
                                     </li>
 
                                     <li>
-                                        <a href="@Url.Action("Index", "TourEmployee", new { area = "Admin" })">
+                                        <a asp-action="Index" asp-controller="TourEmployee" asp-area="Admin">
                                             <span class="sub-item">Nhân viên trong Tour</span>
                                         </a>
                                     </li>
 
                                     <li>
-                                        <a href="@Url.Action("Index", "Booking", new { area = "Admin" })">
+                                        <a asp-action="Index" asp-controller="Booking" asp-area="Admin">
                                             <span class="sub-item">Đặt Tour</span>
                                         </a>
                                     </li>
 
                                     <li>
-                                        <a href="@Url.Action("Index", "Feedback", new { area = "Admin" })">
+                                        <a asp-action="Index" asp-controller="Feedback" asp-area="Admin">
                                             <span class="sub-item">Đánh Giá</span>
                                         </a>
                                     </li>
 
                                     <li>
-                                        <a href="@Url.Action("Index", "Payment", new { area = "Admin" })">
+                                        <a asp-action="Index" asp-controller="Payment" asp-area="Admin">
                                             <span class="sub-item">Thanh Toán</span>
                                         </a>
                                     </li>
 
+                                    <li>
+                                        <a asp-action="Index" asp-controller="Account" asp-area="Admin">
+                                            <span class="sub-item">Tài Khoản</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
