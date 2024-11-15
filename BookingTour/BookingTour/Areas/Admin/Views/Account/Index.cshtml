@@ -1,7 +1,6 @@
 ﻿@model List<Presentation.Areas.Admin.Models.AccountViewModel>
 @{
     ViewData["Title"] = "Danh sách User";
-    Layout = "_AdminContentLayout";
 }
 
 <div class="page-header">
@@ -51,20 +50,20 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach (var customer in Model)
+                            @foreach (var acc in Model)
                             {
                                 <tr>
-                                    <td>@customer.Id</td>
-                                    <td>@customer.Username</td>
-                                    <td>@customer.Password</td>
-                                    <td>@customer.Email</td>
-                                    <td>@customer.Phone</td>
-                                    <th> @foreach (var role in @customer.Roles)
+                                    <td>@acc.Id</td>
+                                    <td>@acc.Username</td>
+                                    <td>@acc.Password</td>
+                                    <td>@acc.Email</td>
+                                    <td>@acc.Phone</td>
+                                    <th> @foreach (var role in @acc.Roles)
                                         {
                                             @role<br />
                                         }
                                     </th>
-                                    <td>@customer.isActive</td>
+                                    <td>@acc.isActive</td>
                                 </tr>
                             }
                         </tbody>
@@ -108,38 +107,58 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach (var customer in Model)
+                            @foreach (var acc in Model)
                             {
                                 <tr>
-                                    <td>@customer.Id</td>
-                                    <td>@customer.Username</td>
-                                    <td>@customer.Password</td>
-                                    <td>@customer.Email</td>
-                                    <td>@customer.Phone</td>
+                                    <td>@acc.Id</td>
+                                    <td>@acc.Username</td>
+                                    <td>@acc.Password</td>
+                                    <td>@acc.Email</td>
+                                    <td>@acc.Phone</td>
                                     <td>
-                                        @foreach (var role in @customer.Roles)
+                                        @foreach (var role in @acc.Roles)
                                         {
                                             @role <br />
                                         }
                                     </td>
-                                    <td>@customer.isActive</td>
+                                    <td>@acc.isActive</td>
                                     <td>
                                         <div class="form-button-action">
                                             <a class="btn btn-link btn-primary" type="button"
-                                               asp-area="Admin"
-                                               asp-route-AccountID=@customer.Id
+                                            asp-area=""
+                                               asp-route-userId=@acc.Id
                                                asp-controller="Account"
-                                               asp-action="Update">
+                                               asp-action="ChangePassword">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a class="btn btn-link btn-danger " type="button"
+
+                                            <a class="btn btn-link btn-warning" type="button"
                                                asp-area="Admin"
-                                               asp-route-CustomerID=@customer.Id
+                                               asp-route-userId=@acc.Id
+                                               asp-controller="Role"
+                                               asp-action="ChangeRole">
+                                                <i class="fas fa-award"></i>
+                                            </a>
+
+                                            <a class="btn btn-link @((acc.isActive) ? "btn-success" : "btn-warning")"
+                                               type="button"
+                                               asp-area="Admin"
+                                               asp-route-userId="@acc.Id"
                                                asp-controller="Account"
-                                               asp-action="Delete">
-                                                <i class="fa fa-times"></i>
+                                               asp-action="BlockUser">
+                                                @if (acc.isActive)
+                                                {
+                                                    <i class="fas fa-check-circle"></i>
+                                                    
+                                                                            }
+                                                else
+                                                {
+                                                    <i class="fas fa-ban"></i>
+                                                    
+                                                                            }
                                             </a>
                                         </div>
+
                                     </td>
                                 </tr>
                             }

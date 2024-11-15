@@ -61,27 +61,6 @@ namespace Presentation.Areas.Admin.Controllers
         [Authorize(Policy = "customer-add")]
         public async Task<IActionResult> Create(CustomerCreationDto customer)
         {
-            //if (string.IsNullOrEmpty(customer?.FirstName))
-            //{
-            //    ModelState.AddModelError("first_name", errorMessage: $"Vui lòng nhập đầy đủ họ đệm bạn đã nhập: {customer.first_name.Length} ký tự !! ");
-            //}
-
-            //if (string.IsNullOrEmpty(customer?.Phone) || customer.Phone.Length != 10)
-            //{
-            //    ModelState.AddModelError("phone", errorMessage: $"Số điện thoại phải có 10 kí tự số, bạn đã nhập: {customer.phone.Length} ký tự !!");
-            //}
-
-            //if (string.IsNullOrEmpty(customer?.Email) || !customer.Email.Contains("@"))
-            //{
-            //    ModelState.AddModelError("email", errorMessage: "Email thiếu '@'!!");
-            //}
-
-
-            //if (string.IsNullOrEmpty(customer?.LastName))
-            //{
-            //    ModelState.AddModelError("last_name", errorMessage: $"Vui lòng nhập đầy đủ họ đệm, bạn đã nhập: {customer.last_name.Length} ký tự !! ");
-            //}
-
             if (ModelState.IsValid)
             {
                 var accountResult = await _accountService.CreateUserAsync(customer);
@@ -96,9 +75,6 @@ namespace Presentation.Areas.Admin.Controllers
                     return RedirectToAction("Index");
                 }
 
-                TempData["NotificationType"] = "error";
-                TempData["NotificationTitle"] = "Thất bại!";
-                TempData["NotificationMessage"] = "Không thể tạo tài khoản!";
                 // Xử lý nếu tạo tài khoản không thành công
                 foreach (var error in accountResult.Result.Errors)
                 {
@@ -110,7 +86,7 @@ namespace Presentation.Areas.Admin.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ!";
-            return View();
+            return View(customer);
         }
 
         [Authorize(Policy = "customer-update")]
@@ -131,6 +107,8 @@ namespace Presentation.Areas.Admin.Controllers
                 FirstName = customer.FirstName,
                 LastName = customer.LastName,
                 Address = customer.Address,
+                Phone = customer.Phone,
+
             };
             return View(customerViewModel);
         }
@@ -153,13 +131,6 @@ namespace Presentation.Areas.Admin.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ!";
-
-            // Lấy tất cả lỗi từ ModelState và thêm chúng vào TempData để hiển thị
-            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
-            foreach (var error in errors)
-            {
-                ModelState.AddModelError(string.Empty, error);
-            }
             return View();
         }
 

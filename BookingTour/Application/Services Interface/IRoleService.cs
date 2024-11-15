@@ -4,6 +4,7 @@ namespace Application.Services_Interface
 {
     public interface IRoleService
     {
+        public Task<Role> GetByIdAsync(string id);
         public Task<List<Role>> GetAllRolesAsync();
         public Task<IList<string>> GetUserRolesAsync(Account user);
         public Task<IList<Account>> GetUsersInRoleAsync(string roleName);
@@ -13,5 +14,7 @@ namespace Application.Services_Interface
         public Task<bool> AssignUserToRoleAsync(Account user, string role);
         public Task<bool> RemoveUserFromRoleAsync(Account user, string roleName);
         public Task<bool> IsUserInRoleAsync(Account user, string roleName);
+
+        public Task AddClaimToRoleAsync(string roleName, string claimType, string claimValue);
     }
 }

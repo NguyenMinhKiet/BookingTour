@@ -24,6 +24,8 @@ namespace Application.Services
                 LastName = dto.LastName,
                 Position = dto.Position,
                 Address = dto.Address,
+                Phone = dto.Phone,
+                Email = dto.Email,
                 AccountID = dto.AccountID,
             };
             await _employeeRepository.AddAsync(employee);

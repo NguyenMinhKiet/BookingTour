@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
 using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
+using Application.DTOs.AccountDTOs;
 
 namespace Presentation.Controllers
 {
@@ -39,11 +40,45 @@ namespace Presentation.Controllers
                     var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
                     if (result.Succeeded)
                     {
-                        return RedirectToLocal(returnUrl);
+
+                        // Lấy thông tin người dùng
+                        var user = await _userManager.FindByNameAsync(model.UserName);
+                        if (user != null)
+                        {
+                            // Lưu tên người dùng vào Session
+                            HttpContext.Session.SetString("UserName", user.UserName);
+
+                            // Lấy danh sách quyền/role của user
+                            var roles = await _userManager.GetRolesAsync(user);
+
+                            // Kiểm tra quyền và điều hướng
+                            if (roles.Contains("Admin"))
+                            {
+                                TempData["NotificationType"] = "success";
+                                TempData["NotificationTitle"] = "Đăng nhập thành công!";
+                                TempData["NotificationMessage"] = $"Xin chào Admin {user.UserName}!";
+
+                            return RedirectToAction("Index", "Home", new { area = "Admin" });
+                            }
+                            else
+                            {
+                                TempData["NotificationType"] = "success";
+                                TempData["NotificationTitle"] = "Đăng nhập thành công!";
+                                TempData["NotificationMessage"] = $"Xin chào {user.UserName}!";
+
+                            return RedirectToAction("Index", "Home");
+                            }
+                        
+                        }
+                        
                     }
                     else
                     {
-                        ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                        TempData["NotificationType"] = "danger";
+                        TempData["NotificationTitle"] = "Đăng nhập thất bại!";
+                        TempData["NotificationMessage"] = "Tài khoản bị khóa hoặc Mật khẩu không đúng !";
+
+                    return View(model);
                     }
                 }
 
@@ -53,8 +88,9 @@ namespace Presentation.Controllers
             // GET: /Account/Logout
             public async Task<IActionResult> Logout()
             {
-                await _signInManager.SignOutAsync();
-                return RedirectToAction(nameof(Login));
+            HttpContext.Session.Remove("UserName");
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(Login));
             }
 
             // GET: /Account/Register
@@ -84,15 +120,20 @@ namespace Presentation.Controllers
                     if (result.Succeeded)
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
+                        TempData["NotificationType"] = "success";
+                        TempData["NotificationTitle"] = "Tạo tài khoản thành công!";
+                        TempData["NotificationMessage"] = $"Xin chào {user.UserName}!";
                         return RedirectToAction(nameof(Index), "Home");
                     }
-                    foreach (var error in result.Errors)
+                    else
                     {
-                        ModelState.AddModelError(string.Empty, error.Description);
-                        Console.WriteLine(error.Description);
+                        ModelState.AddModelError(string.Empty, "Tài khoản đã tồn tại vui lòng đăng nhập!");
+                        return RedirectToAction("Login");
                     }
                 }
-
+                TempData["NotificationType"] = "danger";
+                TempData["NotificationTitle"] = "Đăng ký thất bại!";
+                TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
                 return View(model);
             }
 
@@ -102,18 +143,43 @@ namespace Presentation.Controllers
                 return View();
             }
 
-            // Phương thức hỗ trợ chuyển hướng sau khi đăng nhập
-            private IActionResult RedirectToLocal(string returnUrl)
+        [HttpGet]
+        public IActionResult ChangePassword(string userId)
+        {
+            var model = new ChangePasswordViewModel
             {
-                if (Url.IsLocalUrl(returnUrl))
-                {
-                    return Redirect(returnUrl);
-                }
-                else
-                {
-                    return RedirectToAction(nameof(HomeController.Index), "Home");
-                }
-            }
+                userId = userId
+            };
+            return View(model);
+
         }
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(string userId, ChangePasswordViewModel model)
+        {
+            
+            if(ModelState.IsValid)
+            {
+                var account = await _userManager.FindByIdAsync(userId);
+                if (account != null)
+                {
+                    account.Password = model.Password;
+                    await _userManager.UpdateAsync(account);
+
+                    TempData["NotificationType"] = "success";
+                    TempData["NotificationTitle"] = "Thành công!";
+                    TempData["NotificationMessage"] = $"Thay đổi mật khẩu thành công!";
+
+                    return RedirectToAction("Index", "Home");
+                }
+                TempData["NotificationType"] = "danger";
+                TempData["NotificationTitle"] = "Thất bại!";
+                TempData["NotificationMessage"] = $"Không tìm thấy tài khoản!";
+                return RedirectToAction("Index","Home");
+            }
+            return View(model);
+        }
+
+        
     }
+}
 

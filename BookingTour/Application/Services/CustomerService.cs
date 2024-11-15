@@ -33,6 +33,8 @@ namespace Application.Services
                 FirstName = customerCreationDto.FirstName,
                 LastName = customerCreationDto.LastName,
                 Address = customerCreationDto.Address,
+                Phone = customerCreationDto.Phone,
+                Email = customerCreationDto.Email,
                 AccountID = customerCreationDto.AccountID,
             };
             await _customerRepository.AddAsync(newCustomer);

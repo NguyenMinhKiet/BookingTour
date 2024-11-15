@@ -1,7 +1,6 @@
 ﻿@model Presentation.Areas.Admin.Models.CustomerViewModel
 @{
     ViewData["Title"] = "Thêm khách hàng mới";
-    Layout = "_AdminContentLayout";
 }
 
 <div class="page-header">
@@ -53,28 +52,27 @@
         <input asp-for="Address" type="text" class="form-control" id="Address" name="Address" Required>
         <span asp-validation-for="Address" class="text-danger"></span>
     </div>
+    <div class="form-group">
+        <label asp-for="Phone" class="form-label"></label>
+        <input asp-for="Phone" type="text" class="form-control" id="Phone" name="Phone">
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <div class="input-group mb-3">
+            <input type="email"
+                   class="form-control"
+                   placeholder="Email"
+                   aria-label="Email"
+                   aria-describedby="Email"
+                   asp-for="Email" />
+            <span class="input-group-text" id="Email">@@Gmail.com</span>
+        </div>
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
 
     <button type="submit" class="btn btn-primary">Lưu</button>
     <a asp-area="Admin"  asp-controller="Customer" asp-action="Index" class="btn btn-secondary">Hủy</a>
 </form>
 
-@section script{
-    <script>
-        $(document).ready(function () {
-            $('.toggle-password').on('click', function () {
-                // Lấy ID của trường mật khẩu tương ứng từ thuộc tính data-target
-                var passwordInput = $($(this).data('target'));
-                var icon = $(this).find('i');
-
-                // Thay đổi thuộc tính 'type' và biểu tượng của icon
-                if (passwordInput.attr('type') === 'password') {
-                    passwordInput.attr('type', 'text');
-                    icon.removeClass('fa-eye').addClass('fa-eye-slash'); // Đổi biểu tượng
-                } else {
-                    passwordInput.attr('type', 'password');
-                    icon.removeClass('fa-eye-slash').addClass('fa-eye'); // Đổi lại biểu tượng
-                }
-            });
-        });
-    </script>
-}

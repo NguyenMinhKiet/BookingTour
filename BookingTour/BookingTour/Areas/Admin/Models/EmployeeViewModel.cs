@@ -17,11 +17,12 @@ namespace Presentation.Areas.Admin.Models
 
         public string AccountID { get; set; }
 
-        [Required]
-        [EmailAddress(ErrorMessage = "Sai định dạng email, (.. @gmail.com) !")]
+        [Required(ErrorMessage = "Vui lòng nhập email !")]
+        [EmailAddress(ErrorMessage = "Email không hợp lệ. Vd example@gmail.com")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Vui lòng nhập 10 kí tự số!")]
-        [Range(1000000000, 9999999999)]
+
+        [Required(ErrorMessage = "Vui lòng nhập số điện thoại !")]
+        [Phone(ErrorMessage = "Số điện thoại không hợp lệ. Hãy nhập 10 ký tự số")]
         public string Phone { get; set; }
     }
 }

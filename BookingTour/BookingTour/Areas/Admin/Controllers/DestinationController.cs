@@ -12,13 +12,11 @@ namespace Presentation.Areas.Admin.Controllers
     {
         private readonly IDestinationService _destinationService;
         private readonly ILocationService _locationService;
-        private readonly ILogger<DestinationController> _logger;
 
-        public DestinationController(IDestinationService destinationService, ILocationService locationService, ILogger<DestinationController> logger)
+        public DestinationController(IDestinationService destinationService, ILocationService locationService)
         {
             _destinationService = destinationService;
             _locationService = locationService;
-            _logger = logger;
         }
 
         // GET: /Destination/
@@ -44,7 +42,6 @@ namespace Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> Create()
         {
             var listCity = await _locationService.LoadAllCitysAsync();
-            _logger.LogInformation("Data: {data}", listCity[0]);
             return View();
         }
 

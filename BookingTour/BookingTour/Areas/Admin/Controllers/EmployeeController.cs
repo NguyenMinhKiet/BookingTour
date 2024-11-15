@@ -55,26 +55,13 @@ namespace Presentation.Areas.Admin.Controllers
         [Authorize(Policy = "employee-add")]
         public async Task<IActionResult> Create(EmployeeCreationDto employee)
         {
-            var employeeModelView = new EmployeeViewModel
-            {
-                FirstName = employee.FirstName,
-                LastName = employee.LastName,
-                Position = employee.Position,
-                Address = employee.Address,
-
-            };
-
             if (ModelState.IsValid)
             {
                 var accountResult = await _accountService.CreateUserAsync(employee);
                 if (accountResult.Result.Succeeded)
                 {
-
-                    employeeModelView.AccountID = accountResult.UserId;
-
                     employee.AccountID = accountResult.UserId;
 
-                    Console.WriteLine($"AccountID: {employee.AccountID}");
                     await _employeeService.CreateAsync(employee);
                     TempData["NotificationType"] = "success";
                     TempData["NotificationTitle"] = "Thành công!";
@@ -85,7 +72,7 @@ namespace Presentation.Areas.Admin.Controllers
                 TempData["NotificationTitle"] = "Thất bại!";
                 TempData["NotificationMessage"] = "Không thể tạo tài khoản hoặc email đã tồn tại !";
 
-                return View(employeeModelView);
+                return View();
 
             }
             TempData["NotificationType"] = "error";
@@ -93,7 +80,7 @@ namespace Presentation.Areas.Admin.Controllers
             TempData["NotificationMessage"] = $"Dữ liệu nhập không hợp lệ";
 
 
-            return View(employeeModelView);
+            return View();
         }
 
 
@@ -117,6 +104,8 @@ namespace Presentation.Areas.Admin.Controllers
                 LastName = employee.LastName,
                 Position = employee.Position,
                 Address = employee.Address,
+                Email = employee.Email,
+                Phone = employee.Phone,
             };
 
             return View(employeeViewData);

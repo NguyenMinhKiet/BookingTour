@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 
 namespace Application.Services
@@ -86,6 +87,33 @@ namespace Application.Services
             return await _userManager.IsInRoleAsync(user, roleName);
         }
 
+        public async Task AddClaimToRoleAsync(string roleName, string claimType, string claimValue)
+        {
+            var role = await _roleManager.FindByNameAsync(roleName);
+
+            if (role != null)
+            {
+                var result = await _roleManager.AddClaimAsync(role, new Claim(claimType, claimValue));
+
+                if (result.Succeeded)
+                {
+                    Console.WriteLine($"Claim {claimType} đã được thêm vào role {roleName}.");
+                }
+                else
+                {
+                    Console.WriteLine("Không thể thêm claim vào role.");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Role {roleName} không tồn tại.");
+            }
+        }
+
+        public async Task<Role> GetByIdAsync(string id)
+        {
+            return await  _roleManager.FindByIdAsync(id);
+        }
     }
 
 }

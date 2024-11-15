@@ -1,7 +1,6 @@
 ﻿@model Presentation.Areas.Admin.Models.EmployeeViewModel
 @{
     ViewData["Title"] = "Cập nhật thông tin nhân viên";
-    Layout = "_AdminContentLayout";
 }
 
 <div class="page-header">
@@ -62,12 +61,6 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="Phone" class="form-label"></label>
-        <input asp-for="Phone" type="text" class="form-control" id="Phone" name="Phone" Required>
-        <span asp-validation-for="Phone" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
         <label asp-for="Position" class="form-label"></label>
         <select asp-for="Position" id="Position" name="Position" class="form-select">
             <option value="Manager">Quản lý</option>
@@ -77,18 +70,6 @@
         <span asp-validation-for="Position" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <div class="input-group mb-3">
-            <input type="text"
-                   class="form-control"
-                   placeholder="Email"
-                   aria-label="Email"
-                   aria-describedby="Email"
-                   asp-for="Email" />
-            <span class="input-group-text" id="Email">@@Gmail.com</span>
-        </div>
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
 
     <button type="submit" class="btn btn-primary">Lưu</button>
     <a asp-area="Admin" asp-controller="Employee" asp-action="Index" class="btn btn-secondary">Hủy</a>

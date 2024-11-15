@@ -1,0 +1,16 @@
+﻿@model Application.DTOs.RoleDTOs.RoleChangeViewModel
+
+<h2>Thay đổi Role cho User: @Model.UserName</h2>
+
+<form method="post" asp-action="UpdateRole">
+    <input type="hidden" asp-for="UserId" />
+
+    <div class="form-group">
+        <label for="role">Chọn Role mới:</label>
+        <select asp-for="CurrentRole" asp-items="Model.Roles" class="form-control">
+            <option value="">-- Chọn Role --</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Cập nhật</button>
+</form>

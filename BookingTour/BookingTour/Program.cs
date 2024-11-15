@@ -8,6 +8,7 @@ using Infrastructure.Seed;
 using Infrastructure.Static;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +18,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     .AddCookie(options =>
     {
         // Đường dẫn đến trang login khi người dùng chưa đăng nhập
-        options.LoginPath = "/Account/Loginaaaa";
+        options.LoginPath = "/Account/Login";
         // Đường dẫn đến trang logout sau khi người dùng đăng xuất
         options.LogoutPath = "/Account/Logout";
         // Đường dẫn đến trang khi người dùng truy cập vào các trang bị cấm
@@ -79,7 +80,6 @@ builder.Services.AddSession(options =>
     options.Cookie.Name = "MinhKiet"; // Đặt tên cookie cho session
     options.IdleTimeout = TimeSpan.FromMinutes(20); // Thời gian tồn tại của session
 });
-
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
@@ -183,6 +183,23 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}");
+});
+
+
+app.Use(async (context, next) =>
+{
+    if (context.User.Identity.IsAuthenticated)
+    {
+        var userManager = context.RequestServices.GetRequiredService<UserManager<Account>>();
+        var user = await userManager.GetUserAsync(context.User);
+
+        if (user != null)
+        {
+            context.Items["UserName"] = user.UserName;
+        }
+    }
+
+    await next.Invoke();
 });
 
 // Lấy dịch vụ Scoped và chạy SeedRolesAsync trong phạm vi hợp lệ
