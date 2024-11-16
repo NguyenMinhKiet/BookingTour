@@ -1,5 +1,8 @@
 ﻿using Domain.Entities;
 using Infrastructure.Data;
+namespace Infrastructure.Data.Seed
+{
+
 
 public class TourSeed
 {
@@ -137,4 +140,5 @@ public class TourSeed
             await context.SaveChangesAsync();
         }
     }
+}
 }

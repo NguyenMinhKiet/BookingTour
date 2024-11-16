@@ -1,13 +1,12 @@
 ﻿using Application.DTOs.RoleDTOs;
 using Application.Services_Interface;
 using Domain.Entities;
-using Infrastructure.Static;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.Metadata;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Presentation.Areas.Admin.Models;
 using System.Security.Claims;
 
@@ -123,45 +122,62 @@ namespace Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateRoleClaims(string roleId)
         {
             var ClaimType = "permission";
-            var permissionList = PERMISSIONS.GetAllPermisstions();
-            var PermissionListViewModel = new List<ClaimViewModel>();
-            foreach (var permission in permissionList)
-            {
-                var claim = new ClaimViewModel
-                {
-                    Type = ClaimType, 
-                    Value = permission.Key,
-                    Description = permission.Value,
-                    Selected = false
-                    
-                };
-                PermissionListViewModel.Add(claim);
-            }
+            //var permissionList = PERMISSIONS.GetAllPermisstions();
 
             var role = await _roleManager.FindByIdAsync(roleId);
-                var claims = await _roleManager.GetClaimsAsync(role);
-                var listClaimViewModel = new List<ClaimViewModel>();
-
-            // Đánh dấu Selected dựa trên các Claims đã tồn tại
-            foreach (var permissionClaim in PermissionListViewModel)
+            if(role != null)
             {
-                foreach (var claim in claims)
+                var permissionList = await _roleManager.GetClaimsAsync(role);
+                var PermissionListViewModel = new List<ClaimViewModel>();
+
+                foreach (var permission in permissionList)
                 {
-                    if (string.Equals(claim.Type, permissionClaim.Type, StringComparison.OrdinalIgnoreCase) &&
-                        string.Equals(claim.Value, permissionClaim.Value, StringComparison.OrdinalIgnoreCase))
-                        {
-                            permissionClaim.Selected = true; // Đánh dấu nếu tồn tại trong Claims
-                        }
+                    var data = JsonConvert.DeserializeObject<Permission>(permission.Value);
+                    var claim = new ClaimViewModel
+                    {
+                        Type = ClaimType,
+                        Value = data.Value,
+                        Description = data.Description,
+                        Selected = data.IsActive
+                    };
+                    PermissionListViewModel.Add(claim);
                 }
+                var roleClaimsViewModel = new RoleClaimsViewModel
+                {
+                    RoleId = role.Id,
+                    RoleName = role.Name,
+                    Claims = PermissionListViewModel
+                };
+                return View(roleClaimsViewModel);
             }
 
-            var roleClaimsViewModel = new RoleClaimsViewModel
-            {
-                RoleId = role.Id,
-                RoleName = role.Name,
-                Claims = PermissionListViewModel
-            };
-            return View(roleClaimsViewModel);
+
+            //var role = await _roleManager.FindByIdAsync(roleId);
+            //var claims = await _roleManager.GetClaimsAsync(role);
+            //var listClaimViewModel = new List<ClaimViewModel>();
+
+            // Đánh dấu Selected dựa trên các Claims đã tồn tại
+            //foreach (var permissionClaim in PermissionListViewModel)
+            //{
+            //    foreach (var claim in claims)
+            //    {
+            //        if (string.Equals(claim.Type, permissionClaim.Type, StringComparison.OrdinalIgnoreCase) &&
+            //            string.Equals(claim.Value, permissionClaim.Value, StringComparison.OrdinalIgnoreCase))
+            //            {
+            //                permissionClaim.Selected = true; // Đánh dấu nếu tồn tại trong Claims
+            //            }
+            //    }
+            //}
+
+            //var roleClaimsViewModel = new RoleClaimsViewModel
+            //{
+            //    RoleId = role.Id,
+            //    RoleName = role.Name,
+            //    Claims = PermissionListViewModel
+            //};
+            //return View(roleClaimsViewModel);
+
+            return View();
         }
         [HttpPost]
         public async Task<IActionResult> UpdateRoleClaims(string roleId, RoleClaimsViewModel model)
@@ -178,7 +194,7 @@ namespace Presentation.Areas.Admin.Controllers
                 }
 
                 // Cập nhật claims
-                var result = await UpdateRoleClaimsAsync(role, model);
+                var result = await ReClaimsRole(role, model);
 
                 if (result)
                 {
@@ -199,35 +215,34 @@ namespace Presentation.Areas.Admin.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu không hợp lệ";
-
-            return RedirectToAction("UpdateRoleClaims", new { roleId = roleId });
+            return View(model);
         }
 
-
-
-        private async Task<bool> UpdateRoleClaimsAsync(Role role, RoleClaimsViewModel model)
+        [HttpPost]
+        public async Task<bool> ReClaimsRole(Role role, RoleClaimsViewModel model)
         {
             if (ModelState.IsValid)
             {
-                // Lấy danh sách các claims hiện tại của role
-                var currentClaims = await _roleManager.GetClaimsAsync(role);
+                var claims = await _roleManager.GetClaimsAsync(role);
 
-                // Xóa tất cả các claims hiện tại
-                foreach (var claim in currentClaims)
+                foreach (var claim in claims)
                 {
                     await _roleManager.RemoveClaimAsync(role, claim);
                 }
 
-                // Thêm các claims mới đã được chọn từ model
-                foreach (var claim in model.Claims.Where(c => c.Selected))
+                var newClaims = model.Claims;
+
+                foreach (var claim in newClaims)
                 {
-                    var newClaim = new Claim(claim.Type, claim.Value);
-                    await _roleManager.AddClaimAsync(role, newClaim);
+                    var permission = new Permission(claim.Value, claim.Description, claim.Selected);
+                    await _roleManager.AddClaimAsync(role, new Claim(claim.Type, JsonConvert.SerializeObject(permission)));
                 }
                 return true;
             }
             return false;
         }
+
+
 
         public async Task<IActionResult> Delete(string roleId)
         {
@@ -298,6 +313,7 @@ namespace Presentation.Areas.Admin.Controllers
                 RoleName = role.Name,
                 Selected = false
             };
+
             return View(claimViewModel);
         }
         [HttpPost]
@@ -309,7 +325,19 @@ namespace Presentation.Areas.Admin.Controllers
                 var role = await _roleManager.FindByIdAsync(roleId);
                 if (role != null)
                 {
-                    var claim = new Claim(model.Type, model.Value);
+
+                    var existingClaim = _roleManager.GetClaimsAsync(role).Result
+                        .FirstOrDefault(c => c.Value == JsonConvert.SerializeObject(new Permission(model.Value, model.Description, model.Selected)));
+
+                    if (existingClaim != null)
+                    {
+                        TempData["NotificationType"] = "danger";
+                        TempData["NotificationTitle"] = "Thất bại!";
+                        TempData["NotificationMessage"] = $"Claim với giá trị {model.Value} đã tồn tại.";
+                        return View(model);
+                    }
+
+                    var claim = new Claim(model.Type, JsonConvert.SerializeObject(new Permission(model.Value,model.Description,false)));
                     var result = await _roleManager.AddClaimAsync(role, claim);
                     if (result.Succeeded)
                     {
@@ -320,9 +348,10 @@ namespace Presentation.Areas.Admin.Controllers
                     }
                     else
                     {
+                        var errorMessages = string.Join(", ", result.Errors.Select(e => e.Description));
                         TempData["NotificationType"] = "danger";
                         TempData["NotificationTitle"] = "Thất bại!";
-                        TempData["NotificationMessage"] = $"{claim.Value} đã tồn tại trong {role.Name}";
+                        TempData["NotificationMessage"] = $"Lỗi khi thêm claim: {errorMessages}";
                         return View(model);
                     }
                 }

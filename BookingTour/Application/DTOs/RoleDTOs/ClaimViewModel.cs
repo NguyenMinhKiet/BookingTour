@@ -8,8 +8,8 @@ namespace Application.DTOs.RoleDTOs
 {
     public class ClaimViewModel
     {
-        public string RoleId { get; set; }
-        public string RoleName { get; set; }
+        public string? RoleId { get; set; }
+        public string? RoleName { get; set; }
         public string Type { get; set; }
         public string Value { get; set; }
         public string Description { get; set; }

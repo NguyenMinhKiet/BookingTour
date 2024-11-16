@@ -1,6 +1,5 @@
 ﻿using Domain.Entities;
 using Infrastructure.DataAccess.Configurations;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
