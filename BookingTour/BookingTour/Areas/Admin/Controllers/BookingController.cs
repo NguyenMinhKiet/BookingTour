@@ -68,11 +68,10 @@ namespace Presentation.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 await _bookingService.CreateAsync(dto);
-
-                TempData["NotificationType"] = "success";
-                TempData["NotificationTitle"] = "Thành công!";
-                TempData["NotificationMessage"] = "Đặt Tour thành công!";
-
+                
+                    TempData["NotificationType"] = "success";
+                    TempData["NotificationTitle"] = "Thành công!";
+                    TempData["NotificationMessage"] = "Đặt Tour thành công!";
                 return RedirectToAction("Index");
             }
 

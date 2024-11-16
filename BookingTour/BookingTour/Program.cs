@@ -3,8 +3,8 @@ using Application.Services_Interface;
 using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Data;
+using Infrastructure.Data.Seed;
 using Infrastructure.Repositories;
-using Infrastructure.Seed;
 using Infrastructure.Static;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
@@ -53,8 +53,11 @@ builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<ILocationService, LocationService>();
-builder.Services.AddScoped<RoleSeed>();  // Đăng ký RoleSeed
-builder.Services.AddScoped<SeedData>();
+
+builder.Services.AddScoped<RoleSeed>();
+builder.Services.AddScoped<AccountAdminSeed>();
+builder.Services.AddScoped<TourSeed>();
+builder.Services.AddScoped<DestinationSeed>();
 
 // Cấu hình Identity
 builder.Services.AddIdentity<Account, Role>(options =>
@@ -205,12 +208,22 @@ app.Use(async (context, next) =>
 // Lấy dịch vụ Scoped và chạy SeedRolesAsync trong phạm vi hợp lệ
 using (var scope = app.Services.CreateScope())
 {
-    var roleSeed = scope.ServiceProvider.GetRequiredService<RoleSeed>();
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<ApplicationDbContext>();
+
+    var roleSeed = services.GetRequiredService<RoleSeed>();
     await roleSeed.SeedRolesAsync();  // Seed roles
 
     // Tiếp theo, khởi tạo SeedData cho người dùng
-    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<Account>>();
-    await SeedData.Initialize(scope.ServiceProvider, userManager);
+    var userManager = services.GetRequiredService<UserManager<Account>>();
+    await AccountAdminSeed.Initialize(services, userManager);
+
+    
+    DestinationSeed.SeedDestinationsAsync(context).Wait();
+
+    TourSeed.SeedToursAsync(context).Wait();
 }
+
+
 
 app.Run();

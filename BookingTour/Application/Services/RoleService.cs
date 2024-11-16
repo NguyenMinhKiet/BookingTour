@@ -42,9 +42,9 @@ namespace Application.Services
             return result.Succeeded;
         }
 
-        public async Task<bool> DeleteRoleAsync(string roleName)
+        public async Task<bool> DeleteRoleAsync(string roleId)
         {
-            var role = await _roleManager.FindByNameAsync(roleName);
+            var role = await _roleManager.FindByIdAsync(roleId);
             if (role == null) return false;
 
             var result = await _roleManager.DeleteAsync(role);
@@ -67,7 +67,7 @@ namespace Application.Services
         {
             if (!await _roleManager.RoleExistsAsync(role))
             {
-                await _roleManager.CreateAsync(new Role(role,"Cần Thêm Mô Tả"));
+                await _roleManager.CreateAsync(new Role(role,role + " role"));
             }
 
             var result = await _userManager.AddToRoleAsync(user, role);

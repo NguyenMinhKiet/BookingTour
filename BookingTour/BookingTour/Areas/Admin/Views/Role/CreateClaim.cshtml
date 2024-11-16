@@ -1,0 +1,71 @@
+﻿@model Application.DTOs.RoleDTOs.ClaimViewModel
+
+@{
+    ViewData["Title"] = "Thêm thông tin Role claim";
+}
+
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Thêm Permission</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-area="Admin"
+               asp-controller="HomeController"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Admin"
+               asp-controller="Role"
+               asp-action="Index">
+                Danh sách Role
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Admin"
+            asp-route-roleId="@Model.RoleId"
+               asp-controller="Role"
+               asp-action="CreateClaim">
+                @Model.RoleName
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            CreateClaim
+        </li>
+    </ul>
+</div>
+
+<form asp-action="CreateClaim" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input asp-for="RoleId" type="hidden" value="@Model.RoleId"/>
+    <input asp-for="RoleName" type="hidden"  value="@Model.RoleName"/>
+    <div class="form-group">
+        <label asp-for="Type"></label>
+        <input asp-for="Type" type="text" class="form-control" placeholder="Type" value="permission">
+        <span asp-validation-for="Type" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Value"></label>
+        <input asp-for="Value" type="text" class="form-control" placeholder="Value">
+        <span asp-validation-for="Value" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" type="text" class="form-control" placeholder="Description">
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-area="Admin" asp-controller="Role" asp-action="UpdateRoleClaims" asp-route-roleId="@Model.RoleId" class="btn btn-secondary">Hủy</a>
+</form>

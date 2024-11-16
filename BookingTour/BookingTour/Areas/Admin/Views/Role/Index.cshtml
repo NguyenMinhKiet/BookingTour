@@ -1,5 +1,93 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<Application.DTOs.RoleDTOs.RoleClaimsViewModel>
 @{
+    ViewData["Title"] = "Danh sách Roles";
 }
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Danh sách Roles</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-area="Admin"
+               asp-controller="Home"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            Danh sách
+        </li>
+    </ul>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex align-items-center">
+                    <h4 class="card-title">Thông tin chi tiết</h4>
+                    <a class="btn btn-primary btn-round ms-auto"
+                       asp-area="Admin"
+                       asp-action="Create"
+                       asp-controller="Role">
+                        <i class="fa fa-plus"></i>
+                        Thêm Roles
+                    </a>
+                </div>
+
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="add-row"
+                           class="display table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 10%">STT</th>
+                                <th>Role Name</th>
+                                <th style="width: 10%">Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>STT</th>
+                                <th>Role Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                <tr>
+                                    <td>@(i + 1)</td> <!-- Hiển thị số thứ tự -->
+                                    <td>@Model[i].RoleName</td>
+                                    <td>
+                                        <div class="form-button-action">
+                                            <a class="btn btn-link btn-primary" type="button"
+                                               asp-area="Admin"
+                                               asp-route-roleId=@Model[i].RoleId
+                                               asp-controller="Role"
+                                               asp-action="UpdateRoleClaims">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+
+                                            <a class="btn btn-link btn-danger" type="button"
+                                               asp-area="Admin"
+                                               asp-route-roleId=@Model[i].RoleId
+                                               asp-controller="Role"
+                                               asp-action="Delete">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

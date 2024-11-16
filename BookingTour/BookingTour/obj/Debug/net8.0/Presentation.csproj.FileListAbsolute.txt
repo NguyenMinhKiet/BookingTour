@@ -706,3 +706,11 @@ D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\System.Web.WebPages.dll
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\Microsoft.Web.Infrastructure.dll
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour\obj\Debug\net8.0\Presentation.MvcApplicationPartsAssemblyInfo.cs
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\System.Web.Mvc.dll
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\System.Web.Razor.dll
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\System.Web.Helpers.dll
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\System.Web.WebPages.Deployment.dll
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\System.Web.WebPages.Razor.dll
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\System.Web.WebPages.dll
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\Microsoft.Web.Infrastructure.dll
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\obj\Debug\net8.0\Presentation.MvcApplicationPartsAssemblyInfo.cs

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Seed
+namespace Infrastructure.Data.Seed
 {
     public class RoleSeed
     {
@@ -22,19 +22,17 @@ namespace Infrastructure.Seed
         public async Task SeedRolesAsync()
         {
             // Get permissions from static class
-            var AdminPermissions = PERMISSIONS.GetAllPermisstions();
-            var EmployeePermissions = PERMISSIONS.GetEmployeePermisstions();
-            var CustomerPermissios = PERMISSIONS.GetCustomerPermisstions();
+            var adminPermissions = PERMISSIONS.GetAllPermisstions();
+            var employeePermissions = PERMISSIONS.GetEmployeePermisstions();
+            var userPermissions = PERMISSIONS.GetCustomerPermisstions();
 
-            await CreateRoleAsync("Admin", AdminPermissions);
-            await CreateRoleAsync("Employee", EmployeePermissions);
-            await CreateRoleAsync("User", CustomerPermissios);
+            await CreateRoleAsync("Admin", adminPermissions);
+            await CreateRoleAsync("Employee", employeePermissions);
+            await CreateRoleAsync("User", userPermissions);
         }
 
         private async Task CreateRoleAsync(string roleName, Dictionary<string, string> permissions)
         {
-
-
             // Check if the role already exists
             var roleExist = await _roleManager.RoleExistsAsync(roleName);
             if (!roleExist)
@@ -48,13 +46,8 @@ namespace Infrastructure.Seed
                     // Add claims (permissions)
                     foreach (var permission in permissions.Keys)
                     {
-                        var claim = new IdentityRoleClaim<string>
-                        {
-                            RoleId = role.Id,
-                            ClaimType = "Permission",
-                            ClaimValue = permission
-                        };
-                        await _roleManager.AddClaimAsync(role, new System.Security.Claims.Claim("Permission", permission));
+                        var claim = new System.Security.Claims.Claim("permission", permission);
+                        await _roleManager.AddClaimAsync(role, claim);
                     }
                 }
                 else
