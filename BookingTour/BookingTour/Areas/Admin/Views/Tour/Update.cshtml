@@ -80,10 +80,18 @@
 
     <div class="form-group">
         <label asp-for="Category" class="form-label"></label>
-        <select asp-for="Category" class="form-select" id="Category" name="Category" Required>
-            <option value="" disabled selected>-- Chọn loại địa điểm --</option>
+        <select asp-for="Category" class="form-select" id="Category" name="Category">
+            <option value="" disabled >-- Chọn loại địa điểm --</option>
             <option value="Mountain">Núi</option>
             <option value="Beach">Biển</option>
+            <option value="Cultural">Văn hóa</option>
+            <option value="Historical">Lịch sử</option>
+            <option value="EcoTourism">Sinh thái</option>
+            <option value="Adventure">Mạo hiểm</option>
+            <option value="Relaxation">Nghỉ dưỡng</option>
+            <option value="CityTour">Thành phố</option>
+            <option value="Festival">Lễ hội</option>
+            <option value="Cruise">Du thuyền</option>
         </select>
         <span asp-validation-for="Category" class="text-danger"></span>
     </div>

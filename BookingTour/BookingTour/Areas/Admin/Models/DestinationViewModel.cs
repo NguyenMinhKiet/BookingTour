@@ -14,5 +14,6 @@ namespace Presentation.Areas.Admin.Models
         public string Category { get; set; }
         [Required(ErrorMessage = "Vui lòng nhập thành phố !")]
         public string City { get; set; }
+
     }
 }

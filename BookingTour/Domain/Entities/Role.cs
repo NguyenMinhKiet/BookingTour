@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Role : IdentityRole
+    public class Role : IdentityRole<Guid>
     {
         public string Description { get; set; }
         public Role(string roleName, string description)

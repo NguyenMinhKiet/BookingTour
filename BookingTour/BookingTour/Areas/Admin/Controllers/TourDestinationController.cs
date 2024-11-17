@@ -51,11 +51,11 @@ namespace Presentation.Areas.Admin.Controllers
                     
             }
             TempData["TourID"] = TourID; ;
-            TempData["TourName"] = tour.Title;
 
             var tourDestinationViewmodel = new TourDestinationViewModel
             {
                 TourID = TourID,
+                TourName = tour.Title
             };
             return View(tourDestinationViewmodel);
         }
@@ -92,7 +92,7 @@ namespace Presentation.Areas.Admin.Controllers
             var tourDestination = await _tourDestinationService.GetById(TourID, DestinantionID);
             if (tourDestination != null)
             {
-                var tourDestinationViewModel = new TourDestinationViewModel
+                var tourDestinationViewModel = new TourDestinationUpdateViewModel
                 {
                     TourID = tourDestination.TourID,
                     DestinationID = tourDestination.DestinationID,
@@ -153,17 +153,6 @@ namespace Presentation.Areas.Admin.Controllers
             return Json(destinationViewModels);
         }
 
-        public async Task<IActionResult> Details(Guid TourID)
-        {
-            var tourDestinations = await _tourDestinationService.GetByTourIdAsync(TourID);
-            var tourDestinationsViewModel = tourDestinations.Select(i => new TourDestinationViewModel
-            {
-                TourID = i.TourID,
-                DestinationID = i.DestinationID,
-                VisitDate = i.VisitDate
-            }).ToList();
-
-            return View(tourDestinationsViewModel);
-        }
+        
     }
 }

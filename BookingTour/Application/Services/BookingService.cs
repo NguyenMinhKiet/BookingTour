@@ -32,7 +32,7 @@ namespace Application.Services
             var childPrice = price * 50 / 100;
             var booking = new Booking()
             {
-                BookingID = new Guid(),
+                BookingID = Guid.NewGuid(),
                 TourID = dto.TourID,
                 CustomerID = dto.CustomerID,
                 CreateAt = DateTime.Now,

@@ -35,9 +35,10 @@
 <form asp-action="Create" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input asp-for="TourID" value="@Model.TourID" type="hidden"/>
+
     <div class="form-group">
-        <label for="DestinationID">Chọn địa điểm:</label>
-        <select id="DestinationID" name="DestinationID" class="form-control" Required>
+        <label asp-for="DestinationID">Chọn địa điểm:</label>
+        <select asp-for="DestinationID" id="DestinationID" name="DestinationID" class="form-control" Required>
             <option value="">-- Chọn địa điểm --</option>
         </select>
         <span asp-validation-for="DestinationID" class="text-danger"></span>

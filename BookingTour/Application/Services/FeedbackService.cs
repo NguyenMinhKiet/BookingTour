@@ -24,7 +24,7 @@ namespace Application.Services
         {
             var newFeedback = new Feedback()
             {
-                FeedbackID = new Guid(),
+                FeedbackID = Guid.NewGuid(),
                 CustomerID = dto.CustomerID,
                 TourID = dto.TourID,
                 Rating = dto.Rating,

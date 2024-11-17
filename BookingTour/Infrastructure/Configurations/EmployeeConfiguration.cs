@@ -24,13 +24,11 @@ namespace Infrastructure.DataAccess.Configurations
             builder.Property(u => u.Position)
                 .IsRequired();
 
-            builder.Property(u=> u.AccountID)
-                .IsRequired();
+            builder.HasOne(i => i.Account)        
+                .WithOne()           
+                .HasForeignKey<Employee>(i => i.AccountID)
+                .OnDelete(DeleteBehavior.Cascade);  
 
-            builder.HasOne(i => i.Account)
-                .WithOne()
-                .HasForeignKey<Employee>(u => u.AccountID)
-                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Application.Services
         {
             var payment = new Payment()
             {
-                PaymentID = new Guid(),
+                PaymentID = Guid.NewGuid(),
                 BookingID = dto.BookingID,
                 CreateAt = DateTime.Now,
                 Method = dto.Method,

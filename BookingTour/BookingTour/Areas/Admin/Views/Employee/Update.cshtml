@@ -40,7 +40,6 @@
 <form asp-action="Update" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input asp-for="EmployeeID" type="hidden" class="form-control" id="EmployeeID" name="EmployeeID" value="@Model.EmployeeID">
-    <input asp-for="AccountID" type="hidden" class="form-control" id="AccountID" name="AccountID" value="@Model.AccountID">
     
     <div class="form-group">
         <label asp-for="FirstName" class="form-label"></label>

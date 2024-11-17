@@ -10,6 +10,6 @@ namespace Application.DTOs.AccountDTOs
     public class AccountCreationResult
     {
         public IdentityResult Result { get; set; }
-        public string UserId { get; set; }
+        public Guid UserId { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace Application.DTOs.RoleDTOs
 {
     public class RoleClaimsViewModel
     {
-        public string RoleId { get; set; }
+        public Guid RoleId { get; set; }
         public string RoleName { get; set; }
         public List<ClaimViewModel> Claims { get; set; }
     }

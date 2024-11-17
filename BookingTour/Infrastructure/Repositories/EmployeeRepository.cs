@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
@@ -8,10 +9,11 @@ namespace Infrastructure.Repositories
     public class EmployeeRepository : IEmployeeRepository
     {
         private readonly ApplicationDbContext _context;
-
-        public EmployeeRepository(ApplicationDbContext context)
+        private readonly UserManager<Account> _userManager;
+        public EmployeeRepository(ApplicationDbContext context, UserManager<Account> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public async Task AddAsync(Employee employee)
@@ -29,6 +31,8 @@ namespace Infrastructure.Repositories
 
             }
             _context.Employees.Remove(employee);
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            await _userManager.DeleteAsync(user);
             await _context.SaveChangesAsync();
         }
 

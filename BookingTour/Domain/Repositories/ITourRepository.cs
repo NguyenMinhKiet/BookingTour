@@ -18,5 +18,9 @@ namespace Domain.Repositories
 
         // Phương thức xóa theo ID
         Task DeleteAsync(Guid id);
+
+        Task<List<TourDestination>> GetDestinations(Guid TourID);
+        Task<List<TourEmployee>> GetEmployees(Guid TourID);
+
     }
 }

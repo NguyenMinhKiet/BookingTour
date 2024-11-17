@@ -15,7 +15,8 @@ namespace Domain.Entities
         public string Email { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
-        public string? AccountID { get; set; }
+
+        public Guid AccountID { get; set; } 
 
         public virtual ICollection<Booking> Bookings { get; set; }
         public virtual Account Account {  get; set; }

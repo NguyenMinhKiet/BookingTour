@@ -19,14 +19,14 @@ namespace Application.Services
         {
             var employee = new Employee()
             {
-                EmployeeID = new Guid(),
+                EmployeeID = dto.AccountID,
                 FirstName = dto.FirstName.Trim(),
                 LastName = dto.LastName.Trim(),
                 Position = dto.Position.Trim(),
                 Address = dto.Address.Trim(),
                 Phone = dto.Phone.Trim(),
                 Email = dto.Email.Trim(),
-                AccountID = dto.AccountID,
+                AccountID = dto.AccountID
             };
             await _employeeRepository.AddAsync(employee);
             return employee;

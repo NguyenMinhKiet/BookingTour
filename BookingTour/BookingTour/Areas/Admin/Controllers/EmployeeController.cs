@@ -23,8 +23,6 @@ namespace Presentation.Areas.Admin.Controllers
         [Authorize(Policy = "employee-view")]
         public async Task<IActionResult> Index()
         {
-
-
             var employees = await _employeeService.GetAllAsync();
             var employeesViewModel = new List<EmployeeViewModel>();
 
@@ -37,7 +35,6 @@ namespace Presentation.Areas.Admin.Controllers
                     LastName = c.LastName,
                     Position = c.Position,
                     Address = c.Address,
-                    AccountID = c.AccountID
 
                 };
                 employeesViewModel.Add(employeeModelView);
@@ -64,21 +61,20 @@ namespace Presentation.Areas.Admin.Controllers
                 if (accountResult.Result.Succeeded)
                 {
                     employee.AccountID = accountResult.UserId;
-
                     await _employeeService.CreateAsync(employee);
                     TempData["NotificationType"] = "success";
                     TempData["NotificationTitle"] = "Thành công!";
                     TempData["NotificationMessage"] = "Thêm nhân viên  thành công";
                     return RedirectToAction("Index");
                 }
-                TempData["NotificationType"] = "error";
+                TempData["NotificationType"] = "danger";
                 TempData["NotificationTitle"] = "Thất bại!";
                 TempData["NotificationMessage"] = "Không thể tạo tài khoản hoặc email đã tồn tại !";
 
                 return View();
 
             }
-            TempData["NotificationType"] = "error";
+            TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = $"Dữ liệu nhập không hợp lệ";
 
@@ -129,7 +125,9 @@ namespace Presentation.Areas.Admin.Controllers
                 return RedirectToAction("Index");
 
             }
-            TempData["error"] = "Không tìm thấy nhân viên !!";
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = $"Không tìm thấy nhân viên {EmployeeID}";
             return View();
         }
 

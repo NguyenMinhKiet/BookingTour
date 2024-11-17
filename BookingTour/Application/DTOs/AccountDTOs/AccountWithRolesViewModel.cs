@@ -9,7 +9,7 @@ namespace Application.DTOs.AccountDTOs
 {
     public class AccountWithRolesViewModel
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }

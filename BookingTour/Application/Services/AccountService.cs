@@ -46,7 +46,7 @@ namespace Application.Services
                 Email = model.Email.Trim(),
                 Phone = model.Phone.Trim(),
                 Password = model.Password.Trim(),
-                isActive = true
+                isActive = true,
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -81,7 +81,7 @@ namespace Application.Services
             return new AccountCreationResult
             {
                 Result = result,
-                UserId = result.Succeeded ? accountDto.Id : null
+                UserId = result.Succeeded ? accountDto.Id : Guid.Empty
             };
         }
 
@@ -104,14 +104,14 @@ namespace Application.Services
             // Nếu thành công, thêm UserId vào AccountCreationDto
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(accountDto, "Employee");
+                await _userManager.AddToRoleAsync(accountDto, "Manager");
                 model.AccountID = accountDto.Id;
             }
 
             return new AccountCreationResult
             {
                 Result = result,
-                UserId = result.Succeeded ? accountDto.Id : null
+                UserId = result.Succeeded ? accountDto.Id : Guid.Empty
             };
         }
         public async Task<SignInResult> LoginAsync(LoginModelDto model)

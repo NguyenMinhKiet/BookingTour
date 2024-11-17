@@ -27,10 +27,12 @@ namespace Infrastructure.DataAccess.Configurations
                 .HasForeignKey(b => b.CustomerID)
                 .OnDelete(DeleteBehavior.Cascade);// Đặt khóa ngoại
 
-            builder.HasOne(i => i.Account)
-                .WithOne()
-                .HasForeignKey<Customer>(u => u.AccountID)
+            builder.HasOne(i => i.Account) 
+                .WithOne()   
+                .HasForeignKey<Customer>(u => u.AccountID) 
                 .OnDelete(DeleteBehavior.Cascade);
+
+
         }
     }
 }

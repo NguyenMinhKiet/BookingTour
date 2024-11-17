@@ -14,7 +14,7 @@ namespace Application.DTOs.CustomerDTOs
         [Required(ErrorMessage = "Vui lòng nhập địa chỉ!")]
         public string Address { get; set; }
 
-        public string? AccountID { get; set; } 
+        public Guid AccountID { get; set; } 
 
         [Required(ErrorMessage = "Vui lòng nhập email!")]
         [EmailAddress(ErrorMessage = "Sai định dạng email, ví dụ: example@gmail.com")]

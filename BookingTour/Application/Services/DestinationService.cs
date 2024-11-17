@@ -2,7 +2,8 @@
 using Application.Services_Interface;
 using Domain.Entities;
 using Domain.Repositories;
-
+using System.Globalization;
+using System.Text;
 namespace Application.Services
 {
 
@@ -19,12 +20,12 @@ namespace Application.Services
         {
             var destination = new Destination
             {
-                DestinationID = new Guid(),
+                DestinationID = Guid.NewGuid(),
                 Name = dto.Name.Trim(),
-                City = dto.City.Trim().Normalize(),
-                Description = dto.Description.Trim().Normalize(),
-                Country = "Việt Nam",
-                Category = dto.Category.Trim().Normalize(),
+                City = NormalizeCity(dto.City.Trim()),
+                Description = dto.Description.Trim(),
+                Country = NormalizeCity(dto.Country.Trim()),
+                Category = NormalizeCity(dto.Category.Trim()),
             };
             await _destinationRepository.AddAsync(destination);
             return destination;
@@ -68,13 +69,20 @@ namespace Application.Services
                 destiantion.Name = dto.Name.Trim();
                 destiantion.Country = dto.Country.Trim();
                 destiantion.Description = dto.Description.Trim();
-                destiantion.Category = dto.Category.Trim().Normalize();
-                destiantion.City = dto.City.Trim().Normalize();
+                destiantion.Category = NormalizeCity(dto.Category.Trim());
+                destiantion.City = NormalizeCity(dto.City.Trim());
 
                 await _destinationRepository.UpdateAsync(destiantion);
             }
         }
 
-        
+        public static string NormalizeCity(string city)
+        {
+            return city.Normalize(NormalizationForm.FormD)
+                       .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                       .Aggregate("", (current, c) => current + c);
+        }
+
+
     }
 }

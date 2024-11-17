@@ -100,5 +100,15 @@ namespace Application.Services
             }
             return false;
         }
+
+        public async Task<List<TourDestination>> GetDestinations(Guid TourID)
+        {
+            return await _tourRepository.GetDestinations(TourID);
+        }
+
+        public async Task<List<TourEmployee>> GetEmployees(Guid TourID)
+        {
+            return await _tourRepository.GetEmployees(TourID);
+        }
     }
 }

@@ -17,5 +17,8 @@ namespace Application.Services_Interface
         Task<bool> ReducePeople(Guid TourID, int numPeople);
         Task<bool> IncreasePeople(Guid TourID, int numPeople);
 
+        Task<List<TourDestination>> GetDestinations (Guid TourID);
+        Task<List<TourEmployee>> GetEmployees (Guid TourID);
+
     }
 }

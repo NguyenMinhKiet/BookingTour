@@ -8,7 +8,7 @@ namespace Application.DTOs.RoleDTOs
 {
     public class RoleChangeViewModel
     {
-        public string UserId { get; set; }
+        public Guid UserId { get; set; }
         public string UserName { get; set; }
         public string CurrentRole { get; set; }
         public List<SelectListItem> Roles { get; set; } // Danh sách các roles

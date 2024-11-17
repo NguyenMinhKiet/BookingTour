@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Account : IdentityUser
+    public class Account : IdentityUser<Guid>
     {
         public string Password { get; set; }
         public string Email { get; set; }

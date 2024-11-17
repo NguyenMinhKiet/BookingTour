@@ -29,13 +29,13 @@ namespace Application.Services
         {
             var newCustomer = new Customer()
             {
-                CustomerID = new Guid(),
+                CustomerID = customerCreationDto.AccountID,
                 FirstName = customerCreationDto.FirstName.Trim(),
                 LastName = customerCreationDto.LastName.Trim(),
                 Address = customerCreationDto.Address.Trim(),
                 Phone = customerCreationDto.Phone.Trim(),
                 Email = customerCreationDto.Email.Trim(),
-                AccountID = customerCreationDto.AccountID,
+                AccountID = customerCreationDto.AccountID
             };
             await _customerRepository.AddAsync(newCustomer);
             return newCustomer;

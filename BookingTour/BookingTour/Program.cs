@@ -71,8 +71,11 @@ builder.Services.AddIdentity<Account, Role>(options =>
     options.Password.RequiredLength = 6;
     options.Password.RequiredUniqueChars = 1;
 })
-    .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddDefaultTokenProviders();
+.AddEntityFrameworkStores<ApplicationDbContext>()
+.AddDefaultTokenProviders();
+
+
+
 builder.Services.AddLogging();
 // Add TempData
 builder.Services.AddControllersWithViews()

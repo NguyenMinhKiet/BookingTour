@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
@@ -8,9 +9,11 @@ namespace Infrastructure.Repositories
     public class CustomerRepository : ICustomerRepository
     {
         private readonly ApplicationDbContext _context;
-        public CustomerRepository(ApplicationDbContext context)
+        private readonly UserManager<Account> _userManager;
+        public CustomerRepository(ApplicationDbContext context, UserManager<Account> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
 
@@ -28,6 +31,8 @@ namespace Infrastructure.Repositories
                 throw new Exception($"Customer with id {id} not found.");
             }
             _context.Customers.Remove(customer);
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            await _userManager.DeleteAsync(user);
             await _context.SaveChangesAsync();
         }
 

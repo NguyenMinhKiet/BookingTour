@@ -22,7 +22,6 @@ namespace Presentation.Areas.Admin.Models
         [Required(ErrorMessage = "Vui lòng nhập số điện thoại !")]
         [Phone(ErrorMessage = "Số điện thoại không hợp lệ. Hãy nhập 10 ký tự số")]
         public string Phone { get; set; }
-        public Guid AccountID { get; set; }
         
     }
 }

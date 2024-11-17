@@ -92,7 +92,7 @@ namespace Presentation.Areas.Admin.Controllers
         [Authorize(Policy = "role-update")]
         public async Task<IActionResult> UpdateRole(RoleChangeViewModel model)
         {
-            var user = await _userManager.FindByIdAsync(model.UserId);
+            var user = await _userManager.FindByIdAsync(model.UserId.ToString());
             if (user == null)
             {
                 TempData["NotificationType"] = "danger";
@@ -184,11 +184,11 @@ namespace Presentation.Areas.Admin.Controllers
         }
         [HttpPost]
         [Authorize(Policy = "role-claims-update")]
-        public async Task<IActionResult> UpdateRoleClaims(string roleId, RoleClaimsViewModel model)
+        public async Task<IActionResult> UpdateRoleClaims(Guid roleId, RoleClaimsViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var role = await _roleService.GetByIdAsync(roleId);
+                var role = await _roleService.GetByIdAsync(roleId.ToString());
                 if (role == null)
                 {
                     TempData["NotificationType"] = "danger";
@@ -248,12 +248,12 @@ namespace Presentation.Areas.Admin.Controllers
 
 
         [Authorize(Policy = "role-delete")]
-        public async Task<IActionResult> Delete(string roleId)
+        public async Task<IActionResult> Delete(Guid roleId)
         {
-            var role = await _roleManager.FindByIdAsync(roleId);
+            var role = await _roleManager.FindByIdAsync(roleId.ToString());
             if(role != null)
             {
-                var result = await _roleService.DeleteRoleAsync(role.Id);
+                var result = await _roleService.DeleteRoleAsync(role.Id.ToString());
                 if (result)
                 {
                     TempData["NotificationType"] = "success";

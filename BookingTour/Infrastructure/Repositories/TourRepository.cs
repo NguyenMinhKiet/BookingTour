@@ -12,8 +12,6 @@ namespace Infrastructure.Repositories
         {
             _context = context;
         }
-
-
         public async Task AddAsync(Tour tour)
         {
             await _context.Tours.AddAsync(tour);
@@ -43,7 +41,28 @@ namespace Infrastructure.Repositories
             return await _context.Tours.FindAsync(tour_id);
         }
 
-       
+        public async Task<List<TourDestination>> GetDestinations(Guid tourID)
+        {
+            // Lấy danh sách TourDestination liên quan đến TourID
+            var tourDestinations = await _context.ToursDestination
+                .Where(x => x.TourID == tourID)
+                .Include(td => td.Destination) // Bao gồm đối tượng Destination
+                .ToListAsync();
+
+            return tourDestinations;
+        }
+
+
+        public async Task<List<TourEmployee>> GetEmployees(Guid tourID)
+        {
+            // Lấy danh sách TourDestination liên quan đến TourID
+            var tourEmployees = await _context.ToursEmployee
+                .Where(x => x.TourID == tourID)
+                .Include(td => td.Employee) // Bao gồm đối tượng Destination
+                .ToListAsync();
+
+            return tourEmployees;
+        }
 
         public async Task UpdateAsync(Tour tour)
         {

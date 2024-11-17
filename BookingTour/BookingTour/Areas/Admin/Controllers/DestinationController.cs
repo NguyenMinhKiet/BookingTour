@@ -1,5 +1,8 @@
 ﻿using Application.DTOs.DestinationDTOs;
+using Application.DTOs.LocationDto;
 using Application.Services_Interface;
+using Domain.Entities.Location;
+using Infrastructure.Static;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Areas.Admin.Models;
@@ -24,7 +27,7 @@ namespace Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var destiations = await _destinationService.GetAllAsync();
-            var destinationsViewModel = destiations.Select(i => new DestinationViewModel
+            var destinationsViewModel = destiations.Select(i => new Models.DestinationViewModel
             {
                 DestinationID = i.DestinationID,
                 Name = i.Name,
@@ -37,13 +40,23 @@ namespace Presentation.Areas.Admin.Controllers
             return View(destinationsViewModel);
         }
 
-        // GET: /Destination/Create
+        // Controller method
         [Authorize(Policy = "destination-add")]
         public async Task<IActionResult> Create()
         {
             var listCity = await _locationService.LoadAllCitysAsync();
+            var listCityViewModel = listCity.Select(e => new CityViewModel
+            {
+                Name = NORMALIZE.NormalizeCity(e.Name),
+            }).ToList();
+    
+            ViewData["ListCity"] = listCityViewModel;
+
+            // Debug: Kiểm tra dữ liệu trong TempData
+
             return View();
         }
+
 
         // POST: /Destination/Create
         [HttpPost]
@@ -79,7 +92,7 @@ namespace Presentation.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            var destinationViewModel = new DestinationViewModel
+            var destinationViewModel = new Models.DestinationViewModel
             {
                 DestinationID = destination.DestinationID,
                 Name = destination.Name,
