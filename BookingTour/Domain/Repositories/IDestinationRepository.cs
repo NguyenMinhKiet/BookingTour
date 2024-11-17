@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Repositories
 {
@@ -19,5 +20,9 @@ namespace Domain.Repositories
         // Phương thức xóa theo ID
         Task DeleteAsync(Guid id);
         Task<IEnumerable<Destination>> GetByCategoryAsync(string Category);
+        Task<IEnumerable<Destination>> GetByCityAsync(string City);
+
+          Task<IEnumerable<Destination>> GetByCityAndCategoryAsync(string City, string Category);
+         Task<IEnumerable<string>> GetCategory(string City);
     }
 }

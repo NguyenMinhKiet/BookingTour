@@ -34,6 +34,7 @@
 
 <form asp-action="Create" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input asp-for="TourID" value="@Model.TourID" type="hidden"/>
     <div class="form-group">
         <label for="DestinationID">Chọn địa điểm:</label>
         <select id="DestinationID" name="DestinationID" class="form-control" Required>
@@ -86,5 +87,7 @@
     });
 });
     </script>
+
+    
 }
 

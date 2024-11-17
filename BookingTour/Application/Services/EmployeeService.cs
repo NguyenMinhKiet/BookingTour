@@ -20,12 +20,12 @@ namespace Application.Services
             var employee = new Employee()
             {
                 EmployeeID = new Guid(),
-                FirstName = dto.FirstName,
-                LastName = dto.LastName,
-                Position = dto.Position,
-                Address = dto.Address,
-                Phone = dto.Phone,
-                Email = dto.Email,
+                FirstName = dto.FirstName.Trim(),
+                LastName = dto.LastName.Trim(),
+                Position = dto.Position.Trim(),
+                Address = dto.Address.Trim(),
+                Phone = dto.Phone.Trim(),
+                Email = dto.Email.Trim(),
                 AccountID = dto.AccountID,
             };
             await _employeeRepository.AddAsync(employee);

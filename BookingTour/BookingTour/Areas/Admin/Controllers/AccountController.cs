@@ -10,7 +10,7 @@ using Presentation.Areas.Admin.Models;
 
 namespace Presentation.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Policy = "RequiredAdminOrManager")]
     [Area("Admin")]
     public class AccountController : Controller
     {
@@ -48,8 +48,7 @@ namespace Presentation.Areas.Admin.Controllers
             return View(listView);
         }
 
-        
-
+        [Authorize(Policy = "account-block")]                
         public async Task<IActionResult> BlockUser(string userId)
         {
             try

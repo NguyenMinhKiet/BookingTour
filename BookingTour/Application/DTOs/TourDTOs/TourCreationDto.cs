@@ -9,5 +9,6 @@
         public DateTime EndDate { get; set; }
         public int AvailableSeats { get; set; }
         public string Category { get; set; }
+        public string City { get; set; }
     }
 }

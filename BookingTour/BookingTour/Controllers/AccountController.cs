@@ -137,11 +137,7 @@ namespace Presentation.Controllers
                 return View(model);
             }
 
-            // GET: /Account/AccessDenied
-            public IActionResult AccessDenied()
-            {
-                return View();
-            }
+            
 
         [HttpGet]
         public IActionResult ChangePassword(string userId)
@@ -179,7 +175,17 @@ namespace Presentation.Controllers
             return View(model);
         }
 
-        
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            // Thiết lập thông báo trong TempData
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Lỗi quyền truy cập";
+            TempData["NotificationMessage"] = "Bạn không có quyền truy cập vào thư mục này.";
+
+            // Quay lại trang hiện tại mà người dùng vừa truy cập (hoặc trang chính)
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
     }
 }
 

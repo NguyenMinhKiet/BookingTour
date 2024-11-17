@@ -31,6 +31,7 @@ namespace Presentation.Areas.Admin.Models
 
         [Required(ErrorMessage = "Vui lòng chọn loại Tour !")]
         public string Category { get; set; }
+        public string City { get; set; }
 
         // Kiểm tra nếu StartDate < EndDate
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

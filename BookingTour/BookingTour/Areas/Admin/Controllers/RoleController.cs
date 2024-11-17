@@ -2,6 +2,7 @@
 using Application.Services_Interface;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,7 +13,7 @@ using System.Security.Claims;
 
 namespace Presentation.Areas.Admin.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    [Authorize(Policy ="RequiredAdminOrManager")]
     [Area("Admin")]
     public class RoleController : Controller
     {
@@ -26,6 +27,8 @@ namespace Presentation.Areas.Admin.Controllers
             _userManager = userManager;
             _roleManager = roleManager;
         }
+
+        [Authorize(Policy = "role-view")]
         public async Task<IActionResult> Index()
         {
             var roles = await _roleManager.Roles.ToListAsync();
@@ -56,7 +59,7 @@ namespace Presentation.Areas.Admin.Controllers
             return View(listRoleClaimsViewModel);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "role-change")]
         public async Task<IActionResult> ChangeRole(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -86,7 +89,7 @@ namespace Presentation.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "role-update")]
         public async Task<IActionResult> UpdateRole(RoleChangeViewModel model)
         {
             var user = await _userManager.FindByIdAsync(model.UserId);
@@ -118,7 +121,7 @@ namespace Presentation.Areas.Admin.Controllers
             return RedirectToAction("Index","Account");
         }
 
-
+        [Authorize(Policy = "role-claims-view")]
         public async Task<IActionResult> UpdateRoleClaims(string roleId)
         {
             var ClaimType = "permission";
@@ -180,6 +183,7 @@ namespace Presentation.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
+        [Authorize(Policy = "role-claims-update")]
         public async Task<IActionResult> UpdateRoleClaims(string roleId, RoleClaimsViewModel model)
         {
             if (ModelState.IsValid)
@@ -243,7 +247,7 @@ namespace Presentation.Areas.Admin.Controllers
         }
 
 
-
+        [Authorize(Policy = "role-delete")]
         public async Task<IActionResult> Delete(string roleId)
         {
             var role = await _roleManager.FindByIdAsync(roleId);
@@ -268,12 +272,14 @@ namespace Presentation.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Policy ="role-add")]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Policy = "role-add")]
         public async Task<IActionResult> Create(RoleCreateViewModel model)
         {
             if (ModelState.IsValid)
@@ -297,6 +303,7 @@ namespace Presentation.Areas.Admin.Controllers
             return View(model);
         }
 
+        [Authorize(Policy = "role-claims-add")]
         public async Task<IActionResult> CreateClaim(string roleId)
         {
             var role = await _roleService.GetByIdAsync(roleId);
@@ -317,6 +324,7 @@ namespace Presentation.Areas.Admin.Controllers
             return View(claimViewModel);
         }
         [HttpPost]
+        [Authorize(Policy = "role-claims-add")]
         public async Task<IActionResult> CreateClaim(string roleId, ClaimViewModel model)
         {
 
@@ -365,6 +373,33 @@ namespace Presentation.Areas.Admin.Controllers
             TempData["NotificationMessage"] = $"Dữ liệu không hợp lệ";
             return View(model);
 
+        }
+
+        [Authorize(Policy = "role-claims-delete")]
+        [HttpPost]
+        public async Task<IActionResult> DeleteClaim(string roleId,string type,string value, string description, bool isActive)
+        {
+            var role = await _roleManager.FindByIdAsync(roleId);
+            if (role == null)
+            {
+                TempData["NotificationType"] = "danger";
+                TempData["NotificationTitle"] = "Thất bại!";
+                TempData["NotificationMessage"] = $"Không tìm thấy role";
+                return RedirectToAction("UpdateRoleClaims", new { roleId = role.Id });
+            }
+
+           var result =  await _roleManager.RemoveClaimAsync(role, new Claim(type, JsonConvert.SerializeObject(new Permission(value,description,isActive))));
+            if (result.Succeeded)
+            {
+                TempData["NotificationType"] = "success";
+                TempData["NotificationTitle"] = "Thành công!";
+                TempData["NotificationMessage"] = $"Đã xóa claim thành công";
+                return RedirectToAction("UpdateRoleClaims", new { roleId = role.Id });
+            }
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại!";
+            TempData["NotificationMessage"] = $"Không thể xóa claim";
+            return RedirectToAction("UpdateRoleClaims", new { roleId = role.Id });
         }
     }
 }

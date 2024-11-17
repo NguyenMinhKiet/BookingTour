@@ -50,5 +50,10 @@ namespace Infrastructure.Repositories
             _context.ToursEmployee.Update(tourEmployee);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<TourEmployee>> GetByTourIdAsync(Guid TourID)
+        {
+            return await _context.ToursEmployee.Where(x => x.TourID == TourID).ToListAsync();
+        }
     }
 }

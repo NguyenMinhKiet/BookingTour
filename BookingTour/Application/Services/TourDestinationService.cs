@@ -58,5 +58,10 @@ namespace Application.Services
         {
             await _tourDestinationRepository.DeleteAsync(tour_id, destination_id);
         }
+
+        public async Task<IEnumerable<TourDestination>> GetByTourIdAsync(Guid TourID)
+        {
+            return await _tourDestinationRepository.GetByTourIdAsync(TourID);
+        }
     }
 }

@@ -6,6 +6,8 @@ namespace Domain.Repositories
     {
         // Phương thức lấy theo ID
         Task<TourEmployee> GetByIdAsync(Guid tour_id, Guid employee_id);
+        Task<IEnumerable<TourEmployee>> GetByTourIdAsync(Guid TourID);
+
 
         // Phương thức lấy tất cả
         Task<IEnumerable<TourEmployee>> GetAllAsync();

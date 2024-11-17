@@ -14,5 +14,7 @@ namespace Application.Services_Interface
         public Task UpdateAsync(Guid tour_id, Guid destination_id, TourDestinationUpdateDto dto);
 
         public Task DeleteAsync(Guid tour_id, Guid destination_id);
+        public Task<IEnumerable<TourDestination>> GetByTourIdAsync(Guid TourID);
+
     }
 }

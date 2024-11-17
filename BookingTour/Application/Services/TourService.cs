@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.WebPages;
 
 namespace Application.Services
 {
@@ -23,18 +24,22 @@ namespace Application.Services
         {
             var tour = new Tour()
             {
-                TourID = new Guid(),
-                Title = dto.Title,
-                Description = dto.Description,
+                TourID = Guid.NewGuid(),  // Đã sửa để dùng Guid.NewGuid() thay vì new Guid()
+                Title = dto.Title.Trim(),
+                Description = dto.Description.Trim(),
                 Price = dto.Price,
                 StartDate = dto.StartDate,
                 EndDate = dto.EndDate,
                 AvailableSeats = dto.AvailableSeats,
-                Category = dto.Category
+                Category = dto.Category.Trim().Normalize(),
+                // Chuẩn hóa tên thành phố
+                City = dto.City.Trim().Normalize()  // Loại bỏ dấu trong tên thành phố
             };
+
             await _tourRepository.AddAsync(tour);
             return tour;
         }
+
 
         public async Task DeleteAsync(Guid id)
         {
@@ -56,13 +61,14 @@ namespace Application.Services
             var tour = await _tourRepository.GetByIdAsync(id);
             if(tour != null)
             {
-                tour.Title = dto.Title;
-                tour.Description = dto.Description;
+                tour.Title = dto.Title.Trim();
+                tour.Description = dto.Description.Trim();
                 tour.Price = dto.Price;
                 tour.StartDate = dto.StartDate;
                 tour.EndDate = dto.EndDate;
                 tour.AvailableSeats = dto.AvailableSeats;
-                tour.Category = dto.Category;
+                tour.Category = dto.Category.Trim().Normalize();
+                tour.City = dto.City.Trim().Normalize();
 
                 await _tourRepository.UpdateAsync(tour);
 

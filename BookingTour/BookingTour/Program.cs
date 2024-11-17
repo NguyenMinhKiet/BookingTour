@@ -1,4 +1,5 @@
-﻿using Application.Services;
+﻿using Application.PermissionRequirement;
+using Application.Services;
 using Application.Services_Interface;
 using Domain.Entities;
 using Domain.Repositories;
@@ -7,6 +8,7 @@ using Infrastructure.Data.Seed;
 using Infrastructure.Repositories;
 using Infrastructure.Static;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -85,70 +87,84 @@ builder.Services.AddSession(options =>
 });
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
-    options.AddPolicy("RequireEmployeeRole", policy => policy.RequireRole("Employee"));
+    var permissions = new[]
+    {
+        PERMISSIONS.USER_GROUP_VIEW, 
+        PERMISSIONS.USER_GROUP_ADD,
+        PERMISSIONS.USER_GROUP_UPDATE,
+        PERMISSIONS.USER_GROUP_DELETE,
 
-    options.AddPolicy("user-group-view", policy => policy.RequireClaim("permission", PERMISSIONS.USER_GROUP_VIEW));
-    options.AddPolicy("user-group-add", policy => policy.RequireClaim("permission", PERMISSIONS.USER_GROUP_ADD));
-    options.AddPolicy("user-group-update", policy => policy.RequireClaim("permission", PERMISSIONS.USER_GROUP_UPDATE));
-    options.AddPolicy("user-group-delete", policy => policy.RequireClaim("permission", PERMISSIONS.USER_GROUP_DELETE));
+        PERMISSIONS.ACCOUNT_VIEW, 
+        PERMISSIONS.ACCOUNT_ADD, 
+        PERMISSIONS.ACCOUNT_UPDATE, 
+        PERMISSIONS.ACCOUNT_DELETE,
 
-    options.AddPolicy("user-view", policy => policy.RequireClaim("permission", PERMISSIONS.USER_VIEW));
-    options.AddPolicy("user-add", policy => policy.RequireClaim("permission", PERMISSIONS.USER_ADD));
-    options.AddPolicy("user-update", policy => policy.RequireClaim("permission", PERMISSIONS.USER_UPDATE));
-    options.AddPolicy("user-delete", policy => policy.RequireClaim("permission", PERMISSIONS.USER_DELETE));
+        PERMISSIONS.CUSTOMER_VIEW,
+        PERMISSIONS.CUSTOMER_ADD, 
+        PERMISSIONS.CUSTOMER_UPDATE, 
+        PERMISSIONS.CUSTOMER_DELETE,
 
-    options.AddPolicy("customer-view", policy => policy.RequireClaim("permission", PERMISSIONS.CUSTOMER_VIEW));
-    options.AddPolicy("customer-add", policy => policy.RequireClaim("permission", PERMISSIONS.CUSTOMER_ADD));
-    options.AddPolicy("customer-update", policy => policy.RequireClaim("permission", PERMISSIONS.CUSTOMER_UPDATE));
-    options.AddPolicy("customer-delete", policy => policy.RequireClaim("permission", PERMISSIONS.CUSTOMER_DELETE));
+        PERMISSIONS.EMPLOYEE_VIEW,
+        PERMISSIONS.EMPLOYEE_ADD,
+        PERMISSIONS.EMPLOYEE_UPDATE, 
+        PERMISSIONS.EMPLOYEE_DELETE,
 
-    options.AddPolicy("employee-view", policy => policy.RequireClaim("permission", PERMISSIONS.EMPLOYEE_VIEW));
-    options.AddPolicy("employee-add", policy => policy.RequireClaim("permission", PERMISSIONS.EMPLOYEE_ADD));
-    options.AddPolicy("employee-update", policy => policy.RequireClaim("permission", PERMISSIONS.EMPLOYEE_UPDATE));
-    options.AddPolicy("employee-delete", policy => policy.RequireClaim("permission", PERMISSIONS.EMPLOYEE_DELETE));
+        PERMISSIONS.DESTINATION_VIEW,
+        PERMISSIONS.DESTINATION_ADD, 
+        PERMISSIONS.DESTINATION_UPDATE, 
+        PERMISSIONS.DESTINATION_DELETE,
 
-    options.AddPolicy("destination-view", policy => policy.RequireClaim("permission", PERMISSIONS.DESTINATION_VIEW));
-    options.AddPolicy("destination-add", policy => policy.RequireClaim("permission", PERMISSIONS.DESTINATION_ADD));
-    options.AddPolicy("destination-update", policy => policy.RequireClaim("permission", PERMISSIONS.DESTINATION_UPDATE));
-    options.AddPolicy("destination-delete", policy => policy.RequireClaim("permission", PERMISSIONS.DESTINATION_DELETE));
+        PERMISSIONS.TOUR_VIEW, 
+        PERMISSIONS.TOUR_ADD, 
+        PERMISSIONS.TOUR_UPDATE,
+        PERMISSIONS.TOUR_DELETE,
 
-    options.AddPolicy("tour-view", policy => policy.RequireClaim("permission", PERMISSIONS.TOUR_VIEW));
-    options.AddPolicy("tour-add", policy => policy.RequireClaim("permission", PERMISSIONS.TOUR_ADD));
-    options.AddPolicy("tour-update", policy => policy.RequireClaim("permission", PERMISSIONS.TOUR_UPDATE));
-    options.AddPolicy("tour-delete", policy => policy.RequireClaim("permission", PERMISSIONS.TOUR_DELETE));
+        PERMISSIONS.TOUR_DESTINATION_VIEW,
+        PERMISSIONS.TOUR_DESTINATION_ADD,
+        PERMISSIONS.TOUR_DESTINATION_UPDATE,
+        PERMISSIONS.TOUR_DESTINATION_DELETE,
 
-    options.AddPolicy("tour-destination-view", policy => policy.RequireClaim("permission", PERMISSIONS.TOUR_DESTINATION_VIEW));
-    options.AddPolicy("tour-destination-add", policy => policy.RequireClaim("permission", PERMISSIONS.TOUR_DESTINATION_ADD));
-    options.AddPolicy("tour-destination-update", policy => policy.RequireClaim("permission", PERMISSIONS.TOUR_DESTINATION_UPDATE));
-    options.AddPolicy("tour-destination-delete", policy => policy.RequireClaim("permission", PERMISSIONS.TOUR_DESTINATION_DELETE));
+        PERMISSIONS.TOUR_EMPLOYEE_VIEW, 
+        PERMISSIONS.TOUR_EMPLOYEE_ADD, 
+        PERMISSIONS.TOUR_EMPLOYEE_UPDATE,
+        PERMISSIONS.TOUR_EMPLOYEE_DELETE,
 
-    options.AddPolicy("tour-employee-view", policy => policy.RequireClaim("permission", PERMISSIONS.TOUR_EMPLOYEE_VIEW));
-    options.AddPolicy("tour-employee-add", policy => policy.RequireClaim("permission", PERMISSIONS.TOUR_EMPLOYEE_ADD));
-    options.AddPolicy("tour-employee-update", policy => policy.RequireClaim("permission", PERMISSIONS.TOUR_EMPLOYEE_UPDATE));
-    options.AddPolicy("tour-employee-delete", policy => policy.RequireClaim("permission", PERMISSIONS.TOUR_EMPLOYEE_DELETE));
+        PERMISSIONS.BOOKING_VIEW, 
+        PERMISSIONS.BOOKING_ADD, 
+        PERMISSIONS.BOOKING_UPDATE,
+        PERMISSIONS.BOOKING_DELETE,
 
-    options.AddPolicy("booking-view", policy => policy.RequireClaim("permission", PERMISSIONS.BOOKING_VIEW));
-    options.AddPolicy("booking-add", policy => policy.RequireClaim("permission", PERMISSIONS.BOOKING_ADD));
-    options.AddPolicy("booking-update", policy => policy.RequireClaim("permission", PERMISSIONS.BOOKING_UPDATE));
-    options.AddPolicy("booking-delete", policy => policy.RequireClaim("permission", PERMISSIONS.BOOKING_DELETE));
+        PERMISSIONS.PAYMENT_VIEW,
+        PERMISSIONS.PAYMENT_ADD,
+        PERMISSIONS.PAYMENT_UPDATE, 
+        PERMISSIONS.PAYMENT_DELETE,
 
-    options.AddPolicy("payment-view", policy => policy.RequireClaim("permission", PERMISSIONS.PAYMENT_VIEW));
-    options.AddPolicy("payment-add", policy => policy.RequireClaim("permission", PERMISSIONS.PAYMENT_ADD));
-    options.AddPolicy("payment-update", policy => policy.RequireClaim("permission", PERMISSIONS.PAYMENT_UPDATE));
-    options.AddPolicy("payment-delete", policy => policy.RequireClaim("permission", PERMISSIONS.PAYMENT_DELETE));
+        PERMISSIONS.FEEDBACK_VIEW, 
+        PERMISSIONS.FEEDBACK_ADD, 
+        PERMISSIONS.FEEDBACK_UPDATE,
+        PERMISSIONS.FEEDBACK_DELETE,
 
-    options.AddPolicy("feedback-view", policy => policy.RequireClaim("permission", PERMISSIONS.FEEDBACK_VIEW));
-    options.AddPolicy("feedback-add", policy => policy.RequireClaim("permission", PERMISSIONS.FEEDBACK_ADD));
-    options.AddPolicy("feedback-update", policy => policy.RequireClaim("permission", PERMISSIONS.FEEDBACK_UPDATE));
-    options.AddPolicy("feedback-delete", policy => policy.RequireClaim("permission", PERMISSIONS.FEEDBACK_DELETE));
+        PERMISSIONS.ROLE_VIEW, 
+        PERMISSIONS.ROLE_ADD, 
+        PERMISSIONS.ROLE_UPDATE, 
+        PERMISSIONS.ROLE_DELETE, 
+        PERMISSIONS.ACCOUNT_BLOCK,
 
-    options.AddPolicy("account-view", policy => policy.RequireClaim("permission", PERMISSIONS.ACCOUNT_VIEW));
-    options.AddPolicy("account-add", policy => policy.RequireClaim("permission", PERMISSIONS.ACCOUNT_ADD));
-    options.AddPolicy("account-update", policy => policy.RequireClaim("permission", PERMISSIONS.ACCOUNT_UPDATE));
-    options.AddPolicy("account-delete", policy => policy.RequireClaim("permission", PERMISSIONS.ACCOUNT_DELETE));
+        PERMISSIONS.ROLE_Claim_ADD,
+        PERMISSIONS.ROLE_Claim_UPDATE,
+        PERMISSIONS.ROLE_Claim_DELETE,
+        PERMISSIONS.ROLE_Claim_VIEW,
+    };
 
+    foreach (var permission in permissions)
+    {
+        options.AddPolicy(permission, policy =>
+            policy.Requirements.Add(new PermissionRequirement(permission)));
+    }
+
+    options.AddPolicy("RequiredAdminOrManager", policy => policy.RequireRole("Admin","Manager"));
 });
+builder.Services.AddSingleton<IAuthorizationHandler, PermissionHandler>();
 
 
 // Thêm logging vào console
@@ -157,6 +173,7 @@ builder.Logging.AddConsole();
 builder.Logging.SetMinimumLevel(LogLevel.Information);
 
 var app = builder.Build();
+//app.UseMiddleware<ClaimMiddleware>();
 
 // Cấu hình các dịch vụ HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

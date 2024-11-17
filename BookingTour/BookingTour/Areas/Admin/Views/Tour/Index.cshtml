@@ -41,6 +41,7 @@
                                 <th>Price</th>
                                 <th>AvaiableSeats</th>
                                 <th>Category</th>
+                                <th>City</th>
                             </tr>
                             </tr>
                         </thead>
@@ -54,6 +55,7 @@
                                 <th>Price</th>
                                 <th>AvaiableSeats</th>
                                 <th>Category</th>
+                                <th>City</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -68,6 +70,7 @@
                                     <td>@t.Price</td>
                                     <td>@t.AvailableSeats</td>
                                     <td>@t.Category</td>
+                                    <td>@t.City</td>
                                 </tr>
                             }
                         </tbody>
@@ -104,6 +107,7 @@
                                 <th>Price</th>
                                 <th>AvaiableSeats</th>
                                 <th>Category</th>
+                                <th>City</th>
                                 <th style="width: 10%">Action</th>
                             </tr>
                         </thead>
@@ -116,6 +120,7 @@
                                 <th>Price</th>
                                 <th>AvaiableSeats</th>
                                 <th>Category</th>
+                                <th>City</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
@@ -130,6 +135,7 @@
                                     <td>@t.Price</td>
                                     <td>@t.AvailableSeats</td>
                                     <td>@t.Category</td>
+                                    <td>@t.City</td>
                                     <td>
                                         <div class="form-button-action">
 
@@ -137,7 +143,7 @@
                                                asp-area="Admin"
                                                asp-route-TourID=@t.TourID
                                                asp-controller="TourEmployee"
-                                               asp-action="Create">
+                                               asp-action="Details">
                                                 <i class="fa fa-user"></i>
                                             </a>
 
@@ -145,7 +151,7 @@
                                                asp-area="Admin"
                                                asp-route-TourID=@t.TourID
                                                asp-controller="TourDestination"
-                                               asp-action="Create">
+                                               asp-action="Details">
                                                 <i class="fas fa-map-marker-alt"></i>
                                             </a>
 

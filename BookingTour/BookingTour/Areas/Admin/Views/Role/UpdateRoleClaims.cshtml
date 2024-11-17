@@ -57,7 +57,7 @@
                                     <th>Claim Type</th>
                                     <th>Claim Value</th>
                                     <th>Description</th>
-                                    <th>Is Checked</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody> 
@@ -76,6 +76,18 @@
                                                 <input type="hidden" name="Claims[@i].Value" value="@Model.Claims[i].Value" />
                                                 <input type="hidden" name="Claims[@i].Description" value="@Model.Claims[i].Description" />
                                             </div>
+
+
+                                            <form asp-action="DeleteClaim" method="post" style="display:inline;">
+                                                <input type="hidden" name="roleId" value="@Model.RoleId" />
+                                                <input type="hidden" name="Claims[@i].Type" value="@Model.Claims[i].Type" />
+                                                <input type="hidden" name="Claims[@i].Value" value="@Model.Claims[i].Value" />
+                                                <input type="hidden" name="Claims[@i].Description" value="@Model.Claims[i].Description" />
+                                                <input type="hidden" name="Claims[@i].Selected" value="@Model.Claims[i].Selected" />
+                                                <button type="submit" class="btn btn-link btn-danger" style="border: none; background: none;">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 }

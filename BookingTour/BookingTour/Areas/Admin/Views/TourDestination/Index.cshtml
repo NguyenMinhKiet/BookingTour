@@ -66,6 +66,19 @@
 
     <div class="col-md-12">
         <div class="card">
+            <div class="card-header">
+                <div class="d-flex align-items-center">
+                    <h4 class="card-title">Thông tin địa điểm tour: @TempData["TourName"]</h4>
+                    <a class="btn btn-primary btn-round ms-auto"
+                       asp-area="Admin"
+                       asp-action="Create"
+                       asp-route-TourID=@TempData["TourID"]
+                       asp-controller="TourDestination">
+                        <i class="fa fa-plus"></i>
+                        Thêm địa điểm
+                    </a>
+                </div>
+            </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="add-row"

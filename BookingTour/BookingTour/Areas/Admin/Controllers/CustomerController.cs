@@ -8,7 +8,7 @@ using Presentation.Areas.Admin.Models;
 
 namespace Presentation.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Policy = "RequiredAdminOrManager")]
     [Area("Admin")]
     public class CustomerController : Controller
     {

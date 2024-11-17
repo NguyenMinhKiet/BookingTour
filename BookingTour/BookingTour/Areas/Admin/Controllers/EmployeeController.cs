@@ -7,7 +7,7 @@ using Presentation.Areas.Admin.Models;
 
 namespace Presentation.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Policy = "RequiredAdminOrManager")]
     [Area("Admin")]
     public class EmployeeController : Controller
     {
@@ -23,6 +23,8 @@ namespace Presentation.Areas.Admin.Controllers
         [Authorize(Policy = "employee-view")]
         public async Task<IActionResult> Index()
         {
+
+
             var employees = await _employeeService.GetAllAsync();
             var employeesViewModel = new List<EmployeeViewModel>();
 

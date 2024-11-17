@@ -18,5 +18,7 @@ namespace Application.Services_Interface
         public Task<TourEmployee> CreateAsync(TourEmployeeCreationDto dto);
 
         public Task DeleteAsync(Guid tour_id, Guid employee_id);
+
+        public Task<IEnumerable<TourEmployee>> GetByTourIdAsync(Guid TourID);
     }
 }

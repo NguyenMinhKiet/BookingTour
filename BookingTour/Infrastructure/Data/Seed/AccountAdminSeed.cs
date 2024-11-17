@@ -17,7 +17,7 @@ namespace Infrastructure.Data.Seed
             {
                 UserName = "admin",
                 Email = "nguyenminhkiet642002@gmail.com",
-                Password = "Kiet123123",
+                Password = "Kiet123",
                 Phone = "0932667135",
                 isActive = true,
             };
@@ -25,7 +25,7 @@ namespace Infrastructure.Data.Seed
             var user = await userManager.FindByEmailAsync(adminUser.Email);
             if (user == null)
             {
-                var result = await userManager.CreateAsync(adminUser, "Kiet123123");
+                var result = await userManager.CreateAsync(adminUser, "Kiet123");
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(adminUser, "Admin");

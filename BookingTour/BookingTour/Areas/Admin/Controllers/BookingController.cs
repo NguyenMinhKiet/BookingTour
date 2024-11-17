@@ -8,7 +8,7 @@ using Presentation.Areas.Admin.Models;
 namespace Presentation.Areas.Admin.Controllers
 {
 
-    [Authorize(Roles = "Admin")]
+    [Authorize(Policy = "RequiredAdminOrManager")]
     [Area("Admin")]
     public class BookingController : Controller
     {
@@ -21,6 +21,8 @@ namespace Presentation.Areas.Admin.Controllers
             _tourService = tourService;
             _paymentService = paymentService;
         }
+
+
         [Authorize(Policy = "booking-view")]
         public async Task<IActionResult> Index()
         {
@@ -146,6 +148,8 @@ namespace Presentation.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
+
+
         [Authorize(Policy = "booking-delete")]
         public async Task<IActionResult> Delete(Guid BookingID)
         {

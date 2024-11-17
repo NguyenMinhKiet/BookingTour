@@ -20,11 +20,11 @@ namespace Application.Services
             var destination = new Destination
             {
                 DestinationID = new Guid(),
-                Name = dto.Name,
-                City = dto.City,
-                Description = dto.Description,
+                Name = dto.Name.Trim(),
+                City = dto.City.Trim().Normalize(),
+                Description = dto.Description.Trim().Normalize(),
                 Country = "Việt Nam",
-                Category = dto.Category,
+                Category = dto.Category.Trim().Normalize(),
             };
             await _destinationRepository.AddAsync(destination);
             return destination;
@@ -45,6 +45,16 @@ namespace Application.Services
             return await _destinationRepository.GetByCategoryAsync(Category);
         }
 
+        public async Task<IEnumerable<Destination>> GetByCityAsync(string city)
+        {
+            return await _destinationRepository.GetByCityAsync(city);
+        }
+
+        public async Task<IEnumerable<Destination>> GetByCityAndCategoryAsync(string city, string category)
+        {
+            return await _destinationRepository.GetByCityAndCategoryAsync(city, category);
+        }
+
         public async Task<Destination> GetById(Guid id)
         {
             return await _destinationRepository.GetByIdAsync(id);
@@ -55,11 +65,11 @@ namespace Application.Services
             var destiantion = await _destinationRepository.GetByIdAsync(id);
             if (destiantion != null)
             {
-                destiantion.Name = dto.Name;
-                destiantion.Country = dto.Country;
-                destiantion.Description = dto.Description;
-                destiantion.Category = dto.Category;
-                destiantion.City = dto.City;
+                destiantion.Name = dto.Name.Trim();
+                destiantion.Country = dto.Country.Trim();
+                destiantion.Description = dto.Description.Trim();
+                destiantion.Category = dto.Category.Trim().Normalize();
+                destiantion.City = dto.City.Trim().Normalize();
 
                 await _destinationRepository.UpdateAsync(destiantion);
             }

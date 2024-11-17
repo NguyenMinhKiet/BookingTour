@@ -42,10 +42,10 @@ namespace Application.Services
             
             var user = new Account
             {
-                UserName = model.Username,
-                Email = model.Email,
-                Phone = model.Phone,
-                Password = model.Password,
+                UserName = model.Username.Trim(),
+                Email = model.Email.Trim(),
+                Phone = model.Phone.Trim(),
+                Password = model.Password.Trim(),
                 isActive = true
             };
 
@@ -61,12 +61,12 @@ namespace Application.Services
 
         public async Task<AccountCreationResult> CreateUserAsync(CustomerCreationDto model)
         {
-            var defaultPassword = "Example123";
+            var defaultPassword = "Example123".Trim();
             var accountDto = new Account
             {
-                UserName = model.Email,
-                Email = model.Email,
-                Phone = model.Phone,
+                UserName = model.Email.Trim(),
+                Email = model.Email.Trim(),
+                Phone = model.Phone.Trim(),
                 Password = defaultPassword,
                 isActive = true
             };

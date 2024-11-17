@@ -2,11 +2,12 @@
 using Application.Services_Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Presentation.Areas.Admin.Models;
 
 namespace Presentation.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Policy = "RequiredAdminOrManager")]
     [Area("Admin")]
     public class TourDestinationController : Controller
     {
@@ -40,24 +41,23 @@ namespace Presentation.Areas.Admin.Controllers
         [Authorize(Policy = "tour-destination-add")]
         public async Task<IActionResult> Create(Guid TourID)
         {
-            //var ToursSelect = new List<TourViewModel>();
-            //var DestinationsSelect = new List<TourViewModel>();
+            var tour = await _tourService.GetByIdAsync(TourID);
+            if(tour == null)
+            {
+                TempData["NotificationType"] = "danger";
+                TempData["NotificationTitle"] = "Thất bại!";
+                TempData["NotificationMessage"] = $"Không tìm thấy TourID: {TourID}!";
+                return View();
+                    
+            }
+            TempData["TourID"] = TourID; ;
+            TempData["TourName"] = tour.Title;
 
-
-            //var Tours = await _tourService.GetAllAsync();
-            //foreach (var tour in Tours)
-            //{
-            //    var tourViewModel = new TourViewModel
-            //    {
-            //        TourID = tour.TourID,
-            //        Title = tour.Title,
-            //    };
-            //    ToursSelect.Add(tourViewModel);
-            //}
-            //ViewBag.TourList = new SelectList(ToursSelect,"TourID","Title");
-
-            ViewData["TourID"] = TourID; ;
-            return View();
+            var tourDestinationViewmodel = new TourDestinationViewModel
+            {
+                TourID = TourID,
+            };
+            return View(tourDestinationViewmodel);
         }
 
         // POST: /TourDestination/Create
@@ -142,7 +142,8 @@ namespace Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> GetDestinationsByTour(Guid TourID)
         {
             var tour = await _tourService.GetByIdAsync(TourID);
-            var destinations = await _destinationService.GetByCategoryAsync(tour.Category);
+
+            var destinations = await _destinationService.GetByCityAsync(tour.City);
             var destinationViewModels = destinations.Select(i =>
             new DestinationViewModel
             {
@@ -150,6 +151,19 @@ namespace Presentation.Areas.Admin.Controllers
                 Name = i.Name,
             });
             return Json(destinationViewModels);
+        }
+
+        public async Task<IActionResult> Details(Guid TourID)
+        {
+            var tourDestinations = await _tourDestinationService.GetByTourIdAsync(TourID);
+            var tourDestinationsViewModel = tourDestinations.Select(i => new TourDestinationViewModel
+            {
+                TourID = i.TourID,
+                DestinationID = i.DestinationID,
+                VisitDate = i.VisitDate
+            }).ToList();
+
+            return View(tourDestinationsViewModel);
         }
     }
 }

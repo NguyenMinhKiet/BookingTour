@@ -30,11 +30,11 @@ namespace Application.Services
             var newCustomer = new Customer()
             {
                 CustomerID = new Guid(),
-                FirstName = customerCreationDto.FirstName,
-                LastName = customerCreationDto.LastName,
-                Address = customerCreationDto.Address,
-                Phone = customerCreationDto.Phone,
-                Email = customerCreationDto.Email,
+                FirstName = customerCreationDto.FirstName.Trim(),
+                LastName = customerCreationDto.LastName.Trim(),
+                Address = customerCreationDto.Address.Trim(),
+                Phone = customerCreationDto.Phone.Trim(),
+                Email = customerCreationDto.Email.Trim(),
                 AccountID = customerCreationDto.AccountID,
             };
             await _customerRepository.AddAsync(newCustomer);
@@ -46,9 +46,9 @@ namespace Application.Services
             var customer = await _customerRepository.GetByIdAsync(customer_id);
             if( customer != null)
             {
-                customer.FirstName = customerUpdateDto.FirstName;
-                customer.LastName = customerUpdateDto.LastName;
-                customer.Address = customerUpdateDto.Address;
+                customer.FirstName = customerUpdateDto.FirstName.Trim();
+                customer.LastName = customerUpdateDto.LastName.Trim();
+                customer.Address = customerUpdateDto.Address.Trim();
 
                 await _customerRepository.UpdateAsync(customer);
             }

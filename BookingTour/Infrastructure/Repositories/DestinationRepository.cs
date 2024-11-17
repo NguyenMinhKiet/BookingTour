@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Entities.Location;
 using Domain.Repositories;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -50,7 +51,31 @@ namespace Infrastructure.Repositories
 
         public async Task<IEnumerable<Destination>> GetByCategoryAsync(string Category)
         {
-            return await _context.Destinations.Where(x => x.Category == Category).ToListAsync();
+            return await _context.Destinations
+                .Where(x => EF.Functions.Like(x.Category, "%" + Category + "%")).ToListAsync();
         }
+
+        public async Task<IEnumerable<Destination>> GetByCityAsync(string City)
+        {
+            return await _context.Destinations
+                .Where(x => EF.Functions.Like(x.City, "%" + City + "%"))  // Sử dụng LIKE để so sánh
+                .ToListAsync();
+        }
+        public async Task<IEnumerable<Destination>> GetByCityAndCategoryAsync(string City, string Category)
+        {
+            return await _context.Destinations
+                .Where(x => EF.Functions.Like(x.City, "%" + City + "%") && EF.Functions.Like(x.Category, "%" + Category + "%"))  // Sử dụng LIKE cho cả City và Category
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<string>> GetCategory(string City)
+        {
+            return await _context.Destinations
+                .Where(x => EF.Functions.Like(x.City,"%" +City +"%"))  // Sử dụng LIKE cho City
+                .Select(x => x.Category)
+                .ToListAsync();
+        }
+
+
     }
 }

@@ -6,7 +6,7 @@ using Presentation.Areas.Admin.Models;
 
 namespace Presentation.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Policy = "RequiredAdminOrManager")]
     [Area("Admin")]
     public class TourController : Controller
     {
@@ -30,7 +30,8 @@ namespace Presentation.Areas.Admin.Controllers
                 AvailableSeats = i.AvailableSeats,
                 StartDate = i.StartDate,
                 EndDate = i.EndDate,
-                Category = i.Category
+                Category = i.Category,
+                City = i.City
 
             }).ToList();
 
@@ -89,7 +90,8 @@ namespace Presentation.Areas.Admin.Controllers
                 AvailableSeats = i.AvailableSeats,
                 StartDate = i.StartDate,
                 EndDate = i.EndDate,
-                Category = i.Category
+                Category = i.Category,
+                City = i.City
             };
             return View(tourViewModel);
 

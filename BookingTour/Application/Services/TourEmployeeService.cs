@@ -45,5 +45,9 @@ namespace Application.Services
             return _tourEmployeeRepository.GetByIdAsync(tour_id, employee_id);
         }
 
+        public async Task<IEnumerable<TourEmployee>> GetByTourIdAsync(Guid TourID)
+        {
+            return await _tourEmployeeRepository.GetByTourIdAsync(TourID);
+        }
     }
 }

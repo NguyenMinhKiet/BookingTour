@@ -17,5 +17,6 @@ namespace Application.Services_Interface
         public Task DeleteAsync(Guid id);
 
         public Task<IEnumerable<Destination>> GetByCategoryAsync(string Category);
+        public Task<IEnumerable<Destination>> GetByCityAsync(string city);
     }
 }
