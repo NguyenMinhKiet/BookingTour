@@ -36,7 +36,6 @@
                                 <th>Roles</th>
                                 <th>isActive</th>
                             </tr>
-                            </tr>
                         </thead>
                         <tfoot>
                             <tr>
@@ -125,7 +124,7 @@
                                     <td>
                                         <div class="form-button-action">
                                             <a class="btn btn-link btn-primary" type="button"
-                                            asp-area=""
+                                               asp-area="Admin"
                                                asp-route-userId=@acc.Id
                                                asp-controller="Account"
                                                asp-action="ChangePassword">
@@ -140,7 +139,7 @@
                                                 <i class="fas fa-award"></i>
                                             </a>
 
-                                            <a class="btn btn-link @((acc.isActive) ? "btn-success" : "btn-warning")"
+                                            <a class="btn btn-link @((acc.isActive) ? "btn-success" : "btn-danger")"
                                                type="button"
                                                asp-area="Admin"
                                                asp-route-userId="@acc.Id"

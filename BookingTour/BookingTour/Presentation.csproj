@@ -36,4 +36,9 @@
     <Folder Include="Areas\Admin\Data\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\assetsUser\css\.DS_Store" />
+    <None Include="wwwroot\assetsUser\js\.DS_Store" />
+  </ItemGroup>
+
 </Project>

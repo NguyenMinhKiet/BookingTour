@@ -46,5 +46,14 @@ namespace Infrastructure.Repositories
             _context.Feedbacks.Remove(feedback);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<Feedback>> GetByTourID(Guid TourID)
+        {
+
+            var result = await _context.Feedbacks
+                .Where(x => x.TourID == TourID).ToListAsync();
+
+            return result;
+        }
     }
 }

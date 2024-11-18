@@ -46,8 +46,8 @@
 
 <form asp-action="Update" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input asp-for="TourID" type="text" class="form-control" id="TourID" name="TourID" value="@Model.TourID">
-    <input asp-for="DestinationID" type="text" class="form-control" id="DestinationID" name="DestinationID" value="@Model.DestinationID">
+    <input asp-for="TourID" type="hidden" value="@Model.TourID">
+    <input asp-for="DestinationID" type="hidden" value="@Model.DestinationID">
 
     <div class="form-group">
         <label asp-for="VisitDate"></label>

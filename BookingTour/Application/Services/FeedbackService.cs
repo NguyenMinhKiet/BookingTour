@@ -50,6 +50,11 @@ namespace Application.Services
             return await _feedbackRepository.GetByIdAsync(id);
         }
 
+        public async Task<IEnumerable<Feedback>> GetByTourID(Guid TourID)
+        {
+            return await _feedbackRepository.GetByTourID(TourID);
+        }
+
         public async Task UpdateAsync(Guid id, FeedbackUpdateDto dto)
         {
             var feedback = await _feedbackRepository.GetByIdAsync(id);

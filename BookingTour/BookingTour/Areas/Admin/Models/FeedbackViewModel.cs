@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace Presentation.Areas.Admin.Models
 {
@@ -16,6 +17,8 @@ namespace Presentation.Areas.Admin.Models
         public string Comments { get; set; }
         public DateTime CreateAt { get; set; }
         public DateTime ModifyAt { get; set; }
+
+        public virtual Customer Customer { get; set; }
 
     }
 }

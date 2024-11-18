@@ -13,5 +13,6 @@ namespace Domain.Entities
         public DateTime ModifyAt { get; set; }
 
         public virtual Tour Tour { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

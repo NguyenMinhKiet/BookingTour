@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241117214034_update")]
-    partial class update
+    [Migration("20241118115726_abc")]
+    partial class abc
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -285,6 +285,9 @@ namespace Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("FeedbackID");
+
+                    b.HasIndex("CustomerID")
+                        .IsUnique();
 
                     b.HasIndex("TourID");
 
@@ -578,11 +581,19 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Feedback", b =>
                 {
+                    b.HasOne("Domain.Entities.Customer", "Customer")
+                        .WithOne("Feedback")
+                        .HasForeignKey("Domain.Entities.Feedback", "CustomerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Domain.Entities.Tour", "Tour")
                         .WithMany("FeedBacks")
                         .HasForeignKey("TourID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Customer");
 
                     b.Navigation("Tour");
                 });
@@ -696,6 +707,9 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Customer", b =>
                 {
                     b.Navigation("Bookings");
+
+                    b.Navigation("Feedback")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.Destination", b =>

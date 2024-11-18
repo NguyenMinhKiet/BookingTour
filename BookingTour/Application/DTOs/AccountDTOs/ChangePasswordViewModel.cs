@@ -9,7 +9,7 @@ namespace Application.DTOs.AccountDTOs
 {
     public class ChangePasswordViewModel
     {
-        public string userId;
+        public Guid userId;
         [Required(ErrorMessage = "Vui lòng nhập mật khẩu.")]
         [DataType(DataType.Password)]
         [MinLength(6, ErrorMessage = "Mật khẩu phải có ít nhất 6 ký tự.")]

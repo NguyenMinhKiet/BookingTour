@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class createdb : Migration
+    public partial class abc : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -207,14 +207,14 @@ namespace Infrastructure.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    AccountID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customers", x => x.CustomerID);
                     table.ForeignKey(
-                        name: "FK_Customers_AspNetUsers_Id",
-                        column: x => x.Id,
+                        name: "FK_Customers_AspNetUsers_AccountID",
+                        column: x => x.AccountID,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -231,39 +231,16 @@ namespace Infrastructure.Migrations
                     Position = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    AccountID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Employees", x => x.EmployeeID);
                     table.ForeignKey(
-                        name: "FK_Employees_AspNetUsers_Id",
-                        column: x => x.Id,
+                        name: "FK_Employees_AspNetUsers_AccountID",
+                        column: x => x.AccountID,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Feedbacks",
-                columns: table => new
-                {
-                    FeedbackID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CustomerID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TourID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Rating = table.Column<int>(type: "int", nullable: false),
-                    Comments = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifyAt = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Feedbacks", x => x.FeedbackID);
-                    table.ForeignKey(
-                        name: "FK_Feedbacks_Tours_TourID",
-                        column: x => x.TourID,
-                        principalTable: "Tours",
-                        principalColumn: "TourID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -318,6 +295,35 @@ namespace Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Bookings_Tours_TourID",
+                        column: x => x.TourID,
+                        principalTable: "Tours",
+                        principalColumn: "TourID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Feedbacks",
+                columns: table => new
+                {
+                    FeedbackID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CustomerID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TourID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Rating = table.Column<int>(type: "int", nullable: false),
+                    Comments = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifyAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Feedbacks", x => x.FeedbackID);
+                    table.ForeignKey(
+                        name: "FK_Feedbacks_Customers_CustomerID",
+                        column: x => x.CustomerID,
+                        principalTable: "Customers",
+                        principalColumn: "CustomerID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Feedbacks_Tours_TourID",
                         column: x => x.TourID,
                         principalTable: "Tours",
                         principalColumn: "TourID",
@@ -420,15 +426,21 @@ namespace Infrastructure.Migrations
                 column: "TourID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Customers_Id",
+                name: "IX_Customers_AccountID",
                 table: "Customers",
-                column: "Id",
+                column: "AccountID",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employees_Id",
+                name: "IX_Employees_AccountID",
                 table: "Employees",
-                column: "Id",
+                column: "AccountID",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Feedbacks_CustomerID",
+                table: "Feedbacks",
+                column: "CustomerID",
                 unique: true);
 
             migrationBuilder.CreateIndex(

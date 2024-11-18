@@ -18,12 +18,18 @@ namespace Infrastructure.DataAccess.Configurations
             builder.Property(u=>u.TourID)
                 .IsRequired();
 
-           
 
-            builder.HasOne(t=>t.Tour)
-                .WithMany(f=>f.FeedBacks)
-                .HasForeignKey(t=>t.TourID)
-                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(t => t.Tour)
+                .WithMany(f => f.FeedBacks)
+                .HasForeignKey(t => t.TourID)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Cấu hình mối quan hệ giữa Feedback và Customer
+            builder.HasOne(f => f.Customer)
+                .WithMany() // Customer có nhiều Feedback
+                .HasForeignKey(f => f.CustomerID)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

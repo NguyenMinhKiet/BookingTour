@@ -20,5 +20,7 @@ namespace Application.Services_Interface
         public Task<IdentityResult> ChangePasswordAsync(string userId, string currentPassword, string newPassword);
 
         public Task<IEnumerable<AccountWithRolesViewModel>> GetAllAccountWithRolesAsync();
+
+        public Task<Guid> GetLoginUserId();
     }
 }

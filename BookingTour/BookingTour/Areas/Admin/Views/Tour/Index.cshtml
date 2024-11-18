@@ -162,6 +162,15 @@
                                                asp-action="Update">
                                                 <i class="fa fa-edit"></i>
                                             </a>
+
+                                            <a class="btn btn-link btn-primary " type="button"
+                                               asp-area="Admin"
+                                               asp-route-tourID=@t.TourID
+                                               asp-controller="Feedback"
+                                               asp-action="Index">
+                                                <i class="fas fa-envelope"></i>
+                                            </a>
+
                                             <a class="btn btn-link btn-danger " type="button"
                                                asp-area="Admin"
                                                asp-route-TourID=@t.TourID

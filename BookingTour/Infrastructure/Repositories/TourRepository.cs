@@ -2,6 +2,7 @@
 using Domain.Repositories;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 
 namespace Infrastructure.Repositories
 {
@@ -62,6 +63,20 @@ namespace Infrastructure.Repositories
                 .ToListAsync();
 
             return tourEmployees;
+        }
+
+        public async Task<IEnumerable<Tour>> GetToursByCategories(List<string> categories)
+        {
+            if (categories == null || categories.Count < 0)
+            {
+                // Trả về toàn bộ tour nếu không có danh mục nào được chọn
+                return await _context.Tours.ToListAsync();
+            }
+
+            // Lọc tour dựa trên danh mục
+            return await _context.Tours
+                                 .Where(tour => categories.Contains(tour.Category))
+                                 .ToListAsync();
         }
 
         public async Task UpdateAsync(Tour tour)

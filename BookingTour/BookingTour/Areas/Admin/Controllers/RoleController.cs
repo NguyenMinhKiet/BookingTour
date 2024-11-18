@@ -154,32 +154,6 @@ namespace Presentation.Areas.Admin.Controllers
                 return View(roleClaimsViewModel);
             }
 
-
-            //var role = await _roleManager.FindByIdAsync(roleId);
-            //var claims = await _roleManager.GetClaimsAsync(role);
-            //var listClaimViewModel = new List<ClaimViewModel>();
-
-            // Đánh dấu Selected dựa trên các Claims đã tồn tại
-            //foreach (var permissionClaim in PermissionListViewModel)
-            //{
-            //    foreach (var claim in claims)
-            //    {
-            //        if (string.Equals(claim.Type, permissionClaim.Type, StringComparison.OrdinalIgnoreCase) &&
-            //            string.Equals(claim.Value, permissionClaim.Value, StringComparison.OrdinalIgnoreCase))
-            //            {
-            //                permissionClaim.Selected = true; // Đánh dấu nếu tồn tại trong Claims
-            //            }
-            //    }
-            //}
-
-            //var roleClaimsViewModel = new RoleClaimsViewModel
-            //{
-            //    RoleId = role.Id,
-            //    RoleName = role.Name,
-            //    Claims = PermissionListViewModel
-            //};
-            //return View(roleClaimsViewModel);
-
             return View();
         }
         [HttpPost]

@@ -1,10 +1,10 @@
-﻿@model List<Presentation.Areas.Admin.Models.FeedbackViewModel>
+﻿@model Application.DTOs.FeedbackDTOs.TourFeedbackViewModel
 @{
     ViewData["Title"] = "Danh sách Đánh Giá";
 }
 
 <div class="page-header">
-    <h3 class="fw-bold mb-3">Danh sách Đánh Giá</h3>
+    <h3 class="fw-bold mb-3">Danh sách Đánh Giá Tour: @Model.TourName</h3>
     <ul class="breadcrumbs mb-3">
         <li class="nav-home">
             <a asp-area="Admin"
@@ -34,21 +34,18 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Tour ID</th>
-                                <th>Customer ID</th>
+                                <th>STT</th>  <!-- Thêm cột STT -->
+                                <th>Customer Name</th>
                                 <th>Rating</th>
                                 <th>Comments</th>
                                 <th>CreateAt</th>
                                 <th>ModifyAt</th>
                             </tr>
-                            </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>ID</th>
-                                <th>Tour ID</th>
-                                <th>Customer ID</th>
+                                <th>STT</th>  <!-- Thêm cột STT -->
+                                <th>Customer Name</th>
                                 <th>Rating</th>
                                 <th>Comments</th>
                                 <th>CreateAt</th>
@@ -56,16 +53,15 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach (var feedback in Model)
+                            @for (int i = 0;i < Model.Feedbacks.Count; i++)
                             {
                                 <tr>
-                                    <td>@feedback.FeedbackID</td>
-                                    <td>@feedback.TourID</td>
-                                    <td>@feedback.CustomerID</td>
-                                    <td>@feedback.Rating</td>
-                                    <td>@feedback.Comments</td>
-                                    <td>@feedback.CreateAt</td>
-                                    <td>@feedback.ModifyAt</td>
+                                    <td>@(i + 1)</td>  <!-- Hiển thị số thứ tự -->
+                                    <td>@Model.Feedbacks[i].Customer.FirstName @Model.Feedbacks[i].Customer.LastName</td>
+                                    <td>@Model.Feedbacks[i].Rating</td>
+                                    <td>@Model.Feedbacks[i].Comments</td>
+                                    <td>@Model.Feedbacks[i].CreateAt</td>
+                                    <td>@Model.Feedbacks[i].ModifyAt</td>
                                 </tr>
                             }
                         </tbody>
@@ -80,6 +76,14 @@
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <h4 class="card-title">Thông tin chi tiết</h4>
+                    <a class="btn btn-primary btn-round ms-auto"
+                       asp-area="Admin"
+                       asp-action="Create"
+                       asp-route-TourID="@Model.TourID"
+                       asp-controller="Feedback">
+                        <i class="fa fa-plus"></i>
+                        Thêm đánh giá
+                    </a>
                 </div>
             </div>
             <div class="card-body">
@@ -88,8 +92,8 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>Tour ID</th>
-                                <th>Customer ID</th>
+                                <th>STT</th>  <!-- Thêm cột STT -->
+                                <th>Customer Name</th>
                                 <th>Rating</th>
                                 <th>Comments</th>
                                 <th>CreateAt</th>
@@ -99,8 +103,8 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Tour ID</th>
-                                <th>Customer ID</th>
+                                <th>STT</th>  <!-- Thêm cột STT -->
+                                <th>Customer Name</th>
                                 <th>Rating</th>
                                 <th>Comments</th>
                                 <th>CreateAt</th>
@@ -109,27 +113,30 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach (var feedback in Model)
+                            @for (int i = 0; i < Model.Feedbacks.Count; i++)
                             {
                                 <tr>
-                                    <td>@feedback.TourID</td>
-                                    <td>@feedback.CustomerID</td>
-                                    <td>@feedback.Rating</td>
-                                    <td>@feedback.Comments</td>
-                                    <td>@feedback.CreateAt</td>
-                                    <td>@feedback.ModifyAt</td>
+                                    <td>@(i + 1)</td>  <!-- Hiển thị số thứ tự -->
+                                    <td>@Model.Feedbacks[i].Customer.FirstName @Model.Feedbacks[i].Customer.LastName</td>
+                                    <td>@Model.Feedbacks[i].Rating</td>
+                                    <td>@Model.Feedbacks[i].Comments</td>
+                                    <td>@Model.Feedbacks[i].CreateAt</td>
+                                    <td>@Model.Feedbacks[i].ModifyAt</td>
                                     <td>
                                         <div class="form-button-action">
+
                                             <a class="btn btn-link btn-primary" type="button"
                                                asp-area="Admin"
-                                               asp-route-FeedbackID=@feedback.FeedbackID
+                                               asp-route-TourID="@Model.TourID"
+                                               asp-route-FeedbackID=@Model.Feedbacks[i].FeedbackID
                                                asp-controller="Feedback"
                                                asp-action="Update">
                                                 <i class="fa fa-edit"></i>
                                             </a>
                                             <a class="btn btn-link btn-danger " type="button"
                                                asp-area="Admin"
-                                               asp-route-FeedbackID=@feedback.FeedbackID
+                                               asp-route-TourID="@Model.TourID"
+                                               asp-route-FeedbackID=@Model.Feedbacks[i].FeedbackID
                                                asp-controller="Feedback"
                                                asp-action="Delete">
                                                 <i class="fa fa-times"></i>
@@ -145,4 +152,3 @@
         </div>
     </div>
 </div>
-

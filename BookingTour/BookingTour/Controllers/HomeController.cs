@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 
 namespace Presentation.Controllers
 {
@@ -32,6 +33,14 @@ namespace Presentation.Controllers
             return View();
         }
 
-        
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
     }
 }

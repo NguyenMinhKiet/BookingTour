@@ -5,6 +5,270 @@
       "PackagePath": "staticwebassets\\Presentation.bundle.scp.css"
     },
     {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\animate.min.css",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\animate.min.css"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\default-skin.css",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\default-skin.css"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\font-awesome.min.css",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\font-awesome.min.css"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\icomoon.css",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\icomoon.css"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\jquery-ui.css",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\jquery-ui.css"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\jquery.fancybox.min.css",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\jquery.fancybox.min.css"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\jquery.mCustomScrollbar.min.css",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\jquery.mCustomScrollbar.min.css"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\meanmenu.css",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\meanmenu.css"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\nice-select.css",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\nice-select.css"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\normalize.css",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\normalize.css"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\owl.carousel.min.css",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\owl.carousel.min.css"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\responsive.css",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\responsive.css"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\slick.css",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\slick.css"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\style.css",
+      "PackagePath": "staticwebassets\\assetsUser\\css\\style.css"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\about-img.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\about-img.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\banner-bg.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\banner-bg.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\blog-bg.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\blog-bg.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\blog-mobile-bg.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\blog-mobile-bg.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\call-icon.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\call-icon.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\client-img.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\client-img.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\client-img1.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\client-img1.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\fb-icon.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\fb-icon.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\footer-bg.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\footer-bg.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\footer-mobile-bg.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\footer-mobile-bg.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\img-1.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\img-1.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\img-2.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\img-2.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\img-3.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\img-3.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\instagram-icon.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\instagram-icon.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\linkedin-icon.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\linkedin-icon.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\logo.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\logo.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\mail-icon.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\mail-icon.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\map-icon.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\map-icon.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\mobile-bg.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\mobile-bg.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\play-icon.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\play-icon.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\quick-icon.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\quick-icon.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\twitter-icon.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\twitter-icon.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\images\\youtub-icon.png",
+      "PackagePath": "staticwebassets\\assetsUser\\images\\youtub-icon.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\assetsUser\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\assetsUser\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\assetsUser\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\assetsUser\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\assetsUser\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\assetsUser\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\assetsUser\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\assetsUser\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\js\\custom.js",
+      "PackagePath": "staticwebassets\\assetsUser\\js\\custom.js"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\js\\jquery-3.0.0.min.js",
+      "PackagePath": "staticwebassets\\assetsUser\\js\\jquery-3.0.0.min.js"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\js\\jquery.mCustomScrollbar.concat.min.js",
+      "PackagePath": "staticwebassets\\assetsUser\\js\\jquery.mCustomScrollbar.concat.min.js"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\js\\jquery.min.js",
+      "PackagePath": "staticwebassets\\assetsUser\\js\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\js\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\assetsUser\\js\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\js\\modernizer.js",
+      "PackagePath": "staticwebassets\\assetsUser\\js\\modernizer.js"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\js\\plugin.js",
+      "PackagePath": "staticwebassets\\assetsUser\\js\\plugin.js"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\js\\popper.min.js",
+      "PackagePath": "staticwebassets\\assetsUser\\js\\popper.min.js"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\js\\slider-setting.js",
+      "PackagePath": "staticwebassets\\assetsUser\\js\\slider-setting.js"
+    },
+    {
       "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assets\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\assets\\css\\bootstrap.min.css"
     },
@@ -159,6 +423,10 @@
     {
       "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assets\\img\\chadengle.jpg",
       "PackagePath": "staticwebassets\\assets\\img\\chadengle.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assets\\img\\default.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\default.jpg"
     },
     {
       "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assets\\img\\examples\\example1-300x300.jpg",

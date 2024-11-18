@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Areas/Admin/Views/Account/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudFxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Areas/Admin/Views/Account/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -88,6 +92,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Areas/Admin/Views/Feedback/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRmVlZGJhY2tcVXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Areas/Admin/Views/Home/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxEYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Areas/Admin/Views/Home/Index.cshtml]
@@ -186,10 +194,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Account/AccessDenied.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Account/ChangePassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -200,6 +204,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Home/About.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Home/Contact.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Home/Index.cshtml]
@@ -214,8 +226,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9jYXRpb25cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Services/Booking.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljZXNcQm9va2luZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Services/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Shared/_ecomLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9lY29tTGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Views/Shared/_ValidationScriptsPartial.cshtml]

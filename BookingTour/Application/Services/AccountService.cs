@@ -3,6 +3,7 @@ using Application.DTOs.CustomerDTOs;
 using Application.DTOs.EmployeeDTOs;
 using Application.Services_Interface;
 using Domain.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -14,17 +15,19 @@ namespace Application.Services
         private readonly UserManager<Account> _userManager;
         private readonly SignInManager<Account> _signInManager;
         private readonly RoleManager<Role> _roleManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
 
         public AccountService(UserManager<Account> userManager,
                               SignInManager<Account> signInManager,
-                              RoleManager<Role> roleManager
-                              )
+                              RoleManager<Role> roleManager,
+                              IHttpContextAccessor httpContextAccessor)
             
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<IdentityResult> RegisterAsync(RegisterModelDto model)
@@ -198,6 +201,13 @@ namespace Application.Services
             return userWithRoles;
         }
 
+        public async Task<Guid> GetLoginUserId()
+        {
+            var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);  // Lấy người dùng từ HttpContext
+            return user.Id != null ? user.Id : Guid.Empty;
+        }
+
+        
 
     }
 

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241117212419_createdb")]
-    partial class createdb
+    [Migration("20241118121950_update_relationship")]
+    partial class update_relationship
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -156,6 +156,9 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("AccountID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -168,9 +171,6 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -181,7 +181,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("CustomerID");
 
-                    b.HasIndex("Id")
+                    b.HasIndex("AccountID")
                         .IsUnique();
 
                     b.ToTable("Customers", (string)null);
@@ -224,6 +224,9 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("AccountID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -235,9 +238,6 @@ namespace Infrastructure.Migrations
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -253,7 +253,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("EmployeeID");
 
-                    b.HasIndex("Id")
+                    b.HasIndex("AccountID")
                         .IsUnique();
 
                     b.ToTable("Employees", (string)null);
@@ -275,6 +275,9 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("CustomerID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("CustomerID1")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("ModifyAt")
                         .HasColumnType("datetime2");
 
@@ -285,6 +288,12 @@ namespace Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("FeedbackID");
+
+                    b.HasIndex("CustomerID");
+
+                    b.HasIndex("CustomerID1")
+                        .IsUnique()
+                        .HasFilter("[CustomerID1] IS NOT NULL");
 
                     b.HasIndex("TourID");
 
@@ -540,7 +549,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.Customer", "Customer")
                         .WithMany("Bookings")
                         .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Tour", "Tour")
@@ -558,8 +567,8 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Domain.Entities.Account", "Account")
                         .WithOne()
-                        .HasForeignKey("Domain.Entities.Customer", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("Domain.Entities.Customer", "AccountID")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Account");
@@ -569,7 +578,7 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Domain.Entities.Account", "Account")
                         .WithOne()
-                        .HasForeignKey("Domain.Entities.Employee", "Id")
+                        .HasForeignKey("Domain.Entities.Employee", "AccountID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -578,11 +587,23 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Feedback", b =>
                 {
+                    b.HasOne("Domain.Entities.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Customer", null)
+                        .WithOne("Feedback")
+                        .HasForeignKey("Domain.Entities.Feedback", "CustomerID1");
+
                     b.HasOne("Domain.Entities.Tour", "Tour")
                         .WithMany("FeedBacks")
                         .HasForeignKey("TourID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Customer");
 
                     b.Navigation("Tour");
                 });
@@ -696,6 +717,9 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Customer", b =>
                 {
                     b.Navigation("Bookings");
+
+                    b.Navigation("Feedback")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.Destination", b =>

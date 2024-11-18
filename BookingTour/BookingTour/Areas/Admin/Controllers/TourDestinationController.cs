@@ -1,4 +1,5 @@
-﻿using Application.DTOs.TourDestinationDTOs;
+﻿using Application.DTOs.DestinationDTOs;
+using Application.DTOs.TourDestinationDTOs;
 using Application.Services_Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,21 +25,43 @@ namespace Presentation.Areas.Admin.Controllers
 
         // GET: /TourDestination/
         [Authorize(Policy = "tour-destination-view")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(Guid TourID)
         {
-            var tourDestinations = await _tourDestinationService.GetAllAsync();
-            var tourDestinationsViewModel = tourDestinations.Select(i => new TourDestinationViewModel
+            var tour = await _tourService.GetByIdAsync(TourID);
+
+            if (tour == null)
             {
-                TourID = i.TourID,
-                DestinationID = i.DestinationID,
-                VisitDate = i.VisitDate
+                TempData["NotificationType"] = "danger";
+                TempData["NotificationTitle"] = "Thất bại!";
+                TempData["NotificationMessage"] = $"Không tìm thấy TourID: {TourID}!";
+                return View();
+            }
+            var destinations = await _tourDestinationService.GetByTourIdAsync(TourID);
+
+            var destinationsViewModel = destinations.Select(x => new DestinationWithVisitDateViewModel
+            {
+                DestinationID = x.DestinationID,
+                Name = x.Destination.Name,
+                Category = x.Destination.Category,
+                Description = x.Destination.Description,
+                City = x.Destination.City,
+                Country = x.Destination.Country,
+                visitDate = x.VisitDate 
+
             }).ToList();
 
-            return View(tourDestinationsViewModel);
+            var tourDestinationViewModel = new TourDestinationViewModel
+            {
+                TourID = TourID,
+                TourName = tour.Title,
+                Destinations = destinationsViewModel
+            };
+            return View(tourDestinationViewModel);
         }
 
         // GET: /TourDestination/Create
         [Authorize(Policy = "tour-destination-add")]
+        [HttpGet]
         public async Task<IActionResult> Create(Guid TourID)
         {
             var tour = await _tourService.GetByIdAsync(TourID);
@@ -52,11 +75,11 @@ namespace Presentation.Areas.Admin.Controllers
             }
             TempData["TourID"] = TourID; ;
 
-            var tourDestinationViewmodel = new TourDestinationViewModel
+            var tourDestinationViewmodel = new TourDestinationCreationDto
             {
                 TourID = TourID,
-                TourName = tour.Title
             };
+
             return View(tourDestinationViewmodel);
         }
 
@@ -71,25 +94,20 @@ namespace Presentation.Areas.Admin.Controllers
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành Công!";
                 TempData["NotificationMessage"] = "Thêm địa điểm vào Tour thành công!";
-                return RedirectToAction("Index", "Tour");
+                return RedirectToAction("Index", "TourDestination", new {TourID = dto.TourID});
             }
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
-            // Lấy tất cả lỗi từ ModelState và thêm chúng vào TempData để hiển thị
-            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
-            foreach (var error in errors)
-            {
-                ModelState.AddModelError(string.Empty, error);
-            }
             return View();
         }
 
         // GET: /TourDestination/Update?{TourID, DestinantionID)
         [Authorize(Policy = "tour-destination-update")]
-        public async Task<IActionResult> Update(Guid TourID, Guid DestinantionID)
+        [HttpGet]
+        public async Task<IActionResult> Update(Guid TourID, Guid DestinationID)
         {
-            var tourDestination = await _tourDestinationService.GetById(TourID, DestinantionID);
+            var tourDestination = await _tourDestinationService.GetById(TourID, DestinationID);
             if (tourDestination != null)
             {
                 var tourDestinationViewModel = new TourDestinationUpdateViewModel
@@ -102,8 +120,8 @@ namespace Presentation.Areas.Admin.Controllers
             }
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
-            TempData["NotificationMessage"] = $"Không tìm thấy TourID: {TourID} và DestinationID: {DestinantionID}";
-            return RedirectToAction("Index");
+            TempData["NotificationMessage"] = $"Không tìm thấy TourID: {TourID} và DestinationID: {DestinationID}";
+            return RedirectToAction("Index", new { TourID = TourID });
         }
 
         // POST: /TourDestination/Update?{TourID,DestinantionID}
@@ -117,7 +135,7 @@ namespace Presentation.Areas.Admin.Controllers
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành Công!";
                 TempData["NotificationMessage"] = "Cập nhật thông tin thời gian đến địa điểm tour thành công!";
-                return RedirectToAction("Index");
+                return RedirectToAction("Index" , new {TourID = TourID});
             }
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
@@ -133,19 +151,19 @@ namespace Presentation.Areas.Admin.Controllers
             TempData["NotificationType"] = "success";
             TempData["NotificationTitle"] = "Thành Công!";
             TempData["NotificationMessage"] = "Xóa địa điểm trong tour thành công!";
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { TourID = TourID });
         }
-
 
 
         [HttpGet]
         public async Task<IActionResult> GetDestinationsByTour(Guid TourID)
         {
             var tour = await _tourService.GetByIdAsync(TourID);
+            Console.WriteLine(tour.City);
 
             var destinations = await _destinationService.GetByCityAsync(tour.City);
             var destinationViewModels = destinations.Select(i =>
-            new DestinationViewModel
+            new Models.DestinationViewModel
             {
                 DestinationID = i.DestinationID,
                 Name = i.Name,

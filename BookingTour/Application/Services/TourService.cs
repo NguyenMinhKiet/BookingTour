@@ -110,5 +110,10 @@ namespace Application.Services
         {
             return await _tourRepository.GetEmployees(TourID);
         }
+
+        public async Task<IEnumerable<Tour>> GetToursByCategoriesAsync(List<string> categories)
+        {
+            return await _tourRepository.GetToursByCategories(categories);
+        }
     }
 }

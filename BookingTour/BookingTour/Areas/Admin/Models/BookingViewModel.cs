@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace Presentation.Areas.Admin.Models
 {
@@ -20,5 +21,8 @@ namespace Presentation.Areas.Admin.Models
         public decimal TotalPrice { get; set; }
         public DateTime CreateAt { get; set; }
         public DateTime ModifyAt { get; set; }
+
+        public virtual Customer Customer { get; set; }
+        public virtual Tour Tour { get; set; }
     }
 }

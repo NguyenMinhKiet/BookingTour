@@ -92,6 +92,43 @@ namespace Presentation.Areas.Admin.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult ChangePassword(Guid userId)
+        {
+            var model = new ChangePasswordViewModel
+            {
+                userId = userId
+            };
+            return View(model);
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(Guid userId, ChangePasswordViewModel model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var account = await _userManager.FindByIdAsync(userId.ToString());
+                if (account != null)
+                {
+                    account.Password = model.Password;
+                    await _userManager.UpdateAsync(account);
+
+                    TempData["NotificationType"] = "success";
+                    TempData["NotificationTitle"] = "Thành công!";
+                    TempData["NotificationMessage"] = $"Thay đổi mật khẩu thành công!";
+
+                    return RedirectToAction("Index");
+                }
+                TempData["NotificationType"] = "danger";
+                TempData["NotificationTitle"] = "Thất bại!";
+                TempData["NotificationMessage"] = $"Không tìm thấy tài khoản!";
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
 
     }
 

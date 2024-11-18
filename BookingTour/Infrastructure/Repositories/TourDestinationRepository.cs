@@ -47,7 +47,10 @@ namespace Infrastructure.Repositories
         }
         public async Task<IEnumerable<TourDestination>> GetByTourIdAsync(Guid TourID)
         {
-            return await _context.ToursDestination.Where(x => x.TourID == TourID).ToListAsync();
+            return await _context.ToursDestination
+                .Include(x=> x.Destination)
+                .Where(id=>id.TourID == TourID)
+                .ToListAsync();
         }
     }
 }

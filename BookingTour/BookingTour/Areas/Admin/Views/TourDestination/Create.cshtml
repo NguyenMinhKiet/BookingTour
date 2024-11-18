@@ -1,94 +1,94 @@
-﻿@model Presentation.Areas.Admin.Models.TourDestinationViewModel
-@{
-    ViewData["Title"] = "Thêm địa điểm vào tour";
-}
+﻿    @model Application.DTOs.TourDestinationDTOs.TourDestinationCreationDto
+    @{
+        ViewData["Title"] = "Thêm địa điểm vào tour";
+    }
 
-<div class="page-header">
-    <h3 class="fw-bold mb-3">Thêm Địa điểm Tour</h3>
-    <ul class="breadcrumbs mb-3">
-        <li class="nav-home">
-            <a asp-area="Admin"
-            asp-controller="HomeController"
-               asp-action="Index">
-                <i class="icon-home"></i>
-            </a>
-        </li>
-        <li class="separator">
-            <i class="icon-arrow-right"></i>
-        </li>
-        <li class="nav-item">
-            <a asp-area="Admin"
-            asp-controller="TourDestination"
-               asp-action="Index">
-                Địa điểm chuyến đi
-            </a>
-        </li>
-        <li class="separator">
-            <i class="icon-arrow-right"></i>
-        </li>
-        <li class="nav-item">
-            Create
-        </li>
-    </ul>
-</div>
-
-<form asp-action="Create" method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input asp-for="TourID" value="@Model.TourID" type="hidden"/>
-
-    <div class="form-group">
-        <label asp-for="DestinationID">Chọn địa điểm:</label>
-        <select asp-for="DestinationID" id="DestinationID" name="DestinationID" class="form-control" Required>
-            <option value="">-- Chọn địa điểm --</option>
-        </select>
-        <span asp-validation-for="DestinationID" class="text-danger"></span>
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">Thêm Địa điểm Tour</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a asp-area="Admin"
+                asp-controller="HomeController"
+                   asp-action="Index">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin"
+                asp-controller="TourDestination"
+                   asp-action="Index">
+                    Địa điểm chuyến đi
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                Create
+            </li>
+        </ul>
     </div>
 
-    <div class="form-group">
-        <label asp-for="VisitDate"></label>
-        <input asp-for="VisitDate" type="datetime-local" class="form-control" id="VisitDate" name="VisitDate" Required>
-        <span asp-validation-for="VisitDate" class="text-danger"></span>
-    </div>
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="TourID" value="@Model.TourID" type="hidden"/>
 
-    <button type="submit" class="btn btn-primary">Lưu</button>
-    <a asp-area="Admin" asp-controller="Tour" asp-action="Index" class="btn btn-secondary">Hủy</a>
-</form>
+        <div class="form-group">
+            <label asp-for="DestinationID">Chọn địa điểm:</label>
+            <select asp-for="DestinationID" id="DestinationID" name="DestinationID" class="form-control" Required>
+                <option value="">-- Chọn địa điểm --</option>
+            </select>
+            <span asp-validation-for="DestinationID" class="text-danger"></span>
+        </div>
 
-@section Script {
-    <script>
-        $(document).ready(function () {
-    var tourId = '@ViewData["TourID"]';  // Lấy giá trị từ ViewData
-    $.ajax({
-        url: '@Url.Action("GetDestinationsByTour", "TourDestination")',
-        type: 'GET',
-        data: { tourId: tourId }, // Gửi đúng giá trị tourId vào data
-        success: function (data) {
-            console.log(data); // Kiểm tra dữ liệu trả về
-            var destinationSelect = $('#DestinationID');
-            destinationSelect.empty(); // Xóa danh sách cũ
-            destinationSelect.append(
-                    $('<option>', {
-                        value: "",
-                        text:  "-- Chọn 1 địa điểm --"
-                    })
-                )
-            // Thêm các tùy chọn mới vào select
-            $.each(data, function (index, destination) {
+        <div class="form-group">
+            <label asp-for="VisitDate"></label>
+            <input asp-for="VisitDate" type="datetime-local" class="form-control" id="VisitDate" name="VisitDate" Required>
+            <span asp-validation-for="VisitDate" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        <a asp-area="Admin" asp-controller="Tour" asp-action="Index" class="btn btn-secondary">Hủy</a>
+    </form>
+
+    @section Script {
+        <script>
+            $(document).ready(function () {
+        var tourId = '@Model.TourID';  // Lấy giá trị từ ViewData
+        $.ajax({
+            url: '@Url.Action("GetDestinationsByTour", "TourDestination")',
+            type: 'GET',
+            data: { tourId: tourId }, // Gửi đúng giá trị tourId vào data
+            success: function (data) {
+                console.log(data); // Kiểm tra dữ liệu trả về
+                var destinationSelect = $('#DestinationID');
+                destinationSelect.empty(); // Xóa danh sách cũ
                 destinationSelect.append(
-                    $('<option>', {
-                        value: destination.destinationID,
-                        text: destination.name
-                    })
-                );
-            });
-        },
-        error: function (xhr, status, error) {
-            console.error('Error: ', error);  // Hiển thị lỗi nếu có
-        }
+                        $('<option>', {
+                            value: "",
+                            text:  "-- Chọn 1 địa điểm --"
+                        })
+                    )
+                // Thêm các tùy chọn mới vào select
+                $.each(data, function (index, destination) {
+                    destinationSelect.append(
+                        $('<option>', {
+                            value: destination.destinationID,
+                            text: destination.name
+                        })
+                    );
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error('Error: ', error);  // Hiển thị lỗi nếu có
+            }
+        });
     });
-});
-    </script>
+        </script>
 
     
-}
+    }
 

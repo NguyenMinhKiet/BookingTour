@@ -1,4 +1,4 @@
-﻿@model Presentation.Areas.Admin.Models.FeedbackViewModel
+﻿@model Application.DTOs.FeedbackDTOs.FeedbackUpdateDto
 
 @{
     ViewData["Title"] = "Chỉnh sửa đánh giá";
@@ -41,13 +41,11 @@
 
 <form asp-action="Update" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input asp-for="FeedbackID" type="hidden" class="form-control" id="FeedbackID" name="FeedbackID" value="@Model.FeedbackID">
-    <input asp-for="TourID" type="hidden" class="form-control" id="TourID" name="TourID" value="@Model.TourID">
-    <input asp-for="CustomerID" type="hidden" class="form-control" id="CustomerID" name="CustomerID" value="@Model.CustomerID">
-
+    <input asp-for="FeedbackID" type="hidden" class="form-control" value="@Model.FeedbackID">
+    <input asp-for="TourID" type="hidden" value="@Model.TourID"/>
     <div class="form-group">
         <label asp-for="Rating"></label>
-        <input asp-for="Rating" type="text" class="form-control" id="Rating" name="Rating" Required>
+        <input asp-for="Rating" type="number" class="form-control" id="Rating" name="Rating" >
         <span asp-validation-for="Rating" class="text-danger"></span>
     </div>
 
@@ -58,5 +56,5 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Lưu</button>
-    <a asp-area="Admin" asp-controller="Feedback" asp-action="Index" class="btn btn-secondary">Hủy</a>
+    <a asp-area="Admin" asp-controller="Feedback" asp-action="Index" asp-route-TourID="@Model.TourID" class="btn btn-secondary">Hủy</a>
 </form>

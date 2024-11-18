@@ -17,5 +17,8 @@ namespace Application.Services_Interface
 
         public Task<String> GetEmployeeNameById(Guid id);
         public Task<String> GetEmployeePositionById(Guid id);
+
+        public Task<IEnumerable<Employee>> GetAllWithOutTour(Guid TourID);
+
     }
 }

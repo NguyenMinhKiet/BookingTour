@@ -27,7 +27,7 @@ namespace Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var tours = await _tourService.GetAllAsync();
-            var toursViewModel = tours.Select(i => new TourViewModel
+            var toursViewModel = tours.Select(i => new Models.TourViewModel
             {
                 TourID = i.TourID,
                 Title = i.Title,
@@ -94,7 +94,7 @@ namespace Presentation.Areas.Admin.Controllers
                 TempData["NotificationMessage"] = $"Không tìm thấy Tour ID: {TourID}";
                 return RedirectToAction("Index");
             }
-            var tourViewModel = new TourViewModel
+            var tourViewModel = new Models.TourViewModel
             {
                 TourID = i.TourID,
                 Title = i.Title,

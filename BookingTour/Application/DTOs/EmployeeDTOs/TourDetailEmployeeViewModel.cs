@@ -9,6 +9,7 @@ namespace Application.DTOs.EmployeeDTOs
 {
     public class TourDetailEmployeeViewModel
     {
+        public Guid TourID { get; set; }
         public Guid EmployeeID { get; set; }
         public string FullName { get; set; }
         public string Position { get; set; }

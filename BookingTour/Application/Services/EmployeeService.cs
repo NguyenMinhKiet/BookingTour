@@ -42,6 +42,11 @@ namespace Application.Services
             return await _employeeRepository.GetAllAsync();
         }
 
+        public async Task<IEnumerable<Employee>> GetAllWithOutTour(Guid TourID)
+        {
+            return await _employeeRepository.GetAllWithOutTour(TourID);
+        }
+
         public async Task<Employee> GetById(Guid id)
         {
             return await _employeeRepository.GetByIdAsync(id);

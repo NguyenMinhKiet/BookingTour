@@ -41,6 +41,13 @@ namespace Infrastructure.Repositories
             return await _context.Employees.ToListAsync();
         }
 
+        public async Task<IEnumerable<Employee>> GetAllWithOutTour(Guid TourID)
+        {
+            return await _context.Employees
+        .Where(x => !x.TourEmployee.Any(te => te.TourID == TourID)) 
+        .ToListAsync();
+        }
+
         public async Task<Employee> GetByIdAsync(Guid id)
         {
             return await _context.Employees.FindAsync(id);

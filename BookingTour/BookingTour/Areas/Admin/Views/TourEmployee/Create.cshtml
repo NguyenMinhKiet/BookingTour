@@ -1,10 +1,10 @@
-﻿@model Presentation.Areas.Admin.Models.TourEmployeeViewModel
+﻿@model Application.DTOs.TourEmployeeDTOs.TourEmployeeCreationDto
 @{
     ViewData["Title"] = "Thêm nhân viên vào tour";
 }
 
 <div class="page-header">
-    <h3 class="fw-bold mb-3">Thêm Nhân Viênn Tour</h3>
+    <h3 class="fw-bold mb-3">Thêm Nhân Viên Tour</h3>
     <ul class="breadcrumbs mb-3">
         <li class="nav-home">
             <a asp-area="Admin"
@@ -34,10 +34,10 @@
 
 <form asp-action="Create" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
+    <input type="hidden" asp-for="TourID" value="@Model.TourID" />
     <div class="form-group">
-        <label for="EmployeeID">Chọn nhân viên:</label>
-        <select id="EmployeeID" name="EmployeeID" class="form-control" asp-items="@ViewBag.EmployeeList" Required>
+        <label asp-for="EmployeeID">Chọn nhân viên:</label>
+        <select asp-for="EmployeeID" class="form-select" asp-items="@ViewBag.EmployeeList" Required>
             <option value="">-- Chọn nhân viên --</option>
             
         </select>

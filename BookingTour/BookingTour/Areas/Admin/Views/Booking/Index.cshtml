@@ -31,8 +31,8 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Tour ID</th>
-                                <th>Customer ID</th>
+                                <th>Tour Name</th>
+                                <th>Customer Name</th>
                                 <th>CreateAt</th>
                                 <th>ModifyAt</th>
                                 <th>Adult</th>
@@ -43,8 +43,8 @@
                         <tfoot>
                             <tr>
                                 <th>ID</th>
-                                <th>Tour ID</th>
-                                <th>Customer ID</th>
+                                <th>Tour Name</th>
+                                <th>Customer Name</th>
                                 <th>CreateAt</th>
                                 <th>ModifyAt</th>
                                 <th>Adult</th>
@@ -57,8 +57,8 @@
                             {
                                 <tr>
                                     <td>@b.BookingID</td>
-                                    <td>@b.TourID</td>
-                                    <td>@b.CustomerID</td>
+                                    <td>@b.Tour.Title</td>
+                                    <td>@b.Customer.LastName @b.Customer.FirstName</td>
                                     <td>@b.CreateAt</td>
                                     <td>@b.ModifyAt</td>
                                     <td>@b.Adult</td>
@@ -93,9 +93,9 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <td>ID</td>
-                                <th>Tour ID</th>
-                                <th>Customer ID</th>
+                                <td>STT</td>
+                                <th>Tour Name</th>
+                                <th>Customer Name</th>
                                 <th>CreateAt</th>
                                 <th>ModifyAt</th>
                                 <th>Adult</th>
@@ -106,9 +106,9 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>ID</th>
-                                <th>Tour ID</th>
-                                <th>Customer ID</th>
+                                <th>STT</th>
+                                <th>Tour Name</th>
+                                <th>Customer Name</th>
                                 <th>CreateAt</th>
                                 <th>ModifyAt</th>
                                 <th>Adult</th>
@@ -118,22 +118,22 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach (var b in Model)
+                            @for(int i = 0; i < Model.Count; i++)
                             {
                                 <tr>
-                                    <td>@b.BookingID</td>
-                                    <td>@b.TourID</td>
-                                    <td>@b.CustomerID</td>
-                                    <td>@b.CreateAt</td>
-                                    <td>@b.ModifyAt</td>
-                                    <td>@b.Adult</td>
-                                    <td>@b.Child</td>
-                                    <td>@b.TotalPrice</td>
+                                    <td>@(i + 1)</td>
+                                    <td>@Model[i].Tour.Title</td>
+                                    <td>@Model[i].Customer.LastName  @Model[i].Customer.FirstName</td>
+                                    <td>@Model[i].CreateAt</td>
+                                    <td>@Model[i].ModifyAt</td>
+                                    <td>@Model[i].Adult</td>
+                                    <td>@Model[i].Child</td>
+                                    <td>@Model[i].TotalPrice</td>
                                     <td>
                                         <div class="form-button-action">
                                             <a class="btn btn-link btn-primary" type="button"
                                                asp-area="Admin"
-                                               asp-route-BookingID=@b.BookingID
+                                               asp-route-BookingID=@Model[i].BookingID
                                                asp-controller="Booking"
                                                asp-action="Update">
                                                 <i class="fa fa-edit"></i>
@@ -141,10 +141,10 @@
 
 
                                             <a class="btn btn-link" type="button"
-                                               id="paymentButton_@b.BookingID"
+                                               id="paymentButton_@Model[i].BookingID"
                                                asp-area="Admin"
-                                               asp-route-BookingID="@b.BookingID"
-                                               data-status="@ViewData[$"Status_{b.BookingID}"].ToString().ToLower()"
+                                               asp-route-BookingID="@Model[i].BookingID"
+                                               data-status="@ViewData[$"Status_{Model[i].BookingID}"].ToString().ToLower()"
                                                asp-controller="Payment"
                                                asp-action="checkStatus">
                                                 <i class="fas fa-money-check-alt"></i>
@@ -153,7 +153,7 @@
 
                                             <a class="btn btn-link btn-danger " type="button"
                                                asp-area="Admin"
-                                               asp-route-BookingID=@b.BookingID
+                                               asp-route-BookingID=@Model[i].BookingID
                                                asp-controller="Booking"
                                                asp-action="Delete">
                                                 <i class="fa fa-times"></i>

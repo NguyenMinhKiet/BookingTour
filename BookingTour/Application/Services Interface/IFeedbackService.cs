@@ -20,5 +20,7 @@ namespace Application.Services_Interface
         public Task UpdateAsync(Guid id, FeedbackUpdateDto dto);
 
         public Task DeleteAsync(Guid id);
+
+        public Task<IEnumerable<Feedback>> GetByTourID(Guid TourID);
     }
 }

@@ -1,70 +1,75 @@
 ﻿@model RegisterViewModel
 @{
     ViewData["Title"] = "Trang Đăng ký";
+    Layout = "_ecomLayout";
 }
-<h2>Register</h2>
 
 
-<form asp-action="Register" method="post">
-    <div asp-validation-summary="ModelOnly"></div>
-    <div class="form-group">
-        <div class="input-icon">
-            <span class="input-icon-addon">
-                <i class="fa fa-user"></i>
-            </span>
-            <input type="text"
-                   class="form-control"
-                   placeholder="Username"
-                   asp-for="UserName"
-                   id="UserName" name="UserName" Required />
-        </div>
-        <span asp-validation-for="UserName" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <div class="input-icon">
-            <span class="input-icon-addon">
-                <i class="fas fa-key"></i>
-            </span>
-            <input type="password"
-                   class="form-control"
-                   placeholder="Password"
-                   asp-for="Password"
-                   id="Password" name="Password" Required />
-            <span class="input-icon-addon toggle-password" data-target="#Password">
-                <i class="fas fa-eye"></i>
-            </span>
-        </div>
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
+<div class="services_section layout_padding">
+    <div class="container">
+        <h2>Register</h2>
+        <form asp-action="Register" method="post">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="form-group">
+                <div class="input-icon">
+                    <span class="input-icon-addon">
+                        <i class="fa fa-user"></i>
+                    </span>
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Username"
+                           asp-for="UserName"
+                           id="UserName" name="UserName" Required />
+                </div>
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="input-icon">
+                    <span class="input-icon-addon">
+                        <i class="fas fa-key"></i>
+                    </span>
+                    <input type="password"
+                           class="form-control"
+                           placeholder="Password"
+                           asp-for="Password"
+                           id="Password" name="Password" Required />
+                    <span class="input-icon-addon toggle-password" data-target="#Password">
+                        <i class="fas fa-eye"></i>
+                    </span>
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
 
-    <div class="form-group">
-        <div class="input-icon">
-            <span class="input-icon-addon">
-                <i class="fas fa-key"></i>
-            </span>
-            <input type="password"
-                   class="form-control"
-                   placeholder="ConfirmPassword"
-                   asp-for="ConfirmPassword"
-                   id="ConfirmPassword" name="ConfirmPassword" Required />
-            <span class="input-icon-addon toggle-password" data-target="#ConfirmPassword">
-                <i class="fas fa-eye"></i>
-            </span>
+            <div class="form-group">
+                <div class="input-icon">
+                    <span class="input-icon-addon">
+                        <i class="fas fa-key"></i>
+                    </span>
+                    <input type="password"
+                           class="form-control"
+                           placeholder="ConfirmPassword"
+                           asp-for="ConfirmPassword"
+                           id="ConfirmPassword" name="ConfirmPassword" Required />
+                    <span class="input-icon-addon toggle-password" data-target="#ConfirmPassword">
+                        <i class="fas fa-eye"></i>
+                    </span>
+                </div>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+        <div>
+            <a href="/Account/Login">Đã có tài khoản? Đăng nhập</a>
         </div>
-        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="Email"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Phone"></label>
-        <input asp-for="Phone" class="form-control" />
-        <span asp-validation-for="Phone" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary">Register</button>
-</form>
-<div>
-    <a href="/Account/Login">Đã có tài khoản? Đăng ký</a>
 </div>

@@ -15,11 +15,13 @@ namespace Presentation.Areas.Admin.Controllers
         private readonly IBookingService _bookingService;
         private readonly ITourService _tourService;
         private readonly IPaymentService _paymentService;
-        public BookingController(IBookingService bookingService, ITourService tourService, IPaymentService paymentService)
+        private readonly ICustomerService _customerService;
+        public BookingController(IBookingService bookingService, ITourService tourService, IPaymentService paymentService, ICustomerService customerService)
         {
             _bookingService = bookingService;
             _tourService = tourService;
             _paymentService = paymentService;
+            _customerService = customerService;
         }
 
 
@@ -31,6 +33,9 @@ namespace Presentation.Areas.Admin.Controllers
             foreach( var i in bookings){
                 var payment = await _paymentService.GetByBookingId(i.BookingID);
                 ViewData[$"Status_{i.BookingID}"] = payment.Status;
+
+                var customer = await _customerService.GetById(i.CustomerID);
+                var tour = await _tourService.GetByIdAsync(i.TourID);
                 var bookingViewModel = new BookingViewModel
                 {
                     BookingID = i.BookingID,
@@ -40,7 +45,9 @@ namespace Presentation.Areas.Admin.Controllers
                     Child = i.Child,
                     CreateAt = i.CreateAt,
                     ModifyAt = i.ModifyAt,
-                    TotalPrice = i.TotalPrice
+                    TotalPrice = i.TotalPrice,
+                    Customer = customer,
+                    Tour = tour
                 };
                 bookingsViewModel.Add(bookingViewModel);
             }

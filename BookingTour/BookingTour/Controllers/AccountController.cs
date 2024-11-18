@@ -140,7 +140,7 @@ namespace Presentation.Controllers
             
 
         [HttpGet]
-        public IActionResult ChangePassword(string userId)
+        public IActionResult ChangePassword(Guid userId)
         {
             var model = new ChangePasswordViewModel
             {
@@ -150,12 +150,12 @@ namespace Presentation.Controllers
 
         }
         [HttpPost]
-        public async Task<IActionResult> ChangePassword(string userId, ChangePasswordViewModel model)
+        public async Task<IActionResult> ChangePassword(Guid userId, ChangePasswordViewModel model)
         {
             
             if(ModelState.IsValid)
             {
-                var account = await _userManager.FindByIdAsync(userId);
+                var account = await _userManager.FindByIdAsync(userId.ToString());
                 if (account != null)
                 {
                     account.Password = model.Password;

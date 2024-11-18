@@ -1,9 +1,10 @@
-﻿@model List<Presentation.Areas.Admin.Models.TourEmployeeViewModel>
+﻿@model Presentation.Areas.Admin.Models.TourEmployeeViewModel
 @{
-    ViewData["Title"] = "Danh sách nhân viên trong Tour";
+    ViewData["Title"] = "Danh sách khách hàng trong Tour";
 }
+
 <div class="page-header">
-    <h3 class="fw-bold mb-3">Danh sách Nhân Viên Chuyến Đi</h3>
+    <h3 class="fw-bold mb-3">Danh sách khách hàng Chuyến Đi</h3>
     <ul class="breadcrumbs mb-3">
         <li class="nav-home">
             <a asp-area="Admin"
@@ -21,6 +22,7 @@
     </ul>
 </div>
 
+
 <div class="row">
     <div class="col-md-12">
         <div class="card">
@@ -33,29 +35,31 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>Tour ID</th>
-                                <th>Employee ID</th>
+                                <th>STT</th>
                                 <th>Employee Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
                                 <th>Position</th>
-                            </tr>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Tour ID</th>
-                                <th>Employee ID</th>
+                                <th>STT</th>
                                 <th>Employee Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
                                 <th>Position</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach (var t in Model)
+                            @for (int i = 0; i < Model.Employees.Count; i++)
                             {
                                 <tr>
-                                    <td>@t.TourID</td>
-                                    <td>@t.EmployeeID</td>
-                                    <td>@t.Name</td>
-                                    <td>@t.Position</td>
+                                    <td>@(i + 1)</td>
+                                    <td>@Model.Employees[i].FullName</td>
+                                    <td>@Model.Employees[i].Email</td>
+                                    <td>@Model.Employees[i].Phone</td>
+                                    <td>@Model.Employees[i].Position</td>
                                 </tr>
                             }
                         </tbody>
@@ -67,50 +71,65 @@
 
     <div class="col-md-12">
         <div class="card">
-            
+            <div class="card-header">
+                <div class="d-flex align-items-center">
+                    <h4 class="card-title">Thông tin địa điểm tour: @Model.TourName</h4>
+                    <a class="btn btn-primary btn-round ms-auto"
+                       asp-area="Admin"
+                       asp-action="Create"
+                       asp-route-TourID="@Model.TourID"
+                       asp-controller="TourEmployee">
+                        <i class="fa fa-plus"></i>
+                        Thêm nhân viên
+                    </a>
+                </div>
+            </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="add-row"
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>Tour ID</th>
-                                <th>Employee ID</th>
+                                <th>STT</th>
                                 <th>Employee Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
                                 <th>Position</th>
                                 <th style="width: 10%">Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Tour ID</th>
-                                <th>Employee ID</th>
+                                <th>STT</th>
                                 <th>Employee Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
                                 <th>Position</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach (var t in Model)
+                            @for (int i = 0; i < Model.Employees.Count; i++)
                             {
                                 <tr>
-                                    <td>@t.TourID</td>
-                                    <td>@t.EmployeeID</td>
-                                    <td>@t.Name</td>
-                                    <td>@t.Position</td>
+                                    <td>@(i + 1)</td>
+                                    <td>@Model.Employees[i].FullName</td>
+                                    <td>@Model.Employees[i].Email</td>
+                                    <td>@Model.Employees[i].Phone</td>
+                                    <td>@Model.Employees[i].Position</td>
                                     <td>
                                         <div class="form-button-action">
-                                            
                                             <a class="btn btn-link btn-danger " type="button"
                                                asp-area="Admin"
-                                               asp-route-CustomerID=@t.TourID
-                                               asp-route-EmployeeID=@t.EmployeeID
-                                               asp-controller="TourDestination"
+                                               asp-route-TourID="@Model.TourID"
+                                               asp-route-EmployeeID="@Model.Employees[i].EmployeeID"
+                                               asp-controller="TourEmployee"
                                                asp-action="Delete">
                                                 <i class="fa fa-times"></i>
                                             </a>
+
                                         </div>
-                                    </td>
+
                                 </tr>
                             }
                         </tbody>
@@ -120,3 +139,4 @@
         </div>
     </div>
 </div>
+

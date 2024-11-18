@@ -1,5 +1,9 @@
-﻿using Application.DTOs.TourEmployeeDTOs;
+﻿using Application.DTOs.EmployeeDTOs;
+using Application.DTOs.TourEmployeeDTOs;
+using Application.Services;
 using Application.Services_Interface;
+using Domain.Entities;
+using Humanizer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -24,55 +28,60 @@ namespace Presentation.Areas.Admin.Controllers
 
         // GET: /TourEmployee/
         [Authorize(Policy = "tour-employee-view")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(Guid TourID)
         {
-            var employees = await _employeeService.GetAllAsync();
+            var tour = await _tourService.GetByIdAsync(TourID);
 
-            var tourEmployees = await _tourEmployeeService.GetAllAsync();
-
-            var tourEmployeesViewModel = tourEmployees.Select(i =>
-
+            if (tour == null)
             {
-                // Tìm kiếm nhân viên một lần và lưu vào biến
-                var employee = employees.FirstOrDefault(a => a.EmployeeID == i.EmployeeID);
+                TempData["NotificationType"] = "danger";
+                TempData["NotificationTitle"] = "Thất bại!";
+                TempData["NotificationMessage"] = $"Không tìm thấy TourID: {TourID}!";
+                return View();
+            }
 
-                return new TourEmployeeViewModel
-                {
-                    TourID = i.TourID,
-                    EmployeeID = i.EmployeeID,
-                    Name = employee.LastName,
-                    Position = employee.Position
-                };
+            var employees = await _tourEmployeeService.GetByTourIdAsync(TourID);
+
+
+            var employeesViewModel = employees.Select(x => new TourDetailEmployeeViewModel
+            {
+                EmployeeID = x.EmployeeID,
+                FullName = x.Employee.FirstName + x.Employee.LastName,
+                Phone = x.Employee.Phone,
+                Email = x.Employee.Email,
+                Position = x.Employee.Position,
+
             }).ToList();
 
-
-            return View(tourEmployeesViewModel);
+            var tourEmployeeViewModel = new TourEmployeeViewModel
+            {
+                TourID = TourID,
+                TourName = tour.Title,
+                Employees = employeesViewModel
+            };
+            return View(tourEmployeeViewModel);
         }
 
         [Authorize(Policy = "tour-employee-add")]
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(Guid TourID)
         {
-            var tours = await _tourService.GetAllAsync();
-            var toursViewModel = tours.Select(i => new TourViewModel
-            {
-                Title = i.Title,
-                TourID = i.TourID,
-
-            }).ToList();
-            var toursSelectList = new SelectList(toursViewModel, "TourID", "Title");
-
-            var employees = await _employeeService.GetAllAsync();
-            var employeesViewModel = employees.Select(i => new EmployeeViewModel
+            var employees = await _employeeService.GetAllWithOutTour(TourID);
+            var employeesViewModel = employees.Select(i => new TourDetailEmployeeViewModel
             {
                 EmployeeID = i.EmployeeID,
-                FirstName = i.FirstName
-            }).ToList();
-            var employeesSelectList = new SelectList(employeesViewModel, "EmployeeID", "FirstName");
+                FullName = i.FirstName +" " +i.LastName,
 
-            ViewBag.TourList = toursSelectList;
+            }).ToList();
+            var employeesSelectList = new SelectList(employeesViewModel, "EmployeeID", "FullName");
+
             ViewBag.EmployeeList = employeesSelectList;
 
-            return View();
+
+            var tourEmployeeViewModel = new TourEmployeeCreationDto
+            {
+                TourID = TourID
+            };
+            return View(tourEmployeeViewModel);
         }
 
         // POST: /TourEmployee/Create
@@ -86,17 +95,11 @@ namespace Presentation.Areas.Admin.Controllers
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành Công!";
                 TempData["NotificationMessage"] = "Thêm nhân viên vào Tour thành công!";
-                return RedirectToAction("Index");
+                return RedirectToAction("Index" , new {TourId = dto.TourID});
             }
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
-            // Lấy tất cả lỗi từ ModelState và thêm chúng vào TempData để hiển thị
-            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
-            foreach (var error in errors)
-            {
-                ModelState.AddModelError(string.Empty, error);
-            }
             return View();
         }
 
@@ -107,7 +110,7 @@ namespace Presentation.Areas.Admin.Controllers
             TempData["NotificationType"] = "success";
             TempData["NotificationTitle"] = "Thành Công!";
             TempData["NotificationMessage"] = "Xóa nhân viên trong Tour thành công!";
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { TourId = tour_id });
         }
 
 

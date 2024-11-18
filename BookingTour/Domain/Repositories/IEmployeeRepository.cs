@@ -21,5 +21,6 @@ namespace Domain.Repositories
 
         Task<String> GetNameByIdAsync(Guid id);
         Task<String> GetPositionByIdAsync(Guid id);
+        Task<IEnumerable<Employee>> GetAllWithOutTour(Guid TourID);
     }
 }

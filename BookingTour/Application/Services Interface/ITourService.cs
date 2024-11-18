@@ -8,7 +8,7 @@ namespace Application.Services_Interface
         public Task<Tour> GetByIdAsync(Guid id);
 
         public Task<IEnumerable<Tour>> GetAllAsync();
-
+        public Task<IEnumerable<Tour>> GetToursByCategoriesAsync(List<string> categories);
         public Task<Tour> CreateAsync(TourCreationDto dto);
 
         public Task UpdateAsync(Guid id, TourUpdateDto dto);
@@ -19,6 +19,8 @@ namespace Application.Services_Interface
 
         Task<List<TourDestination>> GetDestinations (Guid TourID);
         Task<List<TourEmployee>> GetEmployees (Guid TourID);
+
+
 
     }
 }
