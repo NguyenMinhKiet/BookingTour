@@ -1,14 +1,20 @@
-﻿using Domain.Entities;
+﻿using Application;
+using Application.DTOs.TourDTOs;
+using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Data;
+using Microsoft.CodeAnalysis.Operations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using PagedList;
+using System.Drawing.Printing;
 
 namespace Infrastructure.Repositories
 {
     public class TourRepository : ITourRepository
     {
         private readonly ApplicationDbContext _context;
+        public static int PAGE_SIZE { get; set; } = 6;
         public TourRepository(ApplicationDbContext context)
         {
             _context = context;
@@ -31,6 +37,8 @@ namespace Infrastructure.Repositories
             _context.Tours.Remove(tour);
             await _context.SaveChangesAsync();
         }
+
+        
 
         public async Task<IEnumerable<Tour>> GetAllAsync()
         {
@@ -83,6 +91,86 @@ namespace Infrastructure.Repositories
         {
             _context.Tours.Update(tour);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<Tour>> GetAll(string search, decimal? from, decimal? to, string? sortBy)
+        {
+            var tours = _context.Tours.AsQueryable();
+            #region Filtering
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                tours = tours.Where(x => x.Title.Contains(search));
+            }
+            if (from.HasValue)
+            {
+                tours = tours.Where(x => x.Price >= from);
+            }
+            if (to.HasValue)
+            {
+
+                tours = tours.Where(x => x.Price <= to);
+            }
+            #endregion
+
+            #region Sorting
+
+            tours = tours.OrderBy(x => x.Title);
+            if (!string.IsNullOrEmpty(sortBy))
+            {
+                switch (sortBy)
+                {
+                    case "title_desc":
+                        tours = tours.OrderByDescending(x => x.Title);
+                        break;
+
+                    case "price_asc":
+                        tours = tours.OrderBy(x => x.Price);
+                        break;
+
+                    case "price_dsc":
+                        tours = tours.OrderByDescending(x => x.Price);
+                        break;
+                }
+            }
+            #endregion
+
+            //#region Paging
+            //var totalProducts = tours.Count();
+
+            //tours = tours.Skip((page - 1) * PAGE_SIZE).Take(PAGE_SIZE);
+            //#endregion
+
+            //var totalPages = (int)Math.Ceiling((double)totalProducts / PAGE_SIZE);
+            //var tourServiceModel = new TourServiceViewModel
+            //{
+            //    ItemCount = totalProducts,
+            //    PageNumber = page,
+            //    Tours = tours.Select(x => new TourViewModel
+            //    {
+            //        TourID = x.TourID,
+            //        Title = x.Title,
+            //        Description = x.Description,
+            //        Price = x.Price,
+            //        StartDate = x.StartDate,
+            //        EndDate = x.EndDate,
+            //        Category = x.Category,
+            //        City = x.City
+            //    }).ToList()
+            //};
+
+            return tours.ToList();
+
+        }
+
+        public async Task<List<Tour>> GetAllByName(string name)
+        {
+            return await _context.Tours.Where(x=>x.Title.ToLower() == name.ToLower())
+                .ToListAsync();
+        }
+        public async Task<List<Tour>> GetAllWithOut(string category)
+        {
+            return await _context.Tours.Where(x => x.Category == category)
+                .ToListAsync();
         }
     }
 }

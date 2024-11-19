@@ -19,8 +19,8 @@ namespace Application.Services_Interface
 
         Task<List<TourDestination>> GetDestinations (Guid TourID);
         Task<List<TourEmployee>> GetEmployees (Guid TourID);
-
-
-
+        Task<List<Tour>> GetAllNewAsync(string search, decimal? from, decimal? to, string? sortBy);
+        Task<List<Tour>> GetAllByName(string name);
+        Task<List<Tour>> GetAllWithOut(string category);
     }
 }

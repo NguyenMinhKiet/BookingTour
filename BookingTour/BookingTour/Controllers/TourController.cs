@@ -1,145 +1,97 @@
 ﻿using Application.DTOs.DestinationDTOs;
-using Application.DTOs.EmployeeDTOs;
-using Application.DTOs.LocationDto;
 using Application.DTOs.TourDTOs;
 using Application.Services_Interface;
-using Infrastructure.Static;
+using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.Models;
+using X.PagedList.Extensions;
 namespace Presentation.Controllers
 {
     public class TourController : Controller
     {
         private readonly ITourService _tourService;
         private readonly ILocationService _locationService;
-        public TourController(ITourService tourService, ILocationService locationService)
+        private readonly UserManager<Account> _userManager;
+        private readonly ICustomerService _customerService;
+        
+        public TourController(ITourService tourService, ILocationService locationService, UserManager<Account> userManager, ICustomerService customerService)
         {
             _tourService = tourService;
             _locationService = locationService;
+            _userManager = userManager;
+            _customerService = customerService;
         }
 
         // GET: /Tour/
         [Authorize(Policy = "tour-view")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page, int? pageSize,decimal? from, decimal? to, string? sortBy,string searchTerm)
         {
+            if(page == null)
+            {
+                page = 1;
+            }
+            if (pageSize == null)
+            {
+                pageSize = 6;
+            }
+
+
             var tours = await _tourService.GetAllAsync();
-            var toursViewModel = tours.Select(i => new TourViewModel
+            var toursViewModel = tours.Select(x => new TourCustomerView
             {
-                TourID = i.TourID,
-                Title = i.Title,
-                Description = i.Description,
-                Price = i.Price,
-                AvailableSeats = i.AvailableSeats,
-                StartDate = i.StartDate,
-                EndDate = i.EndDate,
-                Category = i.Category,
-                City = i.City
-
+                Title = x.Title,
+                TourID = x.TourID,
+                Description = x.Description,
+                StartDate = x.StartDate,
+                EndDate = x.EndDate,
+                Price = x.Price,
+                Category = x.Category,
+                City = x.City,
+                AvailableSeats = x.AvailableSeats
             }).ToList();
 
-            return View(toursViewModel);
+            var onPageOfTours = toursViewModel.ToPagedList((int)page, (int)pageSize);
+            ViewBag.OnePageOfProducts = onPageOfTours;
+            ViewBag.itemCount = tours.Count();
+            return View(onPageOfTours);
         }
 
-        // GET: /Tour/Create
-        [Authorize(Policy = "tour-add")]
-        public async Task<IActionResult> CreateAsync()
+        [HttpGet]
+        public async Task<IActionResult> GetAllTours()
         {
-            var listCity = await _locationService.LoadAllCitysAsync();
-            var listCityViewModel = listCity.Select(e => new CityViewModel
+            try
             {
-                Name = NORMALIZE.NormalizeCity(e.Name),
-            }).ToList();
-
-            ViewData["ListCity"] = listCityViewModel;
-            return View();
+                var tours = await _tourService.GetAllAsync(); // Đảm bảo bạn đợi kết quả từ DB
+                return Json(new { success = true, data = tours });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
         }
 
-        // POST: /Tour/Create
         [HttpPost]
-        [Authorize(Policy = "tour-add")]
-        public async Task<IActionResult> Create(TourCreationDto dto)
+        public async Task<IActionResult> GetToursByCategory(List<string> categories)
         {
-            if (ModelState.IsValid)
+            try
             {
-                await _tourService.CreateAsync(dto);
-                TempData["NotificationType"] = "success";
-                TempData["NotificationTitle"] = "Thành Công!";
-                TempData["NotificationMessage"] = "Thêm Tour thành công!";
-                return RedirectToAction("Index");
+                var tours = await _tourService.GetToursByCategoriesAsync(categories); // Đảm bảo bạn đợi kết quả từ DB
+                return Json(new { success = true, data = tours });
             }
-            TempData["NotificationType"] = "danger";
-            TempData["NotificationTitle"] = "Thất bại!";
-            TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
-            // Lấy tất cả lỗi từ ModelState và thêm chúng vào TempData để hiển thị
-            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
-            foreach (var error in errors)
+            catch (Exception ex)
             {
-                ModelState.AddModelError(string.Empty, error);
+                return Json(new { success = false, message = ex.Message });
             }
-            return View();
-        }
-        // GET: /Tour/Update?{TourID}
-        [Authorize(Policy = "tour-update")]
-        public async Task<IActionResult> Update(Guid TourID)
-        {
-            var i = await _tourService.GetByIdAsync(TourID);
-            if (i == null)
-            {
-                TempData["NotificationType"] = "danger";
-                TempData["NotificationTitle"] = "Thất bại!";
-                TempData["NotificationMessage"] = $"Không tìm thấy Tour ID: {TourID}";
-                return RedirectToAction("Index");
-            }
-            var tourViewModel = new TourViewModel
-            {
-                TourID = i.TourID,
-                Title = i.Title,
-                Description = i.Description,
-                Price = i.Price,
-                AvailableSeats = i.AvailableSeats,
-                StartDate = i.StartDate,
-                EndDate = i.EndDate,
-                Category = i.Category,
-                City = i.City
-            };
-            return View(tourViewModel);
-
-        }
-
-        // POST: /Tour/Update?{TourID}
-        [HttpPost]
-        [Authorize(Policy = "tour-update")]
-        public async Task<IActionResult> Update(Guid TourID, TourUpdateDto dto)
-        {
-            if (ModelState.IsValid)
-            {
-                await _tourService.UpdateAsync(TourID, dto);
-                TempData["NotificationType"] = "success";
-                TempData["NotificationTitle"] = "Thành Công!";
-                TempData["NotificationMessage"] = "Cập nhật thông tin Tour thành công!";
-                return RedirectToAction("Index");
-            }
-            TempData["NotificationType"] = "danger";
-            TempData["NotificationTitle"] = "Thất bại!";
-            TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
-            return View();
-        }
-
-        // POST: /Tour/Delete?{TourID}
-        [Authorize(Policy = "tour-delete")]
-        public async Task<IActionResult> Delete(Guid TourID)
-        {
-            await _tourService.DeleteAsync(TourID);
-            TempData["NotificationType"] = "success";
-            TempData["NotificationTitle"] = "Thành Công!";
-            TempData["NotificationMessage"] = "Xóa Tour thành công!";
-            return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> Details(Guid TourID)
         {
+            
             var tour = await _tourService.GetByIdAsync(TourID);
-            if(tour == null)
+            if (tour == null)
             {
                 TempData["NotificationType"] = "danger";
                 TempData["NotificationTitle"] = "Thất bại!";
@@ -158,66 +110,53 @@ namespace Presentation.Controllers
                 City = d.Destination.City,
                 visitDate = d.VisitDate,
             }).ToList();
-            
-            var employees = await _tourService.GetEmployees(tour.TourID);
-            var employeesViewModel = employees.Select(e => new TourDetailEmployeeViewModel
-            {
-                EmployeeID = e.EmployeeID,
-                FullName = e.Employee.FirstName + " " + e.Employee.LastName,
-                Phone = e.Employee.Phone,
-                Position = e.Employee.Position,
-                Email = e.Employee.Email,
 
+            var tourBookings = await _tourService.GetAllByName(tour.Title);
+            var tourBookingViewModel = tourBookings.Select(x => new TourViewModel
+            {
+                Title = x.Title,
+                TourID = x.TourID,
+                Description = x.Description,
+                StartDate = x.StartDate,
+                EndDate = x.EndDate,
+                Price = x.Price,
+                Category = x.Category,
+                City = x.City,
+                AvailableSeats = x.AvailableSeats
             }).ToList();
-            var tourDestinationViewModel = new TourDetailViewModel
+
+            var anotherTour = await _tourService.GetAllWithOut(tour.Title);
+            var anotherTourViewModel = tourBookings.Select(x => new TourViewModel
+            {
+                Title = x.Title,
+                TourID = x.TourID,
+                Description = x.Description,
+                StartDate = x.StartDate,
+                EndDate = x.EndDate,
+                Price = x.Price,
+                Category = x.Category,
+                City = x.City,
+                AvailableSeats = x.AvailableSeats
+            }).ToList();
+
+            var customerId =  HttpContext.Session.GetString("UserID");
+
+            var tourDetailViewModel = new TourDetailModel
             {
                 TourID = tour.TourID,
                 TourName = tour.Title,
+                City = tour.City,
+                Description = tour.Description,
+                StartDate = tour.StartDate,
+                EndDate = tour.EndDate,
+                CustomerID = Guid.Parse(customerId),
                 Destinations = destinationsViewModel,
-                Employees = employeesViewModel,
+                TourBookings = tourBookingViewModel,
+                AnotherTour = anotherTourViewModel,
             };
-            return View(destinationsViewModel);
+
+
+            return View(tourDetailViewModel);
         }
-
-
-        [HttpPost]
-        public async Task<IActionResult> GetToursByCategory(List<string> categories)
-        {
-            try
-            {
-                Console.WriteLine(categories.ToList());
-
-                var tours = await _tourService.GetToursByCategoriesAsync(categories);
-                return Json(new
-                {
-                    success = true,
-                    data = tours
-                });
-            }
-            catch (Exception ex)
-            {
-                return Json(new
-                {
-                    success = false,
-                    message = "Error occurred: " + ex.Message
-                });
-            }
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetAllTours()
-        {
-            try
-            {
-                var tours = await _tourService.GetAllAsync(); // Đảm bảo bạn đợi kết quả từ DB
-                return Json(new { success = true, data = tours });
-            }
-            catch (Exception ex)
-            {
-                return Json(new { success = false, message = ex.Message });
-            }
-        }
-
-
     }
 }

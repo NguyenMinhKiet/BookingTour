@@ -2,6 +2,7 @@
 using Application.Services_Interface;
 using Domain.Entities;
 using Domain.Repositories;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -114,6 +115,22 @@ namespace Application.Services
         public async Task<IEnumerable<Tour>> GetToursByCategoriesAsync(List<string> categories)
         {
             return await _tourRepository.GetToursByCategories(categories);
+        }
+
+        public async Task<List<Tour>> GetAllNewAsync(string search, decimal? from, decimal? to, string? sortBy)
+        {
+            return await _tourRepository.GetAll(search, from, to, sortBy);
+            
+        }
+
+        public async Task<List<Tour>> GetAllByName(string name)
+        {
+            return await _tourRepository.GetAllByName(name);
+        }
+
+        public async Task<List<Tour>> GetAllWithOut(string category)
+        {
+            return await _tourRepository.GetAllWithOut(category);
         }
     }
 }

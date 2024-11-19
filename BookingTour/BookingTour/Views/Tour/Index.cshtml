@@ -1,0 +1,289 @@
+﻿@using Newtonsoft.Json
+@using X.PagedList;
+@using X.PagedList.Mvc.Core
+@model IPagedList<Application.DTOs.TourDTOs.TourCustomerView>
+
+@{
+    ViewData["Title"] = "List Tour";
+    Layout = "_ecomLayout";
+}
+@section css{
+    <style>
+        .image-size{
+            min-height: 200px;
+        }
+        .card-title{
+            max-height: 70px;
+            overflow:hidden;
+        }
+    </style>
+}
+
+<!-- client section start -->
+<div class="client_section layout_padding">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-2 bg-light p-3">
+                <h4>Categories</h4>
+                <!-- Danh sách các Category của tour dưới dạng checkbox -->
+                <form id="tour-filter-form">
+    <div class="form-check">
+        <input class="form-check-input tour-category" type="checkbox" name="tourCategory" value="Beach" id="beach">
+        <label class="form-check-label ms-5" for="beach">
+            Beach Tours
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input tour-category" type="checkbox" name="tourCategory" value="Mountain" id="mountain">
+        <label class="form-check-label ms-5" for="mountain">
+            Mountain Tours
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input tour-category" type="checkbox" name="tourCategory" value="City" id="city">
+        <label class="form-check-label ms-5" for="city">
+            City Tours
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input tour-category" type="checkbox" name="tourCategory" value="Adventure" id="adventure">
+        <label class="form-check-label ms-5" for="adventure">
+            Adventure Tours
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input tour-category" type="checkbox" name="tourCategory" value="Cultural" id="cultural">
+        <label class="form-check-label ms-5" for="cultural">
+            Cultural Tours
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input tour-category" type="checkbox" name="tourCategory" value="Eco-Tour" id="eco-tour">
+        <label class="form-check-label ms-5" for="eco-tour">
+            Eco-Tour
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input tour-category" type="checkbox" name="tourCategory" value="Wildlife" id="wildlife">
+        <label class="form-check-label ms-5" for="wildlife">
+            Wildlife Tours
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input tour-category" type="checkbox" name="tourCategory" value="Heritage" id="heritage">
+        <label class="form-check-label ms-5" for="heritage">
+            Heritage Tours
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input tour-category" type="checkbox" name="tourCategory" value="Luxury" id="luxury">
+        <label class="form-check-label ms-5" for="luxury">
+            Luxury Tours
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input tour-category" type="checkbox" name="tourCategory" value="Cruise" id="cruise">
+        <label class="form-check-label ms-5" for="cruise">
+            Cruise Tours
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input tour-category" type="checkbox" name="tourCategory" value="Rural" id="rural">
+        <label class="form-check-label ms-5" for="rural">
+            Rural Tours
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input tour-category" type="checkbox" name="tourCategory" value="Pilgrimage" id="pilgrimage">
+        <label class="form-check-label ms-5" for="pilgrimage">
+            Pilgrimage Tours
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input tour-category" type="checkbox" name="tourCategory" value="Ski" id="ski">
+        <label class="form-check-label ms-5" for="ski">
+            Ski Tours
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input tour-category" type="checkbox" name="tourCategory" value="Wellness" id="wellness">
+        <label class="form-check-label ms-5" for="wellness">
+            Wellness Tours
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input tour-category" type="checkbox" name="tourCategory" value="Roadtrip" id="roadtrip">
+        <label class="form-check-label ms-5" for="roadtrip">
+            Roadtrip Tours
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input tour-category" type="checkbox" name="tourCategory" value="Culinary" id="culinary">
+        <label class="form-check-label ms-5" for="culinary">
+            Culinary Tours
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input tour-category" type="checkbox" name="tourCategory" value="Festival" id="festival">
+        <label class="form-check-label ms-5" for="festival">
+            Festival Tours
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input tour-category" type="checkbox" name="tourCategory" value="Adventure-Sports" id="adventure-sports">
+        <label class="form-check-label ms-5" for="adventure-sports">
+            Adventure Sports Tours
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input tour-category" type="checkbox" name="tourCategory" value="Volunteer" id="volunteer">
+        <label class="form-check-label ms-5" for="volunteer">
+            Volunteer Tours
+        </label>
+    </div>
+</form>
+
+
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-10 p-3">
+                <!-- Thanh tìm kiếm -->
+                <nav class="navbar navbar-light bg-light mb-4">
+                    <div class="container-fluid d-flex justify-content-between">
+                        <!-- Cột chứa thông tin số lượng tour -->
+                        <div class="d-flex align-items-center">
+                            <h5 id="TourNumber" class="mb-0">Tours available: </h5>
+                        </div>
+
+                        <!-- Cột chứa ô tìm kiếm -->
+                        <div class="d-flex align-items-center">
+                            <input type="text" class="form-control search-bar" id="search-input" name="searchTerm" placeholder="Search for tours">
+                            <button type="submit" class="btn btn-primary ml-2">Search</button>
+                        </div>
+
+                    </div>
+                </nav>
+
+                <div id="tour-grid" class="row list-data">
+                    <!-- Các thẻ tour sẽ được thêm vào đây -->
+                    @if(Model != null && Model.Any())
+                    {
+                        @foreach (var tour in ViewBag.OnePageOfProducts)
+                        {
+                            <div class="col-md-3">
+                                <div class="tour-card">
+                                    <div class="card card-size">
+                                        <img src="/assets/img/default.jpg" class="card-img-top" alt="@tour.Title">
+                                        <div class="card-body">
+                                            <h5 class="card-title">@tour.Title</h5>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item"><strong>Price:</strong> @tour.Price VND</li>
+                                                <li class="list-group-item"><strong>Seats Available:</strong> @tour.AvailableSeats</li>
+                                                <li class="list-group-item"><strong>Category:</strong> @tour.Category</li>
+                                                <li class="list-group-item"><strong>City:</strong> @tour.City</li>
+                                            </ul>
+                                            <div class="mt-3">
+                                                <a asp-action="Details" asp-controller="Tour" asp-route-TourID="@tour.TourID" class="btn btn-primary">View Tour</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    
+                </div>
+                
+
+                <div class=" mt-4 d-flex justify-content-center">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+                                 new PagedListRenderOptions
+                        {
+                        LinkToPreviousPageFormat = "<li class='page-item'><a class='btn btn-primary' href='" + Url.Action("Index", new { page = Model.PageNumber - 1}) + "'><i class='fas fa-angle-left'></i></a></li>",
+                        LinkToNextPageFormat = "<li class='page-item'><a class='btn btn-primary' href='" + Url.Action("Index", new { page = Model.PageNumber + 1}) + "'><i class='fas fa-angle-right'></i></a></li>",
+                        })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section script{
+    <script>
+                $(document).ready(function () {
+            var tourData = @Html.Raw(JsonConvert.SerializeObject(ViewBag.OnePageOfProducts));
+
+            // Truyền dữ liệu từ ViewBag vào JavaScript
+            $('#TourNumber').text("Tours available: " + @Html.Raw(JsonConvert.SerializeObject(ViewBag.itemCount)));
+
+            // Lắng nghe sự kiện input (tìm kiếm)
+            $('#search-input').on('input', function () {
+                var searchTerm = $(this).val().toLowerCase();
+                // Tìm kiếm trong tourData
+                var filteredTours = tourData.filter(function (tour) {
+                    return tour.Title.toLowerCase().includes(searchTerm) || tour.Description.toLowerCase().includes(searchTerm);
+                });
+
+                // Hiển thị kết quả tìm kiếm
+                loadTourGrid(filteredTours, 1);  // Xử lý tìm kiếm và load lại dữ liệu
+            });
+
+            // Hàm load danh sách tour vào grid
+            function loadTourGrid(data, page) {
+                $('#tour-grid').empty();  // Xóa dữ liệu cũ
+                console.log(data.length);
+                if (data.length < 1) {
+                    $('#tour-grid').html('<h2>Không tìm thấy dữ liệu</h2>');
+                } else {
+                    var pageData = data;
+
+                    pageData.forEach(function (tour) {
+                        var card = `<div class="col-md-3">
+                                    <div class="tour-card">
+                                        <div class="card card-size">
+                                            <img src="/assets/img/default.jpg" class="card-img-top" alt="${tour.Title}">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${tour.Title}</h5>
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item"><strong>Price:</strong> ${tour.Price} VND</li>
+                                                    <li class="list-group-item"><strong>Seats Available:</strong> ${tour.AvailableSeats}</li>
+                                                    <li class="list-group-item"><strong>Category:</strong> ${tour.Category}</li>
+                                                    <li class="list-group-item"><strong>City:</strong> ${tour.City}</li>
+                                                </ul>
+                                                <div class="mt-3">
+                                                    <a href="/Tour/Details/${tour.TourID}" class="btn btn-primary">View Tour</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`;
+                        $('#tour-grid').append(card);
+                    });
+                    // Cập nhật thông tin trang
+                    $('#page-info').text('Page ' + page);
+                }
+            }
+
+            $(".tour-category").change(function () {
+                var selectedCategories = $(".tour-category:checked").map(function () {
+                    return $(this).val();
+                }).get();
+                console.log(selectedCategories);
+
+                // Filter data by selected categories
+                var filteredTours = tourData.filter(function (tour) {
+                    return selectedCategories.length === 0 || selectedCategories.includes(tour.Category);
+                });
+                
+                // Reload the tour grid with filtered data
+                loadTourGrid(filteredTours, 1);
+            });
+        });
+
+    </script>
+
+}

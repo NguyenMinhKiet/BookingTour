@@ -140,47 +140,6 @@ namespace Presentation.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> Details(Guid TourID)
-        {
-            var tour = await _tourService.GetByIdAsync(TourID);
-            if(tour == null)
-            {
-                TempData["NotificationType"] = "danger";
-                TempData["NotificationTitle"] = "Thất bại!";
-                TempData["NotificationMessage"] = $"Không tìm thấy Tour: {TourID}!";
-                return RedirectToAction("Index");
-            }
-
-            var destinations = await _tourService.GetDestinations(tour.TourID);
-            var destinationsViewModel = destinations.Select(d => new DestinationWithVisitDateViewModel
-            {
-                DestinationID = d.DestinationID,
-                Name = d.Destination.Name,
-                Description = d.Destination.Description,
-                Country = d.Destination.Country,
-                Category = d.Destination.Category,
-                City = d.Destination.City,
-                visitDate = d.VisitDate,
-            }).ToList();
-            
-            var employees = await _tourService.GetEmployees(tour.TourID);
-            var employeesViewModel = employees.Select(e => new TourDetailEmployeeViewModel
-            {
-                EmployeeID = e.EmployeeID,
-                FullName = e.Employee.FirstName + " " + e.Employee.LastName,
-                Phone = e.Employee.Phone,
-                Position = e.Employee.Position,
-                Email = e.Employee.Email,
-
-            }).ToList();
-            var tourDestinationViewModel = new TourDetailViewModel
-            {
-                TourID = tour.TourID,
-                TourName = tour.Title,
-                Destinations = destinationsViewModel,
-                Employees = employeesViewModel,
-            };
-            return View(destinationsViewModel);
-        }
+        
     }
 }

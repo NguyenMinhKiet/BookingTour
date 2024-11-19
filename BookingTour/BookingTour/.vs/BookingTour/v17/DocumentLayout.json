@@ -3,36 +3,36 @@
   "WorkspaceRootPath": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\bookingtour\\bookingtour\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\bookingtour\\bookingtour\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|solutionrelative:controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\bookingtour\\bookingtour\\views\\shared\\_ecomlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|solutionrelative:views\\shared\\_ecomlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\bookingtour\\bookingtour\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|solutionrelative:controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\bookingtour\\bookingtour\\views\\services\\booking.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|solutionrelative:views\\services\\booking.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\bookingtour\\bookingtour\\views\\booking\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|solutionrelative:views\\booking\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6C99168D-233D-4575-94B0-E930847878C2}|..\\Application\\Application.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\bookingtour\\application\\services\\tourservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\bookingtour\\bookingtour\\views\\tour\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|solutionrelative:views\\tour\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\bookingtour\\bookingtour\\models\\tourdetailmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|solutionrelative:models\\tourdetailmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\bookingtour\\bookingtour\\controllers\\tourcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|solutionrelative:controllers\\tourcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\bookingtour\\bookingtour\\controllers\\servicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|solutionrelative:controllers\\servicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\bookingtour\\bookingtour\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C1E3C7B6-0D5E-45A1-A1B7-771BDB6C6446}|..\\Infrastructure\\Infrastructure.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\bookingtour\\infrastructure\\repositories\\tourrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6C99168D-233D-4575-94B0-E930847878C2}|..\\Application\\Application.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\bookingtour\\application\\services interface\\itourservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ED1466D6-7BE8-4F32-B911-C0C0CFE2B3C7}|..\\Domain\\Domain.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\bookingtour\\domain\\repositories\\itourrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\bookingtour\\bookingtour\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,123 +42,110 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
-              "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-18T20:27:47.535Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "_ecomLayout.cshtml",
-              "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Views\\Shared\\_ecomLayout.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_ecomLayout.cshtml",
-              "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Views\\Shared\\_ecomLayout.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_ecomLayout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-18T20:27:44.237Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TourService.cs",
-              "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\Application\\Services\\TourService.cs",
-              "RelativeDocumentMoniker": "..\\Application\\Services\\TourService.cs",
-              "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\Application\\Services\\TourService.cs",
-              "RelativeToolTip": "..\\Application\\Services\\TourService.cs",
-              "ViewState": "AgIAAGUAAAAAAAAAAAAuwA4AAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T19:13:32.508Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ITourRepository.cs",
-              "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\Domain\\Repositories\\ITourRepository.cs",
-              "RelativeDocumentMoniker": "..\\Domain\\Repositories\\ITourRepository.cs",
-              "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\Domain\\Repositories\\ITourRepository.cs",
-              "RelativeToolTip": "..\\Domain\\Repositories\\ITourRepository.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAgwBAAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T19:13:22.6Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "TourRepository.cs",
-              "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\Infrastructure\\Repositories\\TourRepository.cs",
-              "RelativeDocumentMoniker": "..\\Infrastructure\\Repositories\\TourRepository.cs",
-              "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\Infrastructure\\Repositories\\TourRepository.cs",
-              "RelativeToolTip": "..\\Infrastructure\\Repositories\\TourRepository.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAuwEsAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T19:13:00.593Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ITourService.cs",
-              "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\Application\\Services Interface\\ITourService.cs",
-              "RelativeDocumentMoniker": "..\\Application\\Services Interface\\ITourService.cs",
-              "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\Application\\Services Interface\\ITourService.cs",
-              "RelativeToolTip": "..\\Application\\Services Interface\\ITourService.cs",
+              "Title": "CustomerController.cs",
+              "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Controllers\\CustomerController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CustomerController.cs",
+              "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Controllers\\CustomerController.cs",
+              "RelativeToolTip": "Controllers\\CustomerController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T19:12:44.231Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TourController.cs",
-              "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Controllers\\TourController.cs",
-              "RelativeDocumentMoniker": "Controllers\\TourController.cs",
-              "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Controllers\\TourController.cs",
-              "RelativeToolTip": "Controllers\\TourController.cs",
-              "ViewState": "AgIAAKwAAAAAAAAAAAASwLcAAABTAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T18:04:39.609Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ServicesController.cs",
-              "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Controllers\\ServicesController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ServicesController.cs",
-              "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Controllers\\ServicesController.cs",
-              "RelativeToolTip": "Controllers\\ServicesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T18:01:46.428Z",
+              "WhenOpened": "2024-11-19T23:37:00.815Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Booking.cshtml",
-              "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Views\\Services\\Booking.cshtml",
-              "RelativeDocumentMoniker": "Views\\Services\\Booking.cshtml",
-              "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Views\\Services\\Booking.cshtml",
-              "RelativeToolTip": "Views\\Services\\Booking.cshtml",
-              "ViewState": "AgIAAKIAAAAAAAAAAAAAAK8AAAAAAAAAAAAAAA==",
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Views\\Booking\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\Booking\\Create.cshtml",
+              "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Views\\Booking\\Create.cshtml",
+              "RelativeToolTip": "Views\\Booking\\Create.cshtml",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAEIAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-18T18:00:47.173Z",
+              "WhenOpened": "2024-11-19T23:06:15.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TourDetailModel.cs",
+              "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Models\\TourDetailModel.cs",
+              "RelativeDocumentMoniker": "Models\\TourDetailModel.cs",
+              "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Models\\TourDetailModel.cs",
+              "RelativeToolTip": "Models\\TourDetailModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAUAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T23:05:07.782Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Views\\Tour\\Details.cshtml",
+              "RelativeDocumentMoniker": "Views\\Tour\\Details.cshtml",
+              "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Views\\Tour\\Details.cshtml",
+              "RelativeToolTip": "Views\\Tour\\Details.cshtml",
+              "ViewState": "AgIAAJkAAAAAAAAAAAAAwKYAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-19T22:04:39.676Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TourController.cs",
+              "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Controllers\\TourController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TourController.cs",
+              "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Controllers\\TourController.cs",
+              "RelativeToolTip": "Controllers\\TourController.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAwwI0AAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T21:43:54.648Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BookingController.cs",
+              "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Controllers\\BookingController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BookingController.cs",
+              "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Controllers\\BookingController.cs",
+              "RelativeToolTip": "Controllers\\BookingController.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAowFEAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T21:43:38.717Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
+              "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Controllers\\AccountController.cs",
+              "ViewState": "AgIAAHwAAAAAAAAAAAAkwIsAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T21:44:53.579Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAALIAAAAAAAAAAAAQwMkAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T21:46:05.892Z",
               "EditorCaption": ""
             }
           ]

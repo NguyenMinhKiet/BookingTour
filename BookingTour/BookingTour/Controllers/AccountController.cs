@@ -4,6 +4,8 @@ using Presentation.Models;
 using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Application.DTOs.AccountDTOs;
+using Microsoft.Extensions.Options;
+using Application.DTOs.CustomerDTOs;
 
 namespace Presentation.Controllers
 {
@@ -11,15 +13,21 @@ namespace Presentation.Controllers
         {
             private readonly SignInManager<Account> _signInManager;
             private readonly UserManager<Account> _userManager;
+        private readonly RoleManager<Role> _roleManager;
             private readonly IAccountService _accountService;
+        private readonly ICustomerService _customerService;
 
             public AccountController(SignInManager<Account> signInManager,
                                      UserManager<Account> userManager,
-                                     IAccountService accountService)
+                                     IAccountService accountService,
+                                     RoleManager<Role> roleManager,
+                                     ICustomerService customerService)
             {
                 _signInManager = signInManager;
                 _userManager = userManager;
                 _accountService = accountService;
+            _roleManager = roleManager;
+            _customerService = customerService;
             }
 
             // GET: /Account/Login
@@ -40,16 +48,21 @@ namespace Presentation.Controllers
                     var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
                     if (result.Succeeded)
                     {
+                    Console.WriteLine(model.UserName);
 
-                        // Lấy thông tin người dùng
-                        var user = await _userManager.FindByNameAsync(model.UserName);
+                    // Lấy thông tin người dùng
+                    var user = await _userManager.FindByNameAsync(model.UserName);
+
                         if (user != null)
                         {
-                            // Lưu tên người dùng vào Session
-                            HttpContext.Session.SetString("UserName", user.UserName);
 
-                            // Lấy danh sách quyền/role của user
-                            var roles = await _userManager.GetRolesAsync(user);
+                        // Lưu tên người dùng vào Session
+                        HttpContext.Session.SetString("UserName", user.UserName);
+                        HttpContext.Session.SetString("UserID", user.Id.ToString());
+
+
+                        // Lấy danh sách quyền/role của user
+                        var roles = await _userManager.GetRolesAsync(user);
 
                             // Kiểm tra quyền và điều hướng
                             if (roles.Contains("Admin"))
@@ -89,6 +102,7 @@ namespace Presentation.Controllers
             public async Task<IActionResult> Logout()
             {
             HttpContext.Session.Remove("UserName");
+            HttpContext.Session.Remove("UserID");
             await _signInManager.SignOutAsync();
             return RedirectToAction(nameof(Login));
             }
@@ -119,6 +133,18 @@ namespace Presentation.Controllers
 
                     if (result.Succeeded)
                     {
+                    await _userManager.AddToRoleAsync(user, "User");
+
+                    var customer = new CustomerCreationDto
+                    {
+                        FirstName = "Invalid",
+                        LastName = model.Email,
+                        Email = model.Email,
+                        Phone = model.Phone,
+                        Address = "Invalid",
+                        AccountID = user.Id
+                    };
+                    await _customerService.CreateAsync(customer);
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         TempData["NotificationType"] = "success";
                         TempData["NotificationTitle"] = "Tạo tài khoản thành công!";

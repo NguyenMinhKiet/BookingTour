@@ -42,5 +42,10 @@ namespace Presentation.Controllers
         {
             return View();
         }
+
+        public IActionResult Service()
+        {
+            return View();
+        }
     }
 }

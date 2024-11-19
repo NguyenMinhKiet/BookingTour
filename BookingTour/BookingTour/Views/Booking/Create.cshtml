@@ -1,0 +1,71 @@
+﻿@model Presentation.Models.BookingConfirmModel
+
+@{
+    ViewData["Title"] = "Xác nhận đặt tour";
+    Layout = "_ecomLayout";
+}
+
+<div class="client_section layout_padding">
+    <div class="container">
+        <section class="content-body">
+            <div class="col-md-12">
+                <h1 class="pageTitle">Xác nhận thông tin đặt tour</h1>
+            </div>
+
+            <!-- Tour Information -->
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h2 class="fw-bold">@Model.TourData.Title</h2>
+                    <p>@Model.TourData.Description</p>
+                    <p><strong>Giá Tour:</strong> @Model.TourData.Price VNĐ</p>
+                    <p><strong>Khởi hành từ:</strong> @Model.TourData.City</p>
+                    <p><strong>Ngày khởi hành:</strong> @Model.TourData.StartDate.ToString("dd/MM/yyyy")</p>
+                    <p><strong>Ngày kết thúc:</strong> @Model.TourData.EndDate.ToString("dd/MM/yyyy")</p>
+                    <p><strong>Số chỗ còn lại:</strong> @Model.TourData.AvailableSeats</p>
+                </div>
+            </div>
+
+            <!-- Customer Information Form -->
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h2>Thông tin khách hàng</h2>
+
+                    <form method="post" asp-action="Create" asp-controller="Booking" asp-route-TourID="@Model.TourData.TourID" asp-route-CustomerID="@Model.CustomerData.CustomerID">
+                        <div class="mb-3">
+                            <label for="FirstName" class="form-label">Họ và tên đệm</label>
+                            <input type="text" class="form-control" id="FirstName" name="FirstName" value="@Model.CustomerData.FirstName" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="LastName" class="form-label">Tên</label>
+                            <input type="text" class="form-control" id="LastName" name="LastName" value="@Model.CustomerData.LastName" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="Address" class="form-label">Địa chỉ</label>
+                            <input type="text" class="form-control" id="Address" name="Address" value="@Model.CustomerData.Address" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="Email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="Email" name="Email" value="@Model.CustomerData.Email" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="Phone" class="form-label">Số điện thoại</label>
+                            <input type="tel" class="form-control" id="Phone" name="Phone" value="@Model.CustomerData.Phone" required />
+                        </div>
+
+                        <!-- Adult and Child Count -->
+                        <div class="mb-3">
+                            <label for="Adult" class="form-label">Số người lớn</label>
+                            <input type="number" class="form-control" id="Adult" name="Adult" value="@Model.Adult" required min="1" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="Child" class="form-label">Số trẻ em</label>
+                            <input type="number" class="form-control" id="Child" name="Child" value="@Model.Child" min="0" />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Xác nhận và Đặt tour</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
