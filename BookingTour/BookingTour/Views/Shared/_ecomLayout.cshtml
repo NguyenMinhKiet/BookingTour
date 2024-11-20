@@ -50,6 +50,32 @@
             }
         });
     </script>
+
+    <style>
+        .nav-item .fas.fa-user {
+            font-size: 1.2rem; /* Tăng kích thước icon */
+        }
+
+        .dropdown-menu {
+            display: none !important;
+            padding: 0;
+        }
+
+            .dropdown-menu.show {
+                display: block !important;
+            }
+
+
+        /* Tùy chỉnh các mục để thêm khoảng cách */
+        .dropdown-item {
+            display: block; /* Đảm bảo các mục được hiển thị theo chiều dọc */
+            padding: 10px 20px; /* Điều chỉnh khoảng cách padding giữa các mục */
+            font-size: 16px; /* Tùy chỉnh kích thước font */
+        }
+
+            
+
+    </style>
           @RenderSection("css",false)
 </head>
 
@@ -102,9 +128,28 @@
                         <li class="nav-item">
                             <a class="nav-link " asp-action="Contact" asp-controller="Home">Contact</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link " asp-action="Login" asp-controller="Account">Login</a>
+
+                        <li class="nav-item dropdown">
+                            <!-- Biểu tượng hoặc nút -->
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user"></i> <!-- Icon user -->
+                            </a>
+                            <!-- Dropdown menu -->
+                            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                                <!-- Kiểm tra session và hiển thị nút -->
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li><a class="dropdown-item" asp-action="Logout" asp-controller="Account">Logout</a></li>
+                                }
+                                else
+                                {
+                                    <li><a class="dropdown-item" asp-action="Login" asp-controller="Account">Login</a></li>
+                                }
+                            </ul>
                         </li>
+
+
+
                     </ul>
                 </div>
             </div>
@@ -255,7 +300,7 @@
 
     <script>
                     // Giả sử bạn muốn lấy giá trị từ session
-        var userNameFromSession = '@Context.Session.GetString("UserName")';
+        var userNameFromSession = 'sHttpContext.Session.GetString("UserName")';
 
         // Kiểm tra xem có giá trị từ session không
         if (userNameFromSession) {

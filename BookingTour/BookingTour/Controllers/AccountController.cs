@@ -145,11 +145,10 @@ namespace Presentation.Controllers
                         AccountID = user.Id
                     };
                     await _customerService.CreateAsync(customer);
-                        await _signInManager.SignInAsync(user, isPersistent: false);
                         TempData["NotificationType"] = "success";
                         TempData["NotificationTitle"] = "Tạo tài khoản thành công!";
                         TempData["NotificationMessage"] = $"Xin chào {user.UserName}!";
-                        return RedirectToAction(nameof(Index), "Home");
+                        return RedirectToAction(nameof(Login));
                     }
                     else
                     {

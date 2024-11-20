@@ -99,7 +99,7 @@ namespace Infrastructure.Repositories
             #region Filtering
             if (!string.IsNullOrWhiteSpace(search))
             {
-                tours = tours.Where(x => x.Title.Contains(search));
+                tours = tours.Where(x => EF.Functions.Like(x.Title, $"%{search}%"));
             }
             if (from.HasValue)
             {
