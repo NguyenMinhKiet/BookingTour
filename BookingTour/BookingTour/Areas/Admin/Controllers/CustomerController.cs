@@ -70,7 +70,7 @@ namespace Presentation.Areas.Admin.Controllers
                     await _customerService.CreateAsync(customer);
                     TempData["NotificationType"] = "success";
                     TempData["NotificationTitle"] = "Thành Công!";
-                    TempData["NotificationMessage"] = "Thêm nhân viên thành công!";
+                    TempData["NotificationMessage"] = "Thêm khách hàng thành công!";
 
                     return RedirectToAction("Index");
                 }
@@ -124,7 +124,7 @@ namespace Presentation.Areas.Admin.Controllers
 
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành Công!";
-                TempData["NotificationMessage"] = $"Cập nhật thông tin nhân viên {customer.FirstName} thành công!";
+                TempData["NotificationMessage"] = $"Cập nhật thông tin khách hàng {customer.FirstName} thành công!";
                 return RedirectToAction("Index");
             }
 
@@ -144,7 +144,7 @@ namespace Presentation.Areas.Admin.Controllers
                 await _customerService.DeleteAsync(CustomerID);
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành Công!";
-                TempData["NotificationMessage"] = $"Xóa nhân viên {customer.FirstName}!";
+                TempData["NotificationMessage"] = $"Xóa khách hàng {customer.FirstName}!";
                 return RedirectToAction("Index");
             }
 

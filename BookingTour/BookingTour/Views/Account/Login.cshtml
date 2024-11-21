@@ -12,11 +12,15 @@
 
         <form asp-action="Login" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- UserName Input -->
             <div class="form-group">
-                <div class="input-icon">
-                    <span class="input-icon-addon">
-                        <i class="fa fa-user"></i>
-                    </span>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-user"></i>
+                        </span>
+                    </div>
                     <input type="text"
                            class="form-control"
                            placeholder="UserName"
@@ -25,28 +29,39 @@
                 </div>
                 <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
+
+            <!-- Password Input -->
             <div class="form-group">
-                <div class="input-icon">
-                    <span class="input-icon-addon">
-                        <i class="fas fa-key"></i>
-                    </span>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-key"></i>
+                        </span>
+                    </div>
                     <input type="password"
                            class="form-control"
                            placeholder="Password"
                            asp-for="Password"
                            id="Password" name="Password" Required />
-                    <span class="input-icon-addon toggle-password" data-target="#Password">
-                        <i class="fas fa-eye"></i>
-                    </span>
+                    <div class="input-group-append">
+                        <span class="input-group-text toggle-password" data-target="#Password">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                    </div>
                 </div>
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
+
+            <!-- Remember Me Checkbox -->
             <div class="form-group form-check">
                 <input asp-for="RememberMe" class="form-check-input" />
-                <label class="form-check-label ms-4" asp-for="RememberMe">Remember me?</label>
+                <label class="form-check-label ml-2" asp-for="RememberMe">Remember me?</label>
             </div>
+
+            <!-- Submit Button -->
             <button type="submit" class="btn btn-primary">Login</button>
         </form>
+
 
         <div>
             <a asp-action="Register" asp-controller="Account">Don't have an account? Register</a>

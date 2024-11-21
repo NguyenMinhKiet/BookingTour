@@ -1,10 +1,8 @@
 ﻿using Application.DTOs.BookingDTOs;
 using Application.DTOs.TourDTOs;
-using Application.Services;
 using Application.Services_Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Presentation.Models;
 
 namespace Presentationx.Controllers
@@ -71,20 +69,68 @@ namespace Presentationx.Controllers
 
         [HttpPost]
         [Authorize(Policy = "booking-add")]
-        public async Task<IActionResult> Create(BookingCreationDto dto)
+        public async Task<IActionResult> Create(Guid TourID, Guid CustomerID, BookingCreationDto dto)
         {
             if (ModelState.IsValid)
             {
-                await _bookingService.CreateAsync(dto);
-                TempData["NotificationType"] = "success";
-                TempData["NotificationTitle"] = "Thành công!";
-                TempData["NotificationMessage"] = "Đặt Tour thành công!";
-                return RedirectToAction("Index","Tour");
+                var tour = await _tourService.GetByIdAsync(TourID);
+                if (tour == null)
+                {
+                    TempData["NotificationType"] = "danger";
+                    TempData["NotificationTitle"] = "Thất bại!";
+                    TempData["NotificationMessage"] = $"Không tìm thấy Tour: {TourID}!";
+                    return RedirectToAction("Index");
+                }
+
+
+                var customer = await _customerService.GetById(CustomerID);
+
+                var customerViewModel = new CustomerViewModel
+                {
+                    CustomerID = customer.CustomerID,
+                    FirstName = customer.FirstName,
+                    LastName = customer.LastName,
+                    Address = customer.Address,
+                    Phone = customer.Phone,
+                    Email = customer.Email,
+                };
+
+
+                var tourViewModel = new TourViewModel
+                {
+                    TourID = tour.TourID,
+                    Title = tour.Title,
+                    City = tour.City,
+                    Description = tour.Description,
+                    StartDate = tour.StartDate,
+                    EndDate = tour.EndDate,
+                    Price = tour.Price,
+                    AvailableSeats = tour.AvailableSeats
+                };
+
+                var bookingConfirmViewModel = new BookingConfirmModel
+                {
+                    CustomerData = customerViewModel,
+                    TourData = tourViewModel,
+                };
+
+                var result = await _bookingService.CreateAsync(dto);
+                if (result)
+                {
+                    TempData["NotificationType"] = "success";
+                    TempData["NotificationTitle"] = "Thành công!";
+                    TempData["NotificationMessage"] = "Đặt Tour thành công!";
+                    return RedirectToAction("Index", "Tour");
+                }
+                TempData["NotificationType"] = "danger";
+                TempData["NotificationTitle"] = "Thất bại!";
+                TempData["NotificationMessage"] = "Đặt Tour thất bại, Số lượng khách vượt quá số vé còn lại!";
+                return RedirectToAction("Details", "Tour", new { TourID = TourID, CustomerID = CustomerID });
             }
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Đặt Tour thất bại, hãy kiểm tra lại các thông tin!";
-            return View();
+            return RedirectToAction("Details", "Tour", new { TourID = TourID, CustomerID = CustomerID });
         }
     }
 }

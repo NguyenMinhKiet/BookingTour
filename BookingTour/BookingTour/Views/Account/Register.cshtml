@@ -10,64 +10,86 @@
         <h2>Register</h2>
         <form asp-action="Register" method="post">
             <div asp-validation-summary="ModelOnly"></div>
+
+            <!-- Username -->
             <div class="form-group">
-                <div class="input-icon">
-                    <span class="input-icon-addon">
-                        <i class="fa fa-user"></i>
-                    </span>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fa fa-user"></i>
+                        </span>
+                    </div>
                     <input type="text"
                            class="form-control"
                            placeholder="Username"
                            asp-for="UserName"
-                           id="UserName" name="UserName" Required />
+                           id="UserName" name="UserName" required />
                 </div>
                 <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
+
+            <!-- Password -->
             <div class="form-group">
-                <div class="input-icon">
-                    <span class="input-icon-addon">
-                        <i class="fas fa-key"></i>
-                    </span>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-key"></i>
+                        </span>
+                    </div>
                     <input type="password"
                            class="form-control"
                            placeholder="Password"
                            asp-for="Password"
-                           id="Password" name="Password" Required />
-                    <span class="input-icon-addon toggle-password" data-target="#Password">
-                        <i class="fas fa-eye"></i>
-                    </span>
+                           id="Password" name="Password" required />
+                    <div class="input-group-append">
+                        <span class="input-group-text toggle-password" data-target="#Password">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                    </div>
                 </div>
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
+            <!-- Confirm Password -->
             <div class="form-group">
-                <div class="input-icon">
-                    <span class="input-icon-addon">
-                        <i class="fas fa-key"></i>
-                    </span>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-key"></i>
+                        </span>
+                    </div>
                     <input type="password"
                            class="form-control"
-                           placeholder="ConfirmPassword"
+                           placeholder="Confirm Password"
                            asp-for="ConfirmPassword"
-                           id="ConfirmPassword" name="ConfirmPassword" Required />
-                    <span class="input-icon-addon toggle-password" data-target="#ConfirmPassword">
-                        <i class="fas fa-eye"></i>
-                    </span>
+                           id="ConfirmPassword" name="ConfirmPassword" required />
+                    <div class="input-group-append">
+                        <span class="input-group-text toggle-password" data-target="#ConfirmPassword">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                    </div>
                 </div>
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
+
+            <!-- Email -->
             <div class="form-group">
                 <label asp-for="Email"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
+
+            <!-- Phone -->
             <div class="form-group">
                 <label asp-for="Phone"></label>
                 <input asp-for="Phone" class="form-control" />
                 <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
+
+            <!-- Submit -->
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
+
         <div>
             <a href="/Account/Login">Đã có tài khoản? Đăng nhập</a>
         </div>

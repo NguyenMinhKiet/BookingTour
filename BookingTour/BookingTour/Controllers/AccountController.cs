@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Application.DTOs.AccountDTOs;
 using Microsoft.Extensions.Options;
 using Application.DTOs.CustomerDTOs;
+using System.Runtime.Intrinsics.X86;
 
 namespace Presentation.Controllers
 {
@@ -208,23 +209,10 @@ namespace Presentation.Controllers
             TempData["NotificationMessage"] = "Bạn không có quyền truy cập vào thư mục này.";
 
             // Quay lại trang hiện tại mà người dùng vừa truy cập (hoặc trang chính)
-            return Redirect(Request.Headers["Referer"].ToString());
+            return RedirectToAction("Index","Home");
         }
 
-        public async Task<IActionResult> ViewProfile(Guid userID)
-        {
-            var account = await _userManager.FindByIdAsync(userID.ToString());
-            var customer = await _customerService.GetById(userID);
-            var customerModel = new CustomerViewModel
-            {
-                CustomerID = customer.CustomerID,
-                FirstName = customer.FirstName,
-                LastName = customer.LastName,
-                Phone = customer.Phone,
-                Address = customer.Address,
-            };
-            return View(customerModel);
-        }
+        
     }
 }
 

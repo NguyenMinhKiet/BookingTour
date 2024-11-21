@@ -49,7 +49,7 @@ namespace Application.Services
                 customer.FirstName = customerUpdateDto.FirstName.Trim();
                 customer.LastName = customerUpdateDto.LastName.Trim();
                 customer.Address = customerUpdateDto.Address.Trim();
-
+                customer.Phone = customerUpdateDto.Phone.Trim();
                 await _customerRepository.UpdateAsync(customer);
             }
         }

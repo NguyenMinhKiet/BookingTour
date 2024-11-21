@@ -34,10 +34,6 @@
     <link rel="stylesheet" href="~/assetsUser/css/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
           media="screen">
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/assets/css/plugins.min.css">
-    <link rel="stylesheet" href="~/assets/css/kaiadmin.min.css">
 
     <!-- Fonts and icons -->
     <script src="~/assets/js/plugin/webfont/webfont.min.js"></script>
@@ -58,6 +54,7 @@
 
         .dropdown-menu {
             display: none !important;
+            background-color: transparent;
             padding: 0;
         }
 
@@ -73,6 +70,10 @@
             font-size: 16px; /* Tùy chỉnh kích thước font */
         }
 
+        .banner_section{
+            padding-bottom:350px
+        }
+        
             
 
     </style>
@@ -80,7 +81,6 @@
 </head>
 
 <body>
-    
     <!-- header section start -->
     <div class="header_section">
         <div class="header_main">
@@ -105,59 +105,73 @@
                             <li class="nav-item">
                                 <a class="nav-link " asp-action="Contact" asp-controller="Home">Contact</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link " asp-action="Login" asp-controller="Account">Login</a>
+                            <li class="nav-item dropdown">
+                                <!-- Nút kích hoạt dropdown -->
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-user"></i> <!-- Icon user -->
+                                </a>
+                                <!-- Dropdown menu -->
+                                <div class="dropdown-menu round-0 g-2" aria-labelledby="userDropdown">
+                                    <!-- Kiểm tra session và hiển thị nút -->
+                                    @if (Context.Session.GetString("UserName") != null)
+                                    {
+                                        <a class="dropdown-item bg-secondary" asp-action="ViewProfile" asp-controller="Account" asp-route-UserID="@Guid.Parse(Context.Session.GetString("UserID"))">View Profile</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item bg-secondary" asp-action="Logout" asp-controller="Account">Logout</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="dropdown-item bg-secondary" asp-action="Login" asp-controller="Account">Login</a>
+                                    }
+                                </div>
                             </li>
                         </ul>
                     </div>
                 </nav>
             </div>
-            <div class="container-fluid">
-                <div class="logo"><a href="index.html"><img src="~/assetsUser/images/logo.png"></a></div>
-                <div class="menu_main">
-                    <ul>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-action="Index" asp-controller="Home">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-action="About" asp-controller="Home">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-action="Index" asp-controller="Services">Services</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " asp-action="Contact" asp-controller="Home">Contact</a>
-                        </li>
+        </div>
+        <div class="container-fluid">
+            <div class="logo"><a href="index.html"><img src="~/assetsUser/images/logo.png"></a></div>
+            <div class="menu_main">
+                <ul>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index" asp-controller="Home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="About" asp-controller="Home">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Index" asp-controller="Services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " asp-action="Contact" asp-controller="Home">Contact</a>
+                    </li>
 
-                        <li class="nav-item dropdown">
-                            <!-- Biểu tượng hoặc nút -->
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user"></i> <!-- Icon user -->
-                            </a>
-                            <!-- Dropdown menu -->
-                            <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                                <!-- Kiểm tra session và hiển thị nút -->
-                                @if (User.Identity.IsAuthenticated)
-                                {
-                                    <li><a class="dropdown-item" asp-action="ViewProfile" asp-controller="Account">Logout</a></li>
-                                    <li><a class="dropdown-item" asp-action="Logout" asp-controller="Account">Logout</a></li>
-                                }
-                                else
-                                {
-                                    <li><a class="dropdown-item" asp-action="Login" asp-controller="Account">Login</a></li>
-                                }
-                            </ul>
-                        </li>
+                    <li class="nav-item dropdown">
+                        <!-- Nút kích hoạt dropdown -->
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user"></i> <!-- Icon user -->
+                        </a>
+                        <!-- Dropdown menu -->
+                        <div class="dropdown-menu round-0 g-2" aria-labelledby="userDropdown">
+                            <!-- Kiểm tra session và hiển thị nút -->
+                            @if (Context.Session.GetString("UserName") != null)
+                            {
+                                <a class="dropdown-item bg-secondary" asp-action="ViewProfile" asp-controller="Account" asp-route-UserID="@Guid.Parse(Context.Session.GetString("UserID"))">View Profile</a>
+                                <div class="dropdown-divider"></div
+>                                <a class="dropdown-item bg-secondary" asp-action="Logout" asp-controller="Account">Logout</a>
+                            }
+                            else
+                            {
+                                <a class="dropdown-item bg-secondary" asp-action="Login" asp-controller="Account">Login</a>
+                            }
+                        </div>
+                    </li>
 
-
-
-                    </ul>
-                </div>
+                </ul>
             </div>
         </div>
     </div>
-
-
     <!-- header section end -->
     @RenderBody()
 
@@ -215,30 +229,15 @@
     <!-- Moment JS -->
     <script src="~/assets/js/plugin/moment/moment.min.js"></script>
 
-    <!-- Chart JS -->
-    <script src="~/assets/js/plugin/chart.js/chart.min.js"></script>
-
     <!-- jQuery Sparkline -->
     <script src="~/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
 
     <!-- Chart Circle -->
     <script src="~/assets/js/plugin/chart-circle/circles.min.js"></script>
 
-    <!-- Datatables -->
-    <script src="~/assets/js/plugin/datatables/datatables.min.js"></script>
-
     <!-- Bootstrap Notify -->
     <script src="~/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
 
-    <!-- jQuery Vector Maps -->
-    <script src="~/assets/js/plugin/jsvectormap/jsvectormap.min.js"></script>
-    <script src="~/assets/js/plugin/jsvectormap/world.js"></script>
-
-    <!-- Sweet Alert -->
-    <script src="~/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
-
-    <!-- Kaiadmin JS -->
-    <script src="~/assets/js/kaiadmin.min.js"></script>
     @RenderSection("script", false)
     
 

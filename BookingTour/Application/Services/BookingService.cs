@@ -2,6 +2,7 @@
 using Application.Services_Interface;
 using Domain.Entities;
 using Domain.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
@@ -26,7 +27,7 @@ namespace Application.Services
 
         
 
-        public async Task<Booking> CreateAsync(BookingCreationDto dto)
+        public async Task<bool> CreateAsync(BookingCreationDto dto)
         {
             var price = (await _TourService.GetByIdAsync(dto.TourID)).Price;
             var childPrice = price * 50 / 100;
@@ -41,9 +42,17 @@ namespace Application.Services
                 TotalPrice = price * dto.Adult + childPrice * dto.Child
             };
             var numpeople = dto.Adult + dto.Child;
-            await _TourService.ReducePeople(dto.TourID, numpeople);
-            await _bookingRepository.AddAsync(booking);
-            return booking;
+            var tour = await _TourService.GetByIdAsync(dto.TourID);
+            if (tour != null)
+            {
+                    var result = await _TourService.ReducePeople(dto.TourID, numpeople);
+                    if (result)
+                    {
+                        await _bookingRepository.AddAsync(booking);
+                        return true;
+                    }
+            }
+            return false;
         }
 
         public async Task DeleteAsync(Guid id)

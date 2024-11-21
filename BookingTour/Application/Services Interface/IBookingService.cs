@@ -10,7 +10,7 @@ namespace Application.Services_Interface
 
         public Task<IEnumerable<Booking>> GetAllAsync();
 
-        public Task<Booking> CreateAsync(BookingCreationDto dto);
+        public Task<bool> CreateAsync(BookingCreationDto dto);
 
         public Task<bool> UpdateAsync(Guid booking_id, BookingUpdateDto dto);
 

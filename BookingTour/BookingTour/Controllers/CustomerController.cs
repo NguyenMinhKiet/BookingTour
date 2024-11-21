@@ -1,6 +1,8 @@
 ﻿using Application.DTOs.CustomerDTOs;
 using Application.Services_Interface;
+using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
 
@@ -10,10 +12,12 @@ namespace Presentation.Controllers
     {
         private readonly ICustomerService _customerService;
         private readonly IAccountService _accountService;
-        public CustomerController(ICustomerService customerService, IAccountService accountService)
+        private readonly UserManager<Account> _userManager;
+        public CustomerController(ICustomerService customerService, IAccountService accountService, UserManager<Account> userManager)
         {
             _customerService = customerService;
             _accountService = accountService;
+            _userManager = userManager;
         }
 
         [Authorize(Policy = "customer-detail")]
@@ -76,49 +80,56 @@ namespace Presentation.Controllers
             return View(customer);
         }
 
-        [Authorize(Policy = "customer-update")]
-        // GET: /Customer/Update?{customer_id}
-        public async Task<IActionResult> Update(Guid CustomerID)
+        [HttpGet]
+        [Authorize(Policy ="profile-view")]
+        public async Task<IActionResult> ViewProfile(Guid UserID)
         {
-            var customer = await _customerService.GetById(CustomerID);
-            if (customer == null)
+            var user = await _userManager.FindByIdAsync(UserID.ToString());
+            if (user != null)
             {
-                TempData["NotificationType"] = "danger";
-                TempData["NotificationTitle"] = "Thất bại!";
-                TempData["NotificationMessage"] = $"Không thể lấy giữ liệu từ id: {CustomerID}";
-                return View();
+                var customer = await _customerService.GetById(user.Id);
+                var customerModel = new CustomerViewModel
+                {
+                    CustomerID = customer.CustomerID,
+                    FirstName = customer.FirstName,
+                    LastName = customer.LastName,
+                    Phone = customer.Phone,
+                    Address = customer.Address,
+                };
+                return View(customerModel);
             }
-            var customerViewModel = new CustomerViewModel
-            {
-                CustomerID = customer.CustomerID,
-                FirstName = customer.FirstName,
-                LastName = customer.LastName,
-                Address = customer.Address,
-                Phone = customer.Phone,
-
-            };
-            return View(customerViewModel);
+            TempData["NotificationType"] = "danger";
+            TempData["NotificationTitle"] = "Thất bại";
+            TempData["NotificationMessage"] = "Vui lòng đăng nhập.";
+            return RedirectToAction("Login", "Account");
         }
 
-        // POST: /Customer/Update?{CustomerID}
         [HttpPost]
-        [Authorize(Policy = "customer-update")]
-        public async Task<IActionResult> Update(Guid CustomerID, CustomerUpdateDto customer)
+        [Authorize(Policy = "profile-update")]
+        public async Task<IActionResult> UpdateProfile(Guid CustomerID, CustomerUpdateDto model)
         {
             if (ModelState.IsValid)
             {
-                await _customerService.UpdateAsync(CustomerID, customer);
+                var dto = new CustomerUpdateDto
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Address = model.Address,
+                    Phone = model.Phone,
+                };
+                await _customerService.UpdateAsync(CustomerID, dto);
 
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành Công!";
-                TempData["NotificationMessage"] = $"Cập nhật thông tin nhân viên {customer.FirstName} thành công!";
+                TempData["NotificationMessage"] = $"Cập nhật thông tin user thành công!";
                 return RedirectToAction("Index");
             }
 
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ!";
-            return View();
+            return View(model);
         }
+
     }
 }
