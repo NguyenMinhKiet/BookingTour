@@ -65,7 +65,9 @@ namespace Presentation.Areas.Admin.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                TempData["ErrorMessage"] = "User not found!";
+                TempData["NotificationType"] = "danger";
+                TempData["NotificationTitle"] = "Thất bại!";
+                TempData["NotificationMessage"] = "User không tồn tại";
                 return RedirectToAction("Index");
             }
 

@@ -421,13 +421,6 @@ D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0
 D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\obj\Debug\net8.0\scopedcss\Areas\Admin\Views\Shared\_Layout.cshtml.rz.scp.css
-D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\System.Web.Mvc.dll
-D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\System.Web.Razor.dll
-D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\System.Web.Helpers.dll
-D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\System.Web.WebPages.Deployment.dll
-D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\System.Web.WebPages.Razor.dll
-D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\System.Web.WebPages.dll
-D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\Microsoft.Web.Infrastructure.dll
 D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\obj\Debug\net8.0\Presentation.MvcApplicationPartsAssemblyInfo.cs
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\appsettings.Development.json
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\appsettings.json
@@ -719,3 +712,6 @@ D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\X.PagedList.dll
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\X.PagedList.Mvc.Core.dll
 D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\X.PagedList.dll
+D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\X.PagedList.Mvc.Core.dll

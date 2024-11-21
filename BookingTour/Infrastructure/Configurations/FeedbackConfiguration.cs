@@ -27,7 +27,7 @@ namespace Infrastructure.DataAccess.Configurations
 
             // Cấu hình mối quan hệ giữa Feedback và Customer
             builder.HasOne(f => f.Customer)
-                .WithMany() // Customer có nhiều Feedback
+                .WithMany(a=>a.Feedbacks) // Customer có nhiều Feedback
                 .HasForeignKey(f => f.CustomerID)
                 .OnDelete(DeleteBehavior.Restrict);
         }

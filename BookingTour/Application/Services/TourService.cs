@@ -2,14 +2,6 @@
 using Application.Services_Interface;
 using Domain.Entities;
 using Domain.Repositories;
-using PagedList;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.WebPages;
 
 namespace Application.Services
 {

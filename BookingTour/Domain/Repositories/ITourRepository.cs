@@ -1,6 +1,4 @@
 ﻿using Domain.Entities;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
-using PagedList;
 namespace Domain.Repositories
 {
     public interface ITourRepository

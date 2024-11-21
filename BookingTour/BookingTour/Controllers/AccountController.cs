@@ -39,9 +39,8 @@ namespace Presentation.Controllers
             // POST: /Account/Login
             [HttpPost]
             [ValidateAntiForgeryToken]
-            public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
+            public async Task<IActionResult> Login(LoginViewModel model)
             {
-                returnUrl ??= Url.Content("~/");
 
                 if (ModelState.IsValid)
                 {
@@ -210,6 +209,21 @@ namespace Presentation.Controllers
 
             // Quay lại trang hiện tại mà người dùng vừa truy cập (hoặc trang chính)
             return Redirect(Request.Headers["Referer"].ToString());
+        }
+
+        public async Task<IActionResult> ViewProfile(Guid userID)
+        {
+            var account = await _userManager.FindByIdAsync(userID.ToString());
+            var customer = await _customerService.GetById(userID);
+            var customerModel = new CustomerViewModel
+            {
+                CustomerID = customer.CustomerID,
+                FirstName = customer.FirstName,
+                LastName = customer.LastName,
+                Phone = customer.Phone,
+                Address = customer.Address,
+            };
+            return View(customerModel);
         }
     }
 }

@@ -272,9 +272,6 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("CustomerID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CustomerID1")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("ModifyAt")
                         .HasColumnType("datetime2");
 
@@ -287,10 +284,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("FeedbackID");
 
                     b.HasIndex("CustomerID");
-
-                    b.HasIndex("CustomerID1")
-                        .IsUnique()
-                        .HasFilter("[CustomerID1] IS NOT NULL");
 
                     b.HasIndex("TourID");
 
@@ -585,14 +578,10 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Feedback", b =>
                 {
                     b.HasOne("Domain.Entities.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("Feedbacks")
                         .HasForeignKey("CustomerID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.HasOne("Domain.Entities.Customer", null)
-                        .WithOne("Feedback")
-                        .HasForeignKey("Domain.Entities.Feedback", "CustomerID1");
 
                     b.HasOne("Domain.Entities.Tour", "Tour")
                         .WithMany("FeedBacks")
@@ -715,8 +704,7 @@ namespace Infrastructure.Migrations
                 {
                     b.Navigation("Bookings");
 
-                    b.Navigation("Feedback")
-                        .IsRequired();
+                    b.Navigation("Feedbacks");
                 });
 
             modelBuilder.Entity("Domain.Entities.Destination", b =>

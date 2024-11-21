@@ -26,7 +26,7 @@ namespace Application.PermissionRequirement
                 {
                     // Giải mã JSON từ Claim
                     var permissionData = JsonConvert.DeserializeObject<Permission>(claim);
-                    Console.WriteLine($"Permission: {permissionData.Value} == {requirement.RequiredPermission}  ");
+                    Console.WriteLine($"Permission: {permissionData.Value} == {requirement.RequiredPermission} ? {permissionData.IsActive}");
                     if (permissionData?.Value == requirement.RequiredPermission && permissionData.IsActive)
                     {
                         Console.WriteLine("===> Finded");

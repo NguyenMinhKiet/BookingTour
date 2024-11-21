@@ -57,7 +57,7 @@ namespace Presentationx.Controllers
                 StartDate = tour.StartDate,
                 EndDate = tour.EndDate,
                 Price = tour.Price,
-                
+                AvailableSeats = tour.AvailableSeats
             };
 
             var bookingConfirmViewModel = new BookingConfirmModel

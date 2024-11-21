@@ -43,13 +43,13 @@
             </div>
             <div class="form-group form-check">
                 <input asp-for="RememberMe" class="form-check-input" />
-                <label class="form-check-label" asp-for="RememberMe">Remember me?</label>
+                <label class="form-check-label ms-4" asp-for="RememberMe">Remember me?</label>
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
         </form>
 
         <div>
-            <a href="/Account/Register">Don't have an account? Register</a>
+            <a asp-action="Register" asp-controller="Account">Don't have an account? Register</a>
         </div>
     </div>
 </div>

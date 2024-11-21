@@ -602,50 +602,6 @@
           }
         }
       },
-      "Microsoft.AspNet.Mvc/5.3.0": {
-        "dependencies": {
-          "Microsoft.AspNet.Razor": "3.3.0",
-          "Microsoft.AspNet.WebPages": "3.3.0"
-        },
-        "runtime": {
-          "lib/net45/System.Web.Mvc.dll": {
-            "assemblyVersion": "5.3.0.0",
-            "fileVersion": "5.3.61130.707"
-          }
-        }
-      },
-      "Microsoft.AspNet.Razor/3.3.0": {
-        "runtime": {
-          "lib/net45/System.Web.Razor.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.61130.707"
-          }
-        }
-      },
-      "Microsoft.AspNet.WebPages/3.3.0": {
-        "dependencies": {
-          "Microsoft.AspNet.Razor": "3.3.0",
-          "Microsoft.Web.Infrastructure": "1.0.0"
-        },
-        "runtime": {
-          "lib/net45/System.Web.Helpers.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.61130.707"
-          },
-          "lib/net45/System.Web.WebPages.Deployment.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.61130.707"
-          },
-          "lib/net45/System.Web.WebPages.Razor.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.61130.707"
-          },
-          "lib/net45/System.Web.WebPages.dll": {
-            "assemblyVersion": "3.0.0.0",
-            "fileVersion": "3.0.61130.707"
-          }
-        }
-      },
       "Microsoft.AspNetCore.Antiforgery/2.2.0": {
         "dependencies": {
           "Microsoft.AspNetCore.DataProtection": "2.2.0",
@@ -1931,14 +1887,6 @@
           }
         }
       },
-      "Microsoft.Web.Infrastructure/1.0.0": {
-        "runtime": {
-          "lib/net40/Microsoft.Web.Infrastructure.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.20105.407"
-          }
-        }
-      },
       "Microsoft.Win32.Primitives/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "5.0.0",
@@ -2144,25 +2092,6 @@
           "lib/netstandard2.0/NuGet.Versioning.dll": {
             "assemblyVersion": "6.11.0.119",
             "fileVersion": "6.11.0.119"
-          }
-        }
-      },
-      "PagedList/1.17.0": {
-        "runtime": {
-          "lib/net40/PagedList.dll": {
-            "assemblyVersion": "1.17.0.0",
-            "fileVersion": "1.17.0.0"
-          }
-        }
-      },
-      "PagedList.Mvc/4.5.0": {
-        "dependencies": {
-          "PagedList": "1.17.0"
-        },
-        "runtime": {
-          "lib/net40/PagedList.Mvc.dll": {
-            "assemblyVersion": "4.5.0.0",
-            "fileVersion": "4.5.0.0"
           }
         }
       },
@@ -3024,7 +2953,6 @@
       "Application/1.0.0": {
         "dependencies": {
           "Domain": "1.0.0",
-          "Microsoft.AspNet.Mvc": "5.3.0",
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.10",
           "Microsoft.AspNetCore.Mvc.TagHelpers": "2.2.0",
@@ -3033,8 +2961,7 @@
           "Microsoft.EntityFrameworkCore": "8.0.10",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.10",
           "Microsoft.Extensions.Caching.Memory": "9.0.0",
-          "Newtonsoft.Json": "13.0.3",
-          "PagedList.Mvc": "4.5.0"
+          "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
           "Application.dll": {
@@ -3051,8 +2978,7 @@
           "Microsoft.EntityFrameworkCore": "8.0.10",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.10",
           "Microsoft.Extensions.Caching.Memory": "9.0.0",
-          "Newtonsoft.Json": "13.0.3",
-          "PagedList.Mvc": "4.5.0"
+          "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
           "Domain.dll": {
@@ -3071,8 +2997,7 @@
           "Microsoft.EntityFrameworkCore": "8.0.10",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.10",
           "Microsoft.Extensions.Caching.Memory": "9.0.0",
-          "Newtonsoft.Json": "13.0.3",
-          "PagedList.Mvc": "4.5.0"
+          "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
           "Infrastructure.dll": {
@@ -3452,27 +3377,6 @@
       "sha512": "sha512-VIXB7HCUC34OoaGnO3HJVtSv2/wljPhjV7eKH4+TFPgQdJj2lvHNKY41Dtg0Bphu7X5UaXFR4zrYYyo+GNOjbA==",
       "path": "humanizer.core.zh-hant/2.14.1",
       "hashPath": "humanizer.core.zh-hant.2.14.1.nupkg.sha512"
-    },
-    "Microsoft.AspNet.Mvc/5.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Q1LcXRqTPmbXJAdf45PsxI6JYnCQP4vBfPCgDFd4dYf8ojxFTo4PH333PC4TzbOqRHxrUWGwgBdcR5T2jNwpHQ==",
-      "path": "microsoft.aspnet.mvc/5.3.0",
-      "hashPath": "microsoft.aspnet.mvc.5.3.0.nupkg.sha512"
-    },
-    "Microsoft.AspNet.Razor/3.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-5vJ0UKE/n381qcaKwFHxCwzb/YVuHzrm155iTgQhiv7+xdg2PE+54u+NPqu6C9AeRVOiwbh8/EOZwD16bLvWkg==",
-      "path": "microsoft.aspnet.razor/3.3.0",
-      "hashPath": "microsoft.aspnet.razor.3.3.0.nupkg.sha512"
-    },
-    "Microsoft.AspNet.WebPages/3.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-2ATJrA8KNx2EpBWNjwy4P+NjQ06cZWjYsTZ5NqGNIHaU/i3NKmtpoaE90NGmVRaKF5rryGfADnvPQ56f61OuWg==",
-      "path": "microsoft.aspnet.webpages/3.3.0",
-      "hashPath": "microsoft.aspnet.webpages.3.3.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Antiforgery/2.2.0": {
       "type": "package",
@@ -4209,13 +4113,6 @@
       "path": "microsoft.visualstudio.web.codegenerators.mvc/8.0.6",
       "hashPath": "microsoft.visualstudio.web.codegenerators.mvc.8.0.6.nupkg.sha512"
     },
-    "Microsoft.Web.Infrastructure/1.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-FNmvLn5m2LTU/Rs2KWVo0SIIh9Ek+U0ojex7xeDaSHw/zgEP77A8vY5cVWgUtBGS8MJfDGNn8rpXJWEIQaPwTg==",
-      "path": "microsoft.web.infrastructure/1.0.0",
-      "hashPath": "microsoft.web.infrastructure.1.0.0.nupkg.sha512"
-    },
     "Microsoft.Win32.Primitives/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -4327,20 +4224,6 @@
       "sha512": "sha512-v/GGlIj2dd7svplFmASWEueu62veKW0MrMtBaZ7QG8aJTSGv2yE+pgUGhXRcQ4nxNOEq/wLBrz1vkth/1SND7A==",
       "path": "nuget.versioning/6.11.0",
       "hashPath": "nuget.versioning.6.11.0.nupkg.sha512"
-    },
-    "PagedList/1.17.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Ou6F3WKXh49hOo0TxWM+SkIGuKllYPuPPvnSYOlQ1sTrtuEyuDUhYbSJd5Sdb06i/sWUJZTjiUecEs3Ht/Hx3g==",
-      "path": "pagedlist/1.17.0",
-      "hashPath": "pagedlist.1.17.0.nupkg.sha512"
-    },
-    "PagedList.Mvc/4.5.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-D0M4qW2g4a9cwG8ozIKUnJheCrm5GpFTceqUl63AXWaAVnTgk+TysZYUOGMsBRuzid8aF+/E8b0bXM6+90jiEw==",
-      "path": "pagedlist.mvc/4.5.0",
-      "hashPath": "pagedlist.mvc.4.5.0.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "type": "package",

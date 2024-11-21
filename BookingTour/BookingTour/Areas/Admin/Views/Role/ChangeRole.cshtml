@@ -3,8 +3,9 @@
 <h2>Thay đổi Role cho User: @Model.UserName</h2>
 
 <form method="post" asp-action="UpdateRole">
-    <input type="hidden" asp-for="UserId" />
-
+    <input type="hidden" asp-for="UserId" value="@Model.UserId"/>
+        <input type="hidden" asp-for="CurrentRole" value="@Model.CurrentRole" />
+    <input type="hidden" asp-for="UserName" value="@Model.UserName" />
     <div class="form-group">
         <label for="role">Chọn Role mới:</label>
         <select asp-for="CurrentRole" asp-items="Model.Roles" class="form-control">

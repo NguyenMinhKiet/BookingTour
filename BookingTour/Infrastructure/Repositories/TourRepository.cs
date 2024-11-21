@@ -1,13 +1,7 @@
-﻿using Application;
-using Application.DTOs.TourDTOs;
-using Domain.Entities;
+﻿using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Data;
-using Microsoft.CodeAnalysis.Operations;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
-using PagedList;
-using System.Drawing.Printing;
 
 namespace Infrastructure.Repositories
 {

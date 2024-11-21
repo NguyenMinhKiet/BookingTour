@@ -1,0 +1,66 @@
+﻿@model Presentation.Models.CustomerViewModel
+@{
+    ViewData["Title"] = "Cập nhật thông tin cá nhân";
+}
+
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Cập nhật thông tin cá nhân</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-area="Admin"
+               asp-controller="HomeController"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <p class="text-secondary">id: @Model.CustomerID</p>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            Update
+        </li>
+    </ul>
+</div>
+
+<form asp-action="Update" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input asp-for="CustomerID" type="hidden" class="form-control" id="CustomerID" name="CustomerID" value="@Model.CustomerID">
+
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" type="text" class="form-control" id="FirstName" name="FirstName" Required>
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" type="text" class="form-control" id="LastName" name="LastName" Required>
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Address"></label>
+        <input asp-for="Address" type="text" class="form-control" id="Address" name="Address" Required>
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" type="text" class="form-control" id="Email" name="Email" Required>
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Phone"></label>
+        <input asp-for="Phone" type="text" class="form-control" id="Phone" name="Phone" Required>
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-area="Admin" asp-controller="Customer" asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>
+

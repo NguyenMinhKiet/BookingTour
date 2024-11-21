@@ -14,8 +14,7 @@
           "Microsoft.EntityFrameworkCore": "8.0.10",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.10",
           "Microsoft.Extensions.Caching.Memory": "8.0.1",
-          "Newtonsoft.Json": "13.0.3",
-          "PagedList.Mvc": "4.5.0"
+          "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
           "Domain.dll": {}
@@ -1153,25 +1152,6 @@
           "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.1.20722"
-          }
-        }
-      },
-      "PagedList/1.17.0": {
-        "runtime": {
-          "lib/net40/PagedList.dll": {
-            "assemblyVersion": "1.17.0.0",
-            "fileVersion": "1.17.0.0"
-          }
-        }
-      },
-      "PagedList.Mvc/4.5.0": {
-        "dependencies": {
-          "PagedList": "1.17.0"
-        },
-        "runtime": {
-          "lib/net40/PagedList.Mvc.dll": {
-            "assemblyVersion": "4.5.0.0",
-            "fileVersion": "4.5.0.0"
           }
         }
       },
@@ -2703,20 +2683,6 @@
       "sha512": "sha512-5PYT/IqQ+UK31AmZiSS102R6EsTo+LGTSI8bp7WAUqDKaF4wHXD8U9u4WxTI1vc64tYi++8p3dk3WWNqPFgldw==",
       "path": "newtonsoft.json.bson/1.0.1",
       "hashPath": "newtonsoft.json.bson.1.0.1.nupkg.sha512"
-    },
-    "PagedList/1.17.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Ou6F3WKXh49hOo0TxWM+SkIGuKllYPuPPvnSYOlQ1sTrtuEyuDUhYbSJd5Sdb06i/sWUJZTjiUecEs3Ht/Hx3g==",
-      "path": "pagedlist/1.17.0",
-      "hashPath": "pagedlist.1.17.0.nupkg.sha512"
-    },
-    "PagedList.Mvc/4.5.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-D0M4qW2g4a9cwG8ozIKUnJheCrm5GpFTceqUl63AXWaAVnTgk+TysZYUOGMsBRuzid8aF+/E8b0bXM6+90jiEw==",
-      "path": "pagedlist.mvc/4.5.0",
-      "hashPath": "pagedlist.mvc.4.5.0.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "type": "package",

@@ -1614,35 +1614,6 @@
           }
         }
       },
-      "PagedList/1.17.0": {
-        "type": "package",
-        "compile": {
-          "lib/net40/PagedList.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net40/PagedList.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "PagedList.Mvc/4.5.0": {
-        "type": "package",
-        "dependencies": {
-          "PagedList": "1.17.0"
-        },
-        "compile": {
-          "lib/net40/PagedList.Mvc.dll": {
-            "related": ".XML"
-          }
-        },
-        "runtime": {
-          "lib/net40/PagedList.Mvc.dll": {
-            "related": ".XML"
-          }
-        }
-      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
@@ -5208,33 +5179,6 @@
         "lib/netstandard1.3/Newtonsoft.Json.Bson.xml",
         "newtonsoft.json.bson.1.0.1.nupkg.sha512",
         "newtonsoft.json.bson.nuspec"
-      ]
-    },
-    "PagedList/1.17.0": {
-      "sha512": "Ou6F3WKXh49hOo0TxWM+SkIGuKllYPuPPvnSYOlQ1sTrtuEyuDUhYbSJd5Sdb06i/sWUJZTjiUecEs3Ht/Hx3g==",
-      "type": "package",
-      "path": "pagedlist/1.17.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net40/PagedList.dll",
-        "lib/net40/PagedList.xml",
-        "pagedlist.1.17.0.nupkg.sha512",
-        "pagedlist.nuspec"
-      ]
-    },
-    "PagedList.Mvc/4.5.0": {
-      "sha512": "D0M4qW2g4a9cwG8ozIKUnJheCrm5GpFTceqUl63AXWaAVnTgk+TysZYUOGMsBRuzid8aF+/E8b0bXM6+90jiEw==",
-      "type": "package",
-      "path": "pagedlist.mvc/4.5.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Content/Content/PagedList.css",
-        "lib/net40/PagedList.Mvc.XML",
-        "lib/net40/PagedList.Mvc.dll",
-        "pagedlist.mvc.4.5.0.nupkg.sha512",
-        "pagedlist.mvc.nuspec"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -9646,24 +9590,23 @@
       "Microsoft.EntityFrameworkCore >= 8.0.10",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.10",
       "Microsoft.Extensions.Caching.Memory >= 8.0.1",
-      "Newtonsoft.Json >= 13.0.3",
-      "PagedList.Mvc >= 4.5.0"
+      "Newtonsoft.Json >= 13.0.3"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Minh Kiet\\.nuget\\packages\\": {}
+    "C:\\Users\\nguye\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\Domain\\Domain.csproj",
+      "projectUniqueName": "D:\\Kiet\\Study\\N5_HK1\\DotNet\\BookingTour\\BookingTour\\Domain\\Domain.csproj",
       "projectName": "Domain",
-      "projectPath": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\Domain\\Domain.csproj",
-      "packagesPath": "C:\\Users\\Minh Kiet\\.nuget\\packages\\",
-      "outputPath": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\Domain\\obj\\",
+      "projectPath": "D:\\Kiet\\Study\\N5_HK1\\DotNet\\BookingTour\\BookingTour\\Domain\\Domain.csproj",
+      "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
+      "outputPath": "D:\\Kiet\\Study\\N5_HK1\\DotNet\\BookingTour\\BookingTour\\Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Minh Kiet\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nguye\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9722,10 +9665,6 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.3, )"
-          },
-          "PagedList.Mvc": {
-            "target": "Package",
-            "version": "[4.5.0, )"
           }
         },
         "imports": [
@@ -9747,27 +9686,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'PagedList 1.17.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
-      "libraryId": "PagedList",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'PagedList.Mvc 4.5.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
-      "libraryId": "PagedList.Mvc",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  }
 }
