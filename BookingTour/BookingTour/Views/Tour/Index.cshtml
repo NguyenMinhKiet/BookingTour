@@ -9,13 +9,27 @@
 }
 @section css{
     <style>
-        .image-size{
-            min-height: 200px;
+        .card-size {
+            height: 100%; /* Chiều cao cố định */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Nội dung cách đều nhau */
         }
-        .card-title{
-            max-height: 70px;
-            overflow:hidden;
+
+        .card-img-top {
+            height: 180px; /* Đặt chiều cao cố định cho ảnh */
+            object-fit: cover; /* Giữ tỷ lệ ảnh mà không bị méo */
         }
+
+        .btn-primary {
+            float: right; /* Đặt nút sang bên phải */
+        }
+
+        .card-footer {
+            background-color: #f8f9fa; /* Màu nền nhạt hơn cho phần footer */
+        }
+
+
 
         .pagination li{
             margin: 0 2px;
@@ -204,10 +218,13 @@
                     {
                         @foreach (var tour in ViewBag.OnePageOfProducts)
                         {
-                            <div class="col-md-3">
-                                <div class="tour-card">
-                                    <div class="card card-size">
+                            <div class="col-md-3 mb-3">
+                                <div class="tour-card h-100">
+                                    <div class="card card-size shadow">
+                                        <!-- Hình ảnh -->
                                         <img src="/assets/img/default.jpg" class="card-img-top" alt="@tour.Title">
+
+                                        <!-- Phần nội dung -->
                                         <div class="card-body">
                                             <h5 class="card-title">@tour.Title</h5>
                                             <ul class="list-group list-group-flush">
@@ -216,9 +233,11 @@
                                                 <li class="list-group-item"><strong>Category:</strong> @tour.Category</li>
                                                 <li class="list-group-item"><strong>City:</strong> @tour.City</li>
                                             </ul>
-                                            <div class="mt-3">
-                                                <a asp-action="Details" asp-controller="Tour" asp-route-TourID="@tour.TourID" class="btn btn-primary">View Tour</a>
-                                            </div>
+                                        </div>
+
+                                        <!-- Phần nút -->
+                                        <div class="card-footer">
+                                            <a asp-action="Details" asp-controller="Tour" asp-route-TourID="@tour.TourID" class="btn btn-primary">View Tour</a>
                                         </div>
                                     </div>
                                 </div>

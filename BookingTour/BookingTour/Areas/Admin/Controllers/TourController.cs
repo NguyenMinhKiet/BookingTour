@@ -74,13 +74,7 @@ namespace Presentation.Areas.Admin.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
-            // Lấy tất cả lỗi từ ModelState và thêm chúng vào TempData để hiển thị
-            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
-            foreach (var error in errors)
-            {
-                ModelState.AddModelError(string.Empty, error);
-            }
-            return View();
+            return View(dto);
         }
         // GET: /Tour/Update?{TourID}
         [Authorize(Policy = "tour-update")]
@@ -139,7 +133,5 @@ namespace Presentation.Areas.Admin.Controllers
             TempData["NotificationMessage"] = "Xóa Tour thành công!";
             return RedirectToAction("Index");
         }
-
-        
     }
 }

@@ -1,21 +1,32 @@
 ﻿@model List<Presentation.Models.BookingViewModel>
 @{
     ViewData["Title"] = "Danh sách booking";
+    Layout = "_ecomLayout";
 }
+
+@section css{
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+}
+
 <div class="client_section layout_padding">
     <div class="container">
-<div class="page-header">
-    <h3 class="fw-bold mb-3">Danh sách Tour đã đặt</h3>
-    <ul class="breadcrumbs mb-3">
-        <li class="nav-home">
-            <a 
-               asp-controller="Home"
-               asp-action="Index">
-                <i class="icon-home"></i>
-            </a>
-        </li>
-    </ul>
-</div>
+        <div class="page-header text-center">
+            <h1 class="fw-bold mb-3">Danh sách Tour đã đặt</h1>
+            <nav aria-label="breadcrumb" class="d-inline-block">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a asp-controller="Home" asp-action="Index">
+                            <i class="icon-home"></i> Trang chủ
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Danh sách Tour đã đặt
+                    </li>
+                </ol>
+            </nav>
+        </div>
+
 
 <div class="col-md-12">
     <div class="card">
@@ -26,49 +37,71 @@
             <div class="table-responsive">
                 <table id="multi-filter-select"
                        class="display table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <td>STT</td>
-                            <th>Tour Name</th>
-                            <th>Customer Name</th>
-                            <th>Adult</th>
-                            <th>Child</th>
-                            <th>StartDate</th>
-                            <th>EndDate</th>
-                            <th>TotalPrice</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
+                            <thead>
+                                <tr>
+                                    <th class="w-10">STT</th>
+                                    <th class="w-20">Tour Name</th>
+                                    <th class="w-10">Adult</th>
+                                    <th class="w-10">Child</th>
+                                    <th class="w-15">StartDate</th>
+                                    <th class="w-15">EndDate</th>
+                                    <th class="w-15">TotalPrice</th>
+                                    <th class="w-20">Status</th>
+                                    <th class="w-10">Action</th>
+                                </tr>
+                            </thead>
+
                     <tfoot>
                         <tr>
-                            <td>STT</td>
-                            <th>Tour Name</th>
-                            <th>Customer Name</th>
-                            <th>Adult</th>
-                            <th>Child</th>
-                            <th>StartDate</th>
-                            <th>EndDate</th>
-                            <th>TotalPrice</th>
-                            <th>Status</th>
+                                    <th>STT</th>
+                                    <th>Tour Name</th>
+                                    <th>Adult</th>
+                                    <th>Child</th>
+                                    <th>StartDate</th>
+                                    <th>EndDate</th>
+                                    <th>TotalPrice</th>
+                                    <th>Status</th> 
+                                    <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        @for (int i = 0; i < Model.Count; i++)
-                        {
-                            <tr>
-                                <td>@(i + 1)</td>
-                                <td>@Model[i].Tour.Title</td>
-                                <td>@Model[i].Customer.LastName  @Model[i].Customer.FirstName</td>
-                                <td>@Model[i].Adult</td>
-                                <td>@Model[i].Child</td>
-                                <td>@Model[i].Tour.StartDate</td>
-                                <td>@Model[i].Tour.EndDate</td>
-                                <td>@Model[i].TotalPrice</td>
-                                        <td>
-                                            @Model[i].Status == 1 ? "Đã thanh toán" : "Chưa thanh toán";
-                                </td>
-                            </tr>
-                        }
+                                @for (int i = 0; i < Model.Count; i++)
+                                {
+                                    <tr>
+                                        <td class="text-center align-middle">@(i + 1)</td>
+                                        <td class="text-center align-middle">@Model[i].Tour.Title</td>
+                                        <td class="text-center align-middle">@Model[i].Adult</td>
+                                        <td class="text-center align-middle">@Model[i].Child</td>
+                                        <td class="text-center align-middle">@Model[i].Tour.StartDate.ToString("dd/MM/yyyy HH:mm tt")</td>
+                                        <td class="text-center align-middle">@Model[i].Tour.EndDate.ToString("dd/MM/yyyy HH:mm tt")</td>
+                                        <td class="text-center align-middle">@Model[i].TotalPrice</td>
+                                        <td class="text-center align-middle">
+                                            <span>
+                                                @if (Model[i].Status)
+                                                {
+                                                    <i class="fa fa-check-circle text-success"></i>
+                                                    @:Đã thanh toán
+                                                }
+                                                else
+                                                {
+                                                    <i class="fa fa-times-circle text-danger"></i>
+                                                    @:Chưa thanh toán
+                                                }
+                                            </span>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <div class="form-button-action">
+                                                <a class="btn btn-primary" type="button"
+                                                   asp-route-TourID="@Model[i].TourID"
+                                                   asp-controller="Tour"
+                                                   asp-action="Details">
+                                                    <i class="fa fa-edit"></i> Chi tiết
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+
                     </tbody>
                 </table>
             </div>
@@ -78,3 +111,53 @@
 
 </div>
 </div>
+
+@section script{
+    <script>
+        $(document).ready(function () {
+            $("#multi-filter-select").DataTable({
+                pageLength: 5,
+                initComplete: function () {
+                    this.api()
+                        .columns()
+                        .every(function () {
+                            var column = this;
+                            var select = $(
+                                '<select class="form-control"><option value=""></option></select>'
+                            )
+                                .appendTo($(column.footer()).empty())
+                                .on("change", function () {
+                                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                                    column
+                                        .search(val ? "^" + val + "$" : "", true, false)
+                                        .draw();
+                                });
+
+                            column
+                                .data()
+                                .unique()
+                                .sort()
+                                .each(function (d, j) {
+                                    select.append('<option value="' + d + '">' + d + "</option>");
+                                });
+                        });
+                },
+            });
+
+           
+
+            // Add Row
+            $("#add-row").DataTable({
+                pageLength: 5,
+            });
+        });
+    </script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+
+}

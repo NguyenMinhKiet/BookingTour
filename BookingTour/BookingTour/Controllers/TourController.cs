@@ -59,52 +59,6 @@ namespace Presentation.Controllers
             return View(onPageOfTours);
         }
 
-        public async Task<IActionResult> Search(int? page, int? pageSize, string searchTerm)
-        {
-            if (page == null || page < 1)
-            {
-                page = 1;
-            }
-            if (pageSize == null || pageSize < 1)
-            {
-                pageSize = 6;
-            }
-
-
-            var tours = await _tourService.GetAllAsync();
-            var toursViewModel = tours.Select(x => new TourCustomerView
-            {
-                Title = x.Title,
-                TourID = x.TourID,
-                Description = x.Description,
-                StartDate = x.StartDate,
-                EndDate = x.EndDate,
-                Price = x.Price,
-                Category = x.Category,
-                City = x.City,
-                AvailableSeats = x.AvailableSeats
-            }).ToList();
-
-            var onPageOfTours = toursViewModel.ToPagedList((int)page, (int)pageSize);
-            ViewBag.OnePageOfProducts = onPageOfTours;
-            ViewBag.itemCount = tours.Count();
-            return View(onPageOfTours);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetAllTours()
-        {
-            try
-            {
-                var tours = await _tourService.GetAllAsync(); // Đảm bảo bạn đợi kết quả từ DB
-                return Json(new { success = true, data = tours });
-            }
-            catch (Exception ex)
-            {
-                return Json(new { success = false, message = ex.Message });
-            }
-        }
-
         [HttpPost]
         public async Task<IActionResult> GetToursByCategory(List<string> categories)
         {

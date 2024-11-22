@@ -3,99 +3,92 @@
     ViewData["Title"] = "Chi tiết tour ";
     Layout = "_ecomLayout";
 }
-
+@section css {
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+}
 <div class="client_section layout_padding">
-<div class="container">
-    <section class="content-header">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
+    <div class="container">
+        <section class="content-header">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
                         <a asp-action="Index" asp-controller="Tour">Trang Chủ</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a >@Model.City</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">Tour</li>
-            </ol>
-        </nav>
-    </section>
-    <section class="content-body">
-        <div class="col-md-12">
-            <h1 class="pageTitle">@Model.TourName</h1>
-        </div>
-        <div class="row">
-            <div class="row col-md-8">
-                <img data-u="image" class="rounded-5 mt-2"
-                     src="//cdn2.ivivu.com/2023/11/20/12/nha-trang-bar-noi-ivv-750x460.jpg">
-                <div class="card mt-3">
-                    <div class="card-header bg-white">
-                        <div class="row p-2">
-                            <div class="col-6 d-flex justify-content-center align-items-center">
-                                <span>Khởi hành:</span>
-                                <p class="fw-bold ms-2 mb-0">@Model.City</p>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Tour</li>
+                    <li class="breadcrumb-item">
+                        <a>@Model.City</a>
+                    </li>
+                </ol>
+            </nav>
+        </section>
+        <section class="content-body">
+            <div class="col-md-12">
+                <h1 class="pageTitle text-center">@Model.TourName</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-10">
+                    <img data-u="image" class="rounded-5 mt-2" src="//cdn2.ivivu.com/2023/11/20/12/nha-trang-bar-noi-ivv-750x460.jpg">
+                    <div class="card mt-3">
+                        <div class="card-header bg-white">
+                            <div class="row p-2">
+                                <div class="col-6 d-flex justify-content-center align-items-center">
+                                    <span>Khởi hành:</span>
+                                    <p class="fw-bold ms-2 mb-0">@Model.City</p>
+                                </div>
+                                <div class="col-6 d-flex justify-content-center align-items-center">
+                                    <span>Mã Tour:</span>
+                                    <p class="fw-bold ms-2 mb-0">@Model.TourID</p>
+                                </div>
                             </div>
-
-                            <div class="col-6 d-flex justify-content-center align-items-center">
-                                <span>Mã Tour:</span>
-                                <p class="fw-bold ms-2 mb-0">@Model.TourID</p>
+                        </div>
+                        <div class="card-body">
+                            <h2>Tour Trọn gói bao gồm</h2>
+                            <div class="row p-3 g-3">
+                                <div class="col-4">
+                                    Khách sạn 3*
+                                </div>
+                                <div class="col-4">
+                                    Bữa ăn
+                                </div>
+                                <div class="col-4">
+                                    Xe tham quan
+                                </div>
+                                <div class="col-4">
+                                    Vé tham quan
+                                </div>
+                                <div class="col-4">
+                                    Hướng dẫn viên
+                                </div>
+                                <div class="col-4">
+                                    Bảo hiểm du lịch
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <h2>Tour Trọn gói bao gồm</h2>
-                        <div class="row p-3 g-3">
-                            <div class="col-4">
-                                Khách sạn 3*
-                            </div>
-                            <div class="col-4">
-                                Bữa ăn
-                            </div>
-                            <div class="col-4">
-                                Xe tham quan
-                            </div>
-                            <div class="col-4">
-                                Vé tham quan
-                            </div>
-                            <div class="col-4">
-                                Hướng dẫn viên
-                            </div>
-                            <div class="col-4">
-                                Bảo hiểm du lịch
-                            </div>
+
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <h2>Những trải nghiệm thú vị trong tour</h2>
+                            <p>@Model.Description</p>
                         </div>
                     </div>
 
-                </div>
-
-                <div class="card mt-3">
-                    <div class="card-body">
-                        <h2>Những trải nghiệm thú vị trong tour</h2>
-                        <p>
-                            @Model.Description
-                        </p>
-                    </div>
-                </div>
-
-                <div class="card mt-3">
-                    <div class="card-body">
-                        <h2>Chương trình tour</h2>
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <h2>Chương trình tour</h2>
                             <div class="container">
-                            <ul class="list-group">
-                                    
-                                    @for (int i=0; i< Model.Destinations.Count ; i++)
+                                <ul class="list-group">
+                                    @for (int i = 0; i < Model.Destinations.Count; i++)
                                     {
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <div class="card w-100">
                                                 <div class="card-header">
                                                     <div class="d-flex align-items-center">
-                                                        <img src="//cdn2.ivivu.com/2020/06/08/11/ivivu-canh-dong-muoi-nd-158x100.gif"
-                                                             alt="" class="img-thumbnail " width="150" height="150"
-                                                             style="object-fit: cover;">
+                                                        <img src="//cdn2.ivivu.com/2020/06/08/11/ivivu-canh-dong-muoi-nd-158x100.gif" alt="" class="img-thumbnail " width="150" height="150" style="object-fit: cover;">
                                                         <div class="ms-3">
-                                                            <div class="mb-1">Ngày @(i+1)</div>
-                                                            <p class="mb-0">
-                                                                @Model.Destinations[i].Name
-                                                            </p>
+                                                            <div class="mb-1">Ngày @(i + 1)</div>
+                                                            <p class="mb-0">@Model.Destinations[i].Name</p>
                                                         </div>
 
                                                         <button class="btn btn-secondary btn-sm ms-auto">
@@ -104,27 +97,24 @@
                                                     </div>
                                                 </div>
                                                 <div class="card-body">
-                                                    <p class="mt-1">@Model.Destinations[i].Description
-                                                    </p>
-                                                    <img src="//cdn2.ivivu.com/2020/06/08/11/ivivu-canh-dong-muoi-nd-158x100.gif"
-                                                        alt="" style="object-fit: cover; "class="w-100" >
+                                                    <p class="mt-1">@Model.Destinations[i].Description</p>
+                                                    <img src="//cdn2.ivivu.com/2020/06/08/11/ivivu-canh-dong-muoi-nd-158x100.gif" alt="" style="object-fit: cover;" class="w-100">
                                                 </div>
                                             </div>
                                         </li>
                                     }
-                            </ul>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="card mt-3">
+                    <div class="card mt-3">
                         <div class="card-header">
                             <h4 class="card-title">Lịch khởi hành & giá Tour</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="multi-filter-select"
-                                       class="display table table-striped table-hover">
+                                <table id="multi-filter-select" class="display table table-striped table-hover">
                                     <thead>
                                         <tr>
                                             <th>Ngày khởi hành</th>
@@ -142,52 +132,48 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        @if(Model.TourBookings.Count > 0)
+                                        @if (Model.TourBookings.Count > 0)
                                         {
                                             @foreach (var tour in Model.TourBookings)
                                             {
                                                 <tr>
-                                                    <th scope="row">@tour.StartDate</th>
-                                                    <th>@tour.EndDate</th>
+                                                    <th scope="row">@tour.StartDate.ToString("dd/MM/yyyy HH:mm tt")</th>
+                                                    <th>@tour.EndDate.ToString("dd/MM/yyyy HH:mm tt")</th>
                                                     <th>@tour.AvailableSeats</th>
                                                     <th>@tour.Price VNĐ</th>
                                                 </tr>
                                             }
                                         }
-                                        
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
+
+                <div class="col-md-2">
                     <div class="card bg-light border mt-3 sticky-top w-100">
                         <div class="card-body text-center">
                             <h5 class="card-title">Đặt tour ngay</h5>
-                            <a class="btn btn-primary" 
-                            asp-action="Create" 
-                            asp-controller="Booking" 
-                            asp-route-TourID="@Model.TourID" 
-                            asp-route-CustomerID="@Model.CustomerID">Đặt ngay</a>
-                        </div>
-                    </div>
-            </div>
-
-            <div class="card mt-3">
-                <div class="card-header bg-white">
-                    <div class="row p-2">
-                        <div class="d-flex flex-row align-items-center">    
-                            <h2 class="mb-2">Tours du lịch</h2>
-                            <h2 class="ml-2 mb-2"> @Model.City</h2>
-                            <h2 class="ml-2 mb-2">lien quan</h2>
+                            <a class="btn btn-primary" asp-action="Create" asp-controller="Booking" asp-route-TourID="@Model.TourID" asp-route-CustomerID="@Model.CustomerID">Đặt ngay</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="card-body">
-                    <div class="row">
-                            @if(Model.AnotherTour.Count > 0)
+                <div class="card mt-3">
+                    <div class="card-header bg-white">
+                        <div class="row p-2">
+                            <div class="d-flex flex-row align-items-center">
+                                <h2 class="mb-2">Tours du lịch</h2>
+                                <h2 class="ml-2 mb-2">@Model.City</h2>
+                                <h2 class="ml-2 mb-2">liên quan</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            @if (Model.AnotherTour.Count > 0)
                             {
                                 @foreach (var tour in Model.AnotherTour)
                                 {
@@ -208,11 +194,58 @@
                                     </div>
                                 }
                             }
-                            
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     </div>
 </div>
+
+@section script{
+    <script>
+        $(document).ready(function () {
+            $("#multi-filter-select").DataTable({
+                pageLength: 5,
+                initComplete: function () {
+                    this.api()
+                        .columns()
+                        .every(function () {
+                            var column = this;
+                            var select = $(
+                                '<select class="form-control"><option value=""></option></select>'
+                            )
+                                .appendTo($(column.footer()).empty())
+                                .on("change", function () {
+                                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                                    column
+                                        .search(val ? "^" + val + "$" : "", true, false)
+                                        .draw();
+                                });
+
+                            column
+                                .data()
+                                .unique()
+                                .sort()
+                                .each(function (d, j) {
+                                    select.append('<option value="' + d + '">' + d + "</option>");
+                                });
+                        });
+                },
+            });
+
+
+
+            // Add Row
+            $("#add-row").DataTable({
+                pageLength: 5,
+            });
+        });
+    </script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+}
