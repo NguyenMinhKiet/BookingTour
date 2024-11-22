@@ -1,0 +1,62 @@
+﻿@model Presentation.Models.EmployeeViewModel
+@{
+    ViewData["Title"] = "Cập nhật thông tin cá nhân";
+    Layout = "_ecomLayout";
+}
+<div class="services_section layout_padding">
+    <div class="container">
+<div class="page-header">
+    <h3 class="font-weight-bold mb-3">Sửa Thông Tin Nhân Viên</h3>
+    <ul class="breadcrumb mb-3">
+        <li class="breadcrumb-item">
+            <a asp-controller="Home" asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-controller="Employee" asp-action="ViewProfile" asp-route-UserID="@Model.EmployeeID">Nhân Viên</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Update</li>
+        <li class="breadcrumb-item">
+            <span class="text-secondary">id: @Model.EmployeeID</span>
+        </li>
+    </ul>
+</div>
+
+        <form asp-action="ViewProfile" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input asp-for="EmployeeID" type="hidden" class="form-control" id="EmployeeID" name="EmployeeID" value="@Model.EmployeeID">
+
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" type="text" class="form-control" id="FirstName" name="FirstName" required>
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" type="text" class="form-control" id="LastName" name="LastName" required>
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address"></label>
+        <input asp-for="Address" type="text" class="form-control" id="Address" name="Address" required>
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Position"></label>
+        <select asp-for="Position" id="Position" name="Position" class="form-control">
+            <option value="Manager">Quản lý</option>
+            <option value="TourGuide">Hướng dẫn viên</option>
+            <option value="Driver">Tài xế</option>
+        </select>
+        <span asp-validation-for="Position" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>
+</div>
+</div>

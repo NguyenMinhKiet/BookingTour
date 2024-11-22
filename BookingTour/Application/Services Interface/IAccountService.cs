@@ -13,10 +13,8 @@ namespace Application.Services_Interface
         public Task<IdentityResult> RegisterAsync(RegisterModelDto model);
         public Task<SignInResult> LoginAsync(LoginModelDto model);
         public Task LogoutAsync();
-        public Task<IdentityResult> ConfirmEmailAsync(string userId, string token);
         public Task<string> GeneratePasswordResetTokenAsync(string email);
-        public Task<IdentityResult> ResetPasswordAsync(string email, string token, string newPassword);
-        public Task<IdentityResult> UpdateUserProfileAsync(string userId, UpdateProfileModel model);
+        public Task<IdentityResult> UpdateUserProfileAsync(Guid UserID, string Phone);
         public Task<IdentityResult> ChangePasswordAsync(string userId, string currentPassword, string newPassword);
 
         public Task<IEnumerable<AccountWithRolesViewModel>> GetAllAccountWithRolesAsync();

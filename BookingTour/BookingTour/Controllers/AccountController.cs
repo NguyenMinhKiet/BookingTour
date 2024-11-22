@@ -7,6 +7,7 @@ using Application.DTOs.AccountDTOs;
 using Microsoft.Extensions.Options;
 using Application.DTOs.CustomerDTOs;
 using System.Runtime.Intrinsics.X86;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Presentation.Controllers
 {
@@ -17,18 +18,21 @@ namespace Presentation.Controllers
         private readonly RoleManager<Role> _roleManager;
             private readonly IAccountService _accountService;
         private readonly ICustomerService _customerService;
+        private readonly IEmployeeService _employeeService;
 
             public AccountController(SignInManager<Account> signInManager,
                                      UserManager<Account> userManager,
                                      IAccountService accountService,
                                      RoleManager<Role> roleManager,
-                                     ICustomerService customerService)
+                                     ICustomerService customerService,
+                                     IEmployeeService employeeService)
             {
                 _signInManager = signInManager;
                 _userManager = userManager;
                 _accountService = accountService;
             _roleManager = roleManager;
             _customerService = customerService;
+            _employeeService = employeeService;
             }
 
             // GET: /Account/Login
@@ -59,6 +63,7 @@ namespace Presentation.Controllers
                         // Lưu tên người dùng vào Session
                         HttpContext.Session.SetString("UserName", user.UserName);
                         HttpContext.Session.SetString("UserID", user.Id.ToString());
+                        HttpContext.Session.SetString("UserType", (await _userManager.GetRolesAsync(user)).FirstOrDefault());
 
 
                         // Lấy danh sách quyền/role của user
@@ -212,7 +217,23 @@ namespace Presentation.Controllers
             return RedirectToAction("Index","Home");
         }
 
-        
+        [Authorize(Policy ="profile-view")]
+        public IActionResult ViewProfile(Guid UserID, string UserType)
+        {
+            if(UserID == null)
+            {
+                TempData["NotificationType"] = "danger";
+                TempData["NotificationTitle"] = "Thất bại";
+                TempData["NotificationMessage"] = "Không tìm thấy User, vui lòng đăng nhập.";
+                return RedirectToAction("Login");
+            }
+            
+            if (UserType.Equals("Manager"))
+            {
+                return RedirectToAction("ViewProfile","Employee", new { UserID });
+            }
+            return RedirectToAction("ViewProfile", "Customer", new {  UserID });
+        }
     }
 }
 

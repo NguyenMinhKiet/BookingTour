@@ -2,15 +2,6 @@
 using Application.Services_Interface;
 using Domain.Entities;
 using Domain.Repositories;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
-using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services
 {
@@ -113,6 +104,11 @@ namespace Application.Services
                 return true;
             }
             return false;
+        }
+
+        public async Task<IEnumerable<Booking>> GetByCustomerID(Guid CustomerID)
+        {
+            return await _bookingRepository.GetByCustomerID(CustomerID);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
@@ -58,6 +59,11 @@ namespace Infrastructure.Repositories
                 .Include(x=> x.Tour)
                 .Include(x=> x.Customer)
                 .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Booking>> GetByCustomerID(Guid CustomerID)
+        {
+            return await _context.Bookings.Where(x => x.CustomerID == CustomerID).ToListAsync();
         }
 
         public async Task<Booking> GetByIdAsync(Guid id)

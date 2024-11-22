@@ -106,6 +106,9 @@ namespace Infrastructure.Data.Seed
                 new Permission(PERMISSIONS.ROLE_Claim_ADD, "Thêm quyền mới", true),
                 new Permission(PERMISSIONS.ROLE_Claim_UPDATE, "Cập nhật thông tin quyền", true),
                 new Permission(PERMISSIONS.ROLE_Claim_DELETE, "Xóa quyền", true),
+
+                new Permission(PERMISSIONS.PROFILE_VIEW, "Có thể xem thông tin cá nhân", true),
+                new Permission(PERMISSIONS.PROFILE_UPDATE, "Có thể chỉnh sửa thông tin cá nhân", true),
             };
 
 
@@ -183,6 +186,9 @@ namespace Infrastructure.Data.Seed
                 new Permission(PERMISSIONS.ROLE_Claim_ADD, "Thêm quyền mới", false),
                 new Permission(PERMISSIONS.ROLE_Claim_UPDATE, "Cập nhật thông tin quyền", false),
                 new Permission(PERMISSIONS.ROLE_Claim_DELETE, "Xóa quyền", false),
+
+                new Permission(PERMISSIONS.PROFILE_VIEW, "Có thể xem thông tin cá nhân", true),
+                new Permission(PERMISSIONS.PROFILE_UPDATE, "Có thể chỉnh sửa thông tin cá nhân", true),
             };
 
 

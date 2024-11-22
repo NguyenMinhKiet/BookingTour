@@ -9,6 +9,7 @@ namespace Application.Services_Interface
         public Task<Booking> GetById(Guid id);
 
         public Task<IEnumerable<Booking>> GetAllAsync();
+        public Task<IEnumerable<Booking>> GetByCustomerID(Guid CustomerID);
 
         public Task<bool> CreateAsync(BookingCreationDto dto);
 

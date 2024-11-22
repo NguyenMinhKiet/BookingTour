@@ -108,6 +108,7 @@ namespace Presentation.Areas.Admin.Controllers
                 LastName = customer.LastName,
                 Address = customer.Address,
                 Phone = customer.Phone,
+                Email = customer.Email
 
             };
             return View(customerViewModel);

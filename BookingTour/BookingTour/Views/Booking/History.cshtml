@@ -1,0 +1,80 @@
+﻿@model List<Presentation.Models.BookingViewModel>
+@{
+    ViewData["Title"] = "Danh sách booking";
+}
+<div class="client_section layout_padding">
+    <div class="container">
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Danh sách Tour đã đặt</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a 
+               asp-controller="Home"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Danh sách Tour</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="multi-filter-select"
+                       class="display table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <td>STT</td>
+                            <th>Tour Name</th>
+                            <th>Customer Name</th>
+                            <th>Adult</th>
+                            <th>Child</th>
+                            <th>StartDate</th>
+                            <th>EndDate</th>
+                            <th>TotalPrice</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <td>STT</td>
+                            <th>Tour Name</th>
+                            <th>Customer Name</th>
+                            <th>Adult</th>
+                            <th>Child</th>
+                            <th>StartDate</th>
+                            <th>EndDate</th>
+                            <th>TotalPrice</th>
+                            <th>Status</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            <tr>
+                                <td>@(i + 1)</td>
+                                <td>@Model[i].Tour.Title</td>
+                                <td>@Model[i].Customer.LastName  @Model[i].Customer.FirstName</td>
+                                <td>@Model[i].Adult</td>
+                                <td>@Model[i].Child</td>
+                                <td>@Model[i].Tour.StartDate</td>
+                                <td>@Model[i].Tour.EndDate</td>
+                                <td>@Model[i].TotalPrice</td>
+                                        <td>
+                                            @Model[i].Status == 1 ? "Đã thanh toán" : "Chưa thanh toán";
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>

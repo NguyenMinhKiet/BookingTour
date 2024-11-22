@@ -70,6 +70,9 @@ namespace Infrastructure.Static
         public static string ROLE_Claim_UPDATE = "role-claims-update";
         public static string ROLE_Claim_DELETE = "role-claims-delete";
 
+        public static string PROFILE_VIEW = "profile-view";
+        public static string PROFILE_UPDATE = "profile-update";
+
     }
         
 }

@@ -127,14 +127,6 @@ namespace Application.Services
             await _signInManager.SignOutAsync();
         }
 
-        public async Task<IdentityResult> ConfirmEmailAsync(string userId, string token)
-        {
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null) return IdentityResult.Failed();
-
-            return await _userManager.ConfirmEmailAsync(user, token);
-        }
-
         public async Task<string> GeneratePasswordResetTokenAsync(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
@@ -152,13 +144,12 @@ namespace Application.Services
         }
 
 
-        public async Task<IdentityResult> UpdateUserProfileAsync(string userId, UpdateProfileModel model)
+        public async Task<IdentityResult> UpdateUserProfileAsync(Guid UserID, string Phone)
         {
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await _userManager.FindByIdAsync(UserID.ToString());
             if (user == null) return IdentityResult.Failed();
 
-            user.Email = model.Email;
-            user.Phone = model.Phone;
+            user.Phone = Phone;
 
             return await _userManager.UpdateAsync(user);
         }

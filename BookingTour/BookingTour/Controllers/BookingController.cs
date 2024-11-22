@@ -12,11 +12,13 @@ namespace Presentationx.Controllers
         private readonly IBookingService _bookingService;
         private readonly ITourService _tourService;
         private readonly ICustomerService _customerService;
-        public BookingController(IBookingService bookingService, ITourService tourService, ICustomerService customerService)
+        private readonly IPaymentService _paymentService;
+        public BookingController(IBookingService bookingService, ITourService tourService, ICustomerService customerService,  IPaymentService paymentService)
         {
             _bookingService = bookingService;
             _tourService = tourService;
             _customerService = customerService;
+            _paymentService = paymentService;
         }
 
         [Authorize(Policy = "booking-add")]
@@ -131,6 +133,36 @@ namespace Presentationx.Controllers
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Đặt Tour thất bại, hãy kiểm tra lại các thông tin!";
             return RedirectToAction("Details", "Tour", new { TourID = TourID, CustomerID = CustomerID });
+        }
+
+        public async Task<IActionResult> History(Guid UserID)
+        {
+            var bookings = await _bookingService.GetByCustomerID(UserID);
+            var bookingsViewModel = new List<BookingViewModel>();
+            foreach (var i in bookings)
+            {
+                var payment = await _paymentService.GetByBookingId(i.BookingID);
+                ViewData[$"Status_{i.BookingID}"] = payment.Status;
+
+                var customer = await _customerService.GetById(i.CustomerID);
+                var tour = await _tourService.GetByIdAsync(i.TourID);
+                var bookingViewModel = new BookingViewModel
+                {
+                    BookingID = i.BookingID,
+                    CustomerID = i.CustomerID,
+                    TourID = i.TourID,
+                    Adult = i.Adult,
+                    Child = i.Child,
+                    CreateAt = i.CreateAt,
+                    ModifyAt = i.ModifyAt,
+                    TotalPrice = i.TotalPrice,
+                    Customer = customer,
+                    Tour = tour,
+                    Status = payment.Status
+                };
+                bookingsViewModel.Add(bookingViewModel);
+            }
+            return View(bookingsViewModel);
         }
     }
 }

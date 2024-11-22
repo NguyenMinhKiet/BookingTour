@@ -115,8 +115,8 @@
                                     <!-- Kiểm tra session và hiển thị nút -->
                                     @if (Context.Session.GetString("UserName") != null)
                                     {
-                                        <a class="dropdown-item bg-secondary" asp-action="ViewProfile" asp-controller="Account" asp-route-UserID="@Guid.Parse(Context.Session.GetString("UserID"))">View Profile</a>
-                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item bg-secondary" asp-action="ViewProfile" asp-controller="Account" asp-route-UserID="@Guid.Parse(Context.Session.GetString("UserID"))" asp-route-UserType="@Context.Session.GetString("UserType")">View Profile</a>
+                                        <a class="dropdown-item bg-secondary" asp-action="History" asp-controller="Booking" asp-route-UserID="@Guid.Parse(Context.Session.GetString("UserID"))">Tour History</a>
                                         <a class="dropdown-item bg-secondary" asp-action="Logout" asp-controller="Account">Logout</a>
                                     }
                                     else
@@ -157,9 +157,9 @@
                             <!-- Kiểm tra session và hiển thị nút -->
                             @if (Context.Session.GetString("UserName") != null)
                             {
-                                <a class="dropdown-item bg-secondary" asp-action="ViewProfile" asp-controller="Account" asp-route-UserID="@Guid.Parse(Context.Session.GetString("UserID"))">View Profile</a>
-                                <div class="dropdown-divider"></div
->                                <a class="dropdown-item bg-secondary" asp-action="Logout" asp-controller="Account">Logout</a>
+                                <a class="dropdown-item bg-secondary" asp-action="ViewProfile" asp-controller="Account" asp-route-UserID="@Guid.Parse(Context.Session.GetString("UserID"))" asp-route-UserType="@Context.Session.GetString("UserType")">View Profile</a>
+                                <a class="dropdown-item bg-secondary" asp-action="History" asp-controller="Booking" asp-route-UserID="@Guid.Parse(Context.Session.GetString("UserID"))">Tour History</a>
+                                <a class="dropdown-item bg-secondary" asp-action="Logout" asp-controller="Account">Logout</a>
                             }
                             else
                             {

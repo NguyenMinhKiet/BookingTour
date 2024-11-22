@@ -47,7 +47,7 @@ namespace Presentation.Areas.Admin.Controllers
                     ModifyAt = i.ModifyAt,
                     TotalPrice = i.TotalPrice,
                     Customer = customer,
-                    Tour = tour
+                    Tour = tour,
                 };
                 bookingsViewModel.Add(bookingViewModel);
             }

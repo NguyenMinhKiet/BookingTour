@@ -93,6 +93,7 @@ namespace Presentation.Controllers
                     CustomerID = customer.CustomerID,
                     FirstName = customer.FirstName,
                     LastName = customer.LastName,
+                    Email = customer.Email,
                     Phone = customer.Phone,
                     Address = customer.Address,
                 };
@@ -104,9 +105,10 @@ namespace Presentation.Controllers
             return RedirectToAction("Login", "Account");
         }
 
+        
         [HttpPost]
         [Authorize(Policy = "profile-update")]
-        public async Task<IActionResult> UpdateProfile(Guid CustomerID, CustomerUpdateDto model)
+        public async Task<IActionResult> ViewProfile(Guid CustomerID, CustomerViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -118,11 +120,11 @@ namespace Presentation.Controllers
                     Phone = model.Phone,
                 };
                 await _customerService.UpdateAsync(CustomerID, dto);
-
+                await _accountService.UpdateUserProfileAsync(CustomerID,dto.Phone);
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành Công!";
                 TempData["NotificationMessage"] = $"Cập nhật thông tin user thành công!";
-                return RedirectToAction("Index");
+                return RedirectToAction("ViewProfile", new {UserID = CustomerID});
             }
 
             TempData["NotificationType"] = "danger";

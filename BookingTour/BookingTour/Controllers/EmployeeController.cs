@@ -3,6 +3,7 @@ using Application.DTOs.EmployeeDTOs;
 using Application.Services;
 using Application.Services_Interface;
 using Domain.Entities;
+using Humanizer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -115,15 +116,16 @@ namespace Presentation.Controllers
 
         [HttpPost]
         [Authorize(Policy = "profile-update")]
-        public async Task<IActionResult> UpdateProfile(Guid EmployeeID, EmployeeUpdateDto model)
+        public async Task<IActionResult> ViewProfile(Guid EmployeeID, EmployeeUpdateDto model)
         {
             if (ModelState.IsValid)
             {
                 await _employeeService.UpdateAsync(EmployeeID, model);
+                await _accountService.UpdateUserProfileAsync(EmployeeID, model.Phone);
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành Công!";
                 TempData["NotificationMessage"] = $"Cập nhật thông tin user thành công!";
-                return RedirectToAction("Index");
+                return RedirectToAction("ViewProfile", new { UserID =  EmployeeID });
             }
 
             TempData["NotificationType"] = "danger";
