@@ -1,0 +1,74 @@
+﻿@model Application.DTOs.HotelDto.HotelDto;
+@{
+    ViewData["Title"] = "Cập nhật thông tin khách sạn";
+}
+
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Cập nhật thông tin khách sạn</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-area="Admin"
+               asp-controller="Home"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Admin"
+               asp-controller="Hotel"
+               asp-action="Index">
+                Khách sạn
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            Update
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            @Model.HotelID
+        </li>
+
+
+    </ul>
+</div>
+
+<form asp-action="Update" method="post">
+    <input type="hidden" asp-for="HotelID" value="@Model.HotelID" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" type="text" class="form-control" Required>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Star"></label>
+        <select asp-for="Star" required>
+            <option value="" selected disabled>chọn số sao</option>
+            <option value="1">⭐ 1 Star</option>
+            <option value="2">⭐⭐ 2 Stars</option>
+            <option value="3">⭐⭐⭐ 3 Stars</option>
+            <option value="4">⭐⭐⭐⭐ 4 Stars</option>
+            <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
+        </select>
+        <span asp-validation-for="Star" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address"></label>
+        <input asp-for="Address" type="text" class="form-control" id="Address" name="Address" Required>
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-area="Admin" asp-controller="Hotel" asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>
+

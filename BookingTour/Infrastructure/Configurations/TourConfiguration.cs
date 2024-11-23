@@ -38,7 +38,6 @@ namespace Infrastructure.DataAccess.Configurations
             builder.Property(i => i.Category)
                 .IsRequired();
 
-
         }
     }
 }

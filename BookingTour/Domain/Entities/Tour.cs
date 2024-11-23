@@ -20,5 +20,7 @@ namespace Domain.Entities
 
         public virtual ICollection<Feedback> FeedBacks { get; set; }
         public virtual ICollection<Booking> Bookings { get; set; }
+        
+        public virtual ICollection<TourHotel> TourHotels { get; set;}
     }
 }

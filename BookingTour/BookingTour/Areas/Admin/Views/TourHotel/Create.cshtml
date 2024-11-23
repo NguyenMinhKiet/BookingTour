@@ -1,0 +1,49 @@
+﻿@model Application.DTOs.TourHotelDto.TourHotelDto
+@{
+    ViewData["Title"] = "Thêm Hotel vào tour";
+}
+
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Thêm Hotel vào Tour</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-area="Admin"
+               asp-controller="Home"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <a asp-area="Admin"
+               asp-controller="TourHotel"
+               asp-action="Index">
+                Hotel Tour
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            Create
+        </li>
+    </ul>
+</div>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="TourID" value="@Model.TourID" />
+    <div class="form-group">
+        <label asp-for="HotelID">Chọn khách sạn:</label>
+        <select asp-for="HotelID" class="form-select" asp-items="@ViewBag.HotelList" Required>
+            <option value="">-- Chọn khách sạn --</option>
+
+        </select>
+        <span asp-validation-for="HotelID" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-area="Admin" asp-controller="Tour" asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>
