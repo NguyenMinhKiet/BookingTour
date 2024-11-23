@@ -14,7 +14,7 @@ namespace Domain.Repositories
         Task<IEnumerable<TourHotel>> GetAllAsync();
         Task<IEnumerable<TourHotel>> GetByTourID(Guid TourID);
         // Phương thức thêm
-        Task AddAsync(TourHotel TourHotel);
+        Task CreateAsync(TourHotel TourHotel);
 
         // Phương thức cập nhật
         Task UpdateAsync(TourHotel TourHotel);

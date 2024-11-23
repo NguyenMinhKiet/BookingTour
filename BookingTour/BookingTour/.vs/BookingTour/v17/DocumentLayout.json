@@ -1,21 +1,12 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Kiet\\Study\\N5_HK1\\DotNet\\BookingTour\\BookingTour\\BookingTour\\",
+  "WorkspaceRootPath": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|d:\\kiet\\study\\n5_hk1\\dotnet\\bookingtour\\bookingtour\\bookingtour\\areas\\admin\\controllers\\tourhotelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|solutionrelative:areas\\admin\\controllers\\tourhotelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6C99168D-233D-4575-94B0-E930847878C2}|..\\Application\\Application.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\bookingtour\\application\\services\\locationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|d:\\kiet\\study\\n5_hk1\\dotnet\\bookingtour\\bookingtour\\bookingtour\\areas\\admin\\views\\tourhotel\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|solutionrelative:areas\\admin\\views\\tourhotel\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|d:\\kiet\\study\\n5_hk1\\dotnet\\bookingtour\\bookingtour\\bookingtour\\areas\\admin\\controllers\\hotelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{39BF3D89-1098-44C6-AF42-6E25B17D468B}|Presentation.csproj|solutionrelative:areas\\admin\\controllers\\hotelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C1E3C7B6-0D5E-45A1-A1B7-771BDB6C6446}|..\\Infrastructure\\Infrastructure.csproj|d:\\kiet\\study\\n5_hk1\\dotnet\\bookingtour\\bookingtour\\infrastructure\\repositories\\hotelrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C1E3C7B6-0D5E-45A1-A1B7-771BDB6C6446}|..\\Infrastructure\\Infrastructure.csproj|d:\\study\\c - sharp\\tourdulich\\web_tourdulich\\bookingtour\\bookingtour\\infrastructure\\data\\location\\index.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,53 +21,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "D:\\Kiet\\Study\\N5_HK1\\DotNet\\BookingTour\\BookingTour\\BookingTour\\Areas\\Admin\\Views\\TourHotel\\Create.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\TourHotel\\Create.cshtml",
-              "ToolTip": "D:\\Kiet\\Study\\N5_HK1\\DotNet\\BookingTour\\BookingTour\\BookingTour\\Areas\\Admin\\Views\\TourHotel\\Create.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\TourHotel\\Create.cshtml",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAACcAAABTAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-23T14:26:41.443Z",
+              "Title": "Index.json",
+              "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\Infrastructure\\Data\\Location\\Index.json",
+              "RelativeDocumentMoniker": "..\\Infrastructure\\Data\\Location\\Index.json",
+              "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\Infrastructure\\Data\\Location\\Index.json",
+              "RelativeToolTip": "..\\Infrastructure\\Data\\Location\\Index.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-23T22:48:13.699Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "TourHotelController.cs",
-              "DocumentMoniker": "D:\\Kiet\\Study\\N5_HK1\\DotNet\\BookingTour\\BookingTour\\BookingTour\\Areas\\Admin\\Controllers\\TourHotelController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\TourHotelController.cs",
-              "ToolTip": "D:\\Kiet\\Study\\N5_HK1\\DotNet\\BookingTour\\BookingTour\\BookingTour\\Areas\\Admin\\Controllers\\TourHotelController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\TourHotelController.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAYwB8AAAAnAAAAAAAAAA==",
+              "Title": "LocationService.cs",
+              "DocumentMoniker": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\Application\\Services\\LocationService.cs",
+              "RelativeDocumentMoniker": "..\\Application\\Services\\LocationService.cs",
+              "ToolTip": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\Application\\Services\\LocationService.cs",
+              "RelativeToolTip": "..\\Application\\Services\\LocationService.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-23T14:24:18.012Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "HotelController.cs",
-              "DocumentMoniker": "D:\\Kiet\\Study\\N5_HK1\\DotNet\\BookingTour\\BookingTour\\BookingTour\\Areas\\Admin\\Controllers\\HotelController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\HotelController.cs",
-              "ToolTip": "D:\\Kiet\\Study\\N5_HK1\\DotNet\\BookingTour\\BookingTour\\BookingTour\\Areas\\Admin\\Controllers\\HotelController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\HotelController.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwBcAAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-23T14:23:22.844Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "HotelRepository.cs",
-              "DocumentMoniker": "D:\\Kiet\\Study\\N5_HK1\\DotNet\\BookingTour\\BookingTour\\Infrastructure\\Repositories\\HotelRepository.cs",
-              "RelativeDocumentMoniker": "..\\Infrastructure\\Repositories\\HotelRepository.cs",
-              "ToolTip": "D:\\Kiet\\Study\\N5_HK1\\DotNet\\BookingTour\\BookingTour\\Infrastructure\\Repositories\\HotelRepository.cs",
-              "RelativeToolTip": "..\\Infrastructure\\Repositories\\HotelRepository.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAgwB0AAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-23T14:20:20.996Z",
+              "WhenOpened": "2024-11-23T22:48:01.243Z",
               "EditorCaption": ""
             }
           ]

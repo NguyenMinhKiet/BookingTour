@@ -1,5 +1,4 @@
-﻿using Application.DTOs.CustomerDTOs;
-using Application.DTOs.EmployeeDTOs;
+﻿using Application.DTOs.EmployeeDTOs;
 using Application.Services_Interface;
 using Domain.Entities;
 using Domain.Repositories;
@@ -71,7 +70,7 @@ namespace Application.Services
                 employee.LastName = dto.LastName;
                 employee.Position = dto.Position;
                 employee.Address = dto.Address;
-
+                employee.Phone = dto.Phone;
                 await _employeeRepository.UpdateAsync(employee);
             }
         }

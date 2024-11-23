@@ -34,16 +34,36 @@
 
 <form asp-action="Create" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="TourID" value="@Model.TourID" />
+
+    <!-- Khách sạn -->
     <div class="form-group">
         <label asp-for="HotelID">Chọn khách sạn:</label>
-        <select asp-for="HotelID" class="form-select" asp-items="@ViewBag.HotelList" Required>
+        <select asp-for="HotelID" class="form-select" required>
             <option value="">-- Chọn khách sạn --</option>
-
+            @foreach (var hotel in ViewBag.Hotels)
+            {
+                    <option value="@hotel.HotelID">@hotel.Name</option>
+            }
         </select>
         <span asp-validation-for="HotelID" class="text-danger"></span>
     </div>
 
+    <!-- Ngày bắt đầu -->
+    <div class="form-group">
+        <label asp-for="StartDate">Chọn ngày bắt đầu:</label>
+        <input asp-for="StartDate" type="datetime-local" class="form-control" />
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+    </div>
+
+    <!-- Ngày kết thúc -->
+    <div class="form-group">
+        <label asp-for="EndDate">Chọn ngày kết thúc:</label>
+        <input asp-for="EndDate" type="datetime-local" class="form-control" />
+        <span asp-validation-for="EndDate" class="text-danger"></span>
+    </div>
+
+    <!-- Nút lưu và hủy -->
     <button type="submit" class="btn btn-primary">Lưu</button>
     <a asp-area="Admin" asp-controller="Tour" asp-action="Index" class="btn btn-secondary">Hủy</a>
 </form>
+

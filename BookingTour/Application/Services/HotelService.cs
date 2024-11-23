@@ -23,7 +23,11 @@ namespace Application.Services
             {
                 HotelID = Guid.NewGuid(),
                 Name = dto.Name.Trim(),
-                Star = dto.Star,
+                StarRating = dto.StarRating,
+                Description = dto.Description,
+                City = dto.SelectedCity,
+                District = dto.SelectedDistrict,
+                Ward = dto.SelectedWard,
                 Address = dto.Address.Trim(),
             };
             await _hotelRepository.AddAsync(HotelModel);
@@ -50,7 +54,11 @@ namespace Application.Services
             {
                 HotelID = dto.HotelID,
                 Name = dto.Name.Trim(),
-                Star = dto.Star,
+                StarRating = dto.StarRating,
+                Description = dto.Description,
+                City = dto.SelectedCity,
+                District = dto.SelectedDistrict,
+                Ward = dto.SelectedWard,
                 Address = dto.Address.Trim(),
             };
             await _hotelRepository.UpdateAsync(HotelModel);

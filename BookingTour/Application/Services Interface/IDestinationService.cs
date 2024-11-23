@@ -10,9 +10,9 @@ namespace Application.Services_Interface
 
         public Task<IEnumerable<Destination>> GetAllAsync();
 
-        public Task<Destination> CreateAsync(DestinationCreationDto dto);
+        public Task CreateAsync(DestinationDto dto);
 
-        public Task UpdateAsync(Guid id, DestinationUpdateDto dto);
+        public Task UpdateAsync(DestinationDto dto);
 
         public Task DeleteAsync(Guid id);
 

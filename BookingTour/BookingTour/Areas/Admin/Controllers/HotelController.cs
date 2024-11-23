@@ -4,6 +4,7 @@ using Application.Services_Interface;
 using Infrastructure.Static;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Presentation.Areas.Admin.Controllers
 {
@@ -27,8 +28,11 @@ namespace Presentation.Areas.Admin.Controllers
                 HotelID = x.HotelID,
                 Name = x.Name,
                 Address = x.Address,
-                Star = x.Star,
-                City = x.City
+                StarRating   = x.StarRating,
+                SelectedCity = x.City,
+                SelectedDistrict = x.District,
+                SelectedWard = x.Ward,
+                
             }).ToList();
             return View(hotelModel);
         }
@@ -36,13 +40,16 @@ namespace Presentation.Areas.Admin.Controllers
         public async Task<ActionResult> Create()
         {
             var listCity = await _locationService.LoadAllCitysAsync();
-            var listCityViewModel = listCity.Select(e => new CityViewModel
-            {
-                Name = NORMALIZE.NormalizeCity(e.Name),
-            }).ToList();
 
-            ViewBag.ListCity = listCityViewModel;
-            return View();
+            var viewModel = new HotelDto
+            {
+                Cities = listCity.Select(c => new SelectListItem
+                {
+                    Value = c.Code,
+                    Text = c.Name
+                }).ToList()
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -71,9 +78,11 @@ namespace Presentation.Areas.Admin.Controllers
             {
                 HotelID = hotel.HotelID,
                 Name = hotel.Name,
-                Star = hotel.Star,
+                StarRating = hotel.StarRating,
                 Address = hotel.Address,
-                City = hotel.City,
+                SelectedCity = hotel.City,
+                SelectedDistrict = hotel.District,
+                SelectedWard = hotel.Ward,
             };
             return View(hotelModel);
         }
@@ -109,6 +118,46 @@ namespace Presentation.Areas.Admin.Controllers
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Không tìm thấy khách sạn";
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetDistricts(string cityCode)
+        {
+            var cities = await _locationService.LoadAllCitysAsync();
+            var city = cities.FirstOrDefault(c => c.Code == cityCode);
+
+            if (city == null)
+                return NotFound();
+
+            var districts = city.District.Select(d => new SelectListItem
+            {
+                Value = d.Name,
+                Text = $"{d.Pre} {d.Name}"
+            }).ToList();
+
+            return Json(districts);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetWards(string cityCode, string districtName)
+        {
+            var cities = await _locationService.LoadAllCitysAsync();
+            var city = cities.FirstOrDefault(c => c.Code == cityCode);
+            if (city == null)
+                return NotFound();
+
+            var district = city.District.FirstOrDefault(d => d.Name == districtName);
+            if (district == null)
+                return NotFound();
+
+            var wards = district.Ward.Select(w => new SelectListItem
+            {
+                Value = w.Name,
+                Text = $"{w.Pre} {w.Name}"
+            }).ToList();
+
+            return Json(wards);
         }
     }
 }

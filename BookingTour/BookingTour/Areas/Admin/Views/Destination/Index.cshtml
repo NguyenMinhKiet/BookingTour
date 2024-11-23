@@ -35,37 +35,46 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>City</th>
-                                <th>Country</th>
-                                <th>Description</th>
-                                <th>Category</th>
-                            </tr>
+                                <th class="w-5">STT</th>
+                                <th class="w-15">Name</th>
+                                <th class="w-15">Description</th>
+                                <th class="w-10">Category</th>
+                                <th class="w-15">Address</th>
+                                <th class="w-10">City</th>
+                                <th class="w-10">District</th>
+                                <th class="w-10">Ward</th>
+                                <th class="w-10">Country</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>City</th>
-                                <th>Country</th>
-                                <th>Description</th>
-                                <th>Category</th>
+                                <th >STT</th>
+                                <th >Name</th>
+                                <th >Description</th>
+                                <th >Category</th>
+                                <th>Address</th>
+                                <th >City</th>
+                                <th >District</th>
+                                <th >Ward</th>
+                                <th >Country</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach (var destination in Model)
+                            @for(int i = 0; i < Model.Count; i++)
                             {
                                 <tr>
-                                    <td>@destination.DestinationID</td>
-                                    <td>@destination.Name</td>
-                                    <td>@destination.City</td>
-                                    <td>@destination.Country</td>
-                                    <td>@destination.Description</td>
-                                    <td>@destination.Category</td>
+                                    <td>@(i+1)</td>
+                                    <td>@Model[i].Name</td>
+                                    <td>@Model[i].Description</td>
+                                    <td>@Model[i].Category</td>
+                                    <td>@Model[i].Address</td>
+                                    <td>@Model[i].SelectedCity</td>
+                                    <td>@Model[i].SelectedDistrict</td>
+                                    <td>@Model[i].SelectedWard</td>
+                                    <td>@Model[i].Country</td>
                                 </tr>
                             }
+                            
                         </tbody>
                     </table>
                 </div>
@@ -93,46 +102,57 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>City</th>
-                                <th>Country</th>
-                                <th>Description</th>
-                                <th>Category</th>
-                                <th style="width: 10%">Action</th>
+                                <th class="w-5">STT</th>
+                                <th class="w-10">Name</th>
+                                <th class="w-15">Description</th>
+                                <th class="w-10">Category</th>
+                                <th class="w-10">Address</th>
+                                <th class="w-10">City</th>
+                                <th class="w-10">District</th>
+                                <th class="w-10">Ward</th>
+                                <th class="w-10">Country</th>
+                                <th class="w-10">Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
+                                <th>STT</th>
                                 <th>Name</th>
-                                <th>City</th>
-                                <th>Country</th>
                                 <th>Description</th>
                                 <th>Category</th>
+                                <th> Address</th>
+                                <th>City</th>
+                                <th>District</th>
+                                <th>Ward</th>
+                                <th>Country</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach (var destination in Model)
+                            @for (int i = 0; i < Model.Count; i++)
                             {
                                 <tr>
-                                    <td>@destination.DestinationID</td>
-                                    <td>@destination.Name</td>
-                                    <td>@destination.City</td>
-                                    <td>@destination.Country</td>
-                                    <td>@destination.Description</td>
-                                    <td>@destination.Category</td>
+                                    <td>@(i + 1)</td>
+                                    <td>@Model[i].Name</td>
+                                    <td>@Model[i].Description</td>
+                                    <td>@Model[i].Category</td>
+                                    <td>@Model[i].Address</td>
+                                    <td>@Model[i].SelectedCity</td>
+                                    <td>@Model[i].SelectedDistrict</td>
+                                    <td>@Model[i].SelectedWard</td>
+                                    <td>@Model[i].Country</td>
                                     <td>
                                         <div class="form-button-action">
                                             <a class="btn btn-link btn-primary" type="button"
                                                asp-area="Admin"
-                                               asp-route-DestinationID=@destination.DestinationID
+                                               asp-route-DestinationID=@Model[i].DestinationID
                                                asp-controller="Destination"
                                                asp-action="Update">
                                                 <i class="fa fa-edit"></i>
                                             </a>
                                             <a class="btn btn-link btn-danger " type="button"
                                                asp-area="Admin"
-                                               asp-route-DestinationID=@destination.DestinationID
+                                               asp-route-DestinationID=@Model[i].DestinationID
                                                asp-controller="Destination"
                                                asp-action="Delete">
                                                 <i class="fa fa-times"></i>

@@ -66,15 +66,5 @@ namespace Application.Services
             }
             return cityList;
         }
-
-        public List<Ward> LoadAllWardsOfDistrictAsync(District district)
-        {
-            return  district.Ward;
-        }
-
-        public List<District> LoadAllDistrictsOfCityAsync(City city)
-        {
-            return city.District;
-        }
     }
 }

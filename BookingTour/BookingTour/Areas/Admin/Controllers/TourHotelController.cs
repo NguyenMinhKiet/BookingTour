@@ -18,7 +18,7 @@ namespace Presentation.Areas.Admin.Controllers
             _hotelService = hotelService;
         }
 
-        public async IActionResult Create(Guid TourID)
+        public async Task<IActionResult> Create(Guid TourID)
         {
             var tour = await _tourService.GetByIdAsync(TourID);
             if(tour != null)
@@ -28,10 +28,14 @@ namespace Presentation.Areas.Admin.Controllers
                 {
                     HotelID = x.HotelID,
                     Name = x.Name,
-                    Star = x.Star,
-                    Address = x.Address
-                });
-                ViewBag.HotelList = hotelList;
+                    StarRating = x.StarRating,
+                    Address = x.Address,
+                    SelectedCity = x.City,
+                    SelectedDistrict = x.District,
+                    SelectedWard = x.Ward,
+                }).ToList();
+
+                ViewBag.Hotels = hotelList;
                 return View();
             }
             return View();

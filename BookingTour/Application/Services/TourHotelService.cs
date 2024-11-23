@@ -29,7 +29,7 @@ namespace Application.Services
                 StartDate = hotel.StartDate,
                 EndDate = hotel.EndDate,
             };
-           await  _tourHotelRepository.AddAsync(tourHotel);
+           await  _tourHotelRepository.UpdateAsync(tourHotel);
         }
 
         public async Task DeleteAsync(Guid TourID, Guid HotelID)
@@ -52,7 +52,7 @@ namespace Application.Services
             return await _tourHotelRepository.GetByTourID(TourID);
         }
 
-        public Task UpdateAsync(TourHotelDto hotel)
+        public async Task UpdateAsync(TourHotelDto hotel)
         {
             var tourHotel = new TourHotel
             {
@@ -63,7 +63,7 @@ namespace Application.Services
                 StartDate = hotel.StartDate,
                 EndDate = hotel.EndDate,
             };
-            await _tourHotelRepository.AddAsync(tourHotel);
+            await _tourHotelRepository.UpdateAsync(tourHotel);
         }
     }
 }

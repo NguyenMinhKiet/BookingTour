@@ -18,10 +18,12 @@ namespace Infrastructure.Configurations
             builder.HasKey(x=>x.HotelID);
 
             builder.Property(x => x.Name).IsRequired();
-            builder.Property(x => x.Star).IsRequired();
+            builder.Property(x => x.StarRating).IsRequired();
             builder.Property(x => x.Address).IsRequired();
-
-
+            builder.Property(x => x.Description).IsRequired();
+            builder.Property(x=>x.City).IsRequired();
+            builder.Property(x=>x.District).IsRequired();
+            builder.Property(x=>x.Ward).IsRequired();
         }
     }
 }

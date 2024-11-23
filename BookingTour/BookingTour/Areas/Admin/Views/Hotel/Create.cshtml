@@ -2,7 +2,23 @@
 @{
     ViewData["Title"] = "Thêm khách sạn mới";
 }
+@section css{
+    <style>
+                .rating i {
+            font-size: 2rem;
+            color: #ccc; /* Màu mặc định */
+            cursor: pointer;
+            margin: 0 5px;
+            transition: color 0.3s;
+        }
 
+        .rating i.hover,
+        .rating i.selected {
+            color: gold; /* Màu vàng cho sao đã chọn hoặc hover */
+        }
+
+    </style>
+}
 <div class="page-header">
     <h3 class="fw-bold mb-3">Thêm Khách Sạn Mới</h3>
     <ul class="breadcrumbs mb-3">
@@ -42,33 +58,156 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="Star"></label>
-        <select asp-for="Star" required>
-            <option value="" selected disabled>chọn số sao</option>
-            <option value="1">⭐ 1 Star</option>
-            <option value="2">⭐⭐ 2 Stars</option>
-            <option value="3">⭐⭐⭐ 3 Stars</option>
-            <option value="4">⭐⭐⭐⭐ 4 Stars</option>
-            <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
-        </select>
-        <span asp-validation-for="Star" class="text-danger"></span>
+        <label asp-for="StarRating"></label>
+        <div class="rating gap-2">
+            <i class="far fa-star" data-value="1"></i>
+            <i class="far fa-star" data-value="2"></i>
+            <i class="far fa-star" data-value="3"></i>
+            <i class="far fa-star" data-value="4"></i>
+            <i class="far fa-star" data-value="5"></i>
+        </div>
+        <input asp-for="StarRating" type="hidden" id="StarRating" value="0" />
+
+        <span asp-validation-for="StarRating" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Address"></label>
-        <input asp-for="Address" type="text" class="form-control" id="Address" name="Address" Required>
+        <label asp-for="SelectedCity" class="form-label">City</label>
+        <select asp-for="SelectedCity" class="form-select" id="citySelect" required>
+            <option value="" selected disabled>Select a city</option>
+            @foreach (var city in Model.Cities)
+            {
+                <option value="@city.Value">@city.Text</option>
+            }
+        </select>
+        <span asp-validation-for="SelectedCity" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SelectedDistrict" class="form-label">District</label>
+        <select asp-for="SelectedDistrict" class="form-select" id="districtSelect" disabled>
+            <option value="" selected disabled>Select a district</option>
+        </select>
+        <span asp-validation-for="SelectedDistrict" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SelectedWard" class="form-label">Ward</label>
+        <select asp-for="SelectedWard" class="form-select" id="wardSelect" disabled>
+            <option value="" selected disabled>Select a ward</option>
+        </select>
+        <span asp-validation-for="SelectedWard" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address" class="form-label">Ward</label>
+        <input asp-for="Address" type="text" class="form-control" />
         <span asp-validation-for="Address" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="City">Chọn thành phố:</label>
-        <select asp-for="City" class="form-select" asp-items="@ViewBag.ListCity" Required>
-            <option value="">-- Chọn thành phố --</option>
-        </select>
-        <span asp-validation-for="City" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Lưu</button>
     <a asp-area="Admin" asp-controller="Hotel" asp-action="Index" class="btn btn-secondary">Hủy</a>
 </form>
 
+@section script{
+    <script>
+        $(document).ready(function () {
+            $('#citySelect').change(function () {
+                const cityCode = $(this).val();
+                $('#districtSelect').html('<option value="" selected disabled>Loading...</option>');
+                $('#districtSelect').prop('disabled', true);
+                $('#wardSelect').html('<option value="" selected disabled>Select a ward</option>');
+                $('#wardSelect').prop('disabled', true);
+
+                if (cityCode) {
+                    $.ajax({
+                        url: `/Admin/Hotel/GetDistricts?cityCode=${cityCode}`,
+                        method: 'GET',
+                        success: function (districts) {
+                            $('#districtSelect').html('<option value="" selected disabled>Select a district</option>');
+                            districts.forEach(d => {
+                                $('#districtSelect').append(`<option value="${d.value}">${d.text}</option>`);
+                            });
+                            $('#districtSelect').prop('disabled', false);
+                        },
+                        error: function () {
+                            alert('Failed to load districts.');
+                        }
+                    });
+                }
+            });
+
+            $('#districtSelect').change(function () {
+                const districtName = $(this).val();
+                const cityCode = $('#citySelect').val();
+                $('#wardSelect').html('<option value="" selected disabled>Loading...</option>');
+                $('#wardSelect').prop('disabled', true);
+
+                if (districtName && cityCode) {
+                    $.ajax({
+                        url: `/Admin/Hotel/GetWards?cityCode=${cityCode}&districtName=${districtName}`,
+                        method: 'GET',
+                        success: function (wards) {
+                            $('#wardSelect').html('<option value="" selected disabled>Select a ward</option>');
+                            wards.forEach(w => {
+                                $('#wardSelect').append(`<option value="${w.value}">${w.text}</option>`);
+                            });
+                            $('#wardSelect').prop('disabled', false);
+                        },
+                        error: function () {
+                            alert('Failed to load wards.');
+                        }
+                    });
+                }
+            });
+        });
+
+    </script>
+
+    <script>
+        const stars = document.querySelectorAll('.rating i');
+        const ratingInput = document.getElementById('StarRating');
+
+        stars.forEach((star) => {
+            // Hiệu ứng khi hover
+            star.addEventListener('mouseover', function () {
+                resetStars(); // Reset tất cả sao
+                highlightStars(this.dataset.value); // Highlight các sao trước sao hiện tại
+            });
+
+            // Reset sao khi rời chuột
+            star.addEventListener('mouseout', function () {
+                resetStars();
+                highlightStars(ratingInput.value); // Giữ nguyên sao đã chọn
+            });
+
+            // Xử lý khi click để chọn rating
+            star.addEventListener('click', function () {
+                ratingInput.value = this.dataset.value; // Gán giá trị vào input ẩn
+                highlightStars(this.dataset.value); // Giữ trạng thái sao đã chọn
+            });
+        });
+
+        // Highlight các sao dựa trên giá trị
+        function highlightStars(value) {
+            stars.forEach((star) => {
+                if (star.dataset.value <= value) {
+                    star.classList.add('fas', 'selected'); // Sao đã chọn
+                    star.classList.remove('far');
+                } else {
+                    star.classList.add('far'); // Sao chưa chọn
+                    star.classList.remove('fas', 'selected');
+                }
+            });
+        }
+
+        // Reset tất cả sao
+        function resetStars() {
+            stars.forEach((star) => {
+                star.classList.add('far');
+                star.classList.remove('fas', 'selected', 'hover');
+            });
+        }
+
+    </script>
+}

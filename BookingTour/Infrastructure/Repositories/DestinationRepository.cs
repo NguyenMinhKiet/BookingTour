@@ -58,7 +58,7 @@ namespace Infrastructure.Repositories
         public async Task<IEnumerable<Destination>> GetByCityAsync(string City)
         {
             return await _context.Destinations
-                .Where(x => EF.Functions.Like(x.City, "%" + City + "%"))  // Sử dụng LIKE để so sánh
+                .Where(x => EF.Functions.Like(x.City, "%" + City + "%")) 
                 .ToListAsync();
         }
         public async Task<IEnumerable<Destination>> GetByCityAndCategoryAsync(string City, string Category)
@@ -71,7 +71,7 @@ namespace Infrastructure.Repositories
         public async Task<IEnumerable<string>> GetCategory(string City)
         {
             return await _context.Destinations
-                .Where(x => EF.Functions.Like(x.City,"%" +City +"%"))  // Sử dụng LIKE cho City
+                .Where(x => EF.Functions.Like(x.City,"%" +City +"%"))  
                 .Select(x => x.Category)
                 .ToListAsync();
         }

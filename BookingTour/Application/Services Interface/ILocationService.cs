@@ -6,7 +6,5 @@ namespace Application.Services_Interface
     {
         Task<City> LoadDataCityAsync(string key);
         Task<List<City>> LoadAllCitysAsync();
-        List<Ward> LoadAllWardsOfDistrictAsync(District district);
-        List<District> LoadAllDistrictsOfCityAsync(City city);
     }
 }

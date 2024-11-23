@@ -190,6 +190,10 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Category")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -206,7 +210,15 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("District")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Ward")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -288,6 +300,44 @@ namespace Infrastructure.Migrations
                     b.HasIndex("TourID");
 
                     b.ToTable("Feedbacks", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.Hotel", b =>
+                {
+                    b.Property<Guid>("HotelID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("District")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StarRating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Ward")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("HotelID");
+
+                    b.ToTable("Hotels", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Payment", b =>
@@ -429,6 +479,27 @@ namespace Infrastructure.Migrations
                     b.HasIndex("EmployeeID");
 
                     b.ToTable("TourEmployees", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.TourHotel", b =>
+                {
+                    b.Property<Guid>("TourID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("HotelID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("TourID", "HotelID");
+
+                    b.HasIndex("HotelID");
+
+                    b.ToTable("TourHotels", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -643,6 +714,25 @@ namespace Infrastructure.Migrations
                     b.Navigation("Tour");
                 });
 
+            modelBuilder.Entity("Domain.Entities.TourHotel", b =>
+                {
+                    b.HasOne("Domain.Entities.Hotel", "Hotel")
+                        .WithMany("TourHotels")
+                        .HasForeignKey("HotelID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Tour", "Tour")
+                        .WithMany("TourHotels")
+                        .HasForeignKey("TourID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Hotel");
+
+                    b.Navigation("Tour");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
                     b.HasOne("Domain.Entities.Role", null)
@@ -717,6 +807,11 @@ namespace Infrastructure.Migrations
                     b.Navigation("TourEmployee");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Hotel", b =>
+                {
+                    b.Navigation("TourHotels");
+                });
+
             modelBuilder.Entity("Domain.Entities.Tour", b =>
                 {
                     b.Navigation("Bookings");
@@ -726,6 +821,8 @@ namespace Infrastructure.Migrations
                     b.Navigation("TourDestinations");
 
                     b.Navigation("TourEmployees");
+
+                    b.Navigation("TourHotels");
                 });
 #pragma warning restore 612, 618
         }

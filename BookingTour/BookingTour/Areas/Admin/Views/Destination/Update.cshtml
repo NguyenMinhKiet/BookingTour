@@ -49,18 +49,6 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="City" class="form-label"></label>
-        <input asp-for="City" type="text" class="form-control" id="City" name="City" required>
-        <span asp-validation-for="City" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Country" class="form-label"></label>
-        <input asp-for="Country" type="text" class="form-control" id="Country" name="Country" required>
-        <span asp-validation-for="Country" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
         <label asp-for="Description" class="form-label"></label>
         <input asp-for="Description" type="text" class="form-control" id="Description" name="Description" required>
         <span asp-validation-for="Description" class="text-danger"></span>
@@ -74,6 +62,46 @@
             <option value="Beach">Biển</option>
         </select>
         <span asp-validation-for="Category" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SelectedCity" class="form-label">City</label>
+        <select asp-for="SelectedCity" class="form-select" id="citySelect" required>
+            <option value="" selected disabled>Select a city</option>
+            @foreach (var city in Model.Cities)
+            {
+                <option value="@city.Value">@city.Text</option>
+            }
+        </select>
+        <span asp-validation-for="SelectedCity" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SelectedDistrict" class="form-label">District</label>
+        <select asp-for="SelectedDistrict" class="form-select" id="districtSelect" disabled>
+            <option value="" selected disabled>Select a district</option>
+        </select>
+        <span asp-validation-for="SelectedDistrict" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SelectedWard" class="form-label">Ward</label>
+        <select asp-for="SelectedWard" class="form-select" id="wardSelect" disabled>
+            <option value="" selected disabled>Select a ward</option>
+        </select>
+        <span asp-validation-for="SelectedWard" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address" class="form-label">Ward</label>
+        <input asp-for="Address" type="text" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Country" class="form-label"></label>
+        <input asp-for="Country" type="text" class="form-control" id="Country" name="Country" required>
+        <span asp-validation-for="Country" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Lưu</button>
@@ -98,5 +126,59 @@
                 }
             });
         });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#citySelect').change(function () {
+                const cityCode = $(this).val();
+                $('#districtSelect').html('<option value="" selected disabled>Loading...</option>');
+                $('#districtSelect').prop('disabled', true);
+                $('#wardSelect').html('<option value="" selected disabled>Select a ward</option>');
+                $('#wardSelect').prop('disabled', true);
+
+                if (cityCode) {
+                    $.ajax({
+                        url: `/Admin/Destination/GetDistricts?cityCode=${cityCode}`,
+                        method: 'GET',
+                        success: function (districts) {
+                            $('#districtSelect').html('<option value="" selected disabled>Select a district</option>');
+                            districts.forEach(d => {
+                                $('#districtSelect').append(`<option value="${d.value}">${d.text}</option>`);
+                            });
+                            $('#districtSelect').prop('disabled', false);
+                        },
+                        error: function () {
+                            alert('Failed to load districts.');
+                        }
+                    });
+                }
+            });
+
+            $('#districtSelect').change(function () {
+                const districtName = $(this).val();
+                const cityCode = $('#citySelect').val();
+                $('#wardSelect').html('<option value="" selected disabled>Loading...</option>');
+                $('#wardSelect').prop('disabled', true);
+
+                if (districtName && cityCode) {
+                    $.ajax({
+                        url: `/Admin/Destination/GetWards?cityCode=${cityCode}&districtName=${districtName}`,
+                        method: 'GET',
+                        success: function (wards) {
+                            $('#wardSelect').html('<option value="" selected disabled>Select a ward</option>');
+                            wards.forEach(w => {
+                                $('#wardSelect').append(`<option value="${w.value}">${w.text}</option>`);
+                            });
+                            $('#wardSelect').prop('disabled', false);
+                        },
+                        error: function () {
+                            alert('Failed to load wards.');
+                        }
+                    });
+                }
+            });
+        });
+
     </script>
 }

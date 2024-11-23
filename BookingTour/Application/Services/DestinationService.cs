@@ -1,8 +1,10 @@
 ﻿using Application.DTOs.DestinationDTOs;
 using Application.Services_Interface;
 using Domain.Entities;
+using Domain.Entities.Location;
 using Domain.Repositories;
 using System.Globalization;
+using System.Net;
 using System.Text;
 namespace Application.Services
 {
@@ -16,19 +18,21 @@ namespace Application.Services
         }
 
 
-        public async Task<Destination> CreateAsync(DestinationCreationDto dto)
+        public async Task CreateAsync(DestinationDto dto)
         {
             var destination = new Destination
             {
                 DestinationID = Guid.NewGuid(),
                 Name = dto.Name.Trim(),
-                City = NormalizeCity(dto.City.Trim()),
                 Description = dto.Description.Trim(),
-                Country = NormalizeCity(dto.Country.Trim()),
-                Category = NormalizeCity(dto.Category.Trim()),
+                Country = dto.Country,
+                Category = dto.Category,
+                City = dto.City,
+                District = dto.District,
+                Ward = dto.Ward,
+                Address = dto.Address.Trim(),
             };
             await _destinationRepository.AddAsync(destination);
-            return destination;
         }
 
         public async Task DeleteAsync(Guid id)
@@ -61,28 +65,23 @@ namespace Application.Services
             return await _destinationRepository.GetByIdAsync(id);
         }
 
-        public async Task UpdateAsync(Guid id, DestinationUpdateDto dto)
+        public async Task UpdateAsync(DestinationDto dto)
         {
-            var destiantion = await _destinationRepository.GetByIdAsync(id);
+            var destiantion = await _destinationRepository.GetByIdAsync(dto.DestinationID);
             if (destiantion != null)
             {
                 destiantion.Name = dto.Name.Trim();
-                destiantion.Country = dto.Country.Trim();
+                destiantion.Country = dto.Country;
                 destiantion.Description = dto.Description.Trim();
-                destiantion.Category = NormalizeCity(dto.Category.Trim());
-                destiantion.City = NormalizeCity(dto.City.Trim());
+                destiantion.Category = dto.Category;
+                destiantion.City = dto.City;
+                destiantion.District = dto.District;
+                destiantion.Ward = dto.Ward;
+                destiantion.Address = dto.Address.Trim();
 
                 await _destinationRepository.UpdateAsync(destiantion);
             }
         }
-
-        public static string NormalizeCity(string city)
-        {
-            return city.Normalize(NormalizationForm.FormD)
-                       .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
-                       .Aggregate("", (current, c) => current + c);
-        }
-
 
     }
 }

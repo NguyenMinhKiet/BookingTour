@@ -12,9 +12,15 @@ namespace Infrastructure.Repositories
         {
             _context = context;
         }
-        public async Task AddAsync(TourHotel TourHotel)
+        public async Task CreateAsync(TourHotel TourHotel)
         {
             await _context.TourHotels.AddAsync(TourHotel);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(TourHotel TourHotel)
+        {
+            _context.TourHotels.Update(TourHotel);
             await _context.SaveChangesAsync();
         }
 
@@ -38,12 +44,6 @@ namespace Infrastructure.Repositories
         public async Task<IEnumerable<TourHotel>> GetByTourID(Guid TourID)
         {
             return await _context.TourHotels.Where(x => x.TourID == TourID).ToListAsync();
-        }
-
-        public async Task UpdateAsync(TourHotel TourHotel)
-        {
-            _context.TourHotels.Update(TourHotel);
-            await _context.SaveChangesAsync();
         }
     }
 }

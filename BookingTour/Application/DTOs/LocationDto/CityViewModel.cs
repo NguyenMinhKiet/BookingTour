@@ -8,6 +8,7 @@ namespace Application.DTOs.LocationDto
 {
     public class CityViewModel
     {
+        public string Code {  get; set; }
         public string Name { get; set; }
     }
 }
