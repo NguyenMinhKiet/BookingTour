@@ -17,7 +17,7 @@ namespace Application.Services
         {
             _hotelRepository = hotelRepository;
         }
-        public async Task CreateAsync(HotelDto dto)
+        public async Task CreateAsync(HotelModel dto)
         {
             var HotelModel = new Hotel
             {
@@ -43,12 +43,12 @@ namespace Application.Services
             return await _hotelRepository.GetAllAsync(City);
         }
 
-        public async Task<Hotel> GetByIdAsync(Guid HotelID)
+        public async Task<Domain.Entities.Hotel> GetByIdAsync(Guid HotelID)
         {
             return await _hotelRepository.GetByIdAsync(HotelID);
         }
 
-        public async Task UpdateAsync(HotelDto dto)
+        public async Task UpdateAsync(HotelModel dto)
         {
             var HotelModel = new Hotel
             {

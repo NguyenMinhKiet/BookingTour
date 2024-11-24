@@ -11,11 +11,11 @@ namespace Application.Services_Interface
 {
     public interface IHotelService
     {
-        public Task<IEnumerable<Hotel>> GetAllAsync(string? City);
-        public Task<Hotel> GetByIdAsync(Guid HotelID);
-        public Task CreateAsync(HotelDto dto);
+        public Task<IEnumerable<Domain.Entities.Hotel>> GetAllAsync(string? City);
+        public Task<Domain.Entities.Hotel> GetByIdAsync(Guid HotelID);
+        public Task CreateAsync(HotelModel dto);
 
-        public Task UpdateAsync(HotelDto dto);
+        public Task UpdateAsync(HotelModel dto);
 
         public Task DeleteAsync(Guid id);
     }

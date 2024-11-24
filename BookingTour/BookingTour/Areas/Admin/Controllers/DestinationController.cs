@@ -24,20 +24,25 @@ namespace Presentation.Areas.Admin.Controllers
         [Authorize(Policy = "destination-view")]
         public async Task<IActionResult> Index()
         {
-            var destiations = await _destinationService.GetAllAsync();
-            var destinationsViewModel = destiations.Select(i => new Models.DestinationViewModel
+            var destinations = await _destinationService.GetAllAsync();
+            var destinationsViewModelTasks = destinations.Select(async i =>
             {
-                DestinationID = i.DestinationID,
-                Name = i.Name,
-                Description = i.Description,
-                Country = i.Country,
-                Category = i.Category,
-                SelectedCity = i.City,
-                SelectedDistrict = i.District,
-                SelectedWard = i.Ward,
-                Address = i.Address,
+                var city = await _locationService.LoadDataCityAsync(i.City);
+                return new Models.DestinationViewModel
+                {
+                    DestinationID = i.DestinationID,
+                    Name = i.Name,
+                    Description = i.Description,
+                    Country = i.Country,
+                    Category = i.Category,
+                    SelectedCity = city.Name,
+                    SelectedDistrict = i.District,
+                    SelectedWard = i.Ward,
+                    Address = i.Address,
+                };
             }).ToList();
 
+            var destinationsViewModel = (await Task.WhenAll(destinationsViewModelTasks)).ToList();
             return View(destinationsViewModel);
         }
 
@@ -65,7 +70,7 @@ namespace Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> Create(Models.DestinationViewModel destination)
         {
             if (ModelState.IsValid)
-            {
+            {   
                 var dto = new DestinationDto
                 {
                     Name = destination.Name,
@@ -86,6 +91,13 @@ namespace Presentation.Areas.Admin.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ!";
+            var listCity = await _locationService.LoadAllCitysAsync();
+            destination.Cities = listCity.Select(c => new SelectListItem
+            {
+                Value = c.Code,
+                Text = c.Name
+            }).ToList();
+
             return View(destination);
         }
 
@@ -104,18 +116,26 @@ namespace Presentation.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            var destinationViewModel = new DestinationDto
+            var destinationViewModel = new Models.DestinationViewModel
             {
                 DestinationID = destination.DestinationID,
                 Name = destination.Name,
                 Description = destination.Description,
                 Country = destination.Country,
                 Category = destination.Category,
-                City = destination.City,
-                District = destination.District,
-                Ward = destination.Ward,
+                SelectedCity = destination.City,
+                SelectedDistrict = destination.District,
+                SelectedWard = destination.Ward,
                 Address = destination.Address,
             };
+            var listCity = await _locationService.LoadAllCitysAsync();
+            destinationViewModel.Cities = listCity.Select(c => new SelectListItem
+            {
+                Value = c.Code,
+                Text = c.Name
+            }).ToList();
+            await GetDistricts(destinationViewModel.SelectedCity);
+            await GetWards(destinationViewModel.SelectedCity, destinationViewModel.SelectedWard);
 
             return View(destinationViewModel);
         }
@@ -151,6 +171,15 @@ namespace Presentation.Areas.Admin.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = $"Không tìm thấy dữ liệu địa điểm id: {destination.DestinationID}";
+
+            var listCity = await _locationService.LoadAllCitysAsync();
+            destination.Cities = listCity.Select(c => new SelectListItem
+            {
+                Value = c.Code,
+                Text = c.Name
+            }).ToList();
+            await GetDistricts(destination.SelectedCity);
+            await GetWards(destination.SelectedCity, destination.SelectedWard);
             return View(destination);
         }
 
@@ -169,8 +198,7 @@ namespace Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> GetDistricts(string cityCode)
         {
             var cities = await _locationService.LoadAllCitysAsync();
-            var city = cities.FirstOrDefault(c => c.Code == cityCode);
-
+            var city = cities.FirstOrDefault(c => c.Name == cityCode);
             if (city == null)
                 return NotFound();
 
@@ -179,7 +207,7 @@ namespace Presentation.Areas.Admin.Controllers
                 Value = d.Name,
                 Text = $"{d.Pre} {d.Name}"
             }).ToList();
-
+            Console.WriteLine(districts);
             return Json(districts);
         }
 
@@ -188,7 +216,7 @@ namespace Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> GetWards(string cityCode, string districtName)
         {
             var cities = await _locationService.LoadAllCitysAsync();
-            var city = cities.FirstOrDefault(c => c.Code == cityCode);
+            var city = cities.FirstOrDefault(c => c.Name == cityCode);
             if (city == null)
                 return NotFound();
 

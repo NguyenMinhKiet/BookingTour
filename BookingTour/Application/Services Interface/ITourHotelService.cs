@@ -15,7 +15,6 @@ namespace Application.Services_Interface
         public Task<TourHotel> GetById(Guid TourID, Guid HotelID);
 
         public Task CreateAsync(TourHotelDto hotel);
-        public Task UpdateAsync(TourHotelDto hotel);
         public Task DeleteAsync(Guid TourID, Guid HotelID);
     }
 }

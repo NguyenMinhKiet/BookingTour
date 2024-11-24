@@ -220,7 +220,7 @@ namespace Presentation.Controllers
         [Authorize(Policy ="profile-view")]
         public IActionResult ViewProfile(Guid UserID, string UserType)
         {
-            if(UserID == null)
+            if(UserID == Guid.Empty)
             {
                 TempData["NotificationType"] = "danger";
                 TempData["NotificationTitle"] = "Thất bại";

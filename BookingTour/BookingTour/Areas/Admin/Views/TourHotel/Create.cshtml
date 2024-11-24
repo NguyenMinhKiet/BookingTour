@@ -1,4 +1,4 @@
-﻿@model Application.DTOs.TourHotelDto.TourHotelDto
+﻿@model Application.DTOs.TourHotelDto.TourHotelCreationDto
 @{
     ViewData["Title"] = "Thêm Hotel vào tour";
 }
@@ -33,12 +33,12 @@
 </div>
 
 <form asp-action="Create" method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="TourID" value="@Model.TourID" />
     <!-- Khách sạn -->
     <div class="form-group">
         <label asp-for="HotelID">Chọn khách sạn:</label>
-        <select asp-for="HotelID" class="form-select" required>
+        <select asp-for="HotelID" class="form-select"required>
             <option value="">-- Chọn khách sạn --</option>
             @foreach (var hotel in ViewBag.Hotels)
             {

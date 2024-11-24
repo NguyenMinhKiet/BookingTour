@@ -37,7 +37,7 @@ namespace Presentation.Areas.Admin.Controllers
 
         // GET: /Payment/Create
         [Authorize(Policy = "payment-add")]
-        public async Task<IActionResult> CreateAsync(Guid BookingID)
+        public IActionResult CreateAsync(Guid BookingID)
         {
             return View();
         }

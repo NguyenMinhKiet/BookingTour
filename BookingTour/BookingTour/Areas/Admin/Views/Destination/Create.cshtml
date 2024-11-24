@@ -35,7 +35,6 @@
 
 <form asp-action="Create" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
-    <input asp-for="DestinationID" type="hidden" value="" />
     <div class="form-group">
         <label asp-for="Name" class="form-label"></label>
         <input asp-for="Name" type="text" class="form-control" id="Name" name="Name" required>
@@ -71,7 +70,7 @@
             <option value="" selected disabled>Select a city</option>
             @foreach (var city in Model.Cities)
             {
-                <option value="@city.Value">@city.Text</option>
+                <option value="@city.Text">@city.Text</option>
             }
         </select>
         <span asp-validation-for="SelectedCity" class="text-danger"></span>
@@ -116,6 +115,7 @@
         $(document).ready(function () {
             $('#citySelect').change(function () {
                 const cityCode = $(this).val();
+                console.log(cityCode);
                 $('#districtSelect').html('<option value="" selected disabled>Loading...</option>');
                 $('#districtSelect').prop('disabled', true);
                 $('#wardSelect').html('<option value="" selected disabled>Select a ward</option>');
@@ -133,7 +133,7 @@
                             $('#districtSelect').prop('disabled', false);
                         },
                         error: function () {
-                            alert('Failed to load districts.');
+                            alert("Failed to load districts.");
                         }
                     });
                 }

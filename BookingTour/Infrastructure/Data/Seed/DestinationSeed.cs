@@ -12,98 +12,115 @@ namespace Infrastructure.Data.Seed
             {
                 var destinations = new List<Destination>
             {
-               new Destination
-            {
-                DestinationID = Guid.NewGuid(),
-                Name = "Chợ Bến Thành",
-                Description = "Một trong những điểm đến nổi tiếng của thành phố Hồ Chí Minh, nơi bạn có thể tìm thấy các sản phẩm thủ công mỹ nghệ, thực phẩm, và đặc sản địa phương.",
-                Country = "Vietnam",
-                Category = "Market",
-                City = NORMALIZE.NormalizeCity("Hồ Chí Minh") // Thành phố chuẩn hóa không dấu
-            },
-            new Destination
-            {
-                DestinationID = Guid.NewGuid(),
-                Name = "Nhà Thờ Đức Bà",
-                Description = "Một biểu tượng của thành phố Hồ Chí Minh, nhà thờ có kiến trúc tuyệt đẹp và nằm ngay trung tâm thành phố.",
-                Country = "Vietnam",
-                Category = "Historical",
-                City = NORMALIZE.NormalizeCity("Hồ Chí Minh") // Thành phố chuẩn hóa không dấu
-            },
-            new Destination
-            {
-                DestinationID = Guid.NewGuid(),
-                Name = "Vịnh Hạ Long",
-                Description = "Kỳ quan thiên nhiên thế giới, nổi tiếng với các đảo đá vôi tuyệt đẹp và là một trong những điểm du lịch không thể bỏ qua tại Quảng Ninh.",
-                Country = "Vietnam",
-                Category = "Nature",
-                City = NORMALIZE.NormalizeCity("Quảng Ninh") // Thành phố chuẩn hóa không dấu
-            },
-            new Destination
-            {
-                DestinationID = Guid.NewGuid(),
-                Name = "Động Đầu Gỗ",
-                Description = "Một trong những động đẹp nhất của vịnh Hạ Long với những nhũ đá tự nhiên tuyệt vời.",
-                Country = "Vietnam",
-                Category = "Nature",
-                City = NORMALIZE.NormalizeCity("Quảng Ninh") // Thành phố chuẩn hóa không dấu
-            },
-            new Destination
-            {
-                DestinationID = Guid.NewGuid(),
-                Name = "Thiền Viện Trúc Lâm",
-                Description = "Nằm ở Đà Lạt, thiền viện Trúc Lâm là một điểm du lịch tâm linh nổi tiếng với khung cảnh thanh bình và không khí trong lành.",
-                Country = "Vietnam",
-                Category = "Spiritual",
-                City = NORMALIZE.NormalizeCity("Lâm Đồng") // Thành phố chuẩn hóa không dấu
-            },
-            new Destination
-            {
-                DestinationID = Guid.NewGuid(),
-                Name = "Hồ Xuân Hương",
-                Description = "Một hồ nước lớn và xinh đẹp tại Đà Lạt, nổi tiếng với không gian thư giãn và cảnh quan thiên nhiên tuyệt vời.",
-                Country = "Vietnam",
-                Category = "Nature",
-                City = NORMALIZE.NormalizeCity("Lâm Đồng") // Thành phố chuẩn hóa không dấu
-            },
-            new Destination
-            {
-                DestinationID = Guid.NewGuid(),
-                Name = "Bãi biển Bình Ba",
-                Description = "Một bãi biển đẹp nằm ở Nha Trang, với làn nước trong vắt và những bãi cát trắng mịn.",
-                Country = "Vietnam",
-                Category = "Beach",
-                City = NORMALIZE.NormalizeCity("Khánh Hòa") // Thành phố chuẩn hóa không dấu
-            },
-            new Destination
-            {
-                DestinationID = Guid.NewGuid(),
-                Name = "Vinpearl Land Nha Trang",
-                Description = "Một khu vui chơi giải trí lớn tại Nha Trang, với các hoạt động giải trí đa dạng cho cả gia đình.",
-                Country = "Vietnam",
-                Category = "Entertainment",
-                City = NORMALIZE.NormalizeCity("Khánh Hòa") // Thành phố chuẩn hóa không dấu
-            },
-            new Destination
-            {
-                DestinationID = Guid.NewGuid(),
-                Name = "Hòn Thơm",
-                Description = "Một hòn đảo tuyệt đẹp thuộc Phú Quốc, nổi tiếng với các bãi biển hoang sơ và cảnh quan thiên nhiên chưa bị khai thác.",
-                Country = "Vietnam",
-                Category = "Island",
-                City = NORMALIZE.NormalizeCity("Kiên Giang") // Thành phố chuẩn hóa không dấu
-            },
-            new Destination
-            {
-                DestinationID = Guid.NewGuid(),
-                Name = "Chùa Thiên Mụ",
-                Description = "Một trong những ngôi chùa cổ kính nhất tại Huế, nổi tiếng với kiến trúc đặc trưng và vai trò quan trọng trong lịch sử.",
-                Country = "Vietnam",
-                Category = "Historical",
-                City = NORMALIZE.NormalizeCity("Thừa Thiên Huế") // Thành phố chuẩn hóa không dấu
-            }
 
-
+new Destination
+        {
+            DestinationID = Guid.NewGuid(),
+            Name = "Fansipan",
+            Description = "Nóc nhà Đông Dương, ngọn núi cao nhất Việt Nam.",
+            Country = "Việt Nam",
+            Category = "Mountain",
+            Address = "Thị trấn Sa Pa",
+            City = "Lào Cai",
+            District = "Sa Pa",
+            Ward = "Trung tâm"
+        },
+        new Destination
+        {
+            DestinationID = Guid.NewGuid(),
+            Name = "Bãi biển Mỹ Khê",
+            Description = "Một trong những bãi biển đẹp nhất hành tinh.",
+            Country = "Việt Nam",
+            Category = "Beach",
+            Address = "Đường Võ Nguyên Giáp",
+            City = "Đà Nẵng",
+            District = "Sơn Trà",
+            Ward = "Phước Mỹ"
+        },
+        new Destination
+        {
+            DestinationID = Guid.NewGuid(),
+            Name = "Hoàng thành Thăng Long",
+            Description = "Di sản văn hóa thế giới với lịch sử lâu đời.",
+            Country = "Việt Nam",
+            Category = "Cultural",
+            Address = "Quán Thánh",
+            City = "Hà Nội",
+            District = "Ba Đình",
+            Ward = "Điện Biên"
+        },
+        new Destination
+        {
+            DestinationID = Guid.NewGuid(),
+            Name = "Địa đạo Củ Chi",
+            Description = "Di tích lịch sử nổi tiếng thời kháng chiến.",
+            Country = "Việt Nam",
+            Category = "Historical",
+            Address = "Ấp Phú Hiệp",
+            City = "Hồ Chí Minh",
+            District = "Củ Chi",
+            Ward = "Phú Mỹ Hưng"
+        },
+        new Destination
+        {
+            DestinationID = Guid.NewGuid(),
+            Name = "Vườn quốc gia Cúc Phương",
+            Description = "Khu bảo tồn thiên nhiên nổi tiếng với đa dạng sinh học.",
+            Country = "Việt Nam",
+            Category = "EcoTourism",
+            Address = "Xã Cúc Phương",
+            City = "Ninh Bình",
+            District = "Nho Quan",
+            Ward = "Cúc Phương"
+        },
+        new Destination
+        {
+            DestinationID = Guid.NewGuid(),
+            Name = "Hang Sơn Đoòng",
+            Description = "Hang động lớn nhất thế giới, điểm đến mạo hiểm.",
+            Country = "Việt Nam",
+            Category = "Adventure",
+            Address = "Xã Sơn Trạch",
+            City = "Quảng Bình",
+            District = "Bố Trạch",
+            Ward = "Sơn Trạch"
+        },
+        new Destination
+        {
+            DestinationID = Guid.NewGuid(),
+            Name = "Hồ Gươm",
+            Description = "Trái tim của thủ đô Hà Nội, nổi bật với nét cổ kính.",
+            Country = "Việt Nam",
+            Category = "CityTour",
+            Address = "Hàng Trống",
+            City = "Hà Nội",
+            District = "Hoàn Kiếm",
+            Ward = "Tràng Tiền"
+        },
+        new Destination
+        {
+            DestinationID = Guid.NewGuid(),
+            Name = "Lễ hội Đền Hùng",
+            Description = "Lễ hội văn hóa tưởng nhớ các Vua Hùng.",
+            Country = "Việt Nam",
+            Category = "Festival",
+            Address = "Xã Hy Cương",
+            City = "Phú Thọ",
+            District = "Việt Trì",
+            Ward = "Hy Cương"
+        },
+        new Destination
+        {
+            DestinationID = Guid.NewGuid(),
+            Name = "Vịnh Lan Hạ",
+            Description = "Điểm du thuyền lý tưởng với vẻ đẹp yên bình.",
+            Country = "Việt Nam",
+            Category = "Cruise",
+            Address = "Cát Bà",
+            City = "Hải Phòng",
+            District = "Cát Hải",
+            Ward = "Cát Bà"
+        }
             };
 
                 await context.Destinations.AddRangeAsync(destinations);

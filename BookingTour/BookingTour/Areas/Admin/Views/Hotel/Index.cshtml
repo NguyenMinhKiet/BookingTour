@@ -1,4 +1,4 @@
-﻿@model List<Application.DTOs.HotelDto.HotelDto>
+﻿@model List<Application.DTOs.HotelDto.HotelModel>
 @{
     ViewData["Title"] = "Danh sách khách sạn";
 }
@@ -28,15 +28,14 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th class="w-5">STT</th>
-                                <th class="w-15">Name</th>
-                                <th class="w-15">Description</th>
-                                <th class="w-10">Star Number</th>
-                                <th class="w-15">Address</th>
-                                <th class="w-10">City</th>
-                                <th class="w-10">District</th>
-                                <th class="w-10">Ward</th>
-                                <th class="w-10">Country</th>
+                                <th class="col-1">STT</th>
+                                <th class="col-2">Name</th>
+                                <th class="col-2">Description</th>
+                                <th class="col-1">Star Number</th>
+                                <th class="col-2">Address</th>
+                                <th class="col-1">City</th>
+                                <th class="col-1">District</th>
+                                <th class="col-1">Ward</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -93,14 +92,13 @@
                         <thead>
                             <tr>
                                 <th class="w-5">STT</th>
-                                <th class="w-10">Name</th>
-                                <th class="w-15">Description</th>
+                                <th class="w-15">Name</th>
+                                <th class="w-20">Description</th>
                                 <th class="w-10">Star Number</th>
                                 <th class="w-10">Address</th>
                                 <th class="w-10">City</th>
                                 <th class="w-10">District</th>
                                 <th class="w-10">Ward</th>
-                                <th class="w-10">Country</th>
                                 <th class="w-10">Action</th>
                             </tr>
                         </thead>
@@ -114,7 +112,6 @@
                                 <th>City</th>
                                 <th>District</th>
                                 <th>Ward</th>
-                                <th>Country</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>

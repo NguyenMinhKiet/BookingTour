@@ -9,6 +9,7 @@ namespace Domain.Entities.Location
     public class CityCollection
     {
         public string code { get; set; }
+        public string name { get; set; }
         public string file_path { get; set; }
     }
 }

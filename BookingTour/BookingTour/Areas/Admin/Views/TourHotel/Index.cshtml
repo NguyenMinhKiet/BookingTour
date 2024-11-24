@@ -1,0 +1,160 @@
+﻿@model Application.DTOs.TourHotelDto.TourHotelModel
+@{
+    ViewData["Title"] = "Danh sách nơi ở trong Tour";
+}
+
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Danh sách nơi ở trong Tour</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a asp-area="Admin"
+               asp-controller="Home"
+               asp-action="Index">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            Danh sách
+        </li>
+    </ul>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Danh sách Filters</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="multi-filter-select"
+                           class="display table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th class="w-5">STT</th>
+                                <th class="w-15">Name</th>
+                                <th class="w-20">Address</th>
+                                <th class="w-10">City</th>
+                                <th class="w-10">District</th>
+                                <th class="w-10">Ward</th>
+                                <th class="w-15">StartDate</th>
+                                <th class="w-15">EndDate</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>STT</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>District</th>
+                                <th>Ward</th>
+                                <th>StartDate</th>
+                                <th>EndDate</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @for (int i = 0; i < Model.Hotels.Count; i++)
+                            {
+                                <tr>
+                                    <td>@(i + 1)</td>
+                                    <td>@Model.Hotels[i].hotel.Name</td>
+                                    <td>@Model.Hotels[i].hotel.Address</td>
+                                    <td>@Model.Hotels[i].hotel.SelectedCity</td>
+                                    <td>@Model.Hotels[i].hotel.SelectedDistrict</td>
+                                    <td>@Model.Hotels[i].hotel.SelectedWard</td>
+                                    <td>@Model.Hotels[i].StartDate</td>
+                                    <td>@Model.Hotels[i].EndDate</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex align-items-center">
+                    <h4 class="card-title">Thông tin địa điểm tour</h4>
+                    <a class="btn btn-primary btn-round ms-auto"
+                       asp-area="Admin"
+                       asp-action="Create"
+                       asp-route-TourID="@Model.TourID"
+                       asp-controller="TourHotel">
+                        <i class="fa fa-plus"></i>
+                        Thêm nơi ở
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="add-row"
+                           class="display table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th class="w-5">STT</th>
+                                <th class="w-15">Name</th>
+                                <th class="w-20">Address</th>
+                                <th class="w-10">City</th>
+                                <th class="w-10">District</th>
+                                <th class="w-10">Ward</th>
+                                <th class="w-10">StartDate</th>
+                                <th class="w-10">EndDate</th>
+                                <th class="w=10">Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>STT</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>District</th>
+                                <th>Ward</th>
+                                <th>StartDate</th>
+                                <th>EndDate</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @for (int i = 0; i < Model.Hotels.Count; i++)
+                            {
+                                <tr>
+                                    <td>@(i + 1)</td>
+                                    <td>@Model.Hotels[i].hotel.Name</td>
+                                    <td>@Model.Hotels[i].hotel.Address</td>
+                                    <td>@Model.Hotels[i].hotel.SelectedCity</td>
+                                    <td>@Model.Hotels[i].hotel.SelectedDistrict</td>
+                                    <td>@Model.Hotels[i].hotel.SelectedWard</td>
+                                    <td>@Model.Hotels[i].StartDate</td>
+                                    <td>@Model.Hotels[i].EndDate</td>
+                                    <td>
+                                        <div class="form-button-action">
+                                            <a class="btn btn-link btn-danger " type="button"
+                                               asp-area="Admin"
+                                               asp-route-TourID="@Model.TourID"
+                                               asp-route-HotelID="@Model.Hotels[i].hotel.HotelID"
+                                               asp-controller="TourEmployee"
+                                               asp-action="Delete">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+
+                                        </div>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

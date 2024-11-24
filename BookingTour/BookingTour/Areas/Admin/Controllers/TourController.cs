@@ -51,7 +51,7 @@ namespace Presentation.Areas.Admin.Controllers
             var listCity = await _locationService.LoadAllCitysAsync();
             var listCityViewModel = listCity.Select(e => new CityViewModel
             {
-                Name = NORMALIZE.NormalizeCity(e.Name),
+                Name = e.Name,
             }).ToList();
 
             ViewData["ListCity"] = listCityViewModel;
@@ -61,7 +61,7 @@ namespace Presentation.Areas.Admin.Controllers
         // POST: /Tour/Create
         [HttpPost]
         [Authorize(Policy = "tour-add")]
-        public async Task<IActionResult> Create(TourCreationDto dto)
+        public async Task<IActionResult> CreateAsync(TourCreationDto dto)
         {
             if (ModelState.IsValid)
             {

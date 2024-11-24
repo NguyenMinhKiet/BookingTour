@@ -29,7 +29,7 @@ namespace Application.Services
                 StartDate = hotel.StartDate,
                 EndDate = hotel.EndDate,
             };
-           await  _tourHotelRepository.UpdateAsync(tourHotel);
+           await  _tourHotelRepository.CreateAsync(tourHotel);
         }
 
         public async Task DeleteAsync(Guid TourID, Guid HotelID)
@@ -50,20 +50,6 @@ namespace Application.Services
         public async Task<IEnumerable<TourHotel>> GetByTourID(Guid TourID)
         {
             return await _tourHotelRepository.GetByTourID(TourID);
-        }
-
-        public async Task UpdateAsync(TourHotelDto hotel)
-        {
-            var tourHotel = new TourHotel
-            {
-                HotelID = hotel.HotelID,
-                Tour = hotel.Tour,
-                TourID = hotel.TourID,
-                Hotel = hotel.Hotel,
-                StartDate = hotel.StartDate,
-                EndDate = hotel.EndDate,
-            };
-            await _tourHotelRepository.UpdateAsync(tourHotel);
         }
     }
 }

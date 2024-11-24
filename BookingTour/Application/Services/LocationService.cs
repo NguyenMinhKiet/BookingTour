@@ -16,17 +16,14 @@ namespace Application.Services
     public class LocationService : ILocationService
     {
         private string PATH = "../Infrastructure/Data/Location/";
-        private ILogger<LocationService> _logger;
-        public LocationService (ILogger<LocationService> logger)
-        {
-            _logger = logger;
-        }
+
         public async Task<Dictionary<string, CityCollection>> LoadAllCityPathAsyncs()
         {
-            var JsonDatas = await File.ReadAllTextAsync(PATH + "Index.json", Encoding.UTF8);
-            var CityCollection = JsonConvert.DeserializeObject<Dictionary<string, CityCollection>>(JsonDatas);
-            return CityCollection;
+            var jsonData = await File.ReadAllTextAsync(PATH + "Index.json", Encoding.UTF8);
+            var cityCollection = JsonConvert.DeserializeObject<Dictionary<string, CityCollection>>(jsonData);
+            return cityCollection;
         }
+
 
         public async Task<List<string>> GetListKeys(string PATH)
         {
