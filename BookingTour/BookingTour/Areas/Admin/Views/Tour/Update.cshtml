@@ -1,4 +1,4 @@
-﻿@model Presentation.Areas.Admin.Models.TourViewModel
+﻿@model Application.DTOs.TourDTOs.TourUpdateDto
 @{
     ViewData["Title"] = "Chỉnh sửa thông tin tour";
 }
@@ -39,8 +39,8 @@
 </div>
 
 <form asp-action="Update" method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input asp-for="TourID" type="hidden" class="form-control" id="TourID" name="TourID" value="@Model.TourID">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input asp-for="TourID" type="hidden" class="form-control"value="@Model.TourID">
 
     <div class="form-group">
         <label asp-for="Title"></label>
@@ -95,7 +95,21 @@
         </select>
         <span asp-validation-for="Category" class="text-danger"></span>
     </div>
+    <div class="form-group">
+        <label asp-for="City" class="form-label"></label>
+        <select asp-for="City" class="form-control" id="City" name="City" required>
+            <option value="" disabled selected>-- Chọn thành phố --</option>
+            @if (ViewData["ListCity"] is List<Application.DTOs.LocationDto.CityViewModel> cities) // Kiểm tra đúng kiểu dữ liệu
+            {
+                foreach (var city in cities)
+                {
+                    <option value="@city.Name">@city.Name</option>
+                }
+            }
+        </select>
 
+        <span asp-validation-for="City" class="text-danger"></span>
+    </div>
     <button type="submit" class="btn btn-primary">Lưu</button>
     <a asp-area="Admin" asp-controller="Tour" asp-action="Index" class="btn btn-secondary">Hủy</a>
 </form>

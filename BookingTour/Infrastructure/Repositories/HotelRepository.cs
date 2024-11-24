@@ -29,7 +29,11 @@ namespace Infrastructure.Repositories
         {
             if (!string.IsNullOrEmpty(City))
             {
-                return await _context.Hotels.Where(x=>x.City.ToLower() == City.ToLower()).ToListAsync();
+                var list = await _context.Hotels
+                                .Where(x => x.City.ToLower() == City.ToLower())
+                                .ToListAsync();
+                return list;
+
             }
             return await _context.Hotels.ToListAsync();
         }

@@ -1,13 +1,8 @@
-﻿using Application.DTOs.DestinationDTOs;
-using Application.DTOs.EmployeeDTOs;
-using Application.DTOs.LocationDto;
+﻿using Application.DTOs.LocationDto;
 using Application.DTOs.TourDTOs;
-using Application.Services;
 using Application.Services_Interface;
-using Infrastructure.Static;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Presentation.Areas.Admin.Models;
 namespace Presentation.Areas.Admin.Controllers
 {
     [Authorize(Policy = "RequiredAdminOrManager")]
@@ -61,11 +56,11 @@ namespace Presentation.Areas.Admin.Controllers
         // POST: /Tour/Create
         [HttpPost]
         [Authorize(Policy = "tour-add")]
-        public async Task<IActionResult> CreateAsync(TourCreationDto dto)
+        public async Task<IActionResult> CreateAsync(TourCreationDto model)
         {
             if (ModelState.IsValid)
             {
-                await _tourService.CreateAsync(dto);
+                await _tourService.CreateAsync(model);
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành Công!";
                 TempData["NotificationMessage"] = "Thêm Tour thành công!";
@@ -74,7 +69,14 @@ namespace Presentation.Areas.Admin.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
-            return View(dto);
+            var listCity = await _locationService.LoadAllCitysAsync();
+            var listCityViewModel = listCity.Select(e => new CityViewModel
+            {
+                Name = e.Name,
+            }).ToList();
+
+            ViewData["ListCity"] = listCityViewModel;
+            return View(model);
         }
         // GET: /Tour/Update?{TourID}
         [Authorize(Policy = "tour-update")]
@@ -88,7 +90,7 @@ namespace Presentation.Areas.Admin.Controllers
                 TempData["NotificationMessage"] = $"Không tìm thấy Tour ID: {TourID}";
                 return RedirectToAction("Index");
             }
-            var tourViewModel = new Models.TourViewModel
+            var tourViewModel = new TourUpdateDto
             {
                 TourID = i.TourID,
                 Title = i.Title,
@@ -100,6 +102,14 @@ namespace Presentation.Areas.Admin.Controllers
                 Category = i.Category,
                 City = i.City
             };
+
+            var listCity = await _locationService.LoadAllCitysAsync();
+            var listCityViewModel = listCity.Select(e => new CityViewModel
+            {
+                Name = e.Name,
+            }).ToList();
+
+            ViewData["ListCity"] = listCityViewModel;
             return View(tourViewModel);
 
         }
@@ -120,7 +130,14 @@ namespace Presentation.Areas.Admin.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
-            return View();
+            var listCity = await _locationService.LoadAllCitysAsync();
+            var listCityViewModel = listCity.Select(e => new CityViewModel
+            {
+                Name = e.Name,
+            }).ToList();
+
+            ViewData["ListCity"] = listCityViewModel;
+            return View(dto);
         }
 
         // POST: /Tour/Delete?{TourID}

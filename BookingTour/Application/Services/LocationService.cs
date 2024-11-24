@@ -19,7 +19,7 @@ namespace Application.Services
 
         public async Task<Dictionary<string, CityCollection>> LoadAllCityPathAsyncs()
         {
-            var jsonData = await File.ReadAllTextAsync(PATH + "Index.json", Encoding.UTF8);
+            var jsonData = await File.ReadAllTextAsync(PATH + "Index.json", UTF8Encoding.UTF8);
             var cityCollection = JsonConvert.DeserializeObject<Dictionary<string, CityCollection>>(jsonData);
             return cityCollection;
         }
@@ -27,9 +27,8 @@ namespace Application.Services
 
         public async Task<List<string>> GetListKeys(string PATH)
         {
-            var jsonData = await File.ReadAllTextAsync(PATH + "Index.json", Encoding.UTF8);
+            var jsonData = await File.ReadAllTextAsync(PATH + "Index.json",UTF8Encoding.UTF8);
             var collection = JsonConvert.DeserializeObject<Dictionary<string, CityCollection>>(jsonData);
-
             var listCode = new List<string>();
             foreach ( var city in collection.Keys)
             {

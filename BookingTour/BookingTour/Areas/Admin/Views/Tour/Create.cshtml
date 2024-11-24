@@ -1,4 +1,4 @@
-﻿@model Presentation.Areas.Admin.Models.TourViewModel
+﻿@model Application.DTOs.TourDTOs.TourCreationDto
 @{
     ViewData["Title"] = "Thêm tour mới";
 }
@@ -33,7 +33,8 @@
 </div>
 
 <form asp-action="Create" method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
         <label asp-for="Title"></label>
         <input asp-for="Title" type="text" class="form-control" id="Title" name="Title" placeholder="Nhập tựa đề của tour ..." Required>
@@ -48,25 +49,24 @@
 
     <div class="form-group">
         <label asp-for="StartDate"></label>
-        <input asp-for="StartDate" type="datetime-local" class="form-control" id="StartDate" name="StartDate" Required>
+        <input asp-for="StartDate" type="datetime-local" class="form-control" Required>
         <span asp-validation-for="StartDate" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="EndDate"></label>
-        <input asp-for="EndDate" type="datetime-local" class="form-control" id="EndDate" name="EndDate" Required>
-        <span asp-validation-for="EndDate" class="text-danger"></span>
+        <input asp-for="EndDate" type="datetime-local" class="form-control"  required />
     </div>
 
     <div class="form-group">
         <label asp-for="Price"></label>
-        <input asp-for="Price" type="decimal" class="form-control" id="Price" name="Price" min="0" value="0" Required>
+        <input asp-for="Price" type="decimal" class="form-control" id="Price" name="Price"  Required>
         <span asp-validation-for="Price" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="AvailableSeats"></label>
-        <input asp-for="AvailableSeats" type="number" class="form-control" id="AvailableSeats" name="AvailableSeats" min="0" value="0" Required>
+        <input asp-for="AvailableSeats" type="number" class="form-control" id="AvailableSeats" name="AvailableSeats"  Required>
         <span asp-validation-for="AvailableSeats" class="text-danger"></span>
     </div>
 

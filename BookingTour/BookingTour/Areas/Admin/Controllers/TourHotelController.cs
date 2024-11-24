@@ -1,11 +1,8 @@
 ﻿using Application.DTOs.HotelDto;
 using Application.DTOs.TourHotelDto;
 using Application.Services_Interface;
-using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
-using Presentation.Models;
 
 namespace Presentation.Areas.Admin.Controllers
 {

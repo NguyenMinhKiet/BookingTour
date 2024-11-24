@@ -1,4 +1,5 @@
 ﻿using Application.DTOs.DestinationDTOs;
+using Application.DTOs.HotelDto;
 using Application.DTOs.TourDTOs;
 using Application.Services_Interface;
 using Domain.Entities;
@@ -133,6 +134,19 @@ namespace Presentation.Controllers
                 TempData["NotificationMessage"] = $"Vui lòng đăng nhập";
                 return RedirectToAction("Login","Account");
             }
+
+            var hotelTour = await _tourService.GetHotels(TourID);
+            var hotelTourModel = hotelTour.Select(x => new HotelModel
+            {
+                HotelID = x.HotelID,
+                Name = x.Hotel.Name,
+                Description = x.Hotel.Description,
+                Address = x.Hotel.Address,
+                SelectedCity = x.Hotel.City,
+                SelectedDistrict = x.Hotel.District,    
+                SelectedWard = x.Hotel.Ward,
+                StarRating = x.Hotel.StarRating,
+            }).ToList();
             var tourDetailViewModel = new TourDetailModel
             {
                 TourID = tour.TourID,
@@ -145,6 +159,7 @@ namespace Presentation.Controllers
                 Destinations = destinationsViewModel,
                 TourBookings = tourBookingViewModel,
                 AnotherTour = anotherTourViewModel,
+                Hotels = hotelTourModel,
             };
 
 

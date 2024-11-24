@@ -42,6 +42,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="card-body">
                             <h2>Tour Trọn gói bao gồm</h2>
                             <div class="row p-3 g-3">
@@ -76,6 +77,40 @@
 
                     <div class="card mt-3">
                         <div class="card-body">
+                            <h2>Thông tin Nơi ở</h2>
+                            <div class="container">
+                                <ul class="list-group">
+                                    @for (int i = 0; i < Model.Hotels.Count; i++)
+                                    {
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div class="card w-100">
+                                                <div class="card-header">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="//cdn2.ivivu.com/2020/06/08/11/ivivu-canh-dong-muoi-nd-158x100.gif" alt="" class="img-thumbnail " width="150" height="150" style="object-fit: cover;">
+                                                        <div class="ms-3">
+                                                            <div class="mb-1">Ngày @(i + 1)</div>
+                                                            <p class="mb-0">@Model.Hotels[i].Name</p>
+                                                        </div>
+
+                                                        <button class="btn btn-secondary btn-sm ms-auto" data-toggle="collapse" data-target="#collapse-hotel-@(i)">
+                                                            <i class="bi bi-three-dots"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card-body collapse" id="collapse-hotel-@(i)">
+                                                    <p class="mt-1">@Model.Hotels[i].Description</p>
+                                                    <img src="//cdn2.ivivu.com/2020/06/08/11/ivivu-canh-dong-muoi-nd-158x100.gif" alt="" style="object-fit: cover;" class="w-100">
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3">
+                        <div class="card-body">
                             <h2>Chương trình tour</h2>
                             <div class="container">
                                 <ul class="list-group">
@@ -91,12 +126,12 @@
                                                             <p class="mb-0">@Model.Destinations[i].Name</p>
                                                         </div>
 
-                                                        <button class="btn btn-secondary btn-sm ms-auto">
+                                                        <button class="btn btn-secondary btn-sm ms-auto" data-toggle="collapse" data-target="#collapse-destination-@(i)">
                                                             <i class="bi bi-three-dots"></i>
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <div class="card-body">
+                                                <div class="card-body collapse" id="collapse-destination-@(i)">
                                                     <p class="mt-1">@Model.Destinations[i].Description</p>
                                                     <img src="//cdn2.ivivu.com/2020/06/08/11/ivivu-canh-dong-muoi-nd-158x100.gif" alt="" style="object-fit: cover;" class="w-100">
                                                 </div>
@@ -242,6 +277,20 @@
                 pageLength: 5,
             });
         });
+    </script>
+    <script>
+        function toggleCardBody(button) {
+    // Lấy phần tử `.card-body` tương ứng với nút bấm
+    var cardBody = button.closest('.card').querySelector('.card-body');
+    
+    // Kiểm tra trạng thái hiện tại và thay đổi
+    if (cardBody.style.display === "none" || cardBody.style.display === "") {
+        cardBody.style.display = "block"; // Hiển thị
+    } else {
+        cardBody.style.display = "none"; // Ẩn đi
+    }
+}
+
     </script>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

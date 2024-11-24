@@ -1,4 +1,5 @@
 ﻿using Application.DTOs.DestinationDTOs;
+using Application.DTOs.HotelDto;
 using Application.DTOs.TourDTOs;
 
 namespace Presentation.Models
@@ -12,9 +13,10 @@ namespace Presentation.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string City { get; set; }
+
         public List<DestinationWithVisitDateViewModel> Destinations { get; set; }
         public List<TourViewModel> TourBookings { get; set; }
         public List<TourViewModel> AnotherTour { get; set; }
-        
+        public List<HotelModel> Hotels { get; set; }
     }
 }

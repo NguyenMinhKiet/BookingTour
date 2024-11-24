@@ -104,13 +104,13 @@ namespace Presentation.Areas.Admin.Controllers
         }
 
         [Authorize(Policy = "tour-employee-delete")]
-        public async Task<IActionResult> Delete(Guid tour_id, Guid employee_id)
+        public async Task<IActionResult> Delete(Guid TourID, Guid EmployeeID)
         {
-            await _tourEmployeeService.DeleteAsync(tour_id, employee_id);
+            await _tourEmployeeService.DeleteAsync(TourID, EmployeeID);
             TempData["NotificationType"] = "success";
             TempData["NotificationTitle"] = "Thành Công!";
             TempData["NotificationMessage"] = "Xóa nhân viên trong Tour thành công!";
-            return RedirectToAction("Index", new { TourId = tour_id });
+            return RedirectToAction("Index", new {  TourID });
         }
 
 

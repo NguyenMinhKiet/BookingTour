@@ -25,9 +25,8 @@ namespace Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var destinations = await _destinationService.GetAllAsync();
-            var destinationsViewModelTasks = destinations.Select(async i =>
+            var destinationsViewModelTasks = destinations.AsEnumerable().Select(async i =>
             {
-                var city = await _locationService.LoadDataCityAsync(i.City);
                 return new Models.DestinationViewModel
                 {
                     DestinationID = i.DestinationID,
@@ -35,7 +34,7 @@ namespace Presentation.Areas.Admin.Controllers
                     Description = i.Description,
                     Country = i.Country,
                     Category = i.Category,
-                    SelectedCity = city.Name,
+                    SelectedCity = i.City,
                     SelectedDistrict = i.District,
                     SelectedWard = i.Ward,
                     Address = i.Address,
@@ -97,7 +96,6 @@ namespace Presentation.Areas.Admin.Controllers
                 Value = c.Code,
                 Text = c.Name
             }).ToList();
-
             return View(destination);
         }
 
@@ -232,9 +230,5 @@ namespace Presentation.Areas.Admin.Controllers
 
             return Json(wards);
         }
-
-
-
-
     }
 }

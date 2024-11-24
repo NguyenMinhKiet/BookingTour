@@ -30,9 +30,11 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>STT</th>
                                 <th>Tour Name</th>
                                 <th>Customer Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
                                 <th>CreateAt</th>
                                 <th>ModifyAt</th>
                                 <th>Adult</th>
@@ -42,9 +44,11 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>ID</th>
+                                <th>STT</th>
                                 <th>Tour Name</th>
                                 <th>Customer Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
                                 <th>CreateAt</th>
                                 <th>ModifyAt</th>
                                 <th>Adult</th>
@@ -53,19 +57,22 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach (var b in Model)
+                            @for(int i = 0; i < Model.Count; i++)
                             {
                                 <tr>
-                                    <td>@b.BookingID</td>
-                                    <td>@b.Tour.Title</td>
-                                    <td>@b.Customer.LastName @b.Customer.FirstName</td>
-                                    <td>@b.CreateAt</td>
-                                    <td>@b.ModifyAt</td>
-                                    <td>@b.Adult</td>
-                                    <td>@b.Child</td>
-                                    <td>@b.TotalPrice</td>
+                                    <td>@(i+1)</td>
+                                    <td>@Model[i].Tour.Title</td>
+                                    <td>@Model[i].Customer.LastName @Model[i].Customer.FirstName</td>
+                                    <td>@Model[i].Customer.Phone</td>
+                                    <td>@Model[i].Customer.Email</td>
+                                    <td>@Model[i].CreateAt</td>
+                                    <td>@Model[i].ModifyAt</td>
+                                    <td>@Model[i].Adult</td>
+                                    <td>@Model[i].Child</td>
+                                    <td>@Model[i].TotalPrice</td>
                                 </tr>
                             }
+                            
                         </tbody>
                     </table>
                 </div>
@@ -93,9 +100,11 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <td>STT</td>
+                                <th>STT</th>
                                 <th>Tour Name</th>
                                 <th>Customer Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
                                 <th>CreateAt</th>
                                 <th>ModifyAt</th>
                                 <th>Adult</th>
@@ -109,6 +118,8 @@
                                 <th>STT</th>
                                 <th>Tour Name</th>
                                 <th>Customer Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
                                 <th>CreateAt</th>
                                 <th>ModifyAt</th>
                                 <th>Adult</th>
@@ -124,6 +135,8 @@
                                     <td>@(i + 1)</td>
                                     <td>@Model[i].Tour.Title</td>
                                     <td>@Model[i].Customer.LastName  @Model[i].Customer.FirstName</td>
+                                    <td>@Model[i].Customer.Phone</td>
+                                    <td>@Model[i].Customer.Email</td>
                                     <td>@Model[i].CreateAt</td>
                                     <td>@Model[i].ModifyAt</td>
                                     <td>@Model[i].Adult</td>

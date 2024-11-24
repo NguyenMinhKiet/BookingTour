@@ -166,5 +166,11 @@ namespace Infrastructure.Repositories
             return await _context.Tours.Where(x => x.Category == category)
                 .ToListAsync();
         }
+
+        public async Task<List<TourHotel>> GetHotels(Guid TourID)
+        {
+            return await _context.TourHotels.Where(x => x.TourID == TourID)
+                .Include(td => td.Hotel).ToListAsync();
+        }
     }
 }

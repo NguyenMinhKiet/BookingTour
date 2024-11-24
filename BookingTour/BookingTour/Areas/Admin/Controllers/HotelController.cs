@@ -74,7 +74,6 @@ namespace Presentation.Areas.Admin.Controllers
             await GetDistricts(model.SelectedCity);
             await GetWards(model.SelectedCity,model.SelectedWard);
             return View(model);
-
         }
 
         [HttpGet]
@@ -133,6 +132,7 @@ namespace Presentation.Areas.Admin.Controllers
             var hotel = await _hotelService.GetByIdAsync(HotelID);
             if(hotel != null)
             {
+                await _hotelService.DeleteAsync(hotel.HotelID);
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành công!";
                 TempData["NotificationMessage"] = $"Xóa khách sạn {hotel.Name} thành công";

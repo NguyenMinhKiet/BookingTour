@@ -20,7 +20,7 @@ namespace Domain.Repositories
 
         Task<List<TourDestination>> GetDestinations(Guid TourID);
         Task<List<TourEmployee>> GetEmployees(Guid TourID);
-
+        Task<List<TourHotel>> GetHotels(Guid TourID);
         Task<IEnumerable<Tour>> GetToursByCategories(List<string> categories);
 
 

@@ -26,7 +26,7 @@ public class TourSeed
         EndDate = new DateTime(2024, 11, 12),
         AvailableSeats = 20,
         Category = "City",
-        City = NORMALIZE.NormalizeCity("Hồ Chí Minh")
+        City = "Hồ Chí Minh"
     },
     new Tour
     {
@@ -38,7 +38,7 @@ public class TourSeed
         EndDate = new DateTime(2024, 11, 11),
         AvailableSeats = 15,
         Category = "Nature",
-        City = NORMALIZE.NormalizeCity("Quảng Ninh")
+        City = "Quảng Ninh"
     },
     new Tour
     {
@@ -50,7 +50,7 @@ public class TourSeed
         EndDate = new DateTime(2024, 11, 17),
         AvailableSeats = 30,
         Category = "Mountain",
-        City = NORMALIZE.NormalizeCity("Lâm Đồng")
+        City = "Lâm Đồng"
     },
     new Tour
     {
@@ -62,7 +62,7 @@ public class TourSeed
         EndDate = new DateTime(2024, 12, 3),
         AvailableSeats = 25,
         Category = "Beach",
-        City = NORMALIZE.NormalizeCity("Khánh Hòa")
+        City = "Khánh Hòa"
     },
     new Tour
     {
@@ -74,7 +74,7 @@ public class TourSeed
         EndDate = new DateTime(2024, 12, 7),
         AvailableSeats = 20,
         Category = "Island",
-        City = NORMALIZE.NormalizeCity("Kiên Giang")
+        City = "Kiên Giang"
     },
     new Tour
     {
@@ -86,7 +86,7 @@ public class TourSeed
         EndDate = new DateTime(2024, 12, 12),
         AvailableSeats = 30,
         Category = "Mountain",
-        City = NORMALIZE.NormalizeCity("Lào Cai")
+        City = "Lào Cai"
     },
     new Tour
     {
@@ -98,7 +98,7 @@ public class TourSeed
         EndDate = new DateTime(2024, 12, 17),
         AvailableSeats = 15,
         Category = "Historical",
-        City = NORMALIZE.NormalizeCity("Thừa Thiên Huế")
+        City = "Thừa Thiên Huế"
     },
     new Tour
     {
@@ -110,7 +110,7 @@ public class TourSeed
         EndDate = new DateTime(2024, 12, 22),
         AvailableSeats = 40,
         Category = "City",
-        City = NORMALIZE.NormalizeCity("Hà Nội")
+        City = "Hà Nội"
     },
     new Tour
     {
@@ -122,7 +122,7 @@ public class TourSeed
         EndDate = new DateTime(2024, 12, 27),
         AvailableSeats = 18,
         Category = "Historical",
-        City = NORMALIZE.NormalizeCity("Bà Rịa Vũng Tàu")
+        City = "Bà Rịa Vũng Tàu"
     },
     new Tour
     {
@@ -134,7 +134,7 @@ public class TourSeed
         EndDate = new DateTime(2024, 12, 30),
         AvailableSeats = 20,
         Category = "Adventure",
-        City = NORMALIZE.NormalizeCity("Quảng Bình")
+        City = "Quảng Bình"
     },
     new Tour
     {
@@ -146,7 +146,7 @@ public class TourSeed
         EndDate = new DateTime(2025, 1, 1),
         AvailableSeats = 30,
         Category = "Cultural",
-        City = NORMALIZE.NormalizeCity("Cần Thơ")
+        City = "Cần Thơ"
            } };
 
             await context.Tours.AddRangeAsync(tours);

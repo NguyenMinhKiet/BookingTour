@@ -94,6 +94,10 @@ namespace Application.Services
             return false;
         }
 
+        public async Task<List<TourHotel>> GetHotels(Guid TourID)
+        {
+            return await _tourRepository.GetHotels(TourID);
+        }
         public async Task<List<TourDestination>> GetDestinations(Guid TourID)
         {
             return await _tourRepository.GetDestinations(TourID);
