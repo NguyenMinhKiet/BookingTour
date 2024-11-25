@@ -1,0 +1,121 @@
+﻿@model Application.DTOs.FeedbackDTOs.FeedbackUpdateDto
+
+@{
+    ViewData["Title"] = "Chỉnh sửa đánh giá";
+    Layout = "_ecomLayout";
+}
+<style>
+    .rating i {
+        font-size: 2rem;
+        color: #ccc; /* Màu mặc định */
+        cursor: pointer;
+        margin: 0 5px;
+        transition: color 0.3s;
+    }
+
+        .rating i.hover,
+        .rating i.selected {
+            color: gold; /* Màu vàng cho sao đã chọn hoặc hover */
+        }
+
+</style>
+<div class="services_section layout_padding">
+    <div class="container">
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Sửa Thông Tin Đánh Giá</h3>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-3">
+                    <li class="breadcrumb-item">
+                        <a asp-controller="Home" asp-action="Index">
+                            <i class="icon-home"></i>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a asp-controller="Feedback" asp-action="Index">Đánh giá</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Update</li>
+                    <li class="breadcrumb-item">
+                        <span class="text-secondary">id: @Model.FeedbackID</span>
+                    </li>
+                </ol>
+            </nav>
+
+</div>
+<form asp-action="Update" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input asp-for="FeedbackID" type="hidden" class="form-control" value="@Model.FeedbackID">
+    <input asp-for="TourID" type="hidden" value="@Model.TourID" />
+    <input asp-for="CustomerID" type="hidden" value="@Model.CustomerID"/>
+    <div class="form-group">
+        <label asp-for="Rating"></label>
+        <div class="rating gap-2">
+            <i class="far fa-star" data-value="1"></i>
+            <i class="far fa-star" data-value="2"></i>
+            <i class="far fa-star" data-value="3"></i>
+            <i class="far fa-star" data-value="4"></i>
+            <i class="far fa-star" data-value="5"></i>
+        </div>
+        <input asp-for="Rating" type="hidden" id="StarRating" Required />
+
+        <span asp-validation-for="Rating" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Comments"></label>
+        <textarea asp-for="Comments" type="text" class="form-control"></textarea>
+        <span asp-validation-for="Comments" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a  asp-controller="Feedback" asp-action="Index" asp-route-TourID="@Model.TourID" class="btn btn-secondary">Hủy</a>
+</form>
+    </div>
+</div>
+@section script {
+    <script>
+        const stars = document.querySelectorAll('.rating i');
+        const ratingInput = document.getElementById('StarRating');
+
+        stars.forEach((star) => {
+            // Hiệu ứng khi hover
+            star.addEventListener('mouseover', function () {
+                resetStars(); // Reset tất cả sao
+                highlightStars(this.dataset.value); // Highlight các sao trước sao hiện tại
+            });
+
+            // Reset sao khi rời chuột
+            star.addEventListener('mouseout', function () {
+                resetStars();
+                highlightStars(ratingInput.value); // Giữ nguyên sao đã chọn
+            });
+
+            // Xử lý khi click để chọn rating
+            star.addEventListener('click', function () {
+                ratingInput.value = this.dataset.value; // Gán giá trị vào input ẩn
+                highlightStars(this.dataset.value); // Giữ trạng thái sao đã chọn
+            });
+        });
+
+        // Highlight các sao dựa trên giá trị
+        function highlightStars(value) {
+            stars.forEach((star) => {
+                if (star.dataset.value <= value) {
+                    star.classList.add('fas', 'selected'); // Sao đã chọn
+                    star.classList.remove('far');
+                } else {
+                    star.classList.add('far'); // Sao chưa chọn
+                    star.classList.remove('fas', 'selected');
+                }
+            });
+        }
+
+        // Reset tất cả sao
+        function resetStars() {
+            stars.forEach((star) => {
+                star.classList.add('far');
+                star.classList.remove('fas', 'selected', 'hover');
+            });
+        }
+
+    </script>
+}

@@ -55,5 +55,13 @@ namespace Infrastructure.Repositories
 
             return result;
         }
+
+        public async Task<List<Feedback>> GetByTourIDAndCustomerID(Guid TourID, Guid CustomerID)
+        {
+            return await _context.Feedbacks.Where(x=>x.TourID == TourID && x.CustomerID == CustomerID)
+                .Include(x=>x.Customer)
+                .Include(x=>x.Tour)
+                .ToListAsync();
+        }
     }
 }

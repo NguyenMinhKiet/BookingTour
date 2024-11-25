@@ -1,4 +1,5 @@
 ﻿using Application.DTOs.DestinationDTOs;
+using Application.DTOs.FeedbackDTOs;
 using Application.DTOs.HotelDto;
 using Application.DTOs.TourDTOs;
 using Application.Services_Interface;
@@ -112,8 +113,8 @@ namespace Presentation.Controllers
                 AvailableSeats = x.AvailableSeats
             }).ToList();
 
-            var anotherTour = await _tourService.GetAllWithOut(tour.Title);
-            var anotherTourViewModel = tourBookings.Select(x => new TourViewModel
+            var anotherTour = await _tourService.GetAllWithOut(tour.TourID);
+            var anotherTourViewModel = anotherTour.Select(x => new TourViewModel
             {
                 Title = x.Title,
                 TourID = x.TourID,
@@ -147,6 +148,24 @@ namespace Presentation.Controllers
                 SelectedWard = x.Hotel.Ward,
                 StarRating = x.Hotel.StarRating,
             }).ToList();
+
+
+            var feedbacks = await _tourService.GetFeedbacks(TourID);
+            var feedbackTourModel = feedbacks.Select(i => new FeedbackViewModel
+            {
+                FeedbackID = i.FeedbackID,
+                CustomerID = i.CustomerID,
+                TourID = i.TourID,
+                Rating = i.Rating,
+                Comments = i.Comments,
+                CreateAt = i.CreateAt,
+                ModifyAt = i.ModifyAt,
+                Customer = i.Customer,
+                Tour = i.Tour,
+
+            }).ToList();
+
+
             var tourDetailViewModel = new TourDetailModel
             {
                 TourID = tour.TourID,
@@ -160,6 +179,7 @@ namespace Presentation.Controllers
                 TourBookings = tourBookingViewModel,
                 AnotherTour = anotherTourViewModel,
                 Hotels = hotelTourModel,
+                Feedbacks = feedbackTourModel
             };
 
 

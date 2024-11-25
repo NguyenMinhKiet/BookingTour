@@ -18,6 +18,7 @@ namespace Domain.Repositories
         // Phương thức xóa theo ID
         Task DeleteAsync(Guid id);
 
+        Task<List<Feedback>> GetFeedbacks(Guid TourID);
         Task<List<TourDestination>> GetDestinations(Guid TourID);
         Task<List<TourEmployee>> GetEmployees(Guid TourID);
         Task<List<TourHotel>> GetHotels(Guid TourID);
@@ -26,7 +27,7 @@ namespace Domain.Repositories
 
         Task<List<Tour>> GetAll(string search, decimal? from, decimal? to, string? orderBy);
         Task<List<Tour>> GetAllByName(string name);
-        Task<List<Tour>> GetAllWithOut(string category);
+        Task<List<Tour>> GetAllWithOut(Guid TourID);
 
     }
 }

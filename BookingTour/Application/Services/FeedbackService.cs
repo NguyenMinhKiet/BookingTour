@@ -55,6 +55,11 @@ namespace Application.Services
             return await _feedbackRepository.GetByTourID(TourID);
         }
 
+        public async Task<List<Feedback>> GetByTourIDAndCustomerID(Guid TourID, Guid customerID)
+        {
+            return await _feedbackRepository.GetByTourIDAndCustomerID(TourID, customerID);
+        }
+
         public async Task UpdateAsync(Guid id, FeedbackUpdateDto dto)
         {
             var feedback = await _feedbackRepository.GetByIdAsync(id);

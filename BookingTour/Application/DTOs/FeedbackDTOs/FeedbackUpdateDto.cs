@@ -6,6 +6,7 @@ namespace Application.DTOs.FeedbackDTOs
     {
         public Guid TourID { get; set; }
         public Guid FeedbackID { get; set; }
+        public Guid CustomerID { get; set; }
         [Required]
         [Range(1, 5, ErrorMessage = "Rating must be between 1 and 5.")]
         public int Rating { get; set; }

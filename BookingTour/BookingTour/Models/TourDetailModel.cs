@@ -1,4 +1,5 @@
 ﻿using Application.DTOs.DestinationDTOs;
+using Application.DTOs.FeedbackDTOs;
 using Application.DTOs.HotelDto;
 using Application.DTOs.TourDTOs;
 
@@ -18,5 +19,6 @@ namespace Presentation.Models
         public List<TourViewModel> TourBookings { get; set; }
         public List<TourViewModel> AnotherTour { get; set; }
         public List<HotelModel> Hotels { get; set; }
+        public List<FeedbackViewModel> Feedbacks { get; set; }  
     }
 }

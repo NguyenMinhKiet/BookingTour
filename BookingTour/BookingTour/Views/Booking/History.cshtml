@@ -98,6 +98,16 @@
                                                     <i class="fa fa-edit"></i> Chi tiết
                                                 </a>
                                             </div>
+
+                                            <div class="form-button-action">
+                                                <a class="btn btn-primary" type="button"
+                                                   asp-route-TourID="@Model[i].TourID"
+                                                   asp-route-CustomerID="@Model[i].CustomerID"
+                                                   asp-controller="Feedback"
+                                                   asp-action="Index">
+                                                    <i class="fa fa-edit"></i> Đánh giá
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 }

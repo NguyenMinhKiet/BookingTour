@@ -93,7 +93,10 @@ namespace Application.Services
             }
             return false;
         }
-
+        public async Task<List<Feedback>> GetFeedbacks(Guid TourID)
+        {
+            return await _tourRepository.GetFeedbacks(TourID);
+        }
         public async Task<List<TourHotel>> GetHotels(Guid TourID)
         {
             return await _tourRepository.GetHotels(TourID);
@@ -124,9 +127,11 @@ namespace Application.Services
             return await _tourRepository.GetAllByName(name);
         }
 
-        public async Task<List<Tour>> GetAllWithOut(string category)
+        public async Task<List<Tour>> GetAllWithOut(Guid TourID)
         {
-            return await _tourRepository.GetAllWithOut(category);
+            return await _tourRepository.GetAllWithOut(TourID);
         }
+
+        
     }
 }

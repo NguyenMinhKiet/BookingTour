@@ -161,9 +161,9 @@ namespace Infrastructure.Repositories
             return await _context.Tours.Where(x=>x.Title.ToLower() == name.ToLower())
                 .ToListAsync();
         }
-        public async Task<List<Tour>> GetAllWithOut(string category)
+        public async Task<List<Tour>> GetAllWithOut(Guid TourID)
         {
-            return await _context.Tours.Where(x => x.Category == category)
+            return await _context.Tours.Where(x => x.TourID != TourID)
                 .ToListAsync();
         }
 
@@ -171,6 +171,14 @@ namespace Infrastructure.Repositories
         {
             return await _context.TourHotels.Where(x => x.TourID == TourID)
                 .Include(td => td.Hotel).ToListAsync();
+        }
+
+        public async Task<List<Feedback>> GetFeedbacks(Guid TourID)
+        {
+            return await _context.Feedbacks.Where(x => x.TourID == TourID)
+                .Include(c => c.Customer)
+                .Include(t => t.Tour)
+                .ToListAsync();
         }
     }
 }

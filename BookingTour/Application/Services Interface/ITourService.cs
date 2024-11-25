@@ -17,11 +17,13 @@ namespace Application.Services_Interface
         Task<bool> ReducePeople(Guid TourID, int numPeople);
         Task<bool> IncreasePeople(Guid TourID, int numPeople);
 
+        Task<List<Feedback>> GetFeedbacks(Guid TourID);
         Task<List<TourHotel>> GetHotels(Guid TourID);
         Task<List<TourDestination>> GetDestinations (Guid TourID);
         Task<List<TourEmployee>> GetEmployees (Guid TourID);
         Task<List<Tour>> GetAllNewAsync(string search, decimal? from, decimal? to, string? sortBy);
         Task<List<Tour>> GetAllByName(string name);
-        Task<List<Tour>> GetAllWithOut(string category);
+        Task<List<Tour>> GetAllWithOut(Guid TourID);
+
     }
 }

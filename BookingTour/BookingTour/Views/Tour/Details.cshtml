@@ -6,9 +6,30 @@
 @section css {
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <style>
+        .card-size {
+            height: 100%; /* Đảm bảo chiều cao thẻ đều */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .carousel-control-prev, .carousel-control-next {
+            width: 5%; /* Độ rộng của nút điều hướng */
+        }
+
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            background-color: rgba(0, 0, 0, 0.5); /* Màu nền nút */
+            border-radius: 50%; /* Bo tròn */
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+
+
 }
-<div class="client_section layout_padding">
-    <div class="container">
+<section class="client_section layout_padding">
+    <section class="container">
         <section class="content-header">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -28,7 +49,8 @@
             </div>
             <div class="row">
                 <div class="col-md-10">
-                    <img data-u="image" class="rounded-5 mt-2" src="//cdn2.ivivu.com/2023/11/20/12/nha-trang-bar-noi-ivv-750x460.jpg">
+                    <img data-u="image" class="rounded-5 mt-2"
+                        src="//cdn2.ivivu.com/2023/11/20/12/nha-trang-bar-noi-ivv-750x460.jpg">
                     <div class="card mt-3">
                         <div class="card-header bg-white">
                             <div class="row p-2">
@@ -80,30 +102,40 @@
                             <h2>Thông tin Nơi ở</h2>
                             <div class="container">
                                 <ul class="list-group">
-                                    @for (int i = 0; i < Model.Hotels.Count; i++)
-                                    {
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            <div class="card w-100">
-                                                <div class="card-header">
-                                                    <div class="d-flex align-items-center">
-                                                        <img src="//cdn2.ivivu.com/2020/06/08/11/ivivu-canh-dong-muoi-nd-158x100.gif" alt="" class="img-thumbnail " width="150" height="150" style="object-fit: cover;">
-                                                        <div class="ms-3">
-                                                            <div class="mb-1">Ngày @(i + 1)</div>
-                                                            <p class="mb-0">@Model.Hotels[i].Name</p>
-                                                        </div>
+                                    @for (int i = 0; i < Model.Hotels.Count; i++) { <li
+                                        class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div class="card w-100">
+                                            <div class="card-header">
+                                                <div class="d-flex align-items-center">
+                                                    <!-- Hình ảnh -->
+                                                    <img src="//cdn2.ivivu.com/2020/06/08/11/ivivu-canh-dong-muoi-nd-158x100.gif"
+                                                        alt="" class="img-thumbnail" width="150" height="150"
+                                                        style="object-fit: cover;">
 
-                                                        <button class="btn btn-secondary btn-sm ms-auto" data-toggle="collapse" data-target="#collapse-hotel-@(i)">
-                                                            <i class="bi bi-three-dots"></i>
-                                                        </button>
+                                                    <!-- Thông tin -->
+                                                    <div class="ml-3">
+                                                        <div class="mb-1 ml-2">Ngày @(i + 1)</div>
+                                                        <p class="mb-0">@Model.Hotels[i].Name</p>
                                                     </div>
-                                                </div>
-                                                <div class="card-body collapse" id="collapse-hotel-@(i)">
-                                                    <p class="mt-1">@Model.Hotels[i].Description</p>
-                                                    <img src="//cdn2.ivivu.com/2020/06/08/11/ivivu-canh-dong-muoi-nd-158x100.gif" alt="" style="object-fit: cover;" class="w-100">
+
+                                                    <!-- Nút -->
+                                                    <button class="btn btn-secondary btn-sm ml-auto"
+                                                        data-toggle="collapse" data-target="#collapse-hotel-@(i)">
+                                                        <i class="bi bi-three-dots"></i>
+                                                    </button>
                                                 </div>
                                             </div>
+
+                                            <!-- Nội dung chi tiết -->
+                                            <div class="card-body collapse" id="collapse-hotel-@(i)">
+                                                <p class="mt-1">@Model.Hotels[i].Description</p>
+                                                <img src="//cdn2.ivivu.com/2020/06/08/11/ivivu-canh-dong-muoi-nd-158x100.gif"
+                                                    alt="" style="object-fit: cover;" class="w-100">
+                                            </div>
+                                        </div>
                                         </li>
-                                    }
+
+                                        }
                                 </ul>
                             </div>
                         </div>
@@ -114,30 +146,40 @@
                             <h2>Chương trình tour</h2>
                             <div class="container">
                                 <ul class="list-group">
-                                    @for (int i = 0; i < Model.Destinations.Count; i++)
-                                    {
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            <div class="card w-100">
-                                                <div class="card-header">
-                                                    <div class="d-flex align-items-center">
-                                                        <img src="//cdn2.ivivu.com/2020/06/08/11/ivivu-canh-dong-muoi-nd-158x100.gif" alt="" class="img-thumbnail " width="150" height="150" style="object-fit: cover;">
-                                                        <div class="ms-3">
-                                                            <div class="mb-1">Ngày @(i + 1)</div>
-                                                            <p class="mb-0">@Model.Destinations[i].Name</p>
-                                                        </div>
+                                    @for (int i = 0; i < Model.Destinations.Count; i++) { <li
+                                        class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div class="card w-100">
+                                            <div class="card-header">
+                                                <div class="d-flex align-items-center">
+                                                    <!-- Hình ảnh -->
+                                                    <img src="//cdn2.ivivu.com/2020/06/08/11/ivivu-canh-dong-muoi-nd-158x100.gif"
+                                                        alt="" class="img-thumbnail" width="150" height="150"
+                                                        style="object-fit: cover;">
 
-                                                        <button class="btn btn-secondary btn-sm ms-auto" data-toggle="collapse" data-target="#collapse-destination-@(i)">
-                                                            <i class="bi bi-three-dots"></i>
-                                                        </button>
+                                                    <!-- Thông tin -->
+                                                    <div class="ms-3">
+                                                        <div class="mb-1 ml-2">Ngày @(i + 1)</div>
+                                                        <p class="mb-0">@Model.Destinations[i].Name</p>
                                                     </div>
-                                                </div>
-                                                <div class="card-body collapse" id="collapse-destination-@(i)">
-                                                    <p class="mt-1">@Model.Destinations[i].Description</p>
-                                                    <img src="//cdn2.ivivu.com/2020/06/08/11/ivivu-canh-dong-muoi-nd-158x100.gif" alt="" style="object-fit: cover;" class="w-100">
+
+                                                    <!-- Nút -->
+                                                    <button class="btn btn-secondary btn-sm ml-auto"
+                                                        data-toggle="collapse" data-target="#collapse-destination-@(i)">
+                                                        <i class="bi bi-three-dots"></i>
+                                                    </button>
                                                 </div>
                                             </div>
+
+                                            <!-- Nội dung chi tiết -->
+                                            <div class="card-body collapse" id="collapse-destination-@(i)">
+                                                <p class="mt-1">@Model.Destinations[i].Description</p>
+                                                <img src="//cdn2.ivivu.com/2020/06/08/11/ivivu-canh-dong-muoi-nd-158x100.gif"
+                                                    alt="" style="object-fit: cover;" class="w-100">
+                                            </div>
+                                        </div>
                                         </li>
-                                    }
+
+                                        }
                                 </ul>
                             </div>
                         </div>
@@ -169,74 +211,153 @@
                                     <tbody>
                                         @if (Model.TourBookings.Count > 0)
                                         {
-                                            @foreach (var tour in Model.TourBookings)
-                                            {
-                                                <tr>
-                                                    <th scope="row">@tour.StartDate.ToString("dd/MM/yyyy HH:mm tt")</th>
-                                                    <th>@tour.EndDate.ToString("dd/MM/yyyy HH:mm tt")</th>
-                                                    <th>@tour.AvailableSeats</th>
-                                                    <th>@tour.Price VNĐ</th>
-                                                </tr>
-                                            }
+                                        @foreach (var tour in Model.TourBookings)
+                                        {
+                                        <tr>
+                                            <th scope="row">@tour.StartDate.ToString("dd/MM/yyyy HH:mm tt")</th>
+                                            <th>@tour.EndDate.ToString("dd/MM/yyyy HH:mm tt")</th>
+                                            <th>@tour.AvailableSeats</th>
+                                            <th>@tour.Price VNĐ</th>
+                                        </tr>
+                                        }
                                         }
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                </div>
 
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <h2>Đánh giá</h2>
+                            <div class="container">
+                                <ul class="list-group">
+                                    @for (int i = 0; i < Model.Feedbacks.Count; i++) { <li
+                                        class="list-group-item feedback-item @(i >= 2 ? " d-none" : "" )">
+                                        <!-- Thông tin người đánh giá -->
+                                        <div class="d-flex align-items-center mb-3">
+                                            <!-- Ảnh đại diện -->
+                                            <img src="//via.placeholder.com/50" alt="Avatar" class="rounded-circle me-3"
+                                                width="50" height="50" style="object-fit: cover;">
+
+                                            <!-- Tên và thời gian đánh giá -->
+                                            <div>
+                                                <h6 class="mb-0 fw-bold">@($"{Model.Feedbacks[i].Customer.FirstName}{Model.Feedbacks[i].Customer.LastName}")</h6>
+                                                <small class="text-muted">Đánh giá ngày
+                                                    @Model.Feedbacks[i].CreateAt.ToString("dd/MM/yyyy HH:mm")</small>
+                                            </div>
+                                        </div>
+
+                                        <!-- Nội dung Feedback -->
+                                        <p class="mb-2">@Model.Feedbacks[i].Comments</p>
+
+                                        <!-- Rating -->
+                                        <div class="d-flex justify-content-between align-items-end">
+                                            <div class="text-warning">
+                                                @for (int j = 0; j < Model.Feedbacks[i].Rating; j++) { <i
+                                                    class="fas fa-star"></i>
+                                                    }
+                                                    @for (int j = Model.Feedbacks[i].Rating; j < 5; j++) { <i
+                                                        class="far fa-star"></i>
+                                                        }
+                                            </div>
+                                        </div>
+                                        </li>
+                                        }
+                                </ul>
+
+                                <!-- Nút hiển thị thêm -->
+                                <div class="text-center mt-3">
+                                    <button id="show-more" class="btn btn-primary">Hiển thị thêm</button>
+                                    <button id="hide-all" class="btn btn-secondary d-none">Ẩn bớt</button>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-2">
                     <div class="card bg-light border mt-3 sticky-top w-100">
                         <div class="card-body text-center">
                             <h5 class="card-title">Đặt tour ngay</h5>
-                            <a class="btn btn-primary" asp-action="Create" asp-controller="Booking" asp-route-TourID="@Model.TourID" asp-route-CustomerID="@Model.CustomerID">Đặt ngay</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card mt-3">
-                    <div class="card-header bg-white">
-                        <div class="row p-2">
-                            <div class="d-flex flex-row align-items-center">
-                                <h2 class="mb-2">Tours du lịch</h2>
-                                <h2 class="ml-2 mb-2">@Model.City</h2>
-                                <h2 class="ml-2 mb-2">liên quan</h2>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="row">
-                            @if (Model.AnotherTour.Count > 0)
-                            {
-                                @foreach (var tour in Model.AnotherTour)
-                                {
-                                    <div class="col-md-3">
-                                        <a asp-action="Details" asp-controller="Tour" asp-route-TourID="@tour.TourID" class="text-decoration-none">
-                                            <div class="card" style="width: 18rem;">
-                                                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Card image">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">@tour.Title</h5>
-                                                    <p class="card-text">@tour.Description</p>
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <span class="invisible">Placeholder</span>
-                                                        <span class="fw-bold">@tour.Price VNĐ</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                }
-                            }
+                            <a class="btn btn-primary" asp-action="Create" asp-controller="Booking"
+                                asp-route-TourID="@Model.TourID" asp-route-CustomerID="@Model.CustomerID">Đặt ngay</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
-</div>
+            <div class="row">
+                    <div class="col card mt-3">
+                        <div class="card-header bg-white">
+                            <div class="row p-2">
+                                <div class="d-flex flex-row align-items-center">
+                                    <h2 class="mb-2">Tours du lịch</h2>
+                                    <h2 class="ml-2 mb-2">@Model.City</h2>
+                                    <h2 class="ml-2 mb-2">liên quan</h2>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="card-body">
+                        <div id="tourCarousel" class="carousel slide custom-carousel" data-ride="carousel">
+                            <!-- Indicators (tuỳ chọn nếu muốn thêm các nút chấm tròn) -->
+                            <ol class="carousel-indicators">
+                                @for (int i = 0; i < (Model.AnotherTour.Count + 3) / 4; i++) // Chia thành các slide
+                                {
+                                    <li data-target="#tourCarousel" data-slide-to="@i" class="@(i == 0 ? "active" : "")"></li>
+                                }
+                            </ol>
 
+                            <!-- Nội dung carousel -->
+                            <div class="carousel-inner">
+                                @for (int i = 0; i < Model.AnotherTour.Count; i += 4)
+                                {
+                                    <div class="carousel-item @(i == 0 ? "active" : "")">
+                                        <div class="row">
+                                            @for (int j = i; j < i + 4 && j < Model.AnotherTour.Count; j++)
+                                            {
+                                                <div class="col-4 col-sm-6 col-lg-3 mb-3">
+                                                    <a asp-action="Details" asp-controller="Tour" asp-route-TourID="@Model.AnotherTour[j].TourID"
+                                                       class="text-decoration-none">
+                                                        <div class="card card-size">
+                                                            <img src="https://via.placeholder.com/150" class="card-img-top" alt="Tour image">
+                                                            <div class="card-body">
+                                                                <h5 class="card-title">@Model.AnotherTour[j].Title</h5>
+                                                                <p class="card-text">@Model.AnotherTour[j].Description</p>
+                                                            </div>
+                                                            <div class="card-footer">
+                                                                <div class="d-flex justify-content-between align-items-center">
+                                                                    <span class="invisible">Placeholder</span>
+                                                                    <span class="fw-bold">@Model.AnotherTour[j].Price VNĐ</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            <!-- Nút điều hướng -->
+                            <a class="carousel-control-prev custom-prev" href="#tourCarousel" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next custom-next" href="#tourCarousel" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    </div>
+                </div>
+        </section>
+    </section>
+</section>
 @section script{
     <script>
         $(document).ready(function () {
@@ -289,9 +410,54 @@
     } else {
         cardBody.style.display = "none"; // Ẩn đi
     }
-}
+    }
 
     </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const showMoreButton = document.getElementById("show-more");
+            const hideAllButton = document.getElementById("hide-all");
+            const feedbackItems = document.querySelectorAll(".feedback-item");
+            let visibleCount = 2; // Số phần tử hiển thị ban đầu
+
+            showMoreButton.addEventListener("click", function () {
+                // Hiển thị thêm 5 phần tử
+                let hiddenItems = Array.from(feedbackItems).filter(item => item.classList.contains("d-none"));
+                for (let i = 0; i < 2 && i < hiddenItems.length; i++) {
+                    hiddenItems[i].classList.remove("d-none");
+                }
+
+                // Cập nhật số phần tử đã hiển thị
+                visibleCount += 2;
+        hideAllButton.classList.remove("d-none");
+
+                // Ẩn nút nếu không còn phần tử để hiển thị
+                if (visibleCount >= feedbackItems.length) {
+                    showMoreButton.style.display = "none";
+                }
+            });
+
+                hideAllButton.addEventListener("click", function () {
+            // Ẩn tất cả feedback ngoài 5 phần tử đầu tiên
+            feedbackItems.forEach((item, index) => {
+                if (index >= 2) {
+                    item.classList.add("d-none");
+                }
+            });
+
+            // Đặt lại trạng thái ban đầu
+            visibleCount = 2;
+
+            // Hiển thị nút "Hiển thị thêm" và ẩn nút "Ẩn lại"
+            showMoreButton.style.display = "inline-block";
+            hideAllButton.classList.add("d-none");
+
+
+        });
+        });
+    </script>
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

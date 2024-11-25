@@ -12,6 +12,7 @@ namespace Application.Services_Interface
     public interface IFeedbackService
     {
         public Task<Feedback> GetById(Guid id);
+        public Task<List<Feedback>> GetByTourIDAndCustomerID(Guid TourID, Guid customerID);
 
         public Task<IEnumerable<Feedback>> GetAllAsync();
 

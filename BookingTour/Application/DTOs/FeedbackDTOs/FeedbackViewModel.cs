@@ -24,5 +24,6 @@ namespace Application.DTOs.FeedbackDTOs
         public DateTime ModifyAt { get; set; }
 
         public virtual Customer Customer { get; set; }
+        public virtual Tour Tour { get; set; }
     }
 }
