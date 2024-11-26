@@ -121,6 +121,8 @@ namespace Presentation.Controllers
                 };
                 await _customerService.UpdateAsync(CustomerID, dto);
                 await _accountService.UpdateUserProfileAsync(CustomerID,dto.Phone);
+
+                
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành Công!";
                 TempData["NotificationMessage"] = $"Cập nhật thông tin user thành công!";

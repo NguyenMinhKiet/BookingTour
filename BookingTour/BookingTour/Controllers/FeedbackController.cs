@@ -105,7 +105,7 @@ namespace Presentation.Controllers
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành công!";
                 TempData["NotificationMessage"] = $"Thêm đánh giá cho Tour thành công";
-                return RedirectToAction("Detail", "Tour" ,new { dto.TourID });
+                return RedirectToAction("Details", "Tour" ,new { dto.TourID });
             }
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";

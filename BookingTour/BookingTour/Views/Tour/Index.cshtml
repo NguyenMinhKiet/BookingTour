@@ -197,14 +197,30 @@
                         </div>
 
                         <!-- Cột chứa ô tìm kiếm -->
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center ">
                             <form class="form-inline d-flex" asp-action="Index" method="get">
+                                <div class="d-flex align-items-center justify-content-between">
+                                <input type="text"
+                                       class="form-control search-bar from-to-input"
+                                       name="from"
+                                       maxlength="8"
+                                       placeholder="From ...">
+
+                                <input type="text"
+                                       class="form-control search-bar from-to-input"
+                                       name="to"
+                                       maxlength="8"
+                                       placeholder="To ...">
+
                                 <input type="text"
                                        class="form-control search-bar"
                                        id="search-input"
                                        name="searchTerm"
                                        placeholder="Search for tours">
+
+                                </div>
                                 <button type="submit" class="btn btn-primary ml-2">Search</button>
+
                             </form>
 
                         </div>
@@ -218,30 +234,31 @@
                     {
                         @foreach (var tour in ViewBag.OnePageOfProducts)
                         {
-                            <div class="col-md-3 mb-3">
-                                <div class="tour-card h-100">
-                                    <div class="card card-size shadow">
-                                        <!-- Hình ảnh -->
-                                        <img src="/assets/img/default.jpg" class="card-img-top" alt="@tour.Title">
+                            <div class="col-md-12 mb-3">
+                                <div class="d-flex align-items-center p-3 border shadow-sm rounded">
+                                    <!-- Hình ảnh -->
+                                    <div class="tour-image mr-3" style="width: 200px; height: 150px; background-image: url('/assets/img/default.jpg'); background-size: cover; background-position: center; border-radius: 0.25rem;">
+                                    </div>
 
-                                        <!-- Phần nội dung -->
-                                        <div class="card-body">
-                                            <h5 class="card-title">@tour.Title</h5>
-                                            <ul class="list-group list-group-flush">
-                                                <li class="list-group-item"><strong>Price:</strong> @tour.Price VND</li>
-                                                <li class="list-group-item"><strong>Seats Available:</strong> @tour.AvailableSeats</li>
-                                                <li class="list-group-item"><strong>Category:</strong> @tour.Category</li>
-                                                <li class="list-group-item"><strong>City:</strong> @tour.City</li>
-                                            </ul>
-                                        </div>
+                                    <!-- Nội dung -->
+                                    <div class="tour-content flex-grow-1">
+                                        <!-- Tiêu đề -->
+                                        <h2 class="mb-2">@tour.Title</h2>
 
-                                        <!-- Phần nút -->
-                                        <div class="card-footer">
-                                            <a asp-action="Details" asp-controller="Tour" asp-route-TourID="@tour.TourID" class="btn btn-primary">View Tour</a>
-                                        </div>
+                                        <!-- Mô tả -->
+                                        <h3 class="text-success">Giá: <strong>@string.Format("{0:N0}₫", tour.Price)</strong></h3>
+                                        <p class="text-secondary">Thành phố: @tour.City</p>
+                                        <p class="text-muted mb-0">Danh mục: @tour.Category</p>
+                                    </div>
+
+                                    <!-- Nút -->
+                                    <div class="tour-action ml-3">
+                                        <a asp-action="Details" asp-controller="Tour" asp-route-TourID="@tour.TourID" class="btn btn-primary">Xem chi tiết</a>
                                     </div>
                                 </div>
                             </div>
+
+
                         }
                     }
                     
@@ -317,5 +334,4 @@
         });
 
     </script>
-
 }

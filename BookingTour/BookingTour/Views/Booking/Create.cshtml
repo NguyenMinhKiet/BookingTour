@@ -16,8 +16,7 @@
             <div class="card mt-3">
                 <div class="card-body">
                     <h2 class="fw-bold">@Model.TourData.Title</h2>
-                    <p>@Model.TourData.Description</p>
-                    <p><strong>Giá Tour:</strong> @Model.TourData.Price VNĐ</p>
+                    <p><strong>Giá Tour: </strong>@string.Format("{0:N0}₫", Model.TourData.Price)</p>
                     <p><strong>Khởi hành từ:</strong> @Model.TourData.City</p>
                     <p><strong>Ngày khởi hành:</strong> @Model.TourData.StartDate.ToString("dd/MM/yyyy")</p>
                     <p><strong>Ngày kết thúc:</strong> @Model.TourData.EndDate.ToString("dd/MM/yyyy")</p>
@@ -45,7 +44,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="Email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="Email" name="Email" value="@Model.CustomerData.Email" disabled />
+                                <input type="email" class="form-control" id="Email" name="Email" value="@Model.CustomerData.Email" readonly />
                             </div>
                             <div class="mb-3">
                                 <label for="Phone" class="form-label">Số điện thoại</label>

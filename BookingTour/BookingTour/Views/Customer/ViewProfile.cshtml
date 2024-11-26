@@ -19,7 +19,7 @@
         </li>
         <li class="breadcrumb-item active" aria-current="page">Update</li>
         <li class="breadcrumb-item">
-            <span class="text-secondary">id: @Model.CustomerID</span>
+            <span class="text-secondary">Customer</span>
         </li>
     </ul>
 </div>
@@ -48,7 +48,7 @@
 
     <div class="form-group">
         <label asp-for="Email"></label>
-                <input asp-for="Email" type="text" class="form-control" disabled>
+                <input asp-for="Email" type="text" class="form-control" readonly>
                 <span asp-validation-for="Email" class="text-danger"></span>
     </div>
 
@@ -59,7 +59,6 @@
             </div>
 
     <button type="submit" class="btn btn-primary">Lưu</button>
-    <a asp-controller="Home" asp-action="Index"  class="btn btn-secondary">Hủy</a>
 </form>
 </div>
 </div>

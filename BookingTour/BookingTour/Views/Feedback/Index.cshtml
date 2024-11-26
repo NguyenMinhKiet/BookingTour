@@ -17,13 +17,12 @@
                         <i class="icon-home"></i> Trang chủ
                     </a>
                 </li>
-                <li class="breadcrumb-item">
-                    <a asp-controller="Feedback" asp-action="Index"
-                    asp-route-TourID="@Model.TourID" asp-route-CustomerID="@Model.CustomerID">
-                        Tour
+                <li class="breadcrumb-item active">
+                    <a asp-controller="Booking" asp-action="History"
+                    asp-route-UserID="@Model.CustomerID">
+                        History
                     </a>
                 </li>
-                <li class="breadcrumb-item active">Danh sách</li>
             </ul>
         </div>
 
@@ -35,6 +34,7 @@
                         <a class="btn btn-primary"
                            asp-action="Create"
                            asp-route-TourID="@Model.TourID"
+                           asp-route-Customerid="@Model.CustomerID"
                            asp-controller="Feedback">
                             <i class="fa fa-plus"></i> Thêm đánh giá
                         </a>

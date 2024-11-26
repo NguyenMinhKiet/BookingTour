@@ -37,7 +37,7 @@ namespace Presentation.Controllers
             }
             if (pageSize == null || pageSize < 1)
             {
-                pageSize = 6;
+                pageSize = 4;
             }
 
 

@@ -90,17 +90,14 @@
                                             </span>
                                         </td>
                                         <td class="text-center align-middle">
-                                            <div class="form-button-action">
-                                                <a class="btn btn-primary" type="button"
+                                            <div class="d-flex justify-content-center">
+                                                <a class="btn btn-ms btn-primary mx-1" type="button"
                                                    asp-route-TourID="@Model[i].TourID"
                                                    asp-controller="Tour"
                                                    asp-action="Details">
                                                     <i class="fa fa-edit"></i> Chi tiết
                                                 </a>
-                                            </div>
-
-                                            <div class="form-button-action">
-                                                <a class="btn btn-primary" type="button"
+                                                <a class="btn btn-ms btn-primary mx-1" type="button"
                                                    asp-route-TourID="@Model[i].TourID"
                                                    asp-route-CustomerID="@Model[i].CustomerID"
                                                    asp-controller="Feedback"
@@ -109,6 +106,7 @@
                                                 </a>
                                             </div>
                                         </td>
+
                                     </tr>
                                 }
 

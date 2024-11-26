@@ -24,9 +24,8 @@ namespace Application.Services
                 StartDate = dto.StartDate,
                 EndDate = dto.EndDate,
                 AvailableSeats = dto.AvailableSeats,
-                Category = dto.Category.Trim(),
-                // Chuẩn hóa tên thành phố
-                City = dto.City.Trim()  // Loại bỏ dấu trong tên thành phố
+                Category = dto.Category,
+                City = dto.City  
             };
 
             await _tourRepository.AddAsync(tour);

@@ -24,6 +24,7 @@
             width: 30px;
             height: 30px;
         }
+
     </style>
 
 
@@ -34,10 +35,12 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a asp-action="Index" asp-controller="Tour">Trang Chủ</a>
+                        <a asp-action="Index" asp-controller="Home">Trang Chủ</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Tour</li>
-                    <li class="breadcrumb-item">
+                    <li class="breadcrumb-item" aria-current="page">
+                        <a asp-action="Index" asp-controller="Tour">Tour</a>
+                    </li>
+                    <li class="breadcrumb-item active">
                         <a>@Model.City</a>
                     </li>
                 </ol>
@@ -55,12 +58,12 @@
                         <div class="card-header bg-white">
                             <div class="row p-2">
                                 <div class="col-6 d-flex justify-content-center align-items-center">
-                                    <span>Khởi hành:</span>
-                                    <p class="fw-bold ms-2 mb-0">@Model.City</p>
+                                    <strong>Khởi hành:</strong>
+                                    <p class="fw-bold ms-1">@Model.City</p>
                                 </div>
                                 <div class="col-6 d-flex justify-content-center align-items-center">
-                                    <span>Mã Tour:</span>
-                                    <p class="fw-bold ms-2 mb-0">@Model.TourID</p>
+                                    <strong>Mã Tour:</strong>
+                                    <p class="fw-bold ms-1">@Model.TourID</p>
                                 </div>
                             </div>
                         </div>
@@ -69,7 +72,7 @@
                             <h2>Tour Trọn gói bao gồm</h2>
                             <div class="row p-3 g-3">
                                 <div class="col-4">
-                                    Khách sạn 3*
+                                    Khách sạn 
                                 </div>
                                 <div class="col-4">
                                     Bữa ăn
@@ -217,7 +220,7 @@
                                             <th scope="row">@tour.StartDate.ToString("dd/MM/yyyy HH:mm tt")</th>
                                             <th>@tour.EndDate.ToString("dd/MM/yyyy HH:mm tt")</th>
                                             <th>@tour.AvailableSeats</th>
-                                            <th>@tour.Price VNĐ</th>
+                                            <th><strong class="text-success">@string.Format("{0:N0}₫", tour.Price)</strong></th>
                                         </tr>
                                         }
                                         }
@@ -241,27 +244,34 @@
                                                 width="50" height="50" style="object-fit: cover;">
 
                                             <!-- Tên và thời gian đánh giá -->
-                                            <div>
-                                                <h6 class="mb-0 fw-bold">@($"{Model.Feedbacks[i].Customer.FirstName}{Model.Feedbacks[i].Customer.LastName}")</h6>
-                                                <small class="text-muted">Đánh giá ngày
-                                                    @Model.Feedbacks[i].CreateAt.ToString("dd/MM/yyyy HH:mm")</small>
+                                            <div class="ml-3 flex-grow-1">
+                                                <h6 class="mb-0 fw-bold">@(Model.Feedbacks[i].Customer.Email)</h6>
+                                                    <!-- Nội dung Feedback -->
+                                                    <p class="mb-2">@Model.Feedbacks[i].Comments</p>
                                             </div>
-                                        </div>
 
-                                        <!-- Nội dung Feedback -->
-                                        <p class="mb-2">@Model.Feedbacks[i].Comments</p>
-
-                                        <!-- Rating -->
-                                        <div class="d-flex justify-content-between align-items-end">
-                                            <div class="text-warning">
-                                                @for (int j = 0; j < Model.Feedbacks[i].Rating; j++) { <i
-                                                    class="fas fa-star"></i>
-                                                    }
-                                                    @for (int j = Model.Feedbacks[i].Rating; j < 5; j++) { <i
-                                                        class="far fa-star"></i>
+                                                <!-- Rating -->
+                                                <div class="ms-auto">
+                                                    <div class="text-warning">
+                                                        @for (int j = 0; j < Model.Feedbacks[i].Rating; j++)
+                                                        {
+                                                            <i class="fas fa-star"></i>
                                                         }
-                                            </div>
+                                                        @for (int j = Model.Feedbacks[i].Rating; j < 5; j++)
+                                                        {
+                                                            <i class="far fa-star"></i>
+                                                        }
+                                                    </div>
+                                                    <small class="text-muted">
+                                                        Đánh giá ngày
+                                                        @Model.Feedbacks[i].CreateAt.ToString("dd/MM/yyyy HH:mm")
+                                                    </small>
+                                                </div>
                                         </div>
+
+                                        
+
+                                        
                                         </li>
                                         }
                                 </ul>
@@ -279,7 +289,7 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <div class="card bg-light border mt-3 sticky-top w-100">
+                    <div class="card bg-light border-primary mt-3 sticky-top row">
                         <div class="card-body text-center">
                             <h5 class="card-title">Đặt tour ngay</h5>
                             <a class="btn btn-primary" asp-action="Create" asp-controller="Booking"
@@ -329,7 +339,7 @@
                                                             <div class="card-footer">
                                                                 <div class="d-flex justify-content-between align-items-center">
                                                                     <span class="invisible">Placeholder</span>
-                                                                    <span class="fw-bold">@Model.AnotherTour[j].Price VNĐ</span>
+                                                                    <strong class ="text-success">@string.Format("{0:N0}₫", Model.AnotherTour[j].Price)</strong>
                                                                 </div>
                                                             </div>
                                                         </div>
