@@ -4,11 +4,15 @@ using Application.DTOs.HotelDto;
 using Application.DTOs.TourDTOs;
 using Application.Services_Interface;
 using Domain.Entities;
+using Humanizer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.VisualBasic;
 using Presentation.Models;
+using System.Globalization;
 using X.PagedList.Extensions;
 namespace Presentation.Controllers
 {
@@ -29,7 +33,7 @@ namespace Presentation.Controllers
 
         // GET: /Tour/
         [Authorize(Policy = "tour-view")]
-        public async Task<IActionResult> Index(int? page, int? pageSize,decimal? from, decimal? to, string? sortBy,string searchTerm)
+        public async Task<IActionResult> Index(int? page, int? pageSize,decimal? from, decimal? to, string? sortBy,string? Category,string searchTerm)
         {
             if(page == null || page < 1)
             {
@@ -37,11 +41,11 @@ namespace Presentation.Controllers
             }
             if (pageSize == null || pageSize < 1)
             {
-                pageSize = 4;
+                pageSize = 3;
             }
 
 
-            var tours = await _tourService.GetAllNewAsync(searchTerm, from, to, sortBy);
+            var tours = await _tourService.GetAllNewAsync(searchTerm, from, to, sortBy, Category);
             var toursViewModel = tours.Select(x => new TourCustomerView
             {
                 Title = x.Title,
@@ -52,12 +56,25 @@ namespace Presentation.Controllers
                 Price = x.Price,
                 Category = x.Category,
                 City = x.City,
-                AvailableSeats = x.AvailableSeats
+                AvailableSeats = x.AvailableSeats,
+
             }).ToList();
+
+            ViewBag.searchTerm = searchTerm;
+            ViewBag.FromPrice = from;
+            ViewBag.ToPrice = to;
 
             var onPageOfTours = toursViewModel.ToPagedList((int)page, (int)pageSize);
             ViewBag.OnePageOfProducts = onPageOfTours;
             ViewBag.itemCount = tours.Count();
+
+            ViewBag.PageSize = pageSize;
+            ViewBag.FromPrice = from;
+            ViewBag.ToPrice = to;
+            ViewBag.searchTerm = searchTerm;
+            ViewBag.Category = Category;
+            ViewBag.SortBy = sortBy;
+
             return View(onPageOfTours);
         }
 
@@ -182,7 +199,7 @@ namespace Presentation.Controllers
                 Feedbacks = feedbackTourModel
             };
 
-
+            
             return View(tourDetailViewModel);
         }
     }

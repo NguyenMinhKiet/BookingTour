@@ -115,9 +115,9 @@ namespace Application.Services
             return await _tourRepository.GetToursByCategories(categories);
         }
 
-        public async Task<List<Tour>> GetAllNewAsync(string search, decimal? from, decimal? to, string? sortBy)
+        public async Task<List<Tour>> GetAllNewAsync(string search, decimal? from, decimal? to, string? sortBy, string? Category)
         {
-            return await _tourRepository.GetAll(search, from, to, sortBy);
+            return await _tourRepository.GetAll(search, from, to, sortBy, Category);
             
         }
 

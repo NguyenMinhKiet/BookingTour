@@ -98,9 +98,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-action="Index" asp-controller="Services">Services</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link " asp-action="Contact" asp-controller="Home">Contact</a>
-                            </li>
                             <li class="nav-item dropdown">
                                 <!-- Nút kích hoạt dropdown -->
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -139,10 +136,6 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-action="Index" asp-controller="Services">Services</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link " asp-action="Contact" asp-controller="Home">Contact</a>
-                    </li>
-
                     <li class="nav-item dropdown">
                         <!-- Nút kích hoạt dropdown -->
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -173,37 +166,35 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="container">
-                            <h1 class="banner_taital">Adventure</h1>
+                            <h1 class="banner_taital">Adventure Awaits</h1>
                             <p class="banner_text">
-                                There are many variations of passages of Lorem Ipsum available, but the
-                                majority have sufferedThere are ma available, but the majority have suffered
+                                Explore the unexplored with our exciting adventure tours. Whether you're looking to hike through mountains or trek across wild terrains, we offer the best adventure packages tailored to your needs.
                             </p>
-                            <div class="read_bt"><a href="#">Get A Quote</a></div>
+                            <div class="read_bt"><a asp-action="Index" asp-controller="Tour">Services</a></div>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="container">
-                            <h1 class="banner_taital">Adventure</h1>
+                            <h1 class="banner_taital">Relax in Paradise</h1>
                             <p class="banner_text">
-                                There are many variations of passages of Lorem Ipsum available, but the
-                                majority have sufferedThere are ma available, but the majority have suffered
+                                Escape to tropical beaches and enjoy the serene beauty of nature. Our relaxing getaway tours are perfect for unwinding and rejuvenating in some of the world's most breathtaking locations.
                             </p>
-                            <div class="read_bt"><a href="#">Get A Quote</a></div>
+                            <div class="read_bt"><a asp-action="Index" asp-controller="Tour">Services</a></div>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="container">
-                            <h1 class="banner_taital">Adventure</h1>
+                            <h1 class="banner_taital">Cultural Journeys</h1>
                             <p class="banner_text">
-                                There are many variations of passages of Lorem Ipsum available, but the
-                                majority have sufferedThere are ma available, but the majority have suffered
+                                Immerse yourself in the rich history and culture of unique destinations. Our cultural tours provide a deep dive into the traditions, art, and heritage of fascinating regions around the world.
                             </p>
-                            <div class="read_bt"><a href="#">Get A Quote</a></div>
+                            <div class="read_bt"><a asp-action="Index" asp-controller="Tour">Services</a></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- banner section end -->
     </div>
     <!-- header section end -->

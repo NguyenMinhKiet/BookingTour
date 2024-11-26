@@ -14,11 +14,6 @@ namespace Presentation.Controllers
 
         public IActionResult Index()
         {
-            //String userData = HttpContext.Session.GetString("user");
-            //if (userData != null)
-            //{
-            //    User user = JsonConvert.DeserializeObject<User>(userData);
-            //}
             return View();
         }
 
@@ -34,11 +29,6 @@ namespace Presentation.Controllers
         }
 
         public IActionResult About()
-        {
-            return View();
-        }
-
-        public IActionResult Contact()
         {
             return View();
         }

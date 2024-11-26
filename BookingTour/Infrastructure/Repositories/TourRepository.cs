@@ -87,7 +87,7 @@ namespace Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<Tour>> GetAll(string search, decimal? from, decimal? to, string? sortBy)
+        public async Task<List<Tour>> GetAll(string search, decimal? from, decimal? to, string? sortBy, string? Category)
         {
             var tours = _context.Tours.AsQueryable();
             #region Filtering
@@ -103,6 +103,10 @@ namespace Infrastructure.Repositories
             {
 
                 tours = tours.Where(x => x.Price <= to);
+            }
+            if (!string.IsNullOrEmpty(Category))
+            {
+                tours = tours.Where(x=>x.Category == Category);
             }
             #endregion
 
@@ -127,30 +131,6 @@ namespace Infrastructure.Repositories
                 }
             }
             #endregion
-
-            //#region Paging
-            //var totalProducts = tours.Count();
-
-            //tours = tours.Skip((page - 1) * PAGE_SIZE).Take(PAGE_SIZE);
-            //#endregion
-
-            //var totalPages = (int)Math.Ceiling((double)totalProducts / PAGE_SIZE);
-            //var tourServiceModel = new TourServiceViewModel
-            //{
-            //    ItemCount = totalProducts,
-            //    PageNumber = page,
-            //    Tours = tours.Select(x => new TourViewModel
-            //    {
-            //        TourID = x.TourID,
-            //        Title = x.Title,
-            //        Description = x.Description,
-            //        Price = x.Price,
-            //        StartDate = x.StartDate,
-            //        EndDate = x.EndDate,
-            //        Category = x.Category,
-            //        City = x.City
-            //    }).ToList()
-            //};
 
             return tours.ToList();
 

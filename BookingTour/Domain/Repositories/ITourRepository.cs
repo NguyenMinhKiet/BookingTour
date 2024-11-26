@@ -25,7 +25,7 @@ namespace Domain.Repositories
         Task<IEnumerable<Tour>> GetToursByCategories(List<string> categories);
 
 
-        Task<List<Tour>> GetAll(string search, decimal? from, decimal? to, string? orderBy);
+        Task<List<Tour>> GetAll(string search, decimal? from, decimal? to, string? orderBy, string? Category);
         Task<List<Tour>> GetAllByName(string name);
         Task<List<Tour>> GetAllWithOut(Guid TourID);
 

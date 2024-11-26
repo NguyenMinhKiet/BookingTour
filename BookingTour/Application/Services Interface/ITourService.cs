@@ -21,7 +21,7 @@ namespace Application.Services_Interface
         Task<List<TourHotel>> GetHotels(Guid TourID);
         Task<List<TourDestination>> GetDestinations (Guid TourID);
         Task<List<TourEmployee>> GetEmployees (Guid TourID);
-        Task<List<Tour>> GetAllNewAsync(string search, decimal? from, decimal? to, string? sortBy);
+        Task<List<Tour>> GetAllNewAsync(string search, decimal? from, decimal? to, string? sortBy, string? Category)    ;
         Task<List<Tour>> GetAllByName(string name);
         Task<List<Tour>> GetAllWithOut(Guid TourID);
 

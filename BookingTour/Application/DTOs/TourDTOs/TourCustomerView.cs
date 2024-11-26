@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Application.DTOs.TourDTOs
 {
@@ -35,8 +30,8 @@ namespace Application.DTOs.TourDTOs
         public int AvailableSeats { get; set; }
 
         [Required(ErrorMessage = "Vui lòng chọn loại Tour !")]
+        public string City {  get; set; }
         public string Category { get; set; }
-        public string City { get; set; }
 
         // Kiểm tra nếu StartDate < EndDate
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
