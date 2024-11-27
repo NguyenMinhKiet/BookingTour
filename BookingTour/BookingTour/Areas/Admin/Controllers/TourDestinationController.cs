@@ -3,7 +3,6 @@ using Application.DTOs.TourDestinationDTOs;
 using Application.Services_Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Presentation.Areas.Admin.Models;
 
 namespace Presentation.Areas.Admin.Controllers
@@ -46,7 +45,8 @@ namespace Presentation.Areas.Admin.Controllers
                 Description = x.Destination.Description,
                 City = x.Destination.City,
                 Country = x.Destination.Country,
-                visitDate = x.VisitDate 
+                visitDate = x.VisitDate,
+                Image = x.Destination.Image,
 
             }).ToList();
 

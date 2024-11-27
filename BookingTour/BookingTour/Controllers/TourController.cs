@@ -4,15 +4,10 @@ using Application.DTOs.HotelDto;
 using Application.DTOs.TourDTOs;
 using Application.Services_Interface;
 using Domain.Entities;
-using Humanizer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.VisualBasic;
 using Presentation.Models;
-using System.Globalization;
 using X.PagedList.Extensions;
 namespace Presentation.Controllers
 {
@@ -46,7 +41,7 @@ namespace Presentation.Controllers
 
 
             var tours = await _tourService.GetAllNewAsync(searchTerm, from, to, sortBy, Category);
-            var toursViewModel = tours.Select(x => new TourCustomerView
+            var toursViewModel = tours.Select(x => new TourViewModel
             {
                 Title = x.Title,
                 TourID = x.TourID,
@@ -57,6 +52,7 @@ namespace Presentation.Controllers
                 Category = x.Category,
                 City = x.City,
                 AvailableSeats = x.AvailableSeats,
+                Image = x.Image,
 
             }).ToList();
 
@@ -114,6 +110,7 @@ namespace Presentation.Controllers
                 Category = d.Destination.Category,
                 City = d.Destination.City,
                 visitDate = d.VisitDate,
+                Image = d.Destination.Image
             }).ToList();
 
             var tourBookings = await _tourService.GetAllByName(tour.Title);
@@ -127,7 +124,8 @@ namespace Presentation.Controllers
                 Price = x.Price,
                 Category = x.Category,
                 City = x.City,
-                AvailableSeats = x.AvailableSeats
+                AvailableSeats = x.AvailableSeats,
+                Image = x.Image,
             }).ToList();
 
             var anotherTour = await _tourService.GetAllWithOut(tour.TourID);
@@ -141,7 +139,8 @@ namespace Presentation.Controllers
                 Price = x.Price,
                 Category = x.Category,
                 City = x.City,
-                AvailableSeats = x.AvailableSeats
+                AvailableSeats = x.AvailableSeats,
+                Image = x.Image,
             }).ToList();
 
             var customerId =  HttpContext.Session.GetString("UserID");
@@ -164,6 +163,7 @@ namespace Presentation.Controllers
                 SelectedDistrict = x.Hotel.District,    
                 SelectedWard = x.Hotel.Ward,
                 StarRating = x.Hotel.StarRating,
+                Image = x.Hotel.Image,
             }).ToList();
 
 

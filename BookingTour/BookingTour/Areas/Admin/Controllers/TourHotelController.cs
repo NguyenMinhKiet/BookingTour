@@ -43,7 +43,8 @@ namespace Presentation.Areas.Admin.Controllers
                                 Address = hotelModel.Address,
                                 SelectedCity = hotelModel.City,
                                 SelectedDistrict = hotelModel.District,
-                                SelectedWard = hotelModel.Ward
+                                SelectedWard = hotelModel.Ward,
+                                Image = hotelModel.Image,
                             },
                             StartDate = x.StartDate,
                             EndDate = x.EndDate,

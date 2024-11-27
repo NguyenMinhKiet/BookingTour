@@ -706,3 +706,7 @@ D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour
 D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
 D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\X.PagedList.dll
 D:\Kiet\Study\N5_HK1\DotNet\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\X.PagedList.Mvc.Core.dll
+D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour\bin\Debug\net8.0\Presentation.staticwebassets.endpoints.json
+D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour\obj\Debug\net8.0\staticwebassets\msbuild.Presentation.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

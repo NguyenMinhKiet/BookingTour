@@ -28,7 +28,7 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>STT</th>
                                 <th>UserName</th>
                                 <th>Password</th>
                                 <th>Email</th>
@@ -39,7 +39,7 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>ID</th>
+                                <th>STT</th>
                                 <th>UserName</th>
                                 <th>Password</th>
                                 <th>Email</th>
@@ -49,20 +49,22 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach (var acc in Model)
-                            {
+                            @for(int i =0;i<Model.Count;i++){
                                 <tr>
-                                    <td>@acc.Id</td>
-                                    <td>@acc.Username</td>
-                                    <td>@acc.Password</td>
-                                    <td>@acc.Email</td>
-                                    <td>@acc.Phone</td>
-                                    <th> @foreach (var role in @acc.Roles)
+                                    <td>@(i + 1)</td>
+                                    <td>@Model[i].Username</td>
+                                    <td>@Model[i].Password</td>
+                                    <td>@Model[i].Email</td>
+                                    <td>@Model[i].Phone</td>
+                                    <th>
+                                        @foreach (var role in @Model[i].Roles)
                                         {
-                                            @role<br />
+                                            @role
+
+                                            <br />
                                         }
                                     </th>
-                                    <td>@acc.isActive</td>
+                                    <td>@Model[i].isActive</td>
                                 </tr>
                             }
                         </tbody>
@@ -83,7 +85,7 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>STT</th>
                                 <th>UserName</th>
                                 <th>Password</th>
                                 <th>Email</th>
@@ -95,7 +97,7 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>ID</th>
+                                <th>STT</th>
                                 <th>UserName</th>
                                 <th>Password</th>
                                 <th>Email</th>
@@ -106,26 +108,28 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach (var acc in Model)
+                            @for (int i = 0; i < Model.Count; i++)
                             {
                                 <tr>
-                                    <td>@acc.Id</td>
-                                    <td>@acc.Username</td>
-                                    <td>@acc.Password</td>
-                                    <td>@acc.Email</td>
-                                    <td>@acc.Phone</td>
-                                    <td>
-                                        @foreach (var role in @acc.Roles)
+                                    <td>@(i + 1)</td>
+                                    <td>@Model[i].Username</td>
+                                    <td>@Model[i].Password</td>
+                                    <td>@Model[i].Email</td>
+                                    <td>@Model[i].Phone</td>
+                                    <th>
+                                        @foreach (var role in @Model[i].Roles)
                                         {
-                                            @role <br />
+                                            @role
+
+                                            <br />
                                         }
-                                    </td>
-                                    <td>@acc.isActive</td>
+                                    </th>
+                                    <td>@Model[i].isActive</td>
                                     <td>
                                         <div class="form-button-action">
                                             <a class="btn btn-link btn-primary" type="button"
                                                asp-area="Admin"
-                                               asp-route-userId=@acc.Id
+                                               asp-route-userId=@Model[i].Id
                                                asp-controller="Account"
                                                asp-action="ChangePassword">
                                                 <i class="fa fa-edit"></i>
@@ -133,28 +137,28 @@
 
                                             <a class="btn btn-link btn-warning" type="button"
                                                asp-area="Admin"
-                                               asp-route-userId=@acc.Id
+                                               asp-route-userId=@Model[i].Id
                                                asp-controller="Role"
                                                asp-action="ChangeRole">
                                                 <i class="fas fa-award"></i>
                                             </a>
 
-                                            <a class="btn btn-link @((acc.isActive) ? "btn-success" : "btn-danger")"
+                                            <a class="btn btn-link @((Model[i].isActive) ? "btn-success" : "btn-danger")"
                                                type="button"
                                                asp-area="Admin"
-                                               asp-route-userId="@acc.Id"
+                                               asp-route-userId="@Model[i].Id"
                                                asp-controller="Account"
                                                asp-action="BlockUser">
-                                                @if (acc.isActive)
+                                                @if (Model[i].isActive)
                                                 {
                                                     <i class="fas fa-check-circle"></i>
-                                                    
-                                                                            }
+
+                                                }
                                                 else
                                                 {
                                                     <i class="fas fa-ban"></i>
-                                                    
-                                                                            }
+
+                                                }
                                             </a>
                                         </div>
 

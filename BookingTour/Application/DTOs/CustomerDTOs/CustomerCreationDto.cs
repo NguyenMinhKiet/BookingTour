@@ -13,6 +13,7 @@ namespace Application.DTOs.CustomerDTOs
 
         [Required(ErrorMessage = "Vui lòng nhập địa chỉ!")]
         public string Address { get; set; }
+        public string? Image {  get; set; }
 
         public Guid AccountID { get; set; } 
 

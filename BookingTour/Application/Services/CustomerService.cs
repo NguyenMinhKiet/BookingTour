@@ -2,7 +2,6 @@
 using Application.Services_Interface;
 using Domain.Entities;
 using Domain.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 namespace Application.Services
 {
@@ -35,7 +34,8 @@ namespace Application.Services
                 Address = customerCreationDto.Address.Trim(),
                 Phone = customerCreationDto.Phone.Trim(),
                 Email = customerCreationDto.Email.Trim(),
-                AccountID = customerCreationDto.AccountID
+                AccountID = customerCreationDto.AccountID,
+                Image = customerCreationDto.Image ?? "User_default.jpg"
             };
             await _customerRepository.AddAsync(newCustomer);
             return newCustomer;
@@ -50,6 +50,7 @@ namespace Application.Services
                 customer.LastName = customerUpdateDto.LastName.Trim();
                 customer.Address = customerUpdateDto.Address.Trim();
                 customer.Phone = customerUpdateDto.Phone.Trim();
+                customer.Image = customerUpdateDto.Image ?? "User_default.jpg";
                 await _customerRepository.UpdateAsync(customer);
             }
         }

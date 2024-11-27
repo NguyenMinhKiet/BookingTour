@@ -1,4 +1,4 @@
-﻿@model List<Presentation.Areas.Admin.Models.TourViewModel>
+﻿@model List<Application.DTOs.TourDTOs.TourViewModel>
 @{
     ViewData["Title"] = "Danh sách Tour";
 }
@@ -7,8 +7,8 @@
     <ul class="breadcrumbs mb-3">
         <li class="nav-home">
             <a asp-area="Admin"
-               asp-controller="Home"
-               asp-action="Index">
+            asp-controller="Home"
+            asp-action="Index">
                 <i class="icon-home"></i>
             </a>
         </li>
@@ -30,10 +30,11 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="multi-filter-select"
-                           class="display table table-striped table-hover">
+                    class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>STT</th>
+                                <th>Image</th>
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>Start Date</th>
@@ -43,11 +44,11 @@
                                 <th>Category</th>
                                 <th>City</th>
                             </tr>
-                            </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>ID</th>
+                                <th>STT</th>
+                                <th>Image</th>
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>Start Date</th>
@@ -59,18 +60,19 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach (var t in Model)
+                            @for(int i = 0;i<Model.Count;i++)
                             {
                                 <tr>
-                                    <td>@t.TourID</td>
-                                    <td>@t.Title</td>
-                                    <td>@t.Description</td>
-                                    <td>@t.StartDate</td>
-                                    <td>@t.EndDate</td>
-                                    <td>@t.Price</td>
-                                    <td>@t.AvailableSeats</td>
-                                    <td>@t.Category</td>
-                                    <td>@t.City</td>
+                                    <td>@(i + 1)</td>
+                                    <td><img src="~/assetPrivate/img/tour/@Model[i].Image" alt="@Model[i].Image" style="width:150px;height:100px; object-fit:cover"/></td>
+                                    <td>@Model[i].Title</td>
+                                    <td>@Model[i].Description</td>
+                                    <td>@Model[i].StartDate</td>
+                                    <td>@Model[i].EndDate</td>
+                                    <td>@Model[i].Price</td>
+                                    <td>@Model[i].AvailableSeats</td>
+                                    <td>@Model[i].Category</td>
+                                    <td>@Model[i].City</td>
                                 </tr>
                             }
                         </tbody>
@@ -100,6 +102,8 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
+                                <th>STT</th>
+                                <th>Image</th>
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>Start Date</th>
@@ -113,6 +117,8 @@
                         </thead>
                         <tfoot>
                             <tr>
+                                <th>STT</th>
+                                <th>Image</th>
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>Start Date</th>
@@ -125,23 +131,24 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach (var t in Model)
+                            @for (int i = 0; i < Model.Count; i++)
                             {
                                 <tr>
-                                    <td>@t.Title</td>
-                                    <td>@t.Description</td>
-                                    <td>@t.StartDate</td>
-                                    <td>@t.EndDate</td>
-                                    <td>@t.Price</td>
-                                    <td>@t.AvailableSeats</td>
-                                    <td>@t.Category</td>
-                                    <td>@t.City</td>
+                                    <td>@(i + 1)</td>
+                                    <td><img src="~/assetPrivate/img/tour/@Model[i].Image" alt="@Model[i].Image" style="width:150px;height:100px; object-fit:cover" /></td>
+                                    <td>@Model[i].Title</td>
+                                    <td>@Model[i].Description</td>
+                                    <td>@Model[i].StartDate</td>
+                                    <td>@Model[i].EndDate</td>
+                                    <td>@Model[i].Price</td>
+                                    <td>@Model[i].AvailableSeats</td>
+                                    <td>@Model[i].Category</td>
+                                    <td>@Model[i].City</td>
                                     <td>
                                         <div class="form-button-action">
-
                                             <a class="btn btn-link btn-primary " type="button"
                                                asp-area="Admin"
-                                               asp-route-TourID=@t.TourID
+                                               asp-route-TourID=@Model[i].TourID
                                                asp-controller="TourEmployee"
                                                asp-action="Index">
                                                 <i class="fa fa-user"></i>
@@ -149,7 +156,7 @@
 
                                             <a class="btn btn-link btn-danger " type="button"
                                                asp-area="Admin"
-                                               asp-route-TourID=@t.TourID
+                                               asp-route-TourID=@Model[i].TourID
                                                asp-controller="TourDestination"
                                                asp-action="Index">
                                                 <i class="fas fa-map-marker-alt"></i>
@@ -157,15 +164,15 @@
 
                                             <a class="btn btn-link btn-danger " type="button"
                                                asp-area="Admin"
-                                               asp-route-TourID=@t.TourID
+                                               asp-route-TourID=@Model[i].TourID
                                                asp-controller="TourHotel"
                                                asp-action="Index">
                                                 <i class="fas fa-home"></i>
                                             </a>
 
                                             <a class="btn btn-link btn-primary" type="button"
-                                            asp-area="Admin"
-                                               asp-route-TourID=@t.TourID
+                                               asp-area="Admin"
+                                               asp-route-TourID=@Model[i].TourID
                                                asp-controller="Tour"
                                                asp-action="Update">
                                                 <i class="fa fa-edit"></i>
@@ -173,7 +180,7 @@
 
                                             <a class="btn btn-link btn-primary " type="button"
                                                asp-area="Admin"
-                                               asp-route-tourID=@t.TourID
+                                               asp-route-tourID=@Model[i].TourID
                                                asp-controller="Feedback"
                                                asp-action="Index">
                                                 <i class="fas fa-envelope"></i>
@@ -181,7 +188,7 @@
 
                                             <a class="btn btn-link btn-danger " type="button"
                                                asp-area="Admin"
-                                               asp-route-TourID=@t.TourID
+                                               asp-route-TourID=@Model[i].TourID
                                                asp-controller="Tour"
                                                asp-action="Delete">
                                                 <i class="fa fa-times"></i>

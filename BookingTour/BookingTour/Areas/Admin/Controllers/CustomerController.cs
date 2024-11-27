@@ -1,7 +1,5 @@
-﻿using Application.DTOs.AccountDTOs;
-using Application.DTOs.CustomerDTOs;
+﻿using Application.DTOs.CustomerDTOs;
 using Application.Services_Interface;
-using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Areas.Admin.Models;
@@ -39,6 +37,7 @@ namespace Presentation.Areas.Admin.Controllers
                     FirstName = c.FirstName,
                     LastName = c.LastName,
                     Address = c.Address,
+                    Image = c.Image
                 };
 
                 // Thêm vào danh sách
@@ -101,15 +100,15 @@ namespace Presentation.Areas.Admin.Controllers
                 TempData["NotificationMessage"] = $"Không thể lấy giữ liệu từ id: {CustomerID}";
                 return View();
             }
-            var customerViewModel = new CustomerViewModel
+            var customerViewModel = new CustomerUpdateDto
             {
                 CustomerID = customer.CustomerID,
                 FirstName = customer.FirstName,
                 LastName = customer.LastName,
                 Address = customer.Address,
                 Phone = customer.Phone,
-                Email = customer.Email
-
+                Email = customer.Email,
+                Image = customer.Image,
             };
             return View(customerViewModel);
         }
@@ -117,22 +116,21 @@ namespace Presentation.Areas.Admin.Controllers
         // POST: /Customer/Update?{CustomerID}
         [HttpPost]
         [Authorize(Policy = "customer-update")]
-        public async Task<IActionResult> Update(Guid CustomerID, CustomerUpdateDto customer)
+        public async Task<IActionResult> Update(CustomerUpdateDto customer)
         {
             if (ModelState.IsValid)
             {
-                await _customerService.UpdateAsync(CustomerID, customer);
-
+                await _customerService.UpdateAsync(customer.CustomerID, customer);
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành Công!";
-                TempData["NotificationMessage"] = $"Cập nhật thông tin khách hàng {customer.FirstName} thành công!";
+                TempData["NotificationMessage"] = $"Cập nhật thông tin khách hàng {customer.LastName} {customer.FirstName} thành công!";
                 return RedirectToAction("Index");
             }
 
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ!";
-            return View();
+            return View(customer);
         }
 
         // POST: /Customer/Delete?{customer_id}

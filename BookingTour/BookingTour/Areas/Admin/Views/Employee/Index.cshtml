@@ -34,17 +34,18 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>STT</th>
+                                <th>Image</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Position</th>
                                 <th>Address</th>
                             </tr>
-                            </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>ID</th>
+                                <th>STT</th>
+                                <th>Image</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Position</th>
@@ -52,14 +53,15 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach (var employee in Model)
+                            @for(int i=0;i<Model.Count;i++)
                             {
                                 <tr>
-                                    <td>@employee.EmployeeID</td>
-                                    <td>@employee.FirstName</td>
-                                    <td>@employee.LastName</td>
-                                    <td>@employee.Position</td>
-                                    <td>@employee.Address</td>
+                                    <td>@(i + 1)</td>
+                                    <td><img src="~/assetPrivate/img/employee/@Model[i].Image" alt="@Model[i].Image" style="width:100px;height:100px; object-fit:cover" /></td>
+                                    <td>@Model[i].FirstName</td>
+                                    <td>@Model[i].LastName</td>
+                                    <td>@Model[i].Position</td>
+                                    <td>@Model[i].Address</td>
                                 </tr>
                             }
                         </tbody>
@@ -89,7 +91,8 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>STT</th>
+                                <th>Image</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Position</th>
@@ -99,7 +102,8 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>ID</th>
+                                <th>STT</th>
+                                <th>Image</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Position</th>
@@ -108,26 +112,27 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach (var employee in Model)
+                            @for (int i = 0; i < Model.Count; i++)
                             {
                                 <tr>
-                                    <td>@employee.EmployeeID</td>
-                                    <td>@employee.FirstName</td>
-                                    <td>@employee.LastName</td>
-                                    <td>@employee.Position</td>
-                                    <td>@employee.Address</td>
+                                    <td>@(i + 1)</td>
+                                    <td><img src="~/assetPrivate/img/employee/@Model[i].Image" alt="@Model[i].Image" style="width:100px;height:100px; object-fit:cover" /></td>
+                                    <td>@Model[i].FirstName</td>
+                                    <td>@Model[i].LastName</td>
+                                    <td>@Model[i].Position</td>
+                                    <td>@Model[i].Address</td>
                                     <td>
                                         <div class="form-button-action">
-                                            <a class="btn btn-link btn-primary" type="button"
-                                            asp-area="Admin"
-                                               asp-route-EmployeeID=@employee.EmployeeID
+                                            <a class="btn btn-link btn-primary"
+                                               asp-area="Admin"
+                                               asp-route-EmployeeID=@Model[i].EmployeeID
                                                asp-controller="Employee"
                                                asp-action="Update">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a class="btn btn-link btn-danger " type="button"
+                                            <a class="btn btn-link btn-danger " 
                                                asp-area="Admin"
-                                               asp-route-EmployeeID=@employee.EmployeeID
+                                               asp-route-EmployeeID=@Model[i].EmployeeID
                                                asp-controller="Employee"
                                                asp-action="Delete">
                                                 <i class="fa fa-times"></i>

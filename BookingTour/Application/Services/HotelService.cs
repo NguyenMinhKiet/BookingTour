@@ -29,6 +29,7 @@ namespace Application.Services
                 District = dto.SelectedDistrict,
                 Ward = dto.SelectedWard,
                 Address = dto.Address.Trim(),
+                Image = dto.Image ?? "Hotel_default.jpg"
             };
             await _hotelRepository.AddAsync(HotelModel);
         }
@@ -43,7 +44,7 @@ namespace Application.Services
             return await _hotelRepository.GetAllAsync(City);
         }
 
-        public async Task<Domain.Entities.Hotel> GetByIdAsync(Guid HotelID)
+        public async Task<Hotel> GetByIdAsync(Guid HotelID)
         {
             return await _hotelRepository.GetByIdAsync(HotelID);
         }
@@ -60,6 +61,7 @@ namespace Application.Services
                 District = dto.SelectedDistrict,
                 Ward = dto.SelectedWard,
                 Address = dto.Address.Trim(),
+                Image = dto.Image ?? "Hotel_default.jpg"
             };
             await _hotelRepository.UpdateAsync(HotelModel);
         }

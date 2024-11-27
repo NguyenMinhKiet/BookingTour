@@ -36,6 +36,7 @@
                         <thead>
                             <tr>
                                 <th>STT</th>
+                                <th>Image</th>
                                 <th>Employee Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
@@ -45,6 +46,7 @@
                         <tfoot>
                             <tr>
                                 <th>STT</th>
+                                <th>Image</th>
                                 <th>Employee Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
@@ -56,6 +58,7 @@
                             {
                                 <tr>
                                     <td>@(i + 1)</td>
+                                    <td><img src="~/assetPrivate/img/employee/@Model.Employees[i].Image" alt="@Model.Employees[i].Image" style="width:150px;height:100px; object-fit:cover" /></td>
                                     <td>@Model.Employees[i].FullName</td>
                                     <td>@Model.Employees[i].Email</td>
                                     <td>@Model.Employees[i].Phone</td>
@@ -91,6 +94,7 @@
                         <thead>
                             <tr>
                                 <th>STT</th>
+                                <th>Image</th>
                                 <th>Employee Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
@@ -101,6 +105,7 @@
                         <tfoot>
                             <tr>
                                 <th>STT</th>
+                                <th>Image</th>
                                 <th>Employee Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
@@ -113,6 +118,7 @@
                             {
                                 <tr>
                                     <td>@(i + 1)</td>
+                                    <td><img src="~/assetPrivate/img/employee/@Model.Employees[i].Image" alt="@Model.Employees[i].Image" style="width:150px;height:100px; object-fit:cover" /></td>
                                     <td>@Model.Employees[i].FullName</td>
                                     <td>@Model.Employees[i].Email</td>
                                     <td>@Model.Employees[i].Phone</td>

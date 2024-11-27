@@ -26,7 +26,8 @@ public class TourSeed
         EndDate = new DateTime(2024, 11, 12),
         AvailableSeats = 20,
         Category = "City",
-        City = "Hồ Chí Minh"
+        City = "Hồ Chí Minh",
+        Image = "ho-chi-minh.jpg"
     },
     new Tour
     {
@@ -38,7 +39,8 @@ public class TourSeed
         EndDate = new DateTime(2024, 11, 11),
         AvailableSeats = 15,
         Category = "Nature",
-        City = "Quảng Ninh"
+        City = "Quảng Ninh",
+        Image ="vinh-ha-long.jpg"
     },
     new Tour
     {
@@ -50,7 +52,8 @@ public class TourSeed
         EndDate = new DateTime(2024, 11, 17),
         AvailableSeats = 30,
         Category = "Mountain",
-        City = "Lâm Đồng"
+        City = "Lâm Đồng",
+        Image = "da-lat.jpg"
     },
     new Tour
     {
@@ -62,7 +65,8 @@ public class TourSeed
         EndDate = new DateTime(2024, 12, 3),
         AvailableSeats = 25,
         Category = "Beach",
-        City = "Khánh Hòa"
+        City = "Khánh Hòa",
+        Image = "nha-trang.jpg"
     },
     new Tour
     {
@@ -74,7 +78,8 @@ public class TourSeed
         EndDate = new DateTime(2024, 12, 7),
         AvailableSeats = 20,
         Category = "Island",
-        City = "Kiên Giang"
+        City = "Kiên Giang",
+        Image = "phu-quoc.jpg"
     },
     new Tour
     {
@@ -86,7 +91,8 @@ public class TourSeed
         EndDate = new DateTime(2024, 12, 12),
         AvailableSeats = 30,
         Category = "Mountain",
-        City = "Lào Cai"
+        City = "Lào Cai",
+        Image = "sa-pa.jpg"
     },
     new Tour
     {
@@ -98,7 +104,8 @@ public class TourSeed
         EndDate = new DateTime(2024, 12, 17),
         AvailableSeats = 15,
         Category = "Historical",
-        City = "Thừa Thiên Huế"
+        City = "Thừa Thiên Huế",
+        Image = "pho-co-hue.jpg"
     },
     new Tour
     {
@@ -110,7 +117,8 @@ public class TourSeed
         EndDate = new DateTime(2024, 12, 22),
         AvailableSeats = 40,
         Category = "City",
-        City = "Hà Nội"
+        City = "Hà Nội",
+        Image = "ha-noi.jpg"
     },
     new Tour
     {
@@ -122,7 +130,8 @@ public class TourSeed
         EndDate = new DateTime(2024, 12, 27),
         AvailableSeats = 18,
         Category = "Historical",
-        City = "Bà Rịa Vũng Tàu"
+        City = "Bà Rịa Vũng Tàu",
+        Image = "con-dao.jpg"
     },
     new Tour
     {
@@ -134,7 +143,8 @@ public class TourSeed
         EndDate = new DateTime(2024, 12, 30),
         AvailableSeats = 20,
         Category = "Adventure",
-        City = "Quảng Bình"
+        City = "Quảng Bình",
+        Image = "quang-binh.jpg"
     },
     new Tour
     {
@@ -146,7 +156,8 @@ public class TourSeed
         EndDate = new DateTime(2025, 1, 1),
         AvailableSeats = 30,
         Category = "Cultural",
-        City = "Cần Thơ"
+        City = "Cần Thơ",
+        Image = "can-tho.jpg"
            } };
 
             await context.Tours.AddRangeAsync(tours);

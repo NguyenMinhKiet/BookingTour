@@ -1,7 +1,7 @@
 ﻿@using Newtonsoft.Json
 @using X.PagedList;
 @using X.PagedList.Mvc.Core
-@model IPagedList<Application.DTOs.TourDTOs.TourCustomerView>
+@model IPagedList<Application.DTOs.TourDTOs.TourViewModel>
 
 @{
     ViewData["Title"] = "List Tour";
@@ -28,9 +28,6 @@
         .card-footer {
             background-color: #f8f9fa; /* Màu nền nhạt hơn cho phần footer */
         }
-
-       
-
 
         .pagination li{
             margin: 0 2px;
@@ -133,7 +130,7 @@
                                 <a asp-action="Details" asp-controller="Tour" asp-route-TourID="@tour.TourID"
                                    class="text-decoration-none">
                                     <div class="card card-size">
-                                        <img src="~/assets/img/default.jpg" class="card-img-top" alt="Tour image" style="height: 300px; object-fit:cover">
+                                        <img src="~/assetPrivate/img/tour/@tour.Image" class="card-img-top" alt="Tour image" style="height: 300px; object-fit:cover">
                                         <div class="card-body">
                                             <h3 class="card-title" style="height:50px; overflow:hidden">@tour.Title</h3>
                                             <h2 class="text-success text-center" style="height:50px">Giá: <strong>@string.Format("{0:N0}₫", tour.Price)</strong></h2>

@@ -25,6 +25,8 @@ build_property.SupportLocalizedComponentNames =
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = D:\Study\C - sharp\TourDuLich\Web_TourDuLich\BookingTour\BookingTour\BookingTour
 build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
 
 [D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Areas/Admin/Views/Account/ChangePassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudFxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
@@ -188,10 +190,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Areas/Admin/Views/Tour/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVG91clxDcmVhdGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Areas/Admin/Views/Tour/Detail.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVG91clxEZXRhaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Study/C - sharp/TourDuLich/Web_TourDuLich/BookingTour/BookingTour/BookingTour/Areas/Admin/Views/Tour/Index.cshtml]

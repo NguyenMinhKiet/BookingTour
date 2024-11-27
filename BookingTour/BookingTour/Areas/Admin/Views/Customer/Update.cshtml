@@ -1,4 +1,4 @@
-﻿@model Presentation.Areas.Admin.Models.CustomerViewModel
+﻿@model Application.DTOs.CustomerDTOs.CustomerUpdateDto
 @{
     ViewData["Title"] = "Cập nhật thông tin khách hàng";
 }
@@ -39,10 +39,16 @@
 </div>
 
 <form asp-action="Update" method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div asp-validation-summary="All" class="text-danger"></div>
     <input asp-for="CustomerID" type="hidden" class="form-control" id="CustomerID" name="CustomerID" value="@Model.CustomerID">
-
-    
+    <div class="mt-3">
+        <img id="imagePreview" src="#" alt="Image Preview" style="max-width: 300px; display: none; object-fit:cover">
+    </div>
+    <div class="form-group">
+        <label asp-for="Image" class="form-label"></label>
+        <input asp-for="Image" type="file" class="form-control" onchange="previewImage(event)">
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
 
     <div class="form-group">
         <label asp-for="FirstName"></label>
@@ -55,17 +61,55 @@
         <input asp-for="LastName" type="text" class="form-control" id="LastName" name="LastName" Required>
         <span asp-validation-for="LastName" class="text-danger"></span>
     </div>
-
-
-
     <div class="form-group">
         <label asp-for="Address"></label>
         <input asp-for="Address" type="text" class="form-control" id="Address" name="Address" Required>
         <span asp-validation-for="Address" class="text-danger"></span>
     </div>
     
+    <div class="form-group">
+        <label asp-for="Phone" class="form-label"></label>
+        <input asp-for="Phone" type="text" class="form-control" id="Phone" name="Phone" Required>
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <div class="input-group mb-3">
+            <input type="email"
+                   class="form-control"
+                   placeholder="Email"
+                   aria-label="Email"
+                   aria-describedby="Email"
+                   asp-for="Email" readonly/>
+            <span class="input-group-text" id="Email">@@Gmail.com</span>
+        </div>
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
 
     <button type="submit" class="btn btn-primary">Lưu</button>
     <a asp-area="Admin" asp-controller="Customer" asp-action="Index" class="btn btn-secondary">Hủy</a>
 </form>
 
+@section script {
+    <script>
+        function previewImage(event) {
+            const input = event.target;
+            const preview = document.getElementById('imagePreview');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.src = '#';
+                preview.style.display = 'none';
+            }
+        }
+    </script>
+
+}

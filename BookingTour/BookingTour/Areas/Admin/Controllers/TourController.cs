@@ -22,7 +22,7 @@ namespace Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var tours = await _tourService.GetAllAsync();
-            var toursViewModel = tours.Select(i => new Models.TourViewModel
+            var toursViewModel = tours.Select(i => new TourViewModel
             {
                 TourID = i.TourID,
                 Title = i.Title,
@@ -32,7 +32,8 @@ namespace Presentation.Areas.Admin.Controllers
                 StartDate = i.StartDate,
                 EndDate = i.EndDate,
                 Category = i.Category,
-                City = i.City
+                City = i.City,
+                Image = i.Image,
 
             }).ToList();
 
@@ -100,7 +101,9 @@ namespace Presentation.Areas.Admin.Controllers
                 StartDate = i.StartDate,
                 EndDate = i.EndDate,
                 Category = i.Category,
-                City = i.City
+                City = i.City,
+                Image = i.Image,
+                
             };
 
             var listCity = await _locationService.LoadAllCitysAsync();

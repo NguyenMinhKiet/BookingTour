@@ -15,7 +15,7 @@ namespace Application.DTOs.DestinationDTOs
         [Required(ErrorMessage = "Vui lòng nhập ngày tham quan!")]
         [DataType(DataType.Date, ErrorMessage = "Ngày tham quan không hợp lệ.")]
         public DateTime visitDate { get; set; }
-
+        public string? Image { get; set; }
 
         public string Address { get; set; }
         public string City { get; set; }

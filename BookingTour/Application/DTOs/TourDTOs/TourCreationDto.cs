@@ -28,7 +28,7 @@ namespace Application.DTOs.TourDTOs
 
         [Required(ErrorMessage = "Thành phố là bắt buộc.")]
         public string City { get; set; }
-
+        public string? Image { get; set; }
 
         [StartDateBeforeEndDate]
         public object? CustomValidation { get; set; }

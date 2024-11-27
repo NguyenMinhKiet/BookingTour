@@ -2,7 +2,231 @@
   "Files": [
     {
       "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Presentation.bundle.scp.css",
-      "PackagePath": "staticwebassets\\Presentation.bundle.scp.css"
+      "PackagePath": "staticwebassets\\Presentation.jsq20hcjp4.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\customer\\female_default.png",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\customer\\female_default.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\customer\\male_default.png",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\customer\\male_default.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\bai-dai.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\bai-dai.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\bai-sao.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\bai-sao.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\ban-cat-cat.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\ban-cat-cat.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\bien-my-khe.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\bien-my-khe.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\cho-ben-thanh.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\cho-ben-thanh.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\chua-thien-mu.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\chua-thien-mu.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\dao-titop.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\dao-titop.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\dia-dao-cu-chi.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\dia-dao-cu-chi.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\fansipan.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\fansipan.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\hang-son-doong.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\hang-son-doong.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\hang-sung-sot.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\hang-sung-sot.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\ho-guom.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\ho-guom.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\ho-xuan-huong.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\ho-xuan-huong.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\hoang-cung-hue.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\hoang-cung-hue.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\hoanh-thanh-thang-long.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\hoanh-thanh-thang-long.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\le-hoi-den-hung.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\le-hoi-den-hung.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\nha-tho-duc-ba.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\nha-tho-duc-ba.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\thien-vien-truc-lam.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\thien-vien-truc-lam.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\vinh_lan_ha.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\vinh_lan_ha.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\vinpearl-land.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\vinpearl-land.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\vinpearl-safari.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\vinpearl-safari.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\vuon-quoc-gia-cuc-phuong.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\vuon-quoc-gia-cuc-phuong.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\employee\\bi_tot_nghiep_cut.png",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\employee\\bi_tot_nghiep_cut.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\employee\\female_default.png",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\employee\\female_default.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\employee\\male_default.png",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\employee\\male_default.png"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\hotel\\dalat_palace.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\hotel\\dalat_palace.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\hotel\\grand_ho_tram.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\hotel\\grand_ho_tram.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\hotel\\hanoi_daewoo.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\hotel\\hanoi_daewoo.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\hotel\\intercontinental_hanoi.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\hotel\\intercontinental_hanoi.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\hotel\\intercontinental_nha_trang.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\hotel\\intercontinental_nha_trang.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\hotel\\jw_marriott_hanoi.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\hotel\\jw_marriott_hanoi.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\hotel\\moevenpick_cam_ranh.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\hotel\\moevenpick_cam_ranh.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\hotel\\novotel_phuquoc.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\hotel\\novotel_phuquoc.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\hotel\\park_hyatt_sg.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\hotel\\park_hyatt_sg.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\hotel\\reverie_saigon.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\hotel\\reverie_saigon.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\hotel\\salinda_resort.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\hotel\\salinda_resort.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\hotel\\sapa_highland.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\hotel\\sapa_highland.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\hotel\\sheraton_phuquoc.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\hotel\\sheraton_phuquoc.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\hotel\\sunrise_resort_hoian.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\hotel\\sunrise_resort_hoian.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\hotel\\victoria_can_tho.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\hotel\\victoria_can_tho.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\hotel\\vinpearl_ha_long.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\hotel\\vinpearl_ha_long.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\hotel\\vinpearl_nha_trang.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\hotel\\vinpearl_nha_trang.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\tour\\can-tho.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\tour\\can-tho.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\tour\\con-dao.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\tour\\con-dao.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\tour\\da-lat.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\tour\\da-lat.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\tour\\default.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\tour\\default.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\tour\\ha-noi.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\tour\\ha-noi.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\tour\\ho-chi-minh.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\tour\\ho-chi-minh.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\tour\\nha-trang.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\tour\\nha-trang.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\tour\\pho-co-hue.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\tour\\pho-co-hue.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\tour\\phu-quoc.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\tour\\phu-quoc.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\tour\\quang-binh.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\tour\\quang-binh.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\tour\\sa-pa.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\tour\\sa-pa.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\tour\\vinh-ha-long.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\tour\\vinh-ha-long.jpg"
     },
     {
       "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetsUser\\css\\animate.min.css",
@@ -423,10 +647,6 @@
     {
       "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assets\\img\\chadengle.jpg",
       "PackagePath": "staticwebassets\\assets\\img\\chadengle.jpg"
-    },
-    {
-      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assets\\img\\default.jpg",
-      "PackagePath": "staticwebassets\\assets\\img\\default.jpg"
     },
     {
       "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assets\\img\\examples\\example1-300x300.jpg",
@@ -2187,6 +2407,10 @@
     {
       "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\tables\\tables.html",
       "PackagePath": "staticwebassets\\tables\\tables.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Presentation.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Presentation.Microsoft.AspNetCore.StaticWebAssets.props",

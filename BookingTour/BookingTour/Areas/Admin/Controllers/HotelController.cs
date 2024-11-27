@@ -31,6 +31,7 @@ namespace Presentation.Areas.Admin.Controllers
                 SelectedCity = x.City,
                 SelectedDistrict = x.District,
                 SelectedWard = x.Ward,
+                Image = x.Image
                 
             }).ToList();
             return View(hotelModel);
@@ -89,6 +90,7 @@ namespace Presentation.Areas.Admin.Controllers
                 SelectedCity = hotel.City,
                 SelectedDistrict = hotel.District,
                 SelectedWard = hotel.Ward,
+                Image = hotel.Image,
             };
 
             var listCity = await _locationService.LoadAllCitysAsync();

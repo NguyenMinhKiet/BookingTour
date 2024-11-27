@@ -11,6 +11,7 @@ namespace Application.DTOs.EmployeeDTOs
     {
         public Guid TourID { get; set; }
         public Guid EmployeeID { get; set; }
+        public string? Image { get; set; }
         public string FullName { get; set; }
         public string Position { get; set; }
         public string Email { get; set; }

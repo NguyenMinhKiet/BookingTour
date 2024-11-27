@@ -36,6 +36,7 @@
                         <thead>
                             <tr>
                                 <th>STT</th>
+                                <th>Image</th>
                                 <th>Destination Name</th>
                                 <th>Visit Date</th>
                             </tr>
@@ -43,6 +44,7 @@
                         <tfoot>
                             <tr>
                                 <th>STT</th>
+                                <th>Image</th>
                                 <th>Destination Name</th>
                                 <th>Visit Date</th>
                             </tr>
@@ -52,6 +54,7 @@
                             {
                                 <tr>
                                     <td>@(i + 1)</td>
+                                    <td><img src="~/assetPrivate/img/destination/@Model.Destinations[i].Image" alt="@Model.Destinations[i].Image" style="width:150px;height:100px; object-fit:cover" /></td>
                                     <td>@Model.Destinations[i].Name</td>
                                     <td>@Model.Destinations[i].visitDate</td>
                                 </tr>
@@ -85,6 +88,7 @@
                         <thead>
                             <tr>
                                 <th>STT</th>
+                                <th>Image</th>
                                 <th>Destination Name</th>
                                 <th>Visit Date</th>
                                 <th style="width: 10%">Action</th>
@@ -93,6 +97,7 @@
                         <tfoot>
                             <tr>
                                 <th>STT</th>
+                                <th>Image</th>
                                 <th>Destination Name</th>
                                 <th>Visit Date</th>
                                 <th>Action</th>
@@ -103,6 +108,7 @@
                             {
                                 <tr>
                                     <td>@(i + 1)</td>
+                                    <td><img src="~/assetPrivate/img/destination/@Model.Destinations[i].Image" alt="@Model.Destinations[i].Image" style="width:150px;height:100px; object-fit:cover" /></td>
                                     <td>@Model.Destinations[i].Name</td>
                                     <td>@Model.Destinations[i].visitDate</td>
                                     <td>

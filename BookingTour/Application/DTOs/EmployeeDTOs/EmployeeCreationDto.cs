@@ -17,7 +17,7 @@ namespace Application.DTOs.EmployeeDTOs
 
         [Required(ErrorMessage = "Vui lòng chọn vị trí!")]
         public string Position { get; set; }
-
+        public string? Image { get; set; }
         public Guid AccountID { get; set; } 
 
         [Required(ErrorMessage = "Vui lòng nhập email!")]

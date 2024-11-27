@@ -31,6 +31,7 @@ namespace Presentation.Areas.Admin.Models
         [Required(ErrorMessage = "Vui lòng chọn phường/xã!")]
         public string SelectedWard { get; set; }
 
+        public string? Image {  get; set; }
         public List<SelectListItem> Cities { get; set; } = new();
         public List<SelectListItem> Districts { get; set; } = new();
         public List<SelectListItem> Wards { get; set; } = new();

@@ -35,7 +35,7 @@ namespace Presentation.Areas.Admin.Controllers
                     LastName = c.LastName,
                     Position = c.Position,
                     Address = c.Address,
-
+                    Image = c.Image,
                 };
                 employeesViewModel.Add(employeeModelView);
             }
@@ -71,15 +71,12 @@ namespace Presentation.Areas.Admin.Controllers
                 TempData["NotificationTitle"] = "Thất bại!";
                 TempData["NotificationMessage"] = "Không thể tạo tài khoản hoặc email đã tồn tại !";
 
-                return View();
-
+                return View(employee);
             }
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = $"Dữ liệu nhập không hợp lệ";
-
-
-            return View();
+            return View(employee);
         }
 
 
@@ -96,7 +93,7 @@ namespace Presentation.Areas.Admin.Controllers
                 TempData["NotificationMessage"] = $"Không tìm thấy dữ liệu địa điểm id: {EmployeeID}";
                 return RedirectToAction("Index");
             }
-            var employeeViewData = new EmployeeViewModel
+            var employeeViewData = new EmployeeUpdateDto
             {
                 EmployeeID = employee.EmployeeID,
                 FirstName = employee.FirstName,
@@ -105,6 +102,7 @@ namespace Presentation.Areas.Admin.Controllers
                 Address = employee.Address,
                 Email = employee.Email,
                 Phone = employee.Phone,
+                Image = employee.Image,
             };
 
             return View(employeeViewData);
@@ -113,12 +111,12 @@ namespace Presentation.Areas.Admin.Controllers
         // POST: /Employee/Update?{customer_id}
         [HttpPost]
         [Authorize(Policy = "employee-update")]
-        public async Task<IActionResult> Update(Guid EmployeeID, EmployeeUpdateDto employee)
+        public async Task<IActionResult> Update(EmployeeUpdateDto employee)
         {
 
             if (ModelState.IsValid)
             {
-                await _employeeService.UpdateAsync(EmployeeID, employee);
+                await _employeeService.UpdateAsync(employee.EmployeeID, employee);
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành công!";
                 TempData["NotificationMessage"] = "Cập nhật thông tin nhân viên thành công";
@@ -127,7 +125,7 @@ namespace Presentation.Areas.Admin.Controllers
             }
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
-            TempData["NotificationMessage"] = $"Không tìm thấy nhân viên {EmployeeID}";
+            TempData["NotificationMessage"] = $"Không tìm thấy nhân viên {employee.LastName} {employee.FirstName}";
             return View();
         }
 

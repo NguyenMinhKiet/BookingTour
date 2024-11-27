@@ -35,6 +35,14 @@
 <form asp-action="Create" method="post">
 
     <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="mt-3">
+        <img id="imagePreview" src="#" alt="Image Preview" style="max-width: 300px; display: none; object-fit:cover">
+    </div>
+    <div class="form-group">
+        <label asp-for="Image"></label>
+        <input asp-for="Image" type="file" class="form-control" placeholder="Chọn hình ..." onchange="previewImage(event)">
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
     <div class="form-group">
         <label asp-for="Title"></label>
         <input asp-for="Title" type="text" class="form-control" id="Title" name="Title" placeholder="Nhập tựa đề của tour ..." Required>
@@ -60,7 +68,7 @@
 
     <div class="form-group">
         <label asp-for="Price"></label>
-        <input asp-for="Price" type="decimal" class="form-control" id="Price" name="Price"  Required>
+        <input asp-for="Price" type="number" class="form-control" id="Price" name="Price" Required>
         <span asp-validation-for="Price" class="text-danger"></span>
     </div>
 
@@ -107,3 +115,26 @@
     <button type="submit" class="btn btn-primary">Lưu</button>
     <a asp-area="Admin" asp-controller="Tour" asp-action="Index" class="btn btn-secondary">Hủy</a>
 </form>
+@section script
+{
+    <script>
+        function previewImage(event) {
+            const input = event.target;
+            const preview = document.getElementById('imagePreview');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.src = '#';
+                preview.style.display = 'none';
+            }
+        }
+    </script>
+}

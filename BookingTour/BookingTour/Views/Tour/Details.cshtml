@@ -111,7 +111,7 @@
                                             <div class="card-header">
                                                 <div class="d-flex align-items-center">
                                                     <!-- Hình ảnh -->
-                                                    <img src="//cdn2.ivivu.com/2020/06/08/11/ivivu-canh-dong-muoi-nd-158x100.gif"
+                                                    <img src="~/assetPrivate/img/hotel/@Model.Hotels[i].Image"
                                                         alt="" class="img-thumbnail" width="150" height="150"
                                                         style="object-fit: cover;">
 
@@ -155,7 +155,7 @@
                                             <div class="card-header">
                                                 <div class="d-flex align-items-center">
                                                     <!-- Hình ảnh -->
-                                                    <img src="//cdn2.ivivu.com/2020/06/08/11/ivivu-canh-dong-muoi-nd-158x100.gif"
+                                                        <img src="~/assetPrivate/img/destination/@Model.Destinations[i].Image"
                                                         alt="" class="img-thumbnail" width="150" height="150"
                                                         style="object-fit: cover;">
 
@@ -331,7 +331,7 @@
                                                     <a asp-action="Details" asp-controller="Tour" asp-route-TourID="@Model.AnotherTour[j].TourID"
                                                        class="text-decoration-none">
                                                         <div class="card card-size">
-                                                            <img src="https://via.placeholder.com/150" class="card-img-top" alt="Tour image">
+                                                            <img src="~/assetPrivate/img/tour/@Model.AnotherTour[j].Image" class="card-img-top" alt="Tour image">
                                                             <div class="card-body">
                                                                 <h5 class="card-title">@Model.AnotherTour[j].Title</h5>
                                                                 <p class="card-text">@Model.AnotherTour[j].Description</p>

@@ -50,6 +50,7 @@ namespace Presentation.Areas.Admin.Controllers
                 Phone = x.Employee.Phone,
                 Email = x.Employee.Email,
                 Position = x.Employee.Position,
+                Image = x.Employee.Image,
 
             }).ToList();
 
@@ -69,7 +70,7 @@ namespace Presentation.Areas.Admin.Controllers
             var employeesViewModel = employees.Select(i => new TourDetailEmployeeViewModel
             {
                 EmployeeID = i.EmployeeID,
-                FullName = i.FirstName +" " +i.LastName,
+                FullName = i.Position + " - " + i.FirstName + " " +i.LastName,
 
             }).ToList();
             var employeesSelectList = new SelectList(employeesViewModel, "EmployeeID", "FullName");

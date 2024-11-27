@@ -73,9 +73,10 @@ builder.Services.AddScoped<ITourHotelService, TourHotelService>();
 
 // Đăng ký các seed data
 builder.Services.AddScoped<RoleSeed>();
-builder.Services.AddScoped<AccountAdminSeed>();
 builder.Services.AddScoped<TourSeed>();
 builder.Services.AddScoped<DestinationSeed>();
+builder.Services.AddScoped<HotelSeed>();
+builder.Services.AddScoped<EmployeeSeed>();
 
 // Cấu hình Authorization
 builder.Services.AddAuthorization(options =>
@@ -227,10 +228,13 @@ using (var scope = app.Services.CreateScope())
     await roleSeed.SeedRolesAsync();
 
     var userManager = services.GetRequiredService<UserManager<Account>>();
-    await AccountAdminSeed.Initialize(services, userManager);
+    var roleManager = services.GetRequiredService<RoleManager<Role>>();
 
     DestinationSeed.SeedDestinationsAsync(context).Wait();
     TourSeed.SeedToursAsync(context).Wait();
+    HotelSeed.SeedHotelsAsync(context).Wait();
+
+    EmployeeSeed.SeedEmployeesAsync(context,userManager, roleManager).Wait();
 }
 
 app.Run();

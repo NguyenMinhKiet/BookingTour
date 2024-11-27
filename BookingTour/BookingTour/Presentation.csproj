@@ -36,6 +36,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="wwwroot\assetPrivate\img\hotel\" />
   </ItemGroup>
 
   <ItemGroup>

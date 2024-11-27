@@ -28,19 +28,21 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th class="col-1">STT</th>
-                                <th class="col-2">Name</th>
-                                <th class="col-2">Description</th>
-                                <th class="col-1">Star Number</th>
-                                <th class="col-2">Address</th>
-                                <th class="col-1">City</th>
-                                <th class="col-1">District</th>
-                                <th class="col-1">Ward</th>
+                                <th>STT</th>
+                                <td>Image</td>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Star Number</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>District</th>
+                                <th>Ward</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>STT</th>
+                                <td>Image</td>
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Star Number</th>
@@ -55,6 +57,7 @@
                             {
                                 <tr>
                                     <td>@(i + 1)</td>
+                                    <td><img src="~/assetPrivate/img/hotel/@Model[i].Image" alt="@Model[i].Image" style="width:150px;height:100px; object-fit:cover" /></td>
                                     <td>@Model[i].Name</td>
                                     <td>@Model[i].Description</td>
                                     <td>@Model[i].StarRating</td>
@@ -91,20 +94,22 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th class="w-5">STT</th>
-                                <th class="w-15">Name</th>
-                                <th class="w-20">Description</th>
-                                <th class="w-10">Star Number</th>
-                                <th class="w-10">Address</th>
-                                <th class="w-10">City</th>
-                                <th class="w-10">District</th>
-                                <th class="w-10">Ward</th>
-                                <th class="w-10">Action</th>
+                                <th>STT</th>
+                                <td>Image</td>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Star Number</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>District</th>
+                                <th>Ward</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>STT</th>
+                                <td>Image</td>
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Star Number</th>
@@ -120,6 +125,7 @@
                             {
                                 <tr>
                                     <td>@(i + 1)</td>
+                                    <td><img src="~/assetPrivate/img/hotel/@Model[i].Image" alt="@Model[i].Image" style="width:150px;height:100px; object-fit:cover" /></td>
                                     <td>@Model[i].Name</td>
                                     <td>@Model[i].Description</td>
                                     <td>@Model[i].StarRating</td>

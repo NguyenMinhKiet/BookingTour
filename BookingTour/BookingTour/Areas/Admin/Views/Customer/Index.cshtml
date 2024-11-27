@@ -28,7 +28,8 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>STT</th>
+                                <th>Image</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Address</th>
@@ -36,20 +37,22 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>ID</th>
+                                <th>STT</th>
+                                <th>Image</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Address</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach (var customer in Model)
+                            @for(int i = 0;i<Model.Count;i++)
                             {
                                 <tr>
-                                    <td>@customer.CustomerID</td>
-                                    <td>@customer.FirstName</td>
-                                    <td>@customer.LastName</td>
-                                    <td>@customer.Address</td>
+                                    <td>@(i+1)</td>
+                                    <td><img src="~/assetPrivate/img/customer/@Model[i].Image" alt="@Model[i].Image" style="width:100px;height:100px; object-fit:cover" /></td>
+                                    <td>@Model[i].FirstName</td>
+                                    <td>@Model[i].LastName</td>
+                                    <td>@Model[i].Address</td>
                                 </tr>
                             }
                         </tbody>
@@ -79,6 +82,8 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
+                                <th>STT</th>
+                                <th>Image</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Address</th>
@@ -87,6 +92,8 @@
                         </thead>
                         <tfoot>
                             <tr>
+                                <th>STT</th>
+                                <th>Image</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Address</th>
@@ -94,26 +101,28 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach (var customer in Model)
+                            @for (int i = 0; i < Model.Count; i++)
                             {
                                 <tr>
-                                    <td>@customer.FirstName</td>
-                                    <td>@customer.LastName</td>
-                                    <td>@customer.Address</td>
+                                    <td>@(i + 1)</td>
+                                    <td><img src="~/assetPrivate/img/customer/@Model[i].Image" alt="@Model[i].Image" style="width:100px;height:100px; object-fit:cover" /></td>
+                                    <td>@Model[i].FirstName</td>
+                                    <td>@Model[i].LastName</td>
+                                    <td>@Model[i].Address</td>
                                     <td>
                                         <div class="form-button-action">
-                                            <a class="btn btn-link btn-primary" type="button"
-                                            asp-area="Admin"
-                                                    asp-route-CustomerID=@customer.CustomerID
-                                                    asp-controller="Customer"
-                                                    asp-action="Update">
+                                            <a class="btn btn-link btn-primary"
+                                               asp-area="Admin"
+                                               asp-route-CustomerID=@Model[i].CustomerID
+                                               asp-controller="Customer"
+                                               asp-action="Update">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a class="btn btn-link btn-danger " type="button"
+                                            <a class="btn btn-link btn-danger"
                                                asp-area="Admin"
-                                                   asp-route-CustomerID=@customer.CustomerID
-                                                   asp-controller="Customer"
-                                                   asp-action="Delete">
+                                               asp-route-CustomerID=@Model[i].CustomerID
+                                               asp-controller="Customer"
+                                               asp-action="Delete">
                                                 <i class="fa fa-times"></i>
                                             </a>
                                         </div>

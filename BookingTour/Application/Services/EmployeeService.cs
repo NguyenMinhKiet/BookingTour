@@ -25,7 +25,8 @@ namespace Application.Services
                 Address = dto.Address.Trim(),
                 Phone = dto.Phone.Trim(),
                 Email = dto.Email.Trim(),
-                AccountID = dto.AccountID
+                AccountID = dto.AccountID,
+                Image = dto.Image ?? "User_default.jpg"
             };
             await _employeeRepository.AddAsync(employee);
             return employee;
@@ -71,6 +72,7 @@ namespace Application.Services
                 employee.Position = dto.Position;
                 employee.Address = dto.Address;
                 employee.Phone = dto.Phone;
+                employee.Image = dto.Image ?? "User_default.jpg";
                 await _employeeRepository.UpdateAsync(employee);
             }
         }

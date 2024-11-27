@@ -35,20 +35,22 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th class="w-5">STT</th>
-                                <th class="w-15">Name</th>
-                                <th class="w-15">Description</th>
-                                <th class="w-10">Category</th>
-                                <th class="w-15">Address</th>
-                                <th class="w-10">City</th>
-                                <th class="w-10">District</th>
-                                <th class="w-10">Ward</th>
-                                <th class="w-10">Country</th>
+                                <th>STT</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>District</th>
+                                <th>Ward</th>
+                                <th>Country</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th >STT</th>
+                                <th>Image</th>
                                 <th >Name</th>
                                 <th >Description</th>
                                 <th >Category</th>
@@ -64,6 +66,7 @@
                             {
                                 <tr>
                                     <td>@(i+1)</td>
+                                    <td><img src="~/assetPrivate/img/destination/@Model[i].Image" alt="@Model[i].Image" style="width:150px;height:100px; object-fit:cover" /></td>
                                     <td>@Model[i].Name</td>
                                     <td>@Model[i].Description</td>
                                     <td>@Model[i].Category</td>
@@ -102,25 +105,27 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th class="w-5">STT</th>
-                                <th class="w-10">Name</th>
-                                <th class="w-15">Description</th>
-                                <th class="w-10">Category</th>
-                                <th class="w-10">Address</th>
-                                <th class="w-10">City</th>
-                                <th class="w-10">District</th>
-                                <th class="w-10">Ward</th>
-                                <th class="w-10">Country</th>
+                                <th>STT</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>District</th>
+                                <th>Ward</th>
+                                <th>Country</th>
                                 <th class="w-10">Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>STT</th>
+                                <th>Image</th>
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Category</th>
-                                <th> Address</th>
+                                <th>Address</th>
                                 <th>City</th>
                                 <th>District</th>
                                 <th>Ward</th>
@@ -133,6 +138,7 @@
                             {
                                 <tr>
                                     <td>@(i + 1)</td>
+                                    <td><img src="~/assetPrivate/img/destination/@Model[i].Image" alt="@Model[i].Image" style="width:150px;height:100px; object-fit:cover" /></td>
                                     <td>@Model[i].Name</td>
                                     <td>@Model[i].Description</td>
                                     <td>@Model[i].Category</td>

@@ -25,7 +25,8 @@ namespace Application.Services
                 EndDate = dto.EndDate,
                 AvailableSeats = dto.AvailableSeats,
                 Category = dto.Category,
-                City = dto.City  
+                City = dto.City,
+                Image = dto.Image ?? "default.jpg",
             };
 
             await _tourRepository.AddAsync(tour);
@@ -61,6 +62,7 @@ namespace Application.Services
                 tour.AvailableSeats = dto.AvailableSeats;
                 tour.Category = dto.Category.Trim();
                 tour.City = dto.City.Trim();
+                tour.Image = dto.Image ?? "default.jpg";
 
                 await _tourRepository.UpdateAsync(tour);
 

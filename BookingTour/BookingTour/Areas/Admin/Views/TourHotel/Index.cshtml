@@ -36,6 +36,7 @@
                         <thead>
                             <tr>
                                 <th class="w-5">STT</th>
+                                <th>Image</th>
                                 <th class="w-15">Name</th>
                                 <th class="w-20">Address</th>
                                 <th class="w-10">City</th>
@@ -48,6 +49,7 @@
                         <tfoot>
                             <tr>
                                 <th>STT</th>
+                                <th>Image</th>
                                 <th>Name</th>
                                 <th>Address</th>
                                 <th>City</th>
@@ -62,6 +64,7 @@
                             {
                                 <tr>
                                     <td>@(i + 1)</td>
+                                    <td><img src="~/assetPrivate/img/hotel/@Model.Hotels[i].hotel.Image" alt="@Model.Hotels[i].hotel.Image" style="width:150px;height:100px; object-fit:cover" /></td>
                                     <td>@Model.Hotels[i].hotel.Name</td>
                                     <td>@Model.Hotels[i].hotel.Address</td>
                                     <td>@Model.Hotels[i].hotel.SelectedCity</td>
@@ -100,6 +103,7 @@
                         <thead>
                             <tr>
                                 <th class="w-5">STT</th>
+                                <th>Image</th>
                                 <th class="w-15">Name</th>
                                 <th class="w-20">Address</th>
                                 <th class="w-10">City</th>
@@ -113,6 +117,7 @@
                         <tfoot>
                             <tr>
                                 <th>STT</th>
+                                <th>Image</th>
                                 <th>Name</th>
                                 <th>Address</th>
                                 <th>City</th>
@@ -128,6 +133,7 @@
                             {
                                 <tr>
                                     <td>@(i + 1)</td>
+                                    <td><img src="~/assetPrivate/img/hotel/@Model.Hotels[i].hotel.Image" alt="@Model.Hotels[i].hotel.Image" style="width:150px;height:100px; object-fit:cover" /></td>
                                     <td>@Model.Hotels[i].hotel.Name</td>
                                     <td>@Model.Hotels[i].hotel.Address</td>
                                     <td>@Model.Hotels[i].hotel.SelectedCity</td>
