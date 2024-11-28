@@ -34,35 +34,37 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>STT</th>
                                 <th>Booking ID</th>
                                 <th>Method</th>
+                                <th>Total</th>
                                 <th>Status</th>
                                 <th>CreateAt</th>
                                 <th>ModifyAt</th>
                             </tr>
-                            </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>ID</th>
+                                <th>STT</th>
                                 <th>Booking ID</th>
                                 <th>Method</th>
+                                <th>Total</th>
                                 <th>Status</th>
                                 <th>CreateAt</th>
                                 <th>ModifyAt</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach (var i in Model)
+                            @for(int i = 0; i < Model.Count; i++)
                             {
                                 <tr>
-                                    <td>@i.PaymentID</td>
-                                    <td>@i.BookingID</td>
-                                    <td>@i.Method</td>
-                                    <td>@i.Status</td>
-                                    <td>@i.CreateAt</td>
-                                    <td>@i.ModifyAt</td>
+                                    <td>@(i+1)</td>
+                                    <td>@Model[i].BookingID</td>
+                                    <td>@Model[i].Method</td>
+                                    <td>@Model[i].Total</td>
+                                    <td>@Model[i].Status</td>
+                                    <td>@Model[i].CreateAt</td>
+                                    <td>@Model[i].ModifyAt</td>
                                 </tr>
                             }
                         </tbody>
@@ -85,8 +87,10 @@
                            class="display table table-striped table-hover">
                         <thead>
                             <tr>
+                                <th>STT</th>
                                 <th>Booking ID</th>
                                 <th>Method</th>
+                                <th>Total</th>
                                 <th>Status</th>
                                 <th>CreateAt</th>
                                 <th>ModifyAt</th>
@@ -95,8 +99,10 @@
                         </thead>
                         <tfoot>
                             <tr>
+                                <th>STT</th>
                                 <th>Booking ID</th>
                                 <th>Method</th>
+                                <th>Total</th>
                                 <th>Status</th>
                                 <th>CreateAt</th>
                                 <th>ModifyAt</th>
@@ -104,26 +110,28 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach (var i in Model)
+                            @for (int i = 0; i < Model.Count; i++)
                             {
                                 <tr>
-                                    <td>@i.BookingID</td>
-                                    <td>@i.Method</td>
-                                    <td>@i.Status</td>
-                                    <td>@i.CreateAt</td>
-                                    <td>@i.ModifyAt</td>
+                                    <td>@(i + 1)</td>
+                                    <td>@Model[i].BookingID</td>
+                                    <td>@Model[i].Method</td>
+                                    <td>@Model[i].Total</td>
+                                    <td>@Model[i].Status</td>
+                                    <td>@Model[i].CreateAt</td>
+                                    <td>@Model[i].ModifyAt</td>
                                     <td>
                                         <div class="form-button-action">
                                             <a class="btn btn-link btn-primary" type="button"
                                                asp-area="Admin"
-                                               asp-route-PaymentID=@i.PaymentID
+                                               asp-route-PaymentID=@Model[i].PaymentID
                                                asp-controller="Payment"
                                                asp-action="Update">
                                                 <i class="fa fa-edit"></i>
                                             </a>
                                             <a class="btn btn-link btn-danger " type="button"
                                                asp-area="Admin"
-                                               asp-route-CustomerID=@i.PaymentID
+                                               asp-route-CustomerID=@Model[i].PaymentID
                                                asp-controller="Payment"
                                                asp-action="Delete">
                                                 <i class="fa fa-times"></i>

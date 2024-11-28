@@ -24,20 +24,11 @@ namespace Infrastructure.Repositories
                 PaymentID = Guid.NewGuid(),
                 BookingID = booking.BookingID,
                 Status = false,
-                Method = "Tiền Mặt"
-
+                Method = "Tiền Mặt",
+                Total = booking.TotalPrice
+                
             };
 
-            //var feedback = new Feedback
-            //{
-            //    FeedbackID = Guid.NewGuid(),
-            //    TourID = booking.TourID,
-            //    CustomerID = booking.CustomerID,
-            //    Comments = "",
-            //    Rating = 5
-            //};
-
-            //await _context.Feedbacks.AddAsync(feedback);
             await _context.Payments.AddAsync(payment);
             await _context.SaveChangesAsync();
         }

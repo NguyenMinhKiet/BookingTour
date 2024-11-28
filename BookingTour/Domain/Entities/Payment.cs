@@ -8,6 +8,7 @@ namespace Domain.Entities
         public Guid BookingID { get; set; }
         public string Method { get; set; }
         public bool Status { get; set; }
+        public decimal Total { get; set; }
         public DateTime CreateAt { get; set; }
         public DateTime ModifyAt { get; set; }
 

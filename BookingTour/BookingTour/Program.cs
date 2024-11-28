@@ -55,6 +55,7 @@ builder.Services.AddScoped<ITourEmployeeRepository, TourEmployeeRepository>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IHotelRepository, HotelRepository>();
 builder.Services.AddScoped<ITourHotelRepository, TourHotelRepository>();
+builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
 // Đăng ký các service
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
@@ -70,6 +71,7 @@ builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<ILocationService, LocationService>();
 builder.Services.AddScoped<IHotelService, HotelService>();
 builder.Services.AddScoped<ITourHotelService, TourHotelService>();
+builder.Services.AddScoped<IDashboardService, DashboardService>();
 
 // Đăng ký các seed data
 builder.Services.AddScoped<RoleSeed>();

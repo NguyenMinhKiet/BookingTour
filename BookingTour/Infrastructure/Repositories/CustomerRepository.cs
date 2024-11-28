@@ -47,6 +47,12 @@ namespace Infrastructure.Repositories
             return await _context.Customers.FindAsync(customer_id);
         }
 
+        public async Task<Customer> GetByUserID(Guid UserID)
+        {
+            return  _context.Customers.Where(x => x.AccountID == UserID)
+                .FirstOrDefault();
+        }
+
         public async Task UpdateAsync(Customer customer)
         {
             _context.Customers.Update(customer);

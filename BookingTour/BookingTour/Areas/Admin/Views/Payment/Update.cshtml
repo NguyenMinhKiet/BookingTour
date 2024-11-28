@@ -1,4 +1,4 @@
-﻿@model Presentation.Areas.Admin.Models.PaymentViewModel
+﻿@model Application.DTOs.PaymentDTOs.PaymentUpdateDto
 
 @{
     ViewData["Title"] = "Chỉnh sửa thông tin thanh toán";
@@ -43,6 +43,12 @@
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input asp-for="PaymentID" type="hidden" class="form-control" id="PaymentID" name="PaymentID" value="@Model.PaymentID">
     <input asp-for="BookingID" type="hidden" class="form-control" id="BookingID" name="BookingID" value="@Model.BookingID">
+
+    <div class="form-group">
+        <label asp-for="Total"></label>
+        <input asp-form="Total" type="decimal" readonly/>
+        <span asp-validation-for="Method" class="text-danger"></span>
+    </div>
 
     <div class="form-group">
         <label asp-for="Method"></label>

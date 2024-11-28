@@ -29,7 +29,6 @@
                 <div class="card-body">
                     <h2>Thông tin khách hàng</h2>
                         <form method="post" asp-action="Create" asp-controller="Booking" asp-route-TourID="@Model.TourData.TourID" asp-route-CustomerID="@Model.CustomerData.CustomerID">
-                            
                             <div class="mb-3">
                             <label  for="FirstName" class="form-label">Họ và tên đệm</label>
                                 <input type="text" class="form-control" id="FirstName" name="FirstName" value="@Model.CustomerData.FirstName" required />

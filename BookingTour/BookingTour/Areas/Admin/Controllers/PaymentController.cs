@@ -28,6 +28,7 @@ namespace Presentation.Areas.Admin.Controllers
                 PaymentID = i.PaymentID,
                 BookingID = i.BookingID,
                 CreateAt = i.CreateAt,
+                Total = i.Total,
                 Method = i.Method,
                 Status = i.Status
             }).ToList();
@@ -60,12 +61,6 @@ namespace Presentation.Areas.Admin.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
-            // Lấy tất cả lỗi từ ModelState và thêm chúng vào TempData để hiển thị
-            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
-            foreach (var error in errors)
-            {
-                ModelState.AddModelError(string.Empty, error);
-            }
             return View(dto);
         }
 
@@ -82,12 +77,13 @@ namespace Presentation.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            var paymentViewModel = new PaymentViewModel
+            var paymentViewModel = new PaymentUpdateDto
             {
                 PaymentID = payment.PaymentID,
                 BookingID = payment.BookingID,
                 Method = payment.Method,
                 Status = payment.Status,
+                Total = payment.Total,
                 CreateAt = payment.CreateAt,
                 ModifyAt = payment.ModifyAt
             };

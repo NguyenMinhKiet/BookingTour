@@ -69,7 +69,7 @@
                                     <td>@Model[i].Description</td>
                                     <td>@Model[i].StartDate</td>
                                     <td>@Model[i].EndDate</td>
-                                    <td>@Model[i].Price</td>
+                                    <td>@string.Format("{0:N0}₫", Model[i].Price)</td>
                                     <td>@Model[i].AvailableSeats</td>
                                     <td>@Model[i].Category</td>
                                     <td>@Model[i].City</td>
@@ -140,7 +140,7 @@
                                     <td>@Model[i].Description</td>
                                     <td>@Model[i].StartDate</td>
                                     <td>@Model[i].EndDate</td>
-                                    <td>@Model[i].Price</td>
+                                    <td>@string.Format("{0:N0}₫", Model[i].Price)</td>
                                     <td>@Model[i].AvailableSeats</td>
                                     <td>@Model[i].Category</td>
                                     <td>@Model[i].City</td>

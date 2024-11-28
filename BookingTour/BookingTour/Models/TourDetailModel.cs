@@ -8,7 +8,7 @@ namespace Presentation.Models
     public class TourDetailModel
     {
         public Guid TourID {  get; set; }
-        public Guid CustomerID { get; set; }
+        public Guid UserID { get; set; }
         public string TourName { get; set; }
         public string Description { get; set; }
         public DateTime StartDate { get; set; }

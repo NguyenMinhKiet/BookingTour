@@ -34,7 +34,7 @@
             <div class="sidebar-logo">
                 <!-- Logo Header -->
                 <div class="logo-header" data-background-color="dark">
-                    <a href="index.html" class="logo">
+                    <a asp-action="Index" asp-controller="Home" asp-area="Admin" class="logo">
                         <img src="~/assets/img/kaiadmin/logo_light.svg"
                              alt="navbar brand"
                              class="navbar-brand"
@@ -57,6 +57,25 @@
             <div class="sidebar-wrapper scrollbar scrollbar-inner">
                 <div class="sidebar-content">
                     <ul class="nav nav-secondary">
+                        <li class="nav-item active">
+                            <a data-bs-toggle="collapse"
+                               href="#dashboard"
+                               class="collapsed"
+                               aria-expanded="false">
+                                <i class="fas fa-home"></i>
+                                <p>Dashboard</p>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="collapse" id="dashboard">
+                                <ul class="nav nav-collapse">
+                                    <li>
+                                        <a asp-action="Dashboard" asp-controller="Home" asp-area="Admin">
+                                            <span class="sub-item">Dashboard System</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                         <li class="nav-section">
                             <span class="sidebar-mini-icon">
                                 <i class="fa fa-ellipsis-h"></i>
@@ -163,19 +182,6 @@
                 <!-- Navbar Header -->
                 <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
                     <div class="container-fluid">
-                        <nav class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <button type="submit" class="btn btn-search pe-1">
-                                        <i class="fa fa-search search-icon"></i>
-                                    </button>
-                                </div>
-                                <input type="text"
-                                       placeholder="Search ..."
-                                       class="form-control" />
-                            </div>
-                        </nav>
-
                         <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
                             <li class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none">
                                 <a class="nav-link dropdown-toggle"
@@ -203,7 +209,7 @@
                                    href="#"
                                    aria-expanded="false">
                                     <div class="avatar-sm">
-                                        <img src="~/assets/img/profile.jpg"
+                                        <img src="~/assetPrivate/img/employee/male_default.png"
                                              alt="..."
                                              class="avatar-img rounded-circle" />
                                     </div>
@@ -213,22 +219,21 @@
                                     </span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-user animated fadeIn">
-                                    <div class="dropdown-user-scroll scrollbar-outer">
-                                    <li>
-                                        <div class="user-box">
-                                            <div class="avatar-lg">
-                                                <img src="~/assets/img/profile.jpg"
-                                                     alt="image profile"
-                                                     class="avatar-img rounded" />
+                                    <div class="dropdown-user-scroll scrollbar-outer"></div>
+                                        <li>
+                                            <div class="user-box">
+                                                <div class="avatar-lg">
+                                                    <img src="~/assetPrivate/img/employee/male_default.png"
+                                                         alt="image profile"
+                                                         class="avatar-img rounded" />
+                                                </div>
+                                                <div class="u-text">
+                                                    <h4 id="UserNameText"></h4>
+                                                    <p class="text-muted">@@email@example.com</p>
+                                                <a class="btn btn-xs btn-secondary btn-sm" asp-action="ViewProfile" asp-controller="Account" asp-area="">My Profile</a>
+                                                </div>
                                             </div>
-                                            <div class="u-text">
-                                                <h4 id="UserNameText"></h4>
-                                                <p class="text-muted">hello@example.com</p>
-                                                <a href="profile.html"
-                                                   class="btn btn-xs btn-secondary btn-sm">View Profile</a>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        </li>
                                     <li>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" asp-action="ViewProfile" asp-controller="Account" asp-area="">My Profile</a>
@@ -237,6 +242,7 @@
                                     </li>
                                     
                                     </div>
+                                </ul>
                 </nav>
                 <!-- End Navbar -->
             </div>
@@ -257,12 +263,6 @@
                                    asp-action="Index">
                                     Home
                                 </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"> Help </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"> Licenses </a>
                             </li>
                         </ul>
                     </nav>

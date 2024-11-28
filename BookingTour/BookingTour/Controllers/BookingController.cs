@@ -22,7 +22,7 @@ namespace Presentationx.Controllers
         }
 
         [Authorize(Policy = "booking-add")]
-        public async Task<IActionResult> Create(Guid TourID, Guid CustomerID)
+        public async Task<IActionResult> Create(Guid TourID, Guid UserID)
         {
             
             var tour = await _tourService.GetByIdAsync(TourID);
@@ -35,7 +35,7 @@ namespace Presentationx.Controllers
             }
 
 
-            var customer = await _customerService.GetById(CustomerID);
+            var customer = await _customerService.GetByUserID(UserID);
 
             var customerViewModel = new CustomerViewModel
             {
@@ -45,6 +45,7 @@ namespace Presentationx.Controllers
                 Address = customer.Address,
                 Phone = customer.Phone,
                 Email = customer.Email,
+                AccountID = customer.AccountID,
             };
 
 
@@ -95,6 +96,7 @@ namespace Presentationx.Controllers
                     Address = customer.Address,
                     Phone = customer.Phone,
                     Email = customer.Email,
+                    AccountID = customer.AccountID
                 };
 
 
@@ -127,12 +129,12 @@ namespace Presentationx.Controllers
                 TempData["NotificationType"] = "danger";
                 TempData["NotificationTitle"] = "Thất bại!";
                 TempData["NotificationMessage"] = "Đặt Tour thất bại, Số lượng khách vượt quá số vé còn lại!";
-                return RedirectToAction("Details", "Tour", new { TourID = TourID, CustomerID = CustomerID });
+                return RedirectToAction("Details", "Tour", new { TourID});
             }
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Đặt Tour thất bại, hãy kiểm tra lại các thông tin!";
-            return RedirectToAction("Details", "Tour", new { TourID = TourID, CustomerID = CustomerID });
+            return RedirectToAction("Details", "Tour", new { TourID });
         }
 
         public async Task<IActionResult> History(Guid UserID)

@@ -143,8 +143,8 @@ namespace Presentation.Controllers
                 Image = x.Image,
             }).ToList();
 
-            var customerId =  HttpContext.Session.GetString("UserID");
-            if(customerId == null)
+            var UserID =  HttpContext.Session.GetString("UserID");
+            if(UserID == null)
             {
                 TempData["NotificationType"] = "danger";
                 TempData["NotificationTitle"] = "Thất bại!";
@@ -191,7 +191,7 @@ namespace Presentation.Controllers
                 Description = tour.Description,
                 StartDate = tour.StartDate,
                 EndDate = tour.EndDate,
-                CustomerID = Guid.Parse(customerId),
+                UserID = Guid.Parse(UserID),
                 Destinations = destinationsViewModel,
                 TourBookings = tourBookingViewModel,
                 AnotherTour = anotherTourViewModel,

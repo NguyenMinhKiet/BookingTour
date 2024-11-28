@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Application.Services_Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.Areas.Admin.Controllers
@@ -7,20 +8,14 @@ namespace Presentation.Areas.Admin.Controllers
     [Area("Admin")]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IDashboardService _dashboardService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IDashboardService dashboardService)
         {
-            _logger = logger;
+            _dashboardService = dashboardService;
         }
-
         public IActionResult Index()
         {
-            //String userData = HttpContext.Session.GetString("user");
-            //if (userData != null)
-            //{
-            //    User user = JsonConvert.DeserializeObject<User>(userData);
-            //}
             return View();
         }
 
@@ -32,6 +27,15 @@ namespace Presentation.Areas.Admin.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
+            return View();
+        }
+
+        public IActionResult Dashboard()
+        {
+            ViewBag.RevenueData = _dashboardService.GetRevenueData();
+            ViewBag.NumCustomer = _dashboardService.GetCustomer();
+            ViewBag.NumBooking = _dashboardService.GetBooking();
+            ViewBag.NumTotalRevenue = _dashboardService.GetTotalRevenue();
             return View();
         }
         

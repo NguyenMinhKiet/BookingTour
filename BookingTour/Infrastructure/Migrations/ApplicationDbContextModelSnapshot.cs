@@ -375,6 +375,9 @@ namespace Infrastructure.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
+
                     b.HasKey("PaymentID");
 
                     b.HasIndex("BookingID")

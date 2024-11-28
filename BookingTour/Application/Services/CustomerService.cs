@@ -59,5 +59,10 @@ namespace Application.Services
         {
             await _customerRepository.DeleteAsync(id);
         }
+
+        public async Task<Customer> GetByUserID(Guid UserID)
+        {
+            return await _customerRepository.GetByUserID(UserID);
+        }
     }
 }

@@ -126,7 +126,7 @@ namespace Presentation.Areas.Admin.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = $"Không tìm thấy nhân viên {employee.LastName} {employee.FirstName}";
-            return View();
+            return View(employee);
         }
 
         [Authorize(Policy = "employee-delete")]

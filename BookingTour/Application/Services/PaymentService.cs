@@ -22,7 +22,8 @@ namespace Application.Services
                 BookingID = dto.BookingID,
                 CreateAt = DateTime.Now,
                 Method = dto.Method,
-                Status = dto.Status
+                Status = dto.Status,
+                Total = dto.Total,
 
             };
             await _paymentRepository.AddAsync(payment);
@@ -45,6 +46,7 @@ namespace Application.Services
             if (payment != null)
             {
                 payment.ModifyAt = DateTime.Now;
+                payment.Total = dto.Total;
                 payment.Method = dto.Method;
                 payment.Status = dto.Status;
                 await _paymentRepository.UpdateAsync(payment);

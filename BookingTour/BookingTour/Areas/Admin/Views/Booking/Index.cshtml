@@ -69,7 +69,7 @@
                                     <td>@Model[i].ModifyAt</td>
                                     <td>@Model[i].Adult</td>
                                     <td>@Model[i].Child</td>
-                                    <td>@Model[i].TotalPrice</td>
+                                    <td>@string.Format("{0:N0}₫", Model[i].TotalPrice)</td>
                                 </tr>
                             }
                             
@@ -141,7 +141,7 @@
                                     <td>@Model[i].ModifyAt</td>
                                     <td>@Model[i].Adult</td>
                                     <td>@Model[i].Child</td>
-                                    <td>@Model[i].TotalPrice</td>
+                                    <td>@string.Format("{0:N0}₫", Model[i].TotalPrice)</td>
                                     <td>
                                         <div class="form-button-action">
                                             <a class="btn btn-link btn-primary" type="button"

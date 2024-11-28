@@ -7,6 +7,7 @@ namespace Application.Services_Interface
     public interface ICustomerService
     {
         public Task<Customer> GetById(Guid id);
+        public Task<Customer> GetByUserID(Guid UserID);
 
         public Task<IEnumerable<Customer>> GetAllAsync();
 
