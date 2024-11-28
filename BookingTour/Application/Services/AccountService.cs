@@ -198,8 +198,6 @@ namespace Application.Services
             return user.Id != null ? user.Id : Guid.Empty;
         }
 
-        
-
     }
 
 

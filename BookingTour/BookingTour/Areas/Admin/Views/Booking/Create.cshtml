@@ -8,7 +8,7 @@
         <ul class="breadcrumbs mb-3">
             <li class="nav-home">
                 <a asp-area="Admin"
-                    asp-controller="HomeController"
+                    asp-controller="Home"
                    asp-action="Index">
                     <i class="icon-home"></i>
                 </a>
@@ -20,13 +20,13 @@
                 <a asp-area="Admin" 
                 asp-controller="Booking"
                    asp-action="Index">
-                    Nhân Viên
+                    Bookings
                 </a>
             </li>
             <li class="separator">
                 <i class="icon-arrow-right"></i>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 Create
             </li>
         
@@ -36,14 +36,16 @@
     <form asp-action="Create" method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <label asp-area="Admin"asp-for="CustomerID"></label>
-            <input asp-for="CustomerID" type="text" class="form-control" id="CustomerID" name="CustomerID" Required>
+            <label asp-for="CustomerID"></label>
+        <select asp-for="CustomerID" class="form-select" asp-items="ViewBag.ListCustomer" required>
+                <option value="">-- Chọn Customer --</option>
+                </select>
             <span asp-validation-for="CustomerID" class="text-danger"></span>
         </div>
 
         <div class="form-group">
             <label asp-for="TourID"></label>
-            <select asp-for="TourID" class="form-select" id="TourID" name="TourID" asp-items="ViewBag.ListTour" required>
+            <select asp-for="TourID" class="form-select" asp-items="ViewBag.ListTour" required>
                 <option value="">-- Chọn Tour --</option>
             
             </select>

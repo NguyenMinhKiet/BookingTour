@@ -36,7 +36,7 @@ namespace Presentation.Areas.Admin.Controllers
                 Image = i.Image,
 
             }).ToList();
-
+            ViewData["ActivePage"] = "TourManager";
             return View(toursViewModel);
         }
 
@@ -48,8 +48,8 @@ namespace Presentation.Areas.Admin.Controllers
             var listCityViewModel = listCity.Select(e => new CityViewModel
             {
                 Name = e.Name,
-            }).ToList();
-
+            }).OrderBy(x => x.Name).ToList();
+            ViewData["ActivePage"] = "TourManager";
             ViewData["ListCity"] = listCityViewModel;
             return View();
         }
@@ -74,7 +74,7 @@ namespace Presentation.Areas.Admin.Controllers
             var listCityViewModel = listCity.Select(e => new CityViewModel
             {
                 Name = e.Name,
-            }).ToList();
+            }).OrderBy(x => x.Name).ToList();
 
             ViewData["ListCity"] = listCityViewModel;
             return View(model);
@@ -89,6 +89,7 @@ namespace Presentation.Areas.Admin.Controllers
                 TempData["NotificationType"] = "danger";
                 TempData["NotificationTitle"] = "Thất bại!";
                 TempData["NotificationMessage"] = $"Không tìm thấy Tour ID: {TourID}";
+                ViewData["ActivePage"] = "TourManager";
                 return RedirectToAction("Index");
             }
             var tourViewModel = new TourUpdateDto
@@ -110,8 +111,8 @@ namespace Presentation.Areas.Admin.Controllers
             var listCityViewModel = listCity.Select(e => new CityViewModel
             {
                 Name = e.Name,
-            }).ToList();
-
+            }).OrderBy(x => x.Name).ToList();
+            ViewData["ActivePage"] = "TourManager";
             ViewData["ListCity"] = listCityViewModel;
             return View(tourViewModel);
 
@@ -137,7 +138,7 @@ namespace Presentation.Areas.Admin.Controllers
             var listCityViewModel = listCity.Select(e => new CityViewModel
             {
                 Name = e.Name,
-            }).ToList();
+            }).OrderBy(x => x.Name).ToList();
 
             ViewData["ListCity"] = listCityViewModel;
             return View(dto);

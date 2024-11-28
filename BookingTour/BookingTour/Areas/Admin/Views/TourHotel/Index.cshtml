@@ -16,8 +16,28 @@
         <li class="separator">
             <i class="icon-arrow-right"></i>
         </li>
-        <li class="nav-item">
-            Danh sách
+        <li class="nav-home">
+            <a asp-area="Admin"
+               asp-controller="Tour"
+               asp-action="Index">
+                Tours
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-home ">
+            <a asp-area="Admin"
+               asp-controller="TourHotel"
+               asp-action="Index">
+                @Model.Tour.Title
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-home active">
+            Hotels
         </li>
     </ul>
 </div>
@@ -70,8 +90,8 @@
                                     <td>@Model.Hotels[i].hotel.SelectedCity</td>
                                     <td>@Model.Hotels[i].hotel.SelectedDistrict</td>
                                     <td>@Model.Hotels[i].hotel.SelectedWard</td>
-                                    <td>@Model.Hotels[i].StartDate</td>
-                                    <td>@Model.Hotels[i].EndDate</td>
+                                    <td>@Model.Hotels[i].StartDate.ToString("dd/MM/yyyy HH:mm tt")</td>
+                                    <td>@Model.Hotels[i].EndDate.ToString("dd/MM/yyyy HH:mm tt")</td>
                                 </tr>
                             }
                         </tbody>
@@ -139,15 +159,15 @@
                                     <td>@Model.Hotels[i].hotel.SelectedCity</td>
                                     <td>@Model.Hotels[i].hotel.SelectedDistrict</td>
                                     <td>@Model.Hotels[i].hotel.SelectedWard</td>
-                                    <td>@Model.Hotels[i].StartDate</td>
-                                    <td>@Model.Hotels[i].EndDate</td>
+                                    <td>@Model.Hotels[i].StartDate.ToString("dd/MM/yyyy HH:mm tt")</td>
+                                    <td>@Model.Hotels[i].EndDate.ToString("dd/MM/yyyy HH:mm tt")</td>
                                     <td>
                                         <div class="form-button-action">
                                             <a class="btn btn-link btn-danger " type="button"
                                                asp-area="Admin"
                                                asp-route-TourID="@Model.TourID"
                                                asp-route-HotelID="@Model.Hotels[i].hotel.HotelID"
-                                               asp-controller="TourEmployee"
+                                               asp-controller="TourHotel"
                                                asp-action="Delete">
                                                 <i class="fa fa-times"></i>
                                             </a>

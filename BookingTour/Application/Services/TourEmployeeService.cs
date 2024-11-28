@@ -2,12 +2,6 @@
 using Application.Services_Interface;
 using Domain.Entities;
 using Domain.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Application.Services
 {
     public class TourEmployeeService : ITourEmployeeService
@@ -24,7 +18,7 @@ namespace Application.Services
             var tourEmployee = new TourEmployee()
             {
                 TourID = dto.TourID,
-                EmployeeID = dto.EmployeeID
+                EmployeeID = dto.EmployeeID,
             };
             await _tourEmployeeRepository.AddAsync(tourEmployee);
             return tourEmployee;

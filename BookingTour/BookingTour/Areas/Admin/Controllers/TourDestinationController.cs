@@ -3,6 +3,7 @@ using Application.DTOs.TourDestinationDTOs;
 using Application.Services_Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Presentation.Areas.Admin.Models;
 
 namespace Presentation.Areas.Admin.Controllers
@@ -33,6 +34,7 @@ namespace Presentation.Areas.Admin.Controllers
                 TempData["NotificationType"] = "danger";
                 TempData["NotificationTitle"] = "Thất bại!";
                 TempData["NotificationMessage"] = $"Không tìm thấy TourID: {TourID}!";
+                ViewData["ActivePage"] = "TourManager";
                 return View();
             }
             var destinations = await _tourDestinationService.GetByTourIdAsync(TourID);
@@ -53,9 +55,10 @@ namespace Presentation.Areas.Admin.Controllers
             var tourDestinationViewModel = new TourDestinationViewModel
             {
                 TourID = TourID,
-                TourName = tour.Title,
+                Tour = tour,
                 Destinations = destinationsViewModel
             };
+            ViewData["ActivePage"] = "TourManager";
             return View(tourDestinationViewModel);
         }
 
@@ -73,13 +76,21 @@ namespace Presentation.Areas.Admin.Controllers
                 return View();
                     
             }
-            TempData["TourID"] = TourID; ;
-
             var tourDestinationViewmodel = new TourDestinationCreationDto
             {
                 TourID = TourID,
+                VisitDate = DateTime.Now
             };
 
+            var destinations = await _destinationService.GetByCityAsync(tour.City);
+            var destinationViewModels = destinations.Select(i =>
+            new DestinationViewModel
+            {
+                DestinationID = i.DestinationID,
+                Name = $"{i.Category} - {i.Name}",
+            });
+            ViewBag.Destinations = new SelectList(destinationViewModels, "DestinationID", "Name");
+            ViewData["ActivePage"] = "TourManager";
             return View(tourDestinationViewmodel);
         }
 
@@ -99,7 +110,7 @@ namespace Presentation.Areas.Admin.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
-            return View();
+            return View(dto);
         }
 
         // GET: /TourDestination/Update?{TourID, DestinantionID)
@@ -116,11 +127,13 @@ namespace Presentation.Areas.Admin.Controllers
                     DestinationID = tourDestination.DestinationID,
                     VisitDate = tourDestination.VisitDate
                 };
+                ViewData["ActivePage"] = "TourManager";
                 return View(tourDestinationViewModel);
             }
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = $"Không tìm thấy TourID: {TourID} và DestinationID: {DestinationID}";
+            ViewData["ActivePage"] = "TourManager";
             return RedirectToAction("Index", new { TourID = TourID });
         }
 
@@ -159,8 +172,6 @@ namespace Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> GetDestinationsByTour(Guid TourID)
         {
             var tour = await _tourService.GetByIdAsync(TourID);
-            Console.WriteLine(tour.City);
-
             var destinations = await _destinationService.GetByCityAsync(tour.City);
             var destinationViewModels = destinations.Select(i =>
             new Models.DestinationViewModel

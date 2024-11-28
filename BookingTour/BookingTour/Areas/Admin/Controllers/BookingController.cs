@@ -51,11 +51,24 @@ namespace Presentation.Areas.Admin.Controllers
                 };
                 bookingsViewModel.Add(bookingViewModel);
             }
+            ViewData["ActivePage"] = "TourManager";
             return View(bookingsViewModel);
         }
         [Authorize(Policy = "booking-add")]
         public async Task<IActionResult> Create()
         {
+            var customers = await _customerService.GetAllAsync();
+            if (customers != null)
+            {
+                var listCustomer = customers.Select(customer => new CustomerViewModel
+                {
+                    CustomerID = customer.CustomerID,
+                    FirstName = $"{customer.FirstName} {customer.LastName}"
+                }).ToList();
+
+                ViewBag.ListCustomer = new SelectList(listCustomer, "CustomerID", "FirstName");
+            }
+
             var tours = await _tourService.GetAllAsync();
             if (tours != null)
             {
@@ -67,6 +80,7 @@ namespace Presentation.Areas.Admin.Controllers
 
                 ViewBag.ListTour = new SelectList(listTour, "TourID", "Title");
             }
+            ViewData["ActivePage"] = "TourManager";
             return View();
         }
 
@@ -87,13 +101,7 @@ namespace Presentation.Areas.Admin.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Đặt Tour thất bại, hãy kiểm tra lại các thông tin!";
-            // Lấy tất cả lỗi từ ModelState và thêm chúng vào TempData để hiển thị
-            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
-            foreach (var error in errors)
-            {
-                ModelState.AddModelError(string.Empty, error);
-            }
-            return View();
+            return View(dto);
         }
         [Authorize(Policy = "booking-update")]
         public async Task<IActionResult> Update(Guid BookingID)
@@ -112,12 +120,13 @@ namespace Presentation.Areas.Admin.Controllers
                     ModifyAt = booking.ModifyAt,
                     TotalPrice = booking.TotalPrice
                 };
-
+                ViewData["ActivePage"] = "TourManager";
                 return View(bookingViewModel);
             }
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = $"Không thể lấy giữ liệu từ id: {BookingID}";
+            ViewData["ActivePage"] = "TourManager";
             return RedirectToAction("Index");
         }
 
@@ -147,12 +156,6 @@ namespace Presentation.Areas.Admin.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ!";
-            // Lấy tất cả lỗi từ ModelState và thêm chúng vào TempData để hiển thị
-            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
-            foreach (var error in errors)
-            {
-                ModelState.AddModelError(string.Empty, error);
-            }
             return RedirectToAction("Index");
         }
 

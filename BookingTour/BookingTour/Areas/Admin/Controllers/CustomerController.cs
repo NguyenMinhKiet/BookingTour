@@ -1,5 +1,6 @@
 ﻿using Application.DTOs.CustomerDTOs;
 using Application.Services_Interface;
+using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Areas.Admin.Models;
@@ -43,7 +44,7 @@ namespace Presentation.Areas.Admin.Controllers
                 // Thêm vào danh sách
                 customersViewModel.Add(customerViewModel);
             }
-
+            ViewData["ActivePage"] = "UserManager";
             // Trả về View với danh sách CustomerViewModel
             return View(customersViewModel);
         }
@@ -52,6 +53,7 @@ namespace Presentation.Areas.Admin.Controllers
         // GET: /Customer/Create
         public IActionResult Create()
         {
+            ViewData["ActivePage"] = "UserManager";
             return View();
         }
 
@@ -73,12 +75,9 @@ namespace Presentation.Areas.Admin.Controllers
 
                     return RedirectToAction("Index");
                 }
-
-                // Xử lý nếu tạo tài khoản không thành công
-                foreach (var error in accountResult.Result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+                TempData["NotificationType"] = "danger";
+                TempData["NotificationTitle"] = "Thất bại!";
+                TempData["NotificationMessage"] = $"Tài khoản {customer.Email} đã tồn tại!";
                 return View(customer);
 
             }
@@ -98,7 +97,8 @@ namespace Presentation.Areas.Admin.Controllers
                 TempData["NotificationType"] = "danger";
                 TempData["NotificationTitle"] = "Thất bại!";
                 TempData["NotificationMessage"] = $"Không thể lấy giữ liệu từ id: {CustomerID}";
-                return View();
+                ViewData["ActivePage"] = "UserManager";
+                return RedirectToAction("Index");
             }
             var customerViewModel = new CustomerUpdateDto
             {
@@ -110,16 +110,41 @@ namespace Presentation.Areas.Admin.Controllers
                 Email = customer.Email,
                 Image = customer.Image,
             };
+            ViewData["ActivePage"] = "UserManager";
             return View(customerViewModel);
         }
 
         // POST: /Customer/Update?{CustomerID}
         [HttpPost]
         [Authorize(Policy = "customer-update")]
-        public async Task<IActionResult> Update(CustomerUpdateDto customer)
+        public async Task<IActionResult> Update(CustomerUpdateDto customer, IFormFile imageFile)
         {
             if (ModelState.IsValid)
             {
+                var customerData = await _customerService.GetById(customer.CustomerID);
+                if (customerData == null)
+                {
+                    TempData["NotificationType"] = "danger";
+                    TempData["NotificationTitle"] = "Thất bại!";
+                    TempData["NotificationMessage"] = $"Không tìm thấy Customer ID: {customerData.CustomerID}";
+                    return RedirectToAction("Index");
+                }
+                // Kiểm tra nếu có ảnh mới được tải lên
+                if (imageFile != null && imageFile.Length > 0)
+                {
+                    var filePath = Path.Combine("wwwroot/assetPrive/img/customer/", imageFile.FileName); // Đường dẫn lưu ảnh
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await imageFile.CopyToAsync(stream);
+                    }
+                    customer.Image = imageFile.FileName;
+                }
+                else
+                {
+                    // Nếu không có ảnh mới, giữ lại ảnh cũ
+                    customer.Image = customer.Image ?? customerData.Image; // Nếu model.Image là null thì giữ ảnh cũ
+                }
+
                 await _customerService.UpdateAsync(customer.CustomerID, customer);
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành Công!";

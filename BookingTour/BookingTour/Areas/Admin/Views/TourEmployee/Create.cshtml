@@ -8,7 +8,7 @@
     <ul class="breadcrumbs mb-3">
         <li class="nav-home">
             <a asp-area="Admin"
-            asp-controller="Home"
+               asp-controller="Home"
                asp-action="Index">
                 <i class="icon-home"></i>
             </a>
@@ -16,24 +16,34 @@
         <li class="separator">
             <i class="icon-arrow-right"></i>
         </li>
-        <li class="nav-item">
+        <li class="nav-home">
             <a asp-area="Admin"
-            asp-controller="TourEmployee"
+               asp-controller="Tour"
                asp-action="Index">
-                Nhân viên chuyến đi
+                Tours
             </a>
         </li>
         <li class="separator">
             <i class="icon-arrow-right"></i>
         </li>
-        <li class="nav-item">
-            Create
+        <li class="nav-home ">
+            <a asp-area="Admin"
+               asp-controller="TourEmployee"
+               asp-action="Index">
+                @Model.TourID
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-home active">
+             Employee Create
         </li>
     </ul>
 </div>
 
 <form asp-action="Create" method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div asp-validation-summary="All" class="text-danger"></div>
     <input type="hidden" asp-for="TourID" value="@Model.TourID" />
     <div class="form-group">
         <label asp-for="EmployeeID">Chọn nhân viên:</label>
@@ -45,5 +55,5 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Lưu</button>
-    <a asp-area="Admin" asp-controller="Tour" asp-action="Index" class="btn btn-secondary">Hủy</a>
+    <a asp-area="Admin" asp-controller="TourEmployee" asp-action="Index" asp-route-TourID="@Model.TourID" class="btn btn-secondary">Hủy</a>
 </form>

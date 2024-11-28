@@ -3,7 +3,6 @@ using Application.Services_Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Presentation.Areas.Admin.Models;
 
 namespace Presentation.Areas.Admin.Controllers
 {
@@ -38,10 +37,12 @@ namespace Presentation.Areas.Admin.Controllers
                     SelectedDistrict = i.District,
                     SelectedWard = i.Ward,
                     Address = i.Address,
+                    Image = i.Image,    
                 };
             }).ToList();
 
             var destinationsViewModel = (await Task.WhenAll(destinationsViewModelTasks)).ToList();
+            ViewData["ActivePage"] = "TourManager";
             return View(destinationsViewModel);
         }
 
@@ -50,38 +51,25 @@ namespace Presentation.Areas.Admin.Controllers
         public async Task<IActionResult> Create()
         {
             var listCity = await _locationService.LoadAllCitysAsync();
-            
-            var viewModel = new Models.DestinationViewModel
+
+            ViewBag.Cities = listCity.Select(c => new SelectListItem
             {
-                Cities = listCity.Select(c => new SelectListItem
-                {
-                    Value = c.Code,
-                    Text = c.Name
-                }).ToList()
-            };
-            return View(viewModel);
+                Value = c.Code,
+                Text = c.Name
+            }).OrderBy(x=>x.Text).ToList();
+            ViewData["ActivePage"] = "TourManager";
+            return View();
         }
 
 
         // POST: /Destination/Create
         [HttpPost]
         [Authorize(Policy = "destination-add")]
-        public async Task<IActionResult> Create(Models.DestinationViewModel destination)
+        public async Task<IActionResult> Create(DestinationCreationDto destination)
         {
             if (ModelState.IsValid)
             {   
-                var dto = new DestinationDto
-                {
-                    Name = destination.Name,
-                    Description = destination.Description,
-                    Address = destination.Address,
-                    City = destination.SelectedCity,
-                    District = destination.SelectedDistrict,
-                    Ward = destination.SelectedWard,
-                    Country = destination.Country,
-                    Category = destination.Category
-                };
-                await _destinationService.CreateAsync(dto);
+                await _destinationService.CreateAsync(destination);
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành công!";
                 TempData["NotificationMessage"] = "Thêm địa điểm thành công";
@@ -91,7 +79,8 @@ namespace Presentation.Areas.Admin.Controllers
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ!";
             var listCity = await _locationService.LoadAllCitysAsync();
-            destination.Cities = listCity.Select(c => new SelectListItem
+            
+            ViewBag.Cities = listCity.Select(c => new SelectListItem
             {
                 Value = c.Code,
                 Text = c.Name
@@ -111,30 +100,33 @@ namespace Presentation.Areas.Admin.Controllers
                 TempData["NotificationType"] = "danger";
                 TempData["NotificationTitle"] = "Thất bại!";
                 TempData["NotificationMessage"] = $"Không tìm thấy dữ liệu địa điểm id: {DestinationID}";
+                ViewData["ActivePage"] = "TourManager";
                 return RedirectToAction("Index");
             }
-
-            var destinationViewModel = new Models.DestinationViewModel
+            
+            var destinationViewModel = new DestinationUpdateDto
             {
                 DestinationID = destination.DestinationID,
                 Name = destination.Name,
                 Description = destination.Description,
                 Country = destination.Country,
                 Category = destination.Category,
-                SelectedCity = destination.City,
-                SelectedDistrict = destination.District,
-                SelectedWard = destination.Ward,
+                City = destination.City,
+                District = destination.District,
+                Ward = destination.Ward,
                 Address = destination.Address,
+                Image = destination.Image,
             };
+
             var listCity = await _locationService.LoadAllCitysAsync();
-            destinationViewModel.Cities = listCity.Select(c => new SelectListItem
+            ViewBag.Cities = listCity.Select(c => new SelectListItem
             {
                 Value = c.Code,
                 Text = c.Name
-            }).ToList();
-            await GetDistricts(destinationViewModel.SelectedCity);
-            await GetWards(destinationViewModel.SelectedCity, destinationViewModel.SelectedWard);
-
+            }).OrderBy(x => x.Text).ToList();
+            await GetDistricts(destinationViewModel.City);
+            await GetWards(destinationViewModel.City, destinationViewModel.District);
+            ViewData["ActivePage"] = "TourManager";
             return View(destinationViewModel);
         }
 
@@ -142,23 +134,12 @@ namespace Presentation.Areas.Admin.Controllers
         // POST: /Destinantion/Update?{DestinationID}
         [HttpPost]
         [Authorize(Policy = "destination-update")]
-        public async Task<IActionResult> Update(Models.DestinationViewModel destination)
+        public async Task<IActionResult> Update(DestinationUpdateDto destination)
         {
             if (ModelState.IsValid)
             {
-                var dto = new DestinationDto
-                {
-                    DestinationID = destination.DestinationID,
-                    Name = destination.Name,
-                    Description = destination.Description,
-                    Address = destination.Address,
-                    City = destination.SelectedCity,
-                    District = destination.SelectedDistrict,
-                    Ward = destination.SelectedWard,
-                    Country = destination.Country,
-                    Category = destination.Category
-                };
-                await _destinationService.UpdateAsync(dto);
+
+                await _destinationService.UpdateAsync(destination);
 
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành công!";
@@ -168,16 +149,17 @@ namespace Presentation.Areas.Admin.Controllers
             }
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
-            TempData["NotificationMessage"] = $"Không tìm thấy dữ liệu địa điểm id: {destination.DestinationID}";
+            TempData["NotificationMessage"] = $"Dữ liệu không hợp lệ";
 
             var listCity = await _locationService.LoadAllCitysAsync();
-            destination.Cities = listCity.Select(c => new SelectListItem
+
+            ViewBag.Cities = listCity.Select(c => new SelectListItem
             {
                 Value = c.Code,
                 Text = c.Name
-            }).ToList();
-            await GetDistricts(destination.SelectedCity);
-            await GetWards(destination.SelectedCity, destination.SelectedWard);
+            }).OrderBy(x => x.Text).ToList();
+            await GetDistricts(destination.City);
+            await GetWards(destination.City, destination.District);
             return View(destination);
         }
 
@@ -204,7 +186,7 @@ namespace Presentation.Areas.Admin.Controllers
             {
                 Value = d.Name,
                 Text = $"{d.Pre} {d.Name}"
-            }).ToList();
+            }).OrderBy(x => x.Text).ToList();
             Console.WriteLine(districts);
             return Json(districts);
         }
@@ -226,7 +208,7 @@ namespace Presentation.Areas.Admin.Controllers
             {
                 Value = w.Name,
                 Text = $"{w.Pre} {w.Name}"
-            }).ToList();
+            }).OrderBy(x => x.Text).ToList();
 
             return Json(wards);
         }

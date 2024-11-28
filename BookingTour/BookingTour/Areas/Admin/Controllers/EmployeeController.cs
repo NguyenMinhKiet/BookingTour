@@ -39,13 +39,14 @@ namespace Presentation.Areas.Admin.Controllers
                 };
                 employeesViewModel.Add(employeeModelView);
             }
-
+            ViewData["ActivePage"] = "UserManager";
             return View(employeesViewModel);
         }
 
         [Authorize(Policy = "employee-add")]
         public IActionResult Create()
         {
+            ViewData["ActivePage"] = "UserManager";
             return View();
         }
 
@@ -91,6 +92,7 @@ namespace Presentation.Areas.Admin.Controllers
                 TempData["NotificationType"] = "danger";
                 TempData["NotificationTitle"] = "Thất bại!";
                 TempData["NotificationMessage"] = $"Không tìm thấy dữ liệu địa điểm id: {EmployeeID}";
+                ViewData["ActivePage"] = "UserManager";
                 return RedirectToAction("Index");
             }
             var employeeViewData = new EmployeeUpdateDto
@@ -104,7 +106,7 @@ namespace Presentation.Areas.Admin.Controllers
                 Phone = employee.Phone,
                 Image = employee.Image,
             };
-
+            ViewData["ActivePage"] = "UserManager";
             return View(employeeViewData);
         }
 

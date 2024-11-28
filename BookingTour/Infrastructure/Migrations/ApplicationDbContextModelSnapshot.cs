@@ -125,9 +125,12 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("ModifyAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("PaymentID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<decimal>("TotalPrice")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(10,2)")
+                        .HasColumnType("decimal(18,2)")
                         .HasDefaultValue(0m);
 
                     b.Property<Guid>("TourID")
@@ -365,6 +368,9 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("CreateAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("CustomerID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Method")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -382,6 +388,8 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("BookingID")
                         .IsUnique();
+
+                    b.HasIndex("CustomerID");
 
                     b.ToTable("Payments", (string)null);
                 });
@@ -447,7 +455,7 @@ namespace Infrastructure.Migrations
 
                     b.Property<decimal>("Price")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(10,2)")
+                        .HasColumnType("decimal(18,2)")
                         .HasDefaultValue(0m);
 
                     b.Property<DateTime>("StartDate")
@@ -629,7 +637,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.Customer", "Customer")
                         .WithMany("Bookings")
                         .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Tour", "Tour")
@@ -648,7 +656,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.Account", "Account")
                         .WithOne()
                         .HasForeignKey("Domain.Entities.Customer", "AccountID")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Account");
@@ -692,7 +700,15 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Domain.Entities.Customer", "Customer")
+                        .WithMany("Payments")
+                        .HasForeignKey("CustomerID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Booking");
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("Domain.Entities.TourDestination", b =>
@@ -814,6 +830,8 @@ namespace Infrastructure.Migrations
                     b.Navigation("Bookings");
 
                     b.Navigation("Feedbacks");
+
+                    b.Navigation("Payments");
                 });
 
             modelBuilder.Entity("Domain.Entities.Destination", b =>

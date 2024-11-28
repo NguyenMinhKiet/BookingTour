@@ -16,8 +16,24 @@
         <li class="separator">
             <i class="icon-arrow-right"></i>
         </li>
-        <li class="nav-item">
-            Danh sách
+        <li class="nav-home">
+            <a asp-area="Admin"
+               asp-controller="Tour"
+               asp-action="Index">
+                Tours
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-home active">
+            @Model.Tour.Title
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-home active">
+            Employees
         </li>
     </ul>
 </div>
@@ -76,7 +92,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <h4 class="card-title">Thông tin địa điểm tour: @Model.TourName</h4>
+                    <h4 class="card-title">Thông tin địa điểm tour: @Model.Tour.Title</h4>
                     <a class="btn btn-primary btn-round ms-auto"
                        asp-area="Admin"
                        asp-action="Create"

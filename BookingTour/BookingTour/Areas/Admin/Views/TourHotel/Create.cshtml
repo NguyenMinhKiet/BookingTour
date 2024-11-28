@@ -16,18 +16,28 @@
         <li class="separator">
             <i class="icon-arrow-right"></i>
         </li>
-        <li class="nav-item">
+        <li class="nav-home">
             <a asp-area="Admin"
-               asp-controller="TourHotel"
+               asp-controller="Tour"
                asp-action="Index">
-                Hotel Tour
+                Tours
             </a>
         </li>
         <li class="separator">
             <i class="icon-arrow-right"></i>
         </li>
-        <li class="nav-item">
-            Create
+        <li class="nav-home ">
+            <a asp-area="Admin"
+               asp-controller="TourHotel"
+               asp-action="Index">
+                @Model.TourID
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-home active">
+            Hotel Create
         </li>
     </ul>
 </div>
@@ -51,19 +61,19 @@
     <!-- Ngày bắt đầu -->
     <div class="form-group">
         <label asp-for="StartDate">Chọn ngày bắt đầu:</label>
-        <input asp-for="StartDate" type="datetime-local" class="form-control" />
+        <input asp-for="StartDate" type="datetime-local" class="form-control" value="@Model.StartDate.ToString("yyyy-MM-ddTHH:mm")" />
         <span asp-validation-for="StartDate" class="text-danger"></span>
     </div>
 
     <!-- Ngày kết thúc -->
     <div class="form-group">
         <label asp-for="EndDate">Chọn ngày kết thúc:</label>
-        <input asp-for="EndDate" type="datetime-local" class="form-control" />
+        <input asp-for="EndDate" type="datetime-local" class="form-control" value="@Model.EndDate.ToString("yyyy-MM-ddTHH:mm")" />
         <span asp-validation-for="EndDate" class="text-danger"></span>
     </div>
 
     <!-- Nút lưu và hủy -->
     <button type="submit" class="btn btn-primary">Lưu</button>
-    <a asp-area="Admin" asp-controller="Tour" asp-action="Index" class="btn btn-secondary">Hủy</a>
+    <a asp-area="Admin" asp-controller="TourHotel" asp-action="Index" asp-route-TourID="@Model.TourID" class="btn btn-secondary">Hủy</a>
 </form>
 

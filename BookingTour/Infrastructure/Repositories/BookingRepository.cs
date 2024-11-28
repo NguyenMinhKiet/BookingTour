@@ -23,9 +23,12 @@ namespace Infrastructure.Repositories
             {
                 PaymentID = Guid.NewGuid(),
                 BookingID = booking.BookingID,
+                CustomerID = booking.CustomerID,
                 Status = false,
-                Method = "Tiền Mặt",
-                Total = booking.TotalPrice
+                Method = "Tiền mặt",
+                Total = booking.TotalPrice,
+                CreateAt = DateTime.UtcNow,
+                ModifyAt = DateTime.UtcNow, 
                 
             };
 

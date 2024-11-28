@@ -12,7 +12,7 @@ wwwroot\assetPrivate\img\destination\fansipan.jpg
 wwwroot\assetPrivate\img\destination\hang-son-doong.jpg
 wwwroot\assetPrivate\img\destination\hang-sung-sot.jpg
 wwwroot\assetPrivate\img\destination\hoang-cung-hue.jpg
-wwwroot\assetPrivate\img\destination\hoanh-thanh-thang-long.jpg
+wwwroot\assetPrivate\img\destination\hoang-thanh-thang-long.jpg
 wwwroot\assetPrivate\img\destination\ho-guom.jpg
 wwwroot\assetPrivate\img\destination\ho-xuan-huong.jpg
 wwwroot\assetPrivate\img\destination\le-hoi-den-hung.jpg

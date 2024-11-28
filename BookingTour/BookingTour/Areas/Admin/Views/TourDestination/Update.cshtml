@@ -8,7 +8,7 @@
     <ul class="breadcrumbs mb-3">
         <li class="nav-home">
             <a asp-area="Admin"
-            asp-controller="HomeController"
+               asp-controller="Home"
                asp-action="Index">
                 <i class="icon-home"></i>
             </a>
@@ -16,30 +16,41 @@
         <li class="separator">
             <i class="icon-arrow-right"></i>
         </li>
-        <li class="nav-item">
+        <li class="nav-home">
             <a asp-area="Admin"
-            asp-controller="TourDestination"
+               asp-controller="Tour"
                asp-action="Index">
-                Địa điểm chuyến đi
+                Tours
             </a>
         </li>
         <li class="separator">
             <i class="icon-arrow-right"></i>
         </li>
-        <li class="nav-item">
-            Update
+        <li class="nav-home">
+            <a asp-area="Admin"
+               asp-controller="TourDestination"
+               asp-route-TourID="@Model.TourID"
+               asp-action="Index">
+                @Model.TourID
+            </a>
         </li>
         <li class="separator">
             <i class="icon-arrow-right"></i>
         </li>
-        <li class="nav-item">
-            <p class="text-secondary">TourID: @Model.TourID</p>
+        <li class="nav-item ">
+            <a asp-area="Admin"
+               asp-controller="TourDestination"
+               asp-route-TourID="@Model.TourID"
+               asp-route-DestinatonID =" @Model.DestinationID"
+               asp-action="Update">
+                @Model.DestinationID
+            </a>
         </li>
         <li class="separator">
             <i class="icon-arrow-right"></i>
         </li>
-        <li class="nav-item">
-            <p class="text-secondary">DestinationID: @Model.DestinationID</p>
+        <li class="nav-item active">
+            Destinaton Update
         </li>
     </ul>
 </div>
@@ -51,10 +62,10 @@
 
     <div class="form-group">
         <label asp-for="VisitDate"></label>
-        <input asp-for="VisitDate" type="datetime-local" class="form-control" id="VisitDate" name="VisitDate" Required>
+        <input asp-for="VisitDate" type="datetime-local" class="form-control" id="VisitDate" name="VisitDate" value="@Model.VisitDate.ToString("yyyy-MM-ddTHH:mm")" Required>
         <span asp-validation-for="VisitDate" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Lưu</button>
-    <a  asp-area="Admin" asp-controller="Tour" asp-action="Index" class="btn btn-secondary">Hủy</a>
+    <a asp-area="Admin" asp-controller="TourDestination" asp-action="Index" asp-route-TourID="@Model.TourID" class="btn btn-secondary">Hủy</a>
 </form>

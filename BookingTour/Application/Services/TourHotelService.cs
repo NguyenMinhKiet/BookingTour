@@ -1,4 +1,5 @@
-﻿using Application.DTOs.TourHotelDto;
+﻿using Application.DTOs.TourDTOs;
+using Application.DTOs.TourHotelDto;
 using Application.Services_Interface;
 using Domain.Entities;
 using Domain.Repositories;
@@ -18,14 +19,12 @@ namespace Application.Services
             _tourHotelRepository = tourHotelRepository;
         }
 
-        public async Task CreateAsync(TourHotelDto hotel)
+        public async Task CreateAsync(TourHotelCreationDto hotel)
         {
             var tourHotel = new TourHotel
             {
                 HotelID = hotel.HotelID,
-                Tour = hotel.Tour,
                 TourID = hotel.TourID,
-                Hotel = hotel.Hotel,
                 StartDate = hotel.StartDate,
                 EndDate = hotel.EndDate,
             };

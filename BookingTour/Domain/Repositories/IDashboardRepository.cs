@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Entities;
 
 namespace Domain.Repositories
 {
@@ -12,5 +8,6 @@ namespace Domain.Repositories
         List<decimal> GetRevenueData();
         decimal GetTotalRevenue();
         int GetBooking();
+        List<Payment> GetPaymentData();
     }
 }

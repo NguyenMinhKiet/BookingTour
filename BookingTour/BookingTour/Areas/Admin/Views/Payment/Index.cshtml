@@ -16,8 +16,8 @@
         <li class="separator">
             <i class="icon-arrow-right"></i>
         </li>
-        <li class="nav-item">
-            Danh sách
+        <li class="nav-item active">
+            Payments
         </li>
     </ul>
 </div>
@@ -37,10 +37,10 @@
                                 <th>STT</th>
                                 <th>Booking ID</th>
                                 <th>Method</th>
-                                <th>Total</th>
-                                <th>Status</th>
                                 <th>CreateAt</th>
                                 <th>ModifyAt</th>
+                                <th>Total</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -48,23 +48,32 @@
                                 <th>STT</th>
                                 <th>Booking ID</th>
                                 <th>Method</th>
-                                <th>Total</th>
-                                <th>Status</th>
                                 <th>CreateAt</th>
                                 <th>ModifyAt</th>
+                                <th>Total</th>
+                                <th>Status</th>
                             </tr>
                         </tfoot>
                         <tbody>
                             @for(int i = 0; i < Model.Count; i++)
                             {
                                 <tr>
-                                    <td>@(i+1)</td>
+                                    <td>@(i + 1)</td>
                                     <td>@Model[i].BookingID</td>
                                     <td>@Model[i].Method</td>
-                                    <td>@Model[i].Total</td>
-                                    <td>@Model[i].Status</td>
-                                    <td>@Model[i].CreateAt</td>
-                                    <td>@Model[i].ModifyAt</td>
+                                    <td>@Model[i].CreateAt.ToString("dd/MM/yyyy HH:mm tt")</td>
+                                    <td>@Model[i].ModifyAt.ToString("dd/MM/yyyy HH:mm tt")</td>
+                                    <td>@string.Format("{0:N0}₫", Model[i].Total)</td>
+                                    <td>
+                                        @if (Model[i].Status)
+                                        {
+                                            <span class="badge badge-success">Completed</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge badge-danger">Pending</span>
+                                        }
+                                    </td>
                                 </tr>
                             }
                         </tbody>
@@ -90,10 +99,10 @@
                                 <th>STT</th>
                                 <th>Booking ID</th>
                                 <th>Method</th>
-                                <th>Total</th>
-                                <th>Status</th>
                                 <th>CreateAt</th>
                                 <th>ModifyAt</th>
+                                <th>Total</th>
+                                <th>Status</th>
                                 <th style="width: 10%">Action</th>
                             </tr>
                         </thead>
@@ -102,10 +111,10 @@
                                 <th>STT</th>
                                 <th>Booking ID</th>
                                 <th>Method</th>
-                                <th>Total</th>
-                                <th>Status</th>
                                 <th>CreateAt</th>
                                 <th>ModifyAt</th>
+                                <th>Total</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
@@ -116,10 +125,19 @@
                                     <td>@(i + 1)</td>
                                     <td>@Model[i].BookingID</td>
                                     <td>@Model[i].Method</td>
-                                    <td>@Model[i].Total</td>
-                                    <td>@Model[i].Status</td>
-                                    <td>@Model[i].CreateAt</td>
-                                    <td>@Model[i].ModifyAt</td>
+                                    <td>@Model[i].CreateAt.ToString("dd/MM/yyyy HH:mm tt")</td>
+                                    <td>@Model[i].ModifyAt.ToString("dd/MM/yyyy HH:mm tt")</td>
+                                    <td>@string.Format("{0:N0}₫", Model[i].Total)</td>
+                                    <td>
+                                        @if (Model[i].Status)
+                                        {
+                                            <span class="badge badge-success">Completed</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge badge-danger">Pending</span>
+                                        }
+                                    </td>
                                     <td>
                                         <div class="form-button-action">
                                             <a class="btn btn-link btn-primary" type="button"
@@ -128,13 +146,6 @@
                                                asp-controller="Payment"
                                                asp-action="Update">
                                                 <i class="fa fa-edit"></i>
-                                            </a>
-                                            <a class="btn btn-link btn-danger " type="button"
-                                               asp-area="Admin"
-                                               asp-route-CustomerID=@Model[i].PaymentID
-                                               asp-controller="Payment"
-                                               asp-action="Delete">
-                                                <i class="fa fa-times"></i>
                                             </a>
                                         </div>
                                     </td>

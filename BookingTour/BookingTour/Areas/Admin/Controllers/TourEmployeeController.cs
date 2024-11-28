@@ -1,9 +1,7 @@
 ﻿using Application.DTOs.EmployeeDTOs;
 using Application.DTOs.TourEmployeeDTOs;
-using Application.Services;
 using Application.Services_Interface;
 using Domain.Entities;
-using Humanizer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -37,7 +35,8 @@ namespace Presentation.Areas.Admin.Controllers
                 TempData["NotificationType"] = "danger";
                 TempData["NotificationTitle"] = "Thất bại!";
                 TempData["NotificationMessage"] = $"Không tìm thấy TourID: {TourID}!";
-                return View();
+                ViewData["ActivePage"] = "TourManager";
+                return RedirectToAction("Index", "Tour");
             }
 
             var employees = await _tourEmployeeService.GetByTourIdAsync(TourID);
@@ -46,7 +45,7 @@ namespace Presentation.Areas.Admin.Controllers
             var employeesViewModel = employees.Select(x => new TourDetailEmployeeViewModel
             {
                 EmployeeID = x.EmployeeID,
-                FullName = x.Employee.FirstName + x.Employee.LastName,
+                FullName = $"{x.Employee.FirstName} {x.Employee.LastName}",
                 Phone = x.Employee.Phone,
                 Email = x.Employee.Email,
                 Position = x.Employee.Position,
@@ -57,7 +56,7 @@ namespace Presentation.Areas.Admin.Controllers
             var tourEmployeeViewModel = new TourEmployeeViewModel
             {
                 TourID = TourID,
-                TourName = tour.Title,
+                Tour = tour,
                 Employees = employeesViewModel
             };
             return View(tourEmployeeViewModel);
@@ -66,6 +65,17 @@ namespace Presentation.Areas.Admin.Controllers
         [Authorize(Policy = "tour-employee-add")]
         public async Task<IActionResult> Create(Guid TourID)
         {
+            var tour = await _tourService.GetByIdAsync(TourID);
+
+            if (tour == null)
+            {
+                TempData["NotificationType"] = "danger";
+                TempData["NotificationTitle"] = "Thất bại!";
+                TempData["NotificationMessage"] = $"Không tìm thấy TourID: {TourID}!";
+                ViewData["ActivePage"] = "TourManager";
+                return RedirectToAction("Index", new {TourID});
+            }
+
             var employees = await _employeeService.GetAllWithOutTour(TourID);
             var employeesViewModel = employees.Select(i => new TourDetailEmployeeViewModel
             {
@@ -77,11 +87,12 @@ namespace Presentation.Areas.Admin.Controllers
 
             ViewBag.EmployeeList = employeesSelectList;
 
-
+           
             var tourEmployeeViewModel = new TourEmployeeCreationDto
             {
-                TourID = TourID
+                TourID = TourID,
             };
+            ViewData["ActivePage"] = "TourManager";
             return View(tourEmployeeViewModel);
         }
 
@@ -101,7 +112,7 @@ namespace Presentation.Areas.Admin.Controllers
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Dữ liệu nhập không hợp lệ";
-            return View();
+            return View(dto);
         }
 
         [Authorize(Policy = "tour-employee-delete")]

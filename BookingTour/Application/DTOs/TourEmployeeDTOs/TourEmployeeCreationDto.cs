@@ -1,4 +1,6 @@
-﻿namespace Application.DTOs.TourEmployeeDTOs
+﻿using Domain.Entities;
+
+namespace Application.DTOs.TourEmployeeDTOs
 {
     public class TourEmployeeCreationDto
     {

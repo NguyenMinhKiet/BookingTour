@@ -72,21 +72,6 @@
             <div class="card-header">
                 <div class="card-head-row">
                     <div class="card-title">Doanh thu</div>
-                    <div class="card-tools">
-                        <a href="#"
-                           class="btn btn-label-success btn-round btn-sm me-2">
-                            <span class="btn-label">
-                                <i class="fa fa-pencil"></i>
-                            </span>
-                            Xuất
-                        </a>
-                        <a href="#" class="btn btn-label-info btn-round btn-sm">
-                            <span class="btn-label">
-                                <i class="fa fa-print"></i>
-                            </span>
-                            In
-                        </a>
-                    </div>
                 </div>
             </div>
             <div class="card-body">
@@ -98,7 +83,77 @@
         </div>
     </div>
                 </div>
-
+<div class="col-12">
+    <div class="card card-round">
+        <div class="card-header">
+            <div class="card-head-row card-tools-still-right">
+                <div class="card-title">Payment History</div>
+                <div class="card-tools">
+                    <div class="dropdown">
+                        <button class="btn btn-icon btn-clean me-0"
+                                type="button"
+                                id="dropdownMenuButton"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <!-- Projects table -->
+                <table class="table align-items-center mb-0">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Payment Number</th>
+                            <th scope="col" class="text-end">Date & Time</th>
+                            <th scope="col" class="text-end">Amount</th>
+                            <th scope="col" class="text-end">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var payment in ViewBag.PaymentData)
+                        {
+                            <tr>
+                                <th scope="row">
+                                    @if (payment.Status)
+                                    {
+                                        <button class="btn btn-icon btn-round btn-success btn-sm me-2">
+                                            <i class="fa fa-check"></i>
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-icon btn-round btn-danger btn-sm me-2">
+                                            <i class="fas fa-minus-circle"></i>
+                                        </button>
+                                    }
+                                    Payment from @payment.Customer.Email
+                                </th>
+                                <td class="text-end">@payment.CreateAt.ToString("dd/MM/yyyy HH:mm tt")</td>
+                                <td class="text-end">@string.Format("{0:N0}₫", payment.Total)</td>
+                                <td class="text-end">
+                                    @if (payment.Status)
+                                    {
+                                        <span class="badge badge-success">Completed</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-danger">Pending</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section script {
     <script>

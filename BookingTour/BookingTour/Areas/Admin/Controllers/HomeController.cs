@@ -1,4 +1,5 @@
 ﻿using Application.Services_Interface;
+using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,6 +37,7 @@ namespace Presentation.Areas.Admin.Controllers
             ViewBag.NumCustomer = _dashboardService.GetCustomer();
             ViewBag.NumBooking = _dashboardService.GetBooking();
             ViewBag.NumTotalRevenue = _dashboardService.GetTotalRevenue();
+            ViewBag.PaymentData = _dashboardService.GetPaymentData() ?? new List<Payment>();
             return View();
         }
         

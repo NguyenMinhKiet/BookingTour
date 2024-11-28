@@ -1397,8 +1397,8 @@
       ]
     },
     {
-      "Route": "assetPrivate/img/destination/hoanh-thanh-thang-long.applhxsghg.jpg",
-      "AssetFile": "assetPrivate/img/destination/hoanh-thanh-thang-long.jpg",
+      "Route": "assetPrivate/img/destination/hoang-thanh-thang-long.applhxsghg.jpg",
+      "AssetFile": "assetPrivate/img/destination/hoang-thanh-thang-long.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1437,13 +1437,13 @@
         },
         {
           "Name": "label",
-          "Value": "assetPrivate/img/destination/hoanh-thanh-thang-long.jpg"
+          "Value": "assetPrivate/img/destination/hoang-thanh-thang-long.jpg"
         }
       ]
     },
     {
-      "Route": "assetPrivate/img/destination/hoanh-thanh-thang-long.jpg",
-      "AssetFile": "assetPrivate/img/destination/hoanh-thanh-thang-long.jpg",
+      "Route": "assetPrivate/img/destination/hoang-thanh-thang-long.jpg",
+      "AssetFile": "assetPrivate/img/destination/hoang-thanh-thang-long.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {

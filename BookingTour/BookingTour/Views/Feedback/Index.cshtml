@@ -70,8 +70,8 @@
                                             <td>@(i + 1)</td>
                                             <td>@Model.Feedbacks[i].Rating</td>
                                             <td>@Model.Feedbacks[i].Comments</td>
-                                            <td>@Model.Feedbacks[i].CreateAt</td>
-                                            <td>@Model.Feedbacks[i].ModifyAt</td>
+                                            <td>@Model.Feedbacks[i].CreateAt.ToString("dd/MM/yyyy HH:mm tt")</td>
+                                            <td>@Model.Feedbacks[i].ModifyAt.ToString("dd/MM/yyyy HH:mm tt")</td>
                                             <td>
                                                 <div class="btn-group" role="group">
                                                     <a class="btn btn-sm btn-primary"

@@ -32,7 +32,7 @@ namespace Presentation.Areas.Admin.Controllers
                 Method = i.Method,
                 Status = i.Status
             }).ToList();
-
+            ViewData["ActivePage"] = "TourManager";
             return View(paymentsViewModel);
         }
 
@@ -40,6 +40,7 @@ namespace Presentation.Areas.Admin.Controllers
         [Authorize(Policy = "payment-add")]
         public IActionResult CreateAsync(Guid BookingID)
         {
+            ViewData["ActivePage"] = "TourManager";
             return View();
         }
 
@@ -87,7 +88,7 @@ namespace Presentation.Areas.Admin.Controllers
                 CreateAt = payment.CreateAt,
                 ModifyAt = payment.ModifyAt
             };
-
+            ViewData["ActivePage"] = "TourManager";
             return View(paymentViewModel);
         }
 

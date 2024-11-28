@@ -1,4 +1,6 @@
 ﻿
+using Domain.Entities;
+
 namespace Application.Services_Interface
 {
     public interface IDashboardService
@@ -7,5 +9,6 @@ namespace Application.Services_Interface
         List<decimal> GetRevenueData();
         decimal GetTotalRevenue();
         int GetBooking();
+        List<Payment> GetPaymentData();
     }
 }

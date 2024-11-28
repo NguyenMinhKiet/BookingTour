@@ -33,32 +33,22 @@ namespace Infrastructure.DataAccess.Configurations
             builder.Property(u => u.Child)
                 .IsRequired()
                 .HasDefaultValue(0);
-
+            builder.Property(u => u.PaymentID)
+                .IsRequired(false);
             builder.Property(u => u.TotalPrice)
                 .IsRequired()
                 .HasDefaultValue(0)
-                .HasColumnType("decimal(10,2)");
+                .HasColumnType("decimal(18,2)");
 
-            builder.HasOne(c => c.Customer)    // Mỗi Booking thuộc về một Customer
-                   .WithMany(b => b.Bookings)      // Customer có nhiều Booking
+            builder.HasOne(c => c.Customer)    
+                   .WithMany(b => b.Bookings)     
                    .HasForeignKey(b => b.CustomerID)
-                   .OnDelete(DeleteBehavior.Cascade);// Đặt khóa ngoại
+                   .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne(b => b.Payment)
-                .WithOne(p=>p.Booking)
-                .HasForeignKey<Payment>(fk => fk.BookingID)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasOne(b => b.Customer)
-                   .WithMany() // Nếu Customer có nhiều Booking, không cần khai báo danh sách Booking ở Customer
-                   .HasForeignKey(b => b.CustomerID)
-                   .OnDelete(DeleteBehavior.Cascade); // Xoá Booking khi Customer bị xóa
-
-            // Thiết lập quan hệ N-1 với Tour
-            builder.HasOne(b => b.Tour) // Booking có 1 Tour
-                   .WithMany(t => t.Bookings) // Tour có nhiều Booking
-                   .HasForeignKey(b => b.TourID) // Khóa ngoại
-                   .OnDelete(DeleteBehavior.Cascade); // Hành động xóa (tuỳ chọn)
+            builder.HasOne(b => b.Tour)
+                   .WithMany(t => t.Bookings) 
+                   .HasForeignKey(b => b.TourID) 
+                   .OnDelete(DeleteBehavior.Cascade); 
         }
     }
 }

@@ -22,13 +22,13 @@
                 asp-area="Admin"
                 asp-controller="Payment"
                asp-action="Index">
-                Thanh toán
+                Payments
             </a>
         </li>
         <li class="separator">
             <i class="icon-arrow-right"></i>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
             Create
         </li>
     </ul>
@@ -41,8 +41,8 @@
         <label asp-for="Method"></label>
         <select asp-for="Method" type="text" class="form-select" id="Method" name="Method" Required>
             <option value="">-- Chọn phương thức thanh toán --</option>
-            <option value="0">Thẻ ví</option>
-            <option value="1">Tiền mặt</option>
+            <option value="Thẻ ví">Thẻ ví</option>
+            <option value="Tiền mặt">Tiền mặt</option>
         </select>
         <span asp-validation-for="Method" class="text-danger"></span>
     </div>

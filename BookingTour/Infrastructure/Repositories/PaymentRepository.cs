@@ -81,7 +81,9 @@ namespace Infrastructure.Repositories
             var booking = await _context.Bookings.FindAsync(bookingID);
             if (booking != null)
             {
-                var payment = _context.Payments.FirstOrDefault(i => i.BookingID == bookingID);
+                var payment = _context.Payments
+                    .Include(c=>c.Customer)
+                    .FirstOrDefault(i => i.BookingID == bookingID);
                 return payment;
             }
             return null;

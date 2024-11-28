@@ -21,14 +21,8 @@
             <a asp-area="Admin"
             asp-controller="Payment"
                asp-action="Index">
-                Thanh toán
+                Payments
             </a>
-        </li>
-        <li class="separator">
-            <i class="icon-arrow-right"></i>
-        </li>
-        <li class="nav-item">
-            Update
         </li>
         <li class="separator">
             <i class="icon-arrow-right"></i>
@@ -36,6 +30,13 @@
         <li class="nav-item">
             <p class="text-secondary">id: @Model.PaymentID</p>
         </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item active">
+            Update
+        </li>
+        
     </ul>
 </div>
 
@@ -46,16 +47,16 @@
 
     <div class="form-group">
         <label asp-for="Total"></label>
-        <input asp-form="Total" type="decimal" readonly/>
+        <input asp-for="Total" class="form-control" type="decimal" readonly/>
         <span asp-validation-for="Method" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="Method"></label>
         <select asp-for="Method" type="text" class="form-select" id="Method" name="Method" Required>
-            <option value="">-- Chọn phương thức thanh toán --</option>
-            <option value="0">Thẻ ví</option>
-            <option value="1">Tiền mặt</option>
+            <option value="" selected disabled>-- Chọn phương thức thanh toán --</option>
+            <option value="Thẻ ví">Thẻ ví</option>
+            <option value="Tiền mặt">Tiền mặt</option>
         </select>
 
         <span asp-validation-for="Method" class="text-danger"></span>
@@ -64,7 +65,7 @@
     <div class="form-group">
         <label asp-for="Status"></label>
         <select asp-for="Status" type="text" class="form-select" id="Status" name="Status" Required>
-            <option value="">-- Chọn phương thức thanh toán --</option>
+            <option value="" selected disabled>-- Chọn phương thức thanh toán --</option>
             <option value="false">Chưa thanh toán</option>
             <option value="true">Đã thanh toán</option>
         </select>

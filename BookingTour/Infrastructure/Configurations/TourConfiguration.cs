@@ -25,7 +25,7 @@ namespace Infrastructure.DataAccess.Configurations
             builder.Property(u => u.Price)
                 .IsRequired()
                 .HasDefaultValue(0)
-                .HasColumnType("decimal(10,2)");
+                .HasColumnType("decimal(18,2)");
 
             builder.Property(u => u.StartDate)
                 .IsRequired();

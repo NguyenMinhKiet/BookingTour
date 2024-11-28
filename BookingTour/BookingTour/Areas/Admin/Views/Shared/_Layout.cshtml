@@ -57,10 +57,10 @@
             <div class="sidebar-wrapper scrollbar scrollbar-inner">
                 <div class="sidebar-content">
                     <ul class="nav nav-secondary">
-                        <li class="nav-item active">
+                        <li class="nav-item @(ViewData["ActivePage"] == "Dashboard" ? "active" : "")">
                             <a data-bs-toggle="collapse"
                                href="#dashboard"
-                               class="collapsed"
+                               class="collapsed @(ViewData["ActivePage"] == "Dashboard" ? "show" : "")"
                                aria-expanded="false">
                                 <i class="fas fa-home"></i>
                                 <p>Dashboard</p>
@@ -82,13 +82,13 @@
                             </span>
                             <h4 class="text-section">Components</h4>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item @(ViewData["ActivePage"] == "UserManager" ? "active" : "")">
                             <a data-bs-toggle="collapse" href="#base">
-                                <i class="fas fa-layer-group"></i>
-                                <p>Quản lý Dữ liệu</p>
+                                <i class="fas fa-users"></i>
+                                <p>Quản lý Người Dùng</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse" id="base">
+                            <div class="collapse @(ViewData["ActivePage"] == "UserManager" ? "show" : "")" id="base">
                                 <ul class="nav nav-collapse">
                                     <li>
                                         <a asp-controller="Employee"
@@ -102,6 +102,18 @@
                                             <span class="sub-item">Quản lý Khách hàng</span>
                                         </a>
                                     </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="nav-item @(ViewData["ActivePage"] == "TourManager" ? "active" : "")">
+                            <a data-bs-toggle="collapse" href="#tour">
+                                <i class="far fa-list-alt"></i>
+                                <p>Quản lý Tour</p>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="collapse @(ViewData["ActivePage"] == "TourManager" ? "show" : "")" id="tour">
+                                <ul class="nav nav-collapse">
                                     <li>
                                         <a asp-controller="Destination"
                                            asp-action="Index">
@@ -112,7 +124,7 @@
                                     <li>
                                         <a asp-controller="Hotel"
                                            asp-action="Index">
-                                            <span class="sub-item">Quản lý Nơi ở</span>
+                                            <span class="sub-item">Quản lý Khách sạn</span>
                                         </a>
                                     </li>
                                     <li>
@@ -121,14 +133,32 @@
                                             <span class="sub-item">Quản lý Tour</span>
                                         </a>
                                     </li>
-                                    
+
                                     <li>
                                         <a asp-controller="Booking"
                                            asp-action="Index">
                                             <span class="sub-item"> Quản lý Booking</span>
                                         </a>
                                     </li>
-                                    
+
+                                    <li>
+                                        <a asp-controller="Payment"
+                                           asp-action="Index">
+                                            <span class="sub-item">Quản lý Thanh Toán</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="nav-item @(ViewData["ActivePage"] == "AccountManager" ? "active" : "")">
+                            <a data-bs-toggle="collapse" href="#account">
+                                <i class="fas fa-user-shield"></i>
+                                <p>Quản lý Tài Khoản</p>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="collapse @(ViewData["ActivePage"] == "AccountManager" ? "show" : "")" id="account">
+                                <ul class="nav nav-collapse">
                                     <li>
                                         <a asp-controller="Account"
                                            asp-action="Index">
@@ -436,6 +466,20 @@
 
         </script>
 
+        <script>
+                    document.querySelectorAll('.nav-item a').forEach(item => {
+            item.addEventListener('click', function() {
+                // Loại bỏ lớp 'active' khỏi tất cả các mục
+                document.querySelectorAll('.nav-item').forEach(nav => {
+                    nav.classList.remove('active');
+                });
+
+                // Thêm lớp 'active' vào mục đã được chọn
+                item.closest('.nav-item').classList.add('active');
+            });
+        });
+
+        </script>
 
         @RenderSection("script", required: false)
 </body>

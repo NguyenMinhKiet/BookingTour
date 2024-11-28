@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace Application.DTOs.TourDestinationDTOs
     {
         public Guid TourID { get; set; }
         public Guid DestinationID { get; set; }
-        public DateTime  VisitDate { get; set; }
+        public DateTime  VisitDate { get; set; }    
+
     }
 }

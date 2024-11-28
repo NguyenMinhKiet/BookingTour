@@ -21,17 +21,11 @@ namespace Infrastructure.DataAccess.Configurations
             builder.Property(u => u.Address)
                 .IsRequired();
 
-            // Cấu hình mối quan hệ giữa Customer và Booking
-            builder.HasMany(c => c.Bookings) // Customer có nhiều Booking
-                .WithOne(b => b.Customer)   // Mỗi Booking thuộc về một Customer
-                .HasForeignKey(b => b.CustomerID)
-                .OnDelete(DeleteBehavior.Restrict);  // Tránh cascading delete ở đây
-
             // Cấu hình mối quan hệ giữa Customer và Account
             builder.HasOne(i => i.Account)
                 .WithOne()
                 .HasForeignKey<Customer>(u => u.AccountID)
-                .OnDelete(DeleteBehavior.Restrict);  // Tránh cascading delete ở đây
+                .OnDelete(DeleteBehavior.Cascade); 
 
 
         }

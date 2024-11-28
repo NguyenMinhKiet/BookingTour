@@ -7,12 +7,17 @@
     <h3 class="fw-bold mb-3">Danh sách đặt Tour</h3>
     <ul class="breadcrumbs mb-3">
         <li class="nav-home">
-            <a 
-                asp-area="Admin"
-                asp-controller="Home"
+            <a asp-area="Admin"
+               asp-controller="Home"
                asp-action="Index">
                 <i class="icon-home"></i>
             </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item active">
+            Bookings
         </li>
     </ul>
 </div>
@@ -62,11 +67,11 @@
                                 <tr>
                                     <td>@(i+1)</td>
                                     <td>@Model[i].Tour.Title</td>
-                                    <td>@Model[i].Customer.LastName @Model[i].Customer.FirstName</td>
+                                    <td>@($"{Model[i].Customer.LastName} {Model[i].Customer.FirstName}")</td>
                                     <td>@Model[i].Customer.Phone</td>
                                     <td>@Model[i].Customer.Email</td>
-                                    <td>@Model[i].CreateAt</td>
-                                    <td>@Model[i].ModifyAt</td>
+                                    <td>@Model[i].CreateAt.ToString("dd/MM/yyyy HH:mm tt")</td>
+                                    <td>@Model[i].ModifyAt.ToString("dd/MM/yyyy HH:mm tt")</td>
                                     <td>@Model[i].Adult</td>
                                     <td>@Model[i].Child</td>
                                     <td>@string.Format("{0:N0}₫", Model[i].TotalPrice)</td>
@@ -134,11 +139,11 @@
                                 <tr>
                                     <td>@(i + 1)</td>
                                     <td>@Model[i].Tour.Title</td>
-                                    <td>@Model[i].Customer.LastName  @Model[i].Customer.FirstName</td>
+                                    <td>@($"{Model[i].Customer.LastName} {Model[i].Customer.FirstName}")</td>
                                     <td>@Model[i].Customer.Phone</td>
                                     <td>@Model[i].Customer.Email</td>
-                                    <td>@Model[i].CreateAt</td>
-                                    <td>@Model[i].ModifyAt</td>
+                                    <td>@Model[i].CreateAt.ToString("dd/MM/yyyy HH:mm tt")</td>
+                                    <td>@Model[i].ModifyAt.ToString("dd/MM/yyyy HH:mm tt")</td>
                                     <td>@Model[i].Adult</td>
                                     <td>@Model[i].Child</td>
                                     <td>@string.Format("{0:N0}₫", Model[i].TotalPrice)</td>

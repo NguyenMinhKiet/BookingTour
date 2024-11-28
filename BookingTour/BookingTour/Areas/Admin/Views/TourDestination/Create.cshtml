@@ -8,7 +8,7 @@
         <ul class="breadcrumbs mb-3">
             <li class="nav-home">
                 <a asp-area="Admin"
-                asp-controller="HomeController"
+                   asp-controller="Home"
                    asp-action="Index">
                     <i class="icon-home"></i>
                 </a>
@@ -16,19 +16,30 @@
             <li class="separator">
                 <i class="icon-arrow-right"></i>
             </li>
-            <li class="nav-item">
+            <li class="nav-home">
                 <a asp-area="Admin"
-                asp-controller="TourDestination"
+                   asp-controller="Tour"
                    asp-action="Index">
-                    Địa điểm chuyến đi
+                    Tours
                 </a>
             </li>
             <li class="separator">
                 <i class="icon-arrow-right"></i>
             </li>
-            <li class="nav-item">
-                Create
+            <li class="nav-home">
+                <a asp-area="Admin"
+                   asp-controller="TourDestination"
+                   asp-route-TourID="@Model.TourID"
+                   asp-action="Index">
+                    @Model.TourID
+                </a>
             </li>
+                <li class="separator">
+                    <i class="icon-arrow-right"></i>
+                </li>
+            <li class="nav-item active">
+                    Destinaton Create
+                </li>
         </ul>
     </div>
 
@@ -38,57 +49,21 @@
 
         <div class="form-group">
             <label asp-for="DestinationID">Chọn địa điểm:</label>
-            <select asp-for="DestinationID" id="DestinationID" name="DestinationID" class="form-control" Required>
-                <option value="">-- Chọn địa điểm --</option>
+        <select asp-for="DestinationID" class="form-control" asp-items="@ViewBag.Destinations" Required>
+                <option value="" selected disabled>-- Chọn địa điểm --</option>
             </select>
             <span asp-validation-for="DestinationID" class="text-danger"></span>
         </div>
 
         <div class="form-group">
             <label asp-for="VisitDate"></label>
-            <input asp-for="VisitDate" type="datetime-local" class="form-control" id="VisitDate" name="VisitDate" Required>
+        <input asp-for="VisitDate" type="datetime-local" class="form-control" value="@Model.VisitDate.ToString("yyyy-MM-ddTHH:mm")">
             <span asp-validation-for="VisitDate" class="text-danger"></span>
         </div>
 
         <button type="submit" class="btn btn-primary">Lưu</button>
-        <a asp-area="Admin" asp-controller="Tour" asp-action="Index" class="btn btn-secondary">Hủy</a>
+        <a asp-area="Admin" asp-controller="TourDestination" asp-action="Index" asp-route-TourID="@Model.TourID" class="btn btn-secondary">Hủy</a>
     </form>
 
-    @section Script {
-        <script>
-            $(document).ready(function () {
-        var tourId = '@Model.TourID';  // Lấy giá trị từ ViewData
-        $.ajax({
-            url: '@Url.Action("GetDestinationsByTour", "TourDestination")',
-            type: 'GET',
-            data: { tourId: tourId }, // Gửi đúng giá trị tourId vào data
-            success: function (data) {
-                console.log(data); // Kiểm tra dữ liệu trả về
-                var destinationSelect = $('#DestinationID');
-                destinationSelect.empty(); // Xóa danh sách cũ
-                destinationSelect.append(
-                        $('<option>', {
-                            value: "",
-                            text:  "-- Chọn 1 địa điểm --"
-                        })
-                    )
-                // Thêm các tùy chọn mới vào select
-                $.each(data, function (index, destination) {
-                    destinationSelect.append(
-                        $('<option>', {
-                            value: destination.destinationID,
-                            text: destination.name
-                        })
-                    );
-                });
-            },
-            error: function (xhr, status, error) {
-                console.error('Error: ', error);  // Hiển thị lỗi nếu có
-            }
-        });
-    });
-        </script>
-
     
-    }
 

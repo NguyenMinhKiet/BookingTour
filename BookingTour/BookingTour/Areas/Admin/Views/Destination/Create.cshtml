@@ -1,4 +1,4 @@
-﻿@model Presentation.Areas.Admin.Models.DestinationViewModel
+﻿@model Application.DTOs.DestinationDTOs.DestinationCreationDto
 @{
     ViewData["Title"] = "Thêm địa điểm mới";
 }
@@ -8,7 +8,7 @@
     <ul class="breadcrumbs mb-3">
         <li class="nav-home">
             <a asp-area="Admin"
-            asp-controller="HomeController"
+            asp-controller="Home"
                asp-action="Index">
                 <i class="icon-home"></i>
             </a>
@@ -20,13 +20,13 @@
             <a asp-area="Admin"
             asp-controller="Destination"
                asp-action="Index">
-                Địa điểm
+                Destinations
             </a>
         </li>
         <li class="separator">
             <i class="icon-arrow-right"></i>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
             Create
         </li>
 
@@ -42,6 +42,7 @@
     </div>
     <div class="mt-3">
         <img id="imagePreview" src="#" alt="Image Preview" style="max-width: 300px; display: none; object-fit:cover">
+
     </div>
     <div class="form-group">
         <label asp-for="Image" class="form-label"></label>
@@ -73,35 +74,35 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="SelectedCity" class="form-label">City</label>
-        <select asp-for="SelectedCity" class="form-select" id="citySelect" required>
+        <label asp-for="City" class="form-label"></label>
+        <select asp-for="City" class="form-select" id="citySelect" required>
             <option value="" selected disabled>Select a city</option>
-            @foreach (var city in Model.Cities)
+            @foreach (var city in ViewBag.Cities)
             {
                 <option value="@city.Text">@city.Text</option>
             }
         </select>
-        <span asp-validation-for="SelectedCity" class="text-danger"></span>
+        <span asp-validation-for="City" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="SelectedDistrict" class="form-label">District</label>
-        <select asp-for="SelectedDistrict" class="form-select" id="districtSelect" disabled>
+        <label asp-for="District" class="form-label"></label>
+        <select asp-for="District" class="form-select" id="districtSelect" disabled>
             <option value="" selected disabled>Select a district</option>
         </select>
-        <span asp-validation-for="SelectedDistrict" class="text-danger"></span>
+        <span asp-validation-for="District" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="SelectedWard" class="form-label">Ward</label>
-        <select asp-for="SelectedWard" class="form-select" id="wardSelect" disabled>
+        <label asp-for="Ward" class="form-label"></label>
+        <select asp-for="Ward" class="form-select" id="wardSelect" disabled>
             <option value="" selected disabled>Select a ward</option>
         </select>
-        <span asp-validation-for="SelectedWard" class="text-danger"></span>
+        <span asp-validation-for="Ward" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Address" class="form-label">Address</label>
+        <label asp-for="Address" class="form-label"></label>
         <input asp-for="Address" type="text" class="form-control" />
         <span asp-validation-for="Address" class="text-danger"></span>
     </div>

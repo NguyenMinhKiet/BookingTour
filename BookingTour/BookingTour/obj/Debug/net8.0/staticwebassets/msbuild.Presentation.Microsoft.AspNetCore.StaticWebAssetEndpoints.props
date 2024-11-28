@@ -192,14 +192,14 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-ntE7cxEZXcWmd6uBWe0TZI4v48OhgUrkAUQvlEliKxw="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"76720"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022ntE7cxEZXcWmd6uBWe0TZI4v48OhgUrkAUQvlEliKxw=\u0022"},{"Name":"Last-Modified","Value":"Wed, 27 Nov 2024 19:08:42 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/Presentation/assetPrivate/img/destination/hoanh-thanh-thang-long.applhxsghg.jpg">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assetPrivate\img\destination\hoanh-thanh-thang-long.jpg'))</AssetFile>
+    <StaticWebAssetEndpoint Include="_content/Presentation/assetPrivate/img/destination/hoang-thanh-thang-long.applhxsghg.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assetPrivate\img\destination\hoang-thanh-thang-long.jpg'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"applhxsghg"},{"Name":"integrity","Value":"sha256-ovVC6qmo77aSf4Xf85zpGupP6NeP82RrPL2Y/uNKn48="},{"Name":"label","Value":"_content/Presentation/assetPrivate/img/destination/hoanh-thanh-thang-long.jpg"}]]]></EndpointProperties>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"applhxsghg"},{"Name":"integrity","Value":"sha256-ovVC6qmo77aSf4Xf85zpGupP6NeP82RrPL2Y/uNKn48="},{"Name":"label","Value":"_content/Presentation/assetPrivate/img/destination/hoang-thanh-thang-long.jpg"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"926143"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022ovVC6qmo77aSf4Xf85zpGupP6NeP82RrPL2Y/uNKn48=\u0022"},{"Name":"Last-Modified","Value":"Wed, 27 Nov 2024 18:58:15 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/Presentation/assetPrivate/img/destination/hoanh-thanh-thang-long.jpg">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assetPrivate\img\destination\hoanh-thanh-thang-long.jpg'))</AssetFile>
+    <StaticWebAssetEndpoint Include="_content/Presentation/assetPrivate/img/destination/hoang-thanh-thang-long.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assetPrivate\img\destination\hoang-thanh-thang-long.jpg'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-ovVC6qmo77aSf4Xf85zpGupP6NeP82RrPL2Y/uNKn48="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"926143"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022ovVC6qmo77aSf4Xf85zpGupP6NeP82RrPL2Y/uNKn48=\u0022"},{"Name":"Last-Modified","Value":"Wed, 27 Nov 2024 18:58:15 GMT"}]]]></ResponseHeaders>

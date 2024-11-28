@@ -55,7 +55,7 @@ namespace Presentation.Areas.Admin.Controllers
                 };
                 listRoleClaimsViewModel.Add(roleClaimsViewModel);
             }
-
+            ViewData["ActivePage"] = "AccountManager";
             return View(listRoleClaimsViewModel);
         }
 
@@ -86,7 +86,7 @@ namespace Presentation.Areas.Admin.Controllers
                     Selected = currentRole.Contains(r.Name)
                 }).ToList()
             };
-
+            ViewData["ActivePage"] = "AccountManager";
             return View(model);
         }
 
@@ -153,9 +153,10 @@ namespace Presentation.Areas.Admin.Controllers
                     RoleName = role.Name,
                     Claims = PermissionListViewModel
                 };
+                ViewData["ActivePage"] = "AccountManager";
                 return View(roleClaimsViewModel);
             }
-
+            ViewData["ActivePage"] = "AccountManager";
             return View();
         }
         [HttpPost]
@@ -251,6 +252,7 @@ namespace Presentation.Areas.Admin.Controllers
         [Authorize(Policy ="role-add")]
         public IActionResult Create()
         {
+            ViewData["ActivePage"] = "AccountManager";
             return View();
         }
 
@@ -296,7 +298,7 @@ namespace Presentation.Areas.Admin.Controllers
                 RoleName = role.Name,
                 Selected = false
             };
-
+            ViewData["ActivePage"] = "AccountManager";
             return View(claimViewModel);
         }
         [HttpPost]

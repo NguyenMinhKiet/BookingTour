@@ -2,7 +2,6 @@
 using Application.Services_Interface;
 using Domain.Entities;
 using Domain.Repositories;
-using Microsoft.Identity.Client;
 
 namespace Application.Services
 {

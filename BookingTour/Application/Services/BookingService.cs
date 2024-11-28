@@ -10,10 +10,12 @@ namespace Application.Services
     {
         private readonly IBookingRepository _bookingRepository;
         private readonly ITourService _TourService;
-        public BookingService(IBookingRepository bookingRepository, ITourService tourService)
+        private readonly ICustomerService _customerService;
+        public BookingService(IBookingRepository bookingRepository, ITourService tourService, ICustomerService customerService)
         {
             _bookingRepository = bookingRepository;
             _TourService = tourService;
+            _customerService = customerService;
         }
 
         
@@ -28,6 +30,7 @@ namespace Application.Services
                 TourID = dto.TourID,
                 CustomerID = dto.CustomerID,
                 CreateAt = DateTime.Now,
+                ModifyAt = DateTime.Now,
                 Adult = dto.Adult,
                 Child = dto.Child,
                 TotalPrice = price * dto.Adult + childPrice * dto.Child

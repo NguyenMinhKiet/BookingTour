@@ -16,8 +16,18 @@
         <li class="separator">
             <i class="icon-arrow-right"></i>
         </li>
-        <li class="nav-item">
-            Danh sách
+        <li class="nav-home">
+            <a asp-area="Admin"
+               asp-controller="Tour"
+               asp-action="Index">
+                Tours
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-home active">
+                @Model.Tour.Title
         </li>
     </ul>
 </div>
@@ -56,7 +66,7 @@
                                     <td>@(i + 1)</td>
                                     <td><img src="~/assetPrivate/img/destination/@Model.Destinations[i].Image" alt="@Model.Destinations[i].Image" style="width:150px;height:100px; object-fit:cover" /></td>
                                     <td>@Model.Destinations[i].Name</td>
-                                    <td>@Model.Destinations[i].visitDate</td>
+                                    <td>@Model.Destinations[i].visitDate.ToString("dd/MM/yyyy HH:mm tt")</td>
                                 </tr>
                             }
                         </tbody>
@@ -70,7 +80,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <h4 class="card-title">Thông tin địa điểm tour: @Model.TourName</h4>
+                    <h4 class="card-title">Thông tin địa điểm tour: @Model.Tour.Title</h4>
                     <a class="btn btn-primary btn-round ms-auto"
                        asp-area="Admin"
                        asp-action="Create"
@@ -110,7 +120,7 @@
                                     <td>@(i + 1)</td>
                                     <td><img src="~/assetPrivate/img/destination/@Model.Destinations[i].Image" alt="@Model.Destinations[i].Image" style="width:150px;height:100px; object-fit:cover" /></td>
                                     <td>@Model.Destinations[i].Name</td>
-                                    <td>@Model.Destinations[i].visitDate</td>
+                                    <td>@Model.Destinations[i].visitDate.ToString("dd/MM/yyyy HH:mm tt")</td>
                                     <td>
                                         <div class="form-button-action">
 

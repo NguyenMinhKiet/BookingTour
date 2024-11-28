@@ -29,10 +29,10 @@ namespace Presentation.Areas.Admin.Controllers
                 var hotelWithDates = new List<HotelWithDateDto>();
                 if (tourHotels != null)
                 {
-                    hotelWithDates = (await Task.WhenAll(tourHotels.Select(async x =>
+                    foreach (var x in tourHotels)
                     {
                         var hotelModel = await _hotelService.GetByIdAsync(x.HotelID);
-                        return new HotelWithDateDto
+                        hotelWithDates.Add(new HotelWithDateDto
                         {
                             hotel = new HotelModel
                             {
@@ -48,10 +48,10 @@ namespace Presentation.Areas.Admin.Controllers
                             },
                             StartDate = x.StartDate,
                             EndDate = x.EndDate,
-                        };
-                    }))).ToList();
+                        }
+                     );
+                    }
                 }
-
 
                 var model = new TourHotelModel
                 {
@@ -59,12 +59,14 @@ namespace Presentation.Areas.Admin.Controllers
                     Tour = tour,
                     Hotels = hotelWithDates
                 };
+                ViewData["ActivePage"] = "TourManager";
                 return View(model);
             }
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = $"Không tìm thấy TourID: {TourID}!";
-            return RedirectToAction("Index", "Tour", new { TourID });
+            ViewData["ActivePage"] = "TourManager";
+            return RedirectToAction("Index", new {TourID});
         }
         public async Task<IActionResult> Create(Guid TourID)
         {
@@ -87,6 +89,7 @@ namespace Presentation.Areas.Admin.Controllers
             {
                 TourID = TourID,
             };
+            ViewData["ActivePage"] = "TourManager";
             return View(model);
         }
 
@@ -95,20 +98,11 @@ namespace Presentation.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var tourhotelModel = new TourHotelDto
-                {
-                    TourID = model.TourID,
-                    Tour = await _tourService.GetByIdAsync(model.TourID),
-                    HotelID = model.HotelID,
-                    Hotel = await _hotelService.GetByIdAsync(model.HotelID),
-                    StartDate = model.StartDate,
-                    EndDate = model.EndDate,
-                };
-                await _tourHotelService.CreateAsync(tourhotelModel);
+                await _tourHotelService.CreateAsync(model);
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành Công!";
-                TempData["NotificationMessage"] = $"Thêm khách sạn {tourhotelModel.Hotel.Name} vào tour {tourhotelModel.Tour.Title} thành công!";
-                return RedirectToAction("Index", "Tour");
+                TempData["NotificationMessage"] = $"Thêm khách sạn vào tour thành công!";
+                return RedirectToAction("Index", new { model.TourID });
             }
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
@@ -142,12 +136,13 @@ namespace Presentation.Areas.Admin.Controllers
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành Công!";
                 TempData["NotificationMessage"] = $"Xóa khách sạn trong tour thành công!";
-                return RedirectToAction("Index", "Tour");
+                return RedirectToAction("Index", new { TourID });
             }
             TempData["NotificationType"] = "danger";
             TempData["NotificationTitle"] = "Thất bại!";
             TempData["NotificationMessage"] = "Xóa khách sạn thất bại!";
-            return RedirectToAction("Index", "Tour");
+            return RedirectToAction("Index", new { TourID });
         }
+
     }
 }

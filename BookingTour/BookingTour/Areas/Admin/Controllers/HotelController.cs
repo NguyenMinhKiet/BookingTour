@@ -34,6 +34,7 @@ namespace Presentation.Areas.Admin.Controllers
                 Image = x.Image
                 
             }).ToList();
+            ViewData["ActivePage"] = "TourManager";
             return View(hotelModel);
         }
 
@@ -49,6 +50,7 @@ namespace Presentation.Areas.Admin.Controllers
                     Text = c.Name
                 }).ToList()
             };
+            ViewData["ActivePage"] = "TourManager";
             return View(viewModel);
         }
 
@@ -61,6 +63,7 @@ namespace Presentation.Areas.Admin.Controllers
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành công!";
                 TempData["NotificationMessage"] = "Thêm khách sạn thành công";
+
                 return RedirectToAction("Index");
             }
             TempData["NotificationType"] = "danger";
@@ -101,6 +104,7 @@ namespace Presentation.Areas.Admin.Controllers
             }).ToList();
             await GetDistricts(hotelModel.SelectedCity);
             await GetWards(hotelModel.SelectedCity, hotelModel.SelectedWard);
+            ViewData["ActivePage"] = "TourManager";
             return View(hotelModel);
         }
 

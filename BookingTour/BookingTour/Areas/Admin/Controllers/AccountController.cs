@@ -44,7 +44,7 @@ namespace Presentation.Areas.Admin.Controllers
                 };
                 listView.Add(acc);
             }
-            
+            ViewData["ActivePage"] = "AccountManager";
             return View(listView);
         }
 
@@ -99,6 +99,7 @@ namespace Presentation.Areas.Admin.Controllers
             {
                 userId = userId
             };
+            ViewData["ActivePage"] = "AccountManager";
             return View(model);
 
         }

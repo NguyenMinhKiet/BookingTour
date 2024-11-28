@@ -15,8 +15,8 @@
         <li class="separator">
             <i class="icon-arrow-right"></i>
         </li>
-        <li class="nav-item">
-            Danh sách
+        <li class="nav-item active">
+            Tours
         </li>
     </ul>
 </div>
@@ -67,8 +67,8 @@
                                     <td><img src="~/assetPrivate/img/tour/@Model[i].Image" alt="@Model[i].Image" style="width:150px;height:100px; object-fit:cover"/></td>
                                     <td>@Model[i].Title</td>
                                     <td>@Model[i].Description</td>
-                                    <td>@Model[i].StartDate</td>
-                                    <td>@Model[i].EndDate</td>
+                                    <td>@Model[i].StartDate.ToString("dd/MM/yyyy HH:mm tt")</td>
+                                    <td>@Model[i].EndDate.ToString("dd/MM/yyyy HH:mm tt")</td>
                                     <td>@string.Format("{0:N0}₫", Model[i].Price)</td>
                                     <td>@Model[i].AvailableSeats</td>
                                     <td>@Model[i].Category</td>

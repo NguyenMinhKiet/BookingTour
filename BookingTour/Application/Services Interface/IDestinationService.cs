@@ -1,5 +1,4 @@
-﻿using Application.DTOs.CustomerDTOs;
-using Application.DTOs.DestinationDTOs;
+﻿using Application.DTOs.DestinationDTOs;
 using Domain.Entities;
 
 namespace Application.Services_Interface
@@ -10,9 +9,9 @@ namespace Application.Services_Interface
 
         public Task<IEnumerable<Destination>> GetAllAsync();
 
-        public Task CreateAsync(DestinationDto dto);
+        public Task CreateAsync(DestinationCreationDto dto);
 
-        public Task UpdateAsync(DestinationDto dto);
+        public Task UpdateAsync(DestinationUpdateDto dto);
 
         public Task DeleteAsync(Guid id);
 

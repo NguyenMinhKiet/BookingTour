@@ -18,7 +18,7 @@ namespace Application.Services
         }
 
 
-        public async Task CreateAsync(DestinationDto dto)
+        public async Task CreateAsync(DestinationCreationDto dto)
         {
             var destination = new Destination
             {
@@ -31,6 +31,7 @@ namespace Application.Services
                 District = dto.District,
                 Ward = dto.Ward,
                 Address = dto.Address.Trim(),
+                Image = dto.Image,
             };
             await _destinationRepository.AddAsync(destination);
         }
@@ -65,11 +66,12 @@ namespace Application.Services
             return await _destinationRepository.GetByIdAsync(id);
         }
 
-        public async Task UpdateAsync(DestinationDto dto)
+        public async Task UpdateAsync(DestinationUpdateDto dto)
         {
             var destiantion = await _destinationRepository.GetByIdAsync(dto.DestinationID);
             if (destiantion != null)
             {
+                destiantion.Image = dto.Image;
                 destiantion.Name = dto.Name.Trim();
                 destiantion.Country = dto.Country;
                 destiantion.Description = dto.Description.Trim();

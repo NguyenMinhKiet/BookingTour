@@ -8,7 +8,7 @@
     <ul class="breadcrumbs mb-3">
         <li class="nav-home">
             <a asp-area="Admin"
-                asp-controller="HomeController"
+                asp-controller="Home"
                asp-action="Index">
                 <i class="icon-home"></i>
             </a>
@@ -20,14 +20,8 @@
             <a asp-area="Admin"
             asp-controller="Booking"
                asp-action="Index">
-                Đặt Tour
+                Bookings
             </a>
-        </li>
-        <li class="separator">
-            <i class="icon-arrow-right"></i>
-        </li>
-        <li class="nav-item">
-            Update
         </li>
         <li class="separator">
             <i class="icon-arrow-right"></i>
@@ -35,6 +29,13 @@
         <li class="nav-item">
             <p class="text-secondary">id: @Model.BookingID</p>
         </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item active">
+            Update
+        </li>
+        
     </ul>
 </div>
 
