@@ -47,7 +47,7 @@ Giao diện cho phép người dùng điền thông tin và hoàn tất việc �
 ### 4. **Giao diện Quản Lý Tour (Admin)**
 Giao diện quản lý dành cho quản trị viên, cho phép thêm, sửa, xóa thông tin về các tour, khách sạn, địa điểm, v.v.
 
-![Quản lý tour](img/adminlayout.PNG)
+![Quản lý tour](img/TourManager.PNG)
 
 ### 5. **Giao diện Quản Lý Khách Hàng**
 Giao diện quản lý khách hàng giúp admin có thể quản lý thông tin người dùng và các đơn đặt tour của khách hàng.
