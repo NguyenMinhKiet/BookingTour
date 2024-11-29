@@ -42,7 +42,7 @@ Danh sách các tour hiện có, cho phép người dùng lựa chọn các tour
 ### 3. **Giao diện Đặt Tour**
 Giao diện cho phép người dùng điền thông tin và hoàn tất việc đặt tour, bao gồm các chi tiết như số lượng người lớn, trẻ em và thông tin thanh toán.
 
-![Đặt tour](img/confirmBookng.PNG)
+![Đặt tour](img/confirmBooking.PNG)
 
 ### 4. **Giao diện Quản Lý Tour (Admin)**
 Giao diện quản lý dành cho quản trị viên, cho phép thêm, sửa, xóa thông tin về các tour, khách sạn, địa điểm, v.v.
