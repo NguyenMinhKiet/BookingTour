@@ -32,32 +32,32 @@ Dưới đây là các thư viện và công cụ được tích hợp trong d�
 ### 1. **Giao diện Trang Chủ**
 Trang chủ cung cấp cái nhìn tổng quan về các dịch vụ tour du lịch và cho phép người dùng dễ dàng tìm kiếm các tour theo các tiêu chí khác nhau.
 
-![Trang chủ](img/Ecomlayout-home.png)
+![Trang chủ](img/Ecomlayout-home.PNG)
 
 ### 2. **Giao diện Danh Sách Tour**
 Danh sách các tour hiện có, cho phép người dùng lựa chọn các tour mà họ quan tâm, xem thông tin chi tiết về tour.
 
-![Danh sách tour](img/Tours.png)
+![Danh sách tour](img/Tours.PNG)
 
 ### 3. **Giao diện Đặt Tour**
 Giao diện cho phép người dùng điền thông tin và hoàn tất việc đặt tour, bao gồm các chi tiết như số lượng người lớn, trẻ em và thông tin thanh toán.
 
-![Đặt tour](img/confirmBookng.png)
+![Đặt tour](img/confirmBookng.PNG)
 
 ### 4. **Giao diện Quản Lý Tour (Admin)**
 Giao diện quản lý dành cho quản trị viên, cho phép thêm, sửa, xóa thông tin về các tour, khách sạn, địa điểm, v.v.
 
-![Quản lý tour](img/adminlayout.png)
+![Quản lý tour](img/adminlayout.PNG)
 
 ### 5. **Giao diện Quản Lý Khách Hàng**
 Giao diện quản lý khách hàng giúp admin có thể quản lý thông tin người dùng và các đơn đặt tour của khách hàng.
 
-![Quản lý khách hàng](img/EmployeeManager.png)
+![Quản lý khách hàng](img/EmployeeManager.PNG)
 
 ### 6. **Giao diện Đánh Giá Tour**
 Khách hàng có thể đánh giá và để lại nhận xét về các tour mà họ đã tham gia.
 
-![Đánh giá tour](img/TourDetalt_3.png)  
+![Đánh giá tour](img/TourDetalt_3.PNG)  
 ## Cài đặt và Chạy Dự Án
 
 1. **Cài đặt .NET Core SDK**:
