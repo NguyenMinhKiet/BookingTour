@@ -191,6 +191,7 @@ namespace Presentation.Controllers
                 Description = tour.Description,
                 StartDate = tour.StartDate,
                 EndDate = tour.EndDate,
+                Image = tour.Image,
                 UserID = Guid.Parse(UserID),
                 Destinations = destinationsViewModel,
                 TourBookings = tourBookingViewModel,

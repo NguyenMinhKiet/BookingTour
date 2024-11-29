@@ -52,6 +52,11 @@ namespace Application.Services
             return await _employeeRepository.GetByIdAsync(id);
         }
 
+        public async Task<Employee> GetByUserID(Guid UserID)
+        {
+            return await _employeeRepository.GetByUserID(UserID);
+        }
+
         public async Task<String> GetEmployeeNameById(Guid id)
         {
             return await _employeeRepository.GetNameByIdAsync(id);

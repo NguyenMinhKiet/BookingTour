@@ -53,6 +53,11 @@ namespace Infrastructure.Repositories
             return await _context.Employees.FindAsync(id);
         }
 
+        public async Task<Employee> GetByUserID(Guid UserID)
+        {
+            return  _context.Employees.Where(x=>x.AccountID == UserID).FirstOrDefault();
+        }
+
         public async Task<String> GetNameByIdAsync(Guid id)
         {
             var employee = await _context.Employees

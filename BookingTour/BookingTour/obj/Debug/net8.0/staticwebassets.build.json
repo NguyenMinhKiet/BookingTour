@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "mBkM64LUvUbmo9h6MhD9GGNWXVH2ycI+O1x1imFB7DI=",
+  "Hash": "CAaS31jTn6afeOoCZiSWRsXW1gB6lcjUrZf7pIlhJYY=",
   "Source": "Presentation",
   "BasePath": "_content/Presentation",
   "Mode": "Default",
@@ -99,6 +99,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assetPrivate\\img\\customer\\male_default.png"
+    },
+    {
+      "Identity": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\customer\\User_default.jpg",
+      "SourceId": "Presentation",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\",
+      "BasePath": "_content/Presentation",
+      "RelativePath": "assetPrivate/img/customer/User_default#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "kk995d6hll",
+      "Integrity": "tLE2ndlKaBZ2PjMnsPSJW3PEGoTSAljtyKZra0DnCUo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assetPrivate\\img\\customer\\User_default.jpg"
     },
     {
       "Identity": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\bai-dai.jpg",
@@ -624,6 +645,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assetPrivate\\img\\employee\\male_default.png"
+    },
+    {
+      "Identity": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\employee\\User_default.jpg",
+      "SourceId": "Presentation",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\",
+      "BasePath": "_content/Presentation",
+      "RelativePath": "assetPrivate/img/employee/User_default#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "kk995d6hll",
+      "Integrity": "tLE2ndlKaBZ2PjMnsPSJW3PEGoTSAljtyKZra0DnCUo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assetPrivate\\img\\employee\\User_default.jpg"
     },
     {
       "Identity": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\hotel\\dalat_palace.jpg",
@@ -12846,6 +12888,88 @@
       ]
     },
     {
+      "Route": "assetPrivate/img/customer/User_default.jpg",
+      "AssetFile": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\customer\\User_default.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13171"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"tLE2ndlKaBZ2PjMnsPSJW3PEGoTSAljtyKZra0DnCUo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 29 Nov 2024 18:26:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-tLE2ndlKaBZ2PjMnsPSJW3PEGoTSAljtyKZra0DnCUo="
+        }
+      ]
+    },
+    {
+      "Route": "assetPrivate/img/customer/User_default.kk995d6hll.jpg",
+      "AssetFile": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\customer\\User_default.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13171"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"tLE2ndlKaBZ2PjMnsPSJW3PEGoTSAljtyKZra0DnCUo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 29 Nov 2024 18:26:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "kk995d6hll"
+        },
+        {
+          "Name": "label",
+          "Value": "assetPrivate/img/customer/User_default.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-tLE2ndlKaBZ2PjMnsPSJW3PEGoTSAljtyKZra0DnCUo="
+        }
+      ]
+    },
+    {
       "Route": "assetPrivate/img/destination/bai-dai.jpg",
       "AssetFile": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\bai-dai.jpg",
       "Selectors": [],
@@ -14892,6 +15016,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-5B9vs7FAwScN2g6AlHvAYCzkTkRrmQzenTafWMZgTzA="
+        }
+      ]
+    },
+    {
+      "Route": "assetPrivate/img/employee/User_default.jpg",
+      "AssetFile": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\employee\\User_default.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13171"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"tLE2ndlKaBZ2PjMnsPSJW3PEGoTSAljtyKZra0DnCUo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 29 Nov 2024 18:26:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-tLE2ndlKaBZ2PjMnsPSJW3PEGoTSAljtyKZra0DnCUo="
+        }
+      ]
+    },
+    {
+      "Route": "assetPrivate/img/employee/User_default.kk995d6hll.jpg",
+      "AssetFile": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\employee\\User_default.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13171"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"tLE2ndlKaBZ2PjMnsPSJW3PEGoTSAljtyKZra0DnCUo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 29 Nov 2024 18:26:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "kk995d6hll"
+        },
+        {
+          "Name": "label",
+          "Value": "assetPrivate/img/employee/User_default.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-tLE2ndlKaBZ2PjMnsPSJW3PEGoTSAljtyKZra0DnCUo="
         }
       ]
     },

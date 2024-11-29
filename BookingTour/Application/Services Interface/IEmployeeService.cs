@@ -6,6 +6,7 @@ namespace Application.Services_Interface
     public interface IEmployeeService
     {
         public Task<Employee> GetById(Guid id);
+        public Task<Employee> GetByUserID(Guid UserID);
 
         public Task<IEnumerable<Employee>> GetAllAsync();
 

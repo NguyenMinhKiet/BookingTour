@@ -139,14 +139,14 @@ namespace Presentationx.Controllers
 
         public async Task<IActionResult> History(Guid UserID)
         {
-            var bookings = await _bookingService.GetByCustomerID(UserID);
+            var customer = await _customerService.GetByUserID(UserID);
+            var bookings = await _bookingService.GetByCustomerID(customer.CustomerID);
             var bookingsViewModel = new List<BookingViewModel>();
             foreach (var i in bookings)
             {
                 var payment = await _paymentService.GetByBookingId(i.BookingID);
                 ViewData[$"Status_{i.BookingID}"] = payment.Status;
 
-                var customer = await _customerService.GetById(i.CustomerID);
                 var tour = await _tourService.GetByIdAsync(i.TourID);
                 var bookingViewModel = new BookingViewModel
                 {

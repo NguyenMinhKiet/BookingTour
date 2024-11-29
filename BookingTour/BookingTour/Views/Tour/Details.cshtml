@@ -53,7 +53,7 @@
             <div class="row">
                 <div class="col-md-10">
                     <img data-u="image" class="rounded-5 mt-2"
-                        src="//cdn2.ivivu.com/2023/11/20/12/nha-trang-bar-noi-ivv-750x460.jpg">
+                        src="~/assetPrivate/img/tour/@Model.Image" style="max-height:500px; object-fit:cover">
                     <div class="card mt-3">
                         <div class="card-header bg-white">
                             <div class="row p-2">
@@ -132,7 +132,7 @@
                                             <!-- Nội dung chi tiết -->
                                             <div class="card-body collapse" id="collapse-hotel-@(i)">
                                                 <p class="mt-1">@Model.Hotels[i].Description</p>
-                                                <img src="//cdn2.ivivu.com/2020/06/08/11/ivivu-canh-dong-muoi-nd-158x100.gif"
+                                                    <img src="~/assetPrivate/img/hotel/@Model.Hotels[i].Image"
                                                     alt="" style="object-fit: cover;" class="w-100">
                                             </div>
                                         </div>
@@ -176,7 +176,7 @@
                                             <!-- Nội dung chi tiết -->
                                             <div class="card-body collapse" id="collapse-destination-@(i)">
                                                 <p class="mt-1">@Model.Destinations[i].Description</p>
-                                                <img src="//cdn2.ivivu.com/2020/06/08/11/ivivu-canh-dong-muoi-nd-158x100.gif"
+                                                    <img src="~/assetPrivate/img/destination/@Model.Destinations[i].Image"
                                                     alt="" style="object-fit: cover;" class="w-100">
                                             </div>
                                         </div>
@@ -240,7 +240,7 @@
                                         <!-- Thông tin người đánh giá -->
                                         <div class="d-flex align-items-center mb-3">
                                             <!-- Ảnh đại diện -->
-                                            <img src="//via.placeholder.com/50" alt="Avatar" class="rounded-circle me-3"
+                                                <img src="~/assetPrivate/img/customer/@Model.Feedbacks[i].Customer.Image" alt="Avatar" class="rounded-circle me-3"
                                                 width="50" height="50" style="object-fit: cover;">
 
                                             <!-- Tên và thời gian đánh giá -->
@@ -263,7 +263,6 @@
                                                         }
                                                     </div>
                                                     <small class="text-muted">
-                                                        Đánh giá ngày
                                                         @Model.Feedbacks[i].CreateAt.ToString("dd/MM/yyyy HH:mm")
                                                     </small>
                                                 </div>

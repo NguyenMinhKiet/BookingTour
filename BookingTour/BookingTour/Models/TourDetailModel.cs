@@ -14,7 +14,7 @@ namespace Presentation.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string City { get; set; }
-
+        public string Image {  get; set; }
         public List<DestinationWithVisitDateViewModel> Destinations { get; set; }
         public List<TourViewModel> TourBookings { get; set; }
         public List<TourViewModel> AnotherTour { get; set; }

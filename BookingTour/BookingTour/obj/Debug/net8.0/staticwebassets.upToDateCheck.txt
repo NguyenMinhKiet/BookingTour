@@ -1,5 +1,6 @@
 wwwroot\assetPrivate\img\customer\female_default.png
 wwwroot\assetPrivate\img\customer\male_default.png
+wwwroot\assetPrivate\img\customer\User_default.jpg
 wwwroot\assetPrivate\img\destination\bai-dai.jpg
 wwwroot\assetPrivate\img\destination\bai-sao.jpg
 wwwroot\assetPrivate\img\destination\ban-cat-cat.jpg
@@ -25,6 +26,7 @@ wwwroot\assetPrivate\img\destination\vuon-quoc-gia-cuc-phuong.jpg
 wwwroot\assetPrivate\img\employee\bi_tot_nghiep_cut.png
 wwwroot\assetPrivate\img\employee\female_default.png
 wwwroot\assetPrivate\img\employee\male_default.png
+wwwroot\assetPrivate\img\employee\User_default.jpg
 wwwroot\assetPrivate\img\hotel\dalat_palace.jpg
 wwwroot\assetPrivate\img\hotel\grand_ho_tram.jpg
 wwwroot\assetPrivate\img\hotel\hanoi_daewoo.jpg

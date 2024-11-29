@@ -70,10 +70,9 @@ namespace Presentation.Controllers
 
         // GET: /Feedback/Create
         [Authorize(Policy = "feedback-add")]
-        public async Task<IActionResult> Create(Guid TourID)
+        public async Task<IActionResult> Create(Guid TourID, Guid CustomerID)
         {
-            var customerID =  HttpContext.Session.GetString("UserID");
-            if (customerID == null)
+            if (CustomerID == Guid.Empty)
             {
                 TempData["NotificationType"] = "danger";
                 TempData["NotificationTitle"] = "Thất bại!";
@@ -87,7 +86,7 @@ namespace Presentation.Controllers
             var feedbackCreateViewModel = new FeedbackCreationDto
             {
                 TourID = tour.TourID,
-                CustomerID = Guid.Parse(customerID),
+                CustomerID = CustomerID,
             };
 
             return View(feedbackCreateViewModel);

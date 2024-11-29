@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\Presentation.jsq20hcjp4.bundle.scp.css"
     },
     {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\customer\\User_default.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\customer\\User_default.jpg"
+    },
+    {
       "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\customer\\female_default.png",
       "PackagePath": "staticwebassets\\assetPrivate\\img\\customer\\female_default.png"
     },
@@ -99,6 +103,10 @@
     {
       "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\destination\\vuon-quoc-gia-cuc-phuong.jpg",
       "PackagePath": "staticwebassets\\assetPrivate\\img\\destination\\vuon-quoc-gia-cuc-phuong.jpg"
+    },
+    {
+      "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\employee\\User_default.jpg",
+      "PackagePath": "staticwebassets\\assetPrivate\\img\\employee\\User_default.jpg"
     },
     {
       "Id": "D:\\Study\\C - sharp\\TourDuLich\\Web_TourDuLich\\BookingTour\\BookingTour\\BookingTour\\wwwroot\\assetPrivate\\img\\employee\\bi_tot_nghiep_cut.png",

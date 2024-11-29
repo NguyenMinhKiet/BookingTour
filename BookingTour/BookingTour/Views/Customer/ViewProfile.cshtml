@@ -15,19 +15,19 @@
             </a>
         </li>
         <li class="breadcrumb-item">
-            <a asp-controller="Customer" asp-action="ViewProfile">Khách hàng</a>
+            <a asp-controller="Customer" asp-action="ViewProfile">Customers</a>
         </li>
+                <li class="breadcrumb-item">
+                    <span class="text-secondary">Customer</span>
+                </li>
         <li class="breadcrumb-item active" aria-current="page">Update</li>
-        <li class="breadcrumb-item">
-            <span class="text-secondary">Customer</span>
-        </li>
     </ul>
 </div>
 
         <form asp-action="ViewProfile" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
     <input asp-for="CustomerID" type="hidden" class="form-control" id="CustomerID" name="CustomerID" value="@Model.CustomerID">
-
+    <input asp-for="AccountID" type="hidden" value="@Model.AccountID" />
     <div class="form-group">
         <label asp-for="FirstName"></label>
         <input asp-for="FirstName" type="text" class="form-control" id="FirstName" name="FirstName" required>

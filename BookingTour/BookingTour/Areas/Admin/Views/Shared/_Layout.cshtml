@@ -260,14 +260,16 @@
                                                 <div class="u-text">
                                                     <h4 id="UserNameText"></h4>
                                                     <p class="text-muted">@@email@example.com</p>
-                                                <a class="btn btn-xs btn-secondary btn-sm" asp-action="ViewProfile" asp-controller="Account" asp-area="">My Profile</a>
+                                                <a class="btn btn-xs btn-secondary btn-sm" asp-action="ViewProfile" asp-controller="Account" asp-area="" asp-route-UserID="@Context.Session.GetString("UserID")">My Profile</a>
                                                 </div>
                                             </div>
                                         </li>
                                     <li>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" asp-action="ViewProfile" asp-controller="Account" asp-area="">My Profile</a>
+                                        <a class="dropdown-item" asp-action="ViewProfile" asp-controller="Account" asp-area="" asp-route-UserID="@Context.Session.GetString("UserID")">My Profile</a>
                                         <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" asp-action="Index" asp-controller="Home" asp-area="">EcomLayout</a>
+                                        <div class="dropdown-divider"></div> 
                                         <a class="dropdown-item" asp-action="Logout" asp-controller="Account" asp-area="">Logout</a>
                                     </li>
                                     

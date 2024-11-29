@@ -87,7 +87,7 @@ namespace Presentation.Controllers
             var user = await _userManager.FindByIdAsync(UserID.ToString());
             if (user != null)
             {
-                var customer = await _customerService.GetById(user.Id);
+                var customer = await _customerService.GetByUserID(user.Id);
                 var customerModel = new CustomerViewModel
                 {
                     CustomerID = customer.CustomerID,
@@ -126,7 +126,7 @@ namespace Presentation.Controllers
                 TempData["NotificationType"] = "success";
                 TempData["NotificationTitle"] = "Thành Công!";
                 TempData["NotificationMessage"] = $"Cập nhật thông tin user thành công!";
-                return RedirectToAction("ViewProfile", new {UserID = CustomerID});
+                return RedirectToAction("Index","Home");
             }
 
             TempData["NotificationType"] = "danger";
