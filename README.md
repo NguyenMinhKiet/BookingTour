@@ -27,7 +27,37 @@ Dưới đây là các thư viện và công cụ được tích hợp trong d�
 - **Entity Framework Core**: Thư viện ORM mạnh mẽ để kết nối ứng dụng với cơ sở dữ liệu.
 - **jQuery**: Thư viện JavaScript giúp xây dựng các tính năng tương tác động như hiệu ứng, kiểm tra dữ liệu form, v.v.
 - **SQL Server**: Hệ quản trị cơ sở dữ liệu cho phép lưu trữ và quản lý thông tin.
-  
+## Các Giao Diện Demo
+
+### 1. **Giao diện Trang Chủ**
+Trang chủ cung cấp cái nhìn tổng quan về các dịch vụ tour du lịch và cho phép người dùng dễ dàng tìm kiếm các tour theo các tiêu chí khác nhau.
+
+![Trang chủ](img/home_page.png)
+
+### 2. **Giao diện Danh Sách Tour**
+Danh sách các tour hiện có, cho phép người dùng lựa chọn các tour mà họ quan tâm, xem thông tin chi tiết về tour.
+
+![Danh sách tour](images/tours_page.png)
+
+### 3. **Giao diện Đặt Tour**
+Giao diện cho phép người dùng điền thông tin và hoàn tất việc đặt tour, bao gồm các chi tiết như số lượng người lớn, trẻ em và thông tin thanh toán.
+
+![Đặt tour](images/booking_page.png)
+
+### 4. **Giao diện Quản Lý Tour (Admin)**
+Giao diện quản lý dành cho quản trị viên, cho phép thêm, sửa, xóa thông tin về các tour, khách sạn, địa điểm, v.v.
+
+![Quản lý tour](images/admin_tour_page.png)
+
+### 5. **Giao diện Quản Lý Khách Hàng**
+Giao diện quản lý khách hàng giúp admin có thể quản lý thông tin người dùng và các đơn đặt tour của khách hàng.
+
+![Quản lý khách hàng](images/manage_customers.png)
+
+### 6. **Giao diện Đánh Giá Tour**
+Khách hàng có thể đánh giá và để lại nhận xét về các tour mà họ đã tham gia.
+
+![Đánh giá tour](images/feedback_page.png)  
 ## Cài đặt và Chạy Dự Án
 
 1. **Cài đặt .NET Core SDK**:
@@ -36,7 +66,7 @@ Dưới đây là các thư viện và công cụ được tích hợp trong d�
 2. **Clone Repository**:
     - Clone dự án từ GitHub:
     ```bash
-    git clone https://github.com/username/booking-tour.git
+    git clone https://github.com/NguyenMinhKiet/BookingTour.git
     ```
 
 3. **Cài đặt các gói NuGet**:
@@ -61,7 +91,7 @@ Dưới đây là các thư viện và công cụ được tích hợp trong d�
     ```
 
 6. **Truy cập ứng dụng**:
-    - Mở trình duyệt và truy cập địa chỉ `http://localhost:5000` để bắt đầu sử dụng hệ thống.
+    - Mở trình duyệt và truy cập địa chỉ `http://localhost:7031` để bắt đầu sử dụng hệ thống.
 
 ## Tính Năng Chính
 
