@@ -7,11 +7,11 @@
 
 <div class="services_section layout_padding">
     <div class="container">
-        <h2>Register</h2>
+        <h2>Đăng Ký</h2>
         <form asp-action="Register" method="post">
             <div asp-validation-summary="ModelOnly"></div>
 
-            <!-- Username -->
+            <!-- Tên Đăng Nhập -->
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend">
@@ -21,14 +21,14 @@
                     </div>
                     <input type="text"
                            class="form-control"
-                           placeholder="Username"
+                           placeholder="Tên đăng nhập"
                            asp-for="UserName"
                            id="UserName" name="UserName" required />
                 </div>
                 <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
 
-            <!-- Password -->
+            <!-- Mật Khẩu -->
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend">
@@ -38,7 +38,7 @@
                     </div>
                     <input type="password"
                            class="form-control"
-                           placeholder="Password"
+                           placeholder="Mật khẩu"
                            asp-for="Password"
                            id="Password" name="Password" required />
                     <div class="input-group-append">
@@ -50,7 +50,7 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
-            <!-- Confirm Password -->
+            <!-- Xác Nhận Mật Khẩu -->
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend">
@@ -60,7 +60,7 @@
                     </div>
                     <input type="password"
                            class="form-control"
-                           placeholder="Confirm Password"
+                           placeholder="Xác nhận mật khẩu"
                            asp-for="ConfirmPassword"
                            id="ConfirmPassword" name="ConfirmPassword" required />
                     <div class="input-group-append">
@@ -79,15 +79,15 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
-            <!-- Phone -->
+            <!-- Số Điện Thoại -->
             <div class="form-group">
                 <label asp-for="Phone"></label>
                 <input asp-for="Phone" class="form-control" />
                 <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
 
-            <!-- Submit -->
-            <button type="submit" class="btn btn-primary">Register</button>
+            <!-- Nút Đăng Ký -->
+            <button type="submit" class="btn btn-primary">Đăng Ký</button>
         </form>
 
         <div>

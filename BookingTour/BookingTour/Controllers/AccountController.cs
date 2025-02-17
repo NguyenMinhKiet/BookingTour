@@ -137,23 +137,23 @@ namespace Presentation.Controllers
 
                     if (result.Succeeded)
                     {
-                    await _userManager.AddToRoleAsync(user, "User");
+                        await _userManager.AddToRoleAsync(user, "User");
 
-                    var customer = new CustomerCreationDto
-                    {
-                        FirstName = "Invalid",
-                        LastName = model.Email,
-                        Email = model.Email,
-                        Phone = model.Phone,
-                        Address = "Invalid",
-                        AccountID = user.Id
-                    };
-                    await _customerService.CreateAsync(customer);
-                        TempData["NotificationType"] = "success";
-                        TempData["NotificationTitle"] = "Tạo tài khoản thành công!";
-                        TempData["NotificationMessage"] = $"Xin chào {user.UserName}!";
-                        return RedirectToAction(nameof(Login));
-                    }
+                        var customer = new CustomerCreationDto
+                        {
+                            FirstName = "Invalid",
+                            LastName = model.Email,
+                            Email = model.Email,
+                            Phone = model.Phone,
+                            Address = "Invalid",
+                            AccountID = user.Id
+                        };
+                        await _customerService.CreateAsync(customer);
+                            TempData["NotificationType"] = "success";
+                            TempData["NotificationTitle"] = "Tạo tài khoản thành công!";
+                            TempData["NotificationMessage"] = $"Xin chào {user.UserName}!";
+                            return RedirectToAction(nameof(Login));
+                        }
                     else
                     {
                         ModelState.AddModelError(string.Empty, "Tài khoản đã tồn tại vui lòng đăng nhập!");

@@ -8,12 +8,12 @@
 
 <div class="services_section layout_padding">
     <div class="container">
-        <h2>Login</h2>
+        <h2>Đăng Nhập</h2>
 
         <form asp-action="Login" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <!-- UserName Input -->
+            <!-- Nhập Tên Đăng Nhập -->
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend">
@@ -23,14 +23,14 @@
                     </div>
                     <input type="text"
                            class="form-control"
-                           placeholder="UserName"
+                           placeholder="Tên đăng nhập"
                            asp-for="UserName"
-                           id="UserName" name="UserName" Required />
+                           id="UserName" name="UserName" required />
                 </div>
                 <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
 
-            <!-- Password Input -->
+            <!-- Nhập Mật Khẩu -->
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend">
@@ -40,9 +40,9 @@
                     </div>
                     <input type="password"
                            class="form-control"
-                           placeholder="Password"
+                           placeholder="Mật khẩu"
                            asp-for="Password"
-                           id="Password" name="Password" Required />
+                           id="Password" name="Password" required />
                     <div class="input-group-append">
                         <span class="input-group-text toggle-password" data-target="#Password">
                             <i class="fas fa-eye"></i>
@@ -52,19 +52,18 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
-            <!-- Remember Me Checkbox -->
+            <!-- Ghi nhớ đăng nhập -->
             <div class="form-group form-check">
                 <input asp-for="RememberMe" class="form-check-input" />
-                <label class="form-check-label ml-2" asp-for="RememberMe">Remember me?</label>
+                <label class="form-check-label ml-2" asp-for="RememberMe">Ghi nhớ đăng nhập?</label>
             </div>
 
-            <!-- Submit Button -->
-            <button type="submit" class="btn btn-primary">Login</button>
+            <!-- Nút đăng nhập -->
+            <button type="submit" class="btn btn-primary">Đăng Nhập</button>
         </form>
 
-
         <div>
-            <a asp-action="Register" asp-controller="Account">Don't have an account? Register</a>
+            <a asp-action="Register" asp-controller="Account">Chưa có tài khoản? Đăng ký ngay</a>
         </div>
     </div>
 </div>

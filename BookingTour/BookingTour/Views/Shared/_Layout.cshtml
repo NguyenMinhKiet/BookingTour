@@ -90,13 +90,13 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" asp-action="Index" asp-controller="Home">Home</a>
+                                <a class="nav-link" asp-action="Index" asp-controller="Home">Trang chủ</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-action="About" asp-controller="Home">About</a>
+                                <a class="nav-link" asp-action="About" asp-controller="Home">Thông tin</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-action="Index" asp-controller="Services">Services</a>
+                                <a class="nav-link" asp-action="Index" asp-controller="Services">Dịch vụ</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <!-- Nút kích hoạt dropdown -->
@@ -117,11 +117,11 @@
                                             <a class="dropdown-item bg-secondary" asp-area="Admin" asp-action="Index" asp-controller="Home" asp-route-UserID="@Guid.Parse(Context.Session.GetString("UserID"))">Admin</a>
                                         }
                                         <a class="dropdown-item bg-secondary" asp-action="ViewProfile" asp-controller="Account" asp-route-UserID="@Guid.Parse(Context.Session.GetString("UserID"))" asp-route-UserType="@Context.Session.GetString("UserType")">View Profile</a>
-                                        <a class="dropdown-item bg-secondary" asp-action="Logout" asp-controller="Account">Logout</a>
+                                        <a class="dropdown-item bg-secondary" asp-action="Logout" asp-controller="Account">Đăng xuất</a>
                                     }
                                     else
                                     {
-                                        <a class="dropdown-item bg-secondary" asp-action="Login" asp-controller="Account">Login</a>
+                                        <a class="dropdown-item bg-secondary" asp-action="Login" asp-controller="Account">Đăng nhập</a>
                                     }
                                 </div>
                             </li>
@@ -135,13 +135,13 @@
             <div class="menu_main">
                 <ul>
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="Index" asp-controller="Home">Home</a>
+                        <a class="nav-link" asp-action="Index" asp-controller="Home">Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="About" asp-controller="Home">About</a>
+                        <a class="nav-link" asp-action="About" asp-controller="Home">Thông tin</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="Index" asp-controller="Services">Services</a>
+                        <a class="nav-link" asp-action="Index" asp-controller="Services">Dịch vụ</a>
                     </li>
                     <li class="nav-item dropdown">
                         <!-- Nút kích hoạt dropdown -->
@@ -162,11 +162,11 @@
                                     <a class="dropdown-item bg-secondary" asp-area="Admin" asp-action="Index" asp-controller="Home" asp-route-UserID="@Guid.Parse(Context.Session.GetString("UserID"))">Admin</a>
                                 }
                                 <a class="dropdown-item bg-secondary" asp-action="ViewProfile" asp-controller="Account" asp-route-UserID="@Guid.Parse(Context.Session.GetString("UserID"))" asp-route-UserType="@Context.Session.GetString("UserType")">View Profile</a>
-                                <a class="dropdown-item bg-secondary" asp-action="Logout" asp-controller="Account">Logout</a>
+                                <a class="dropdown-item bg-secondary" asp-action="Logout" asp-controller="Account">Đăng xuất</a>
                             }
                             else
                             {
-                                <a class="dropdown-item bg-secondary" asp-action="Login" asp-controller="Account">Login</a>
+                                <a class="dropdown-item bg-secondary" asp-action="Login" asp-controller="Account">Đăng nhập</a>
                             }
                         </div>
                     </li>
@@ -180,34 +180,35 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="container">
-                            <h1 class="banner_taital">Adventure Awaits</h1>
+                            <h1 class="banner_taital">Cuộc Phiêu Lưu Đang Chờ Đón</h1>
                             <p class="banner_text">
-                                Explore the unexplored with our exciting adventure tours. Whether you're looking to hike through mountains or trek across wild terrains, we offer the best adventure packages tailored to your needs.
+                                Khám phá những vùng đất chưa từng đặt chân với các tour mạo hiểm đầy hấp dẫn. Dù bạn muốn chinh phục núi cao hay băng qua địa hình hoang dã, chúng tôi có những gói tour hoàn hảo dành cho bạn.
                             </p>
-                            <div class="read_bt"><a asp-action="Index" asp-controller="Tour">Services</a></div>
+                            <div class="read_bt"><a asp-action="Index" asp-controller="Tour">Dịch Vụ</a></div>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="container">
-                            <h1 class="banner_taital">Relax in Paradise</h1>
+                            <h1 class="banner_taital">Thư Giãn Giữa Thiên Đường</h1>
                             <p class="banner_text">
-                                Escape to tropical beaches and enjoy the serene beauty of nature. Our relaxing getaway tours are perfect for unwinding and rejuvenating in some of the world's most breathtaking locations.
+                                Tận hưởng những bãi biển nhiệt đới và vẻ đẹp yên bình của thiên nhiên. Những chuyến nghỉ dưỡng của chúng tôi sẽ giúp bạn thư giãn và tái tạo năng lượng tại những điểm đến tuyệt vời nhất thế giới.
                             </p>
-                            <div class="read_bt"><a asp-action="Index" asp-controller="Tour">Services</a></div>
+                            <div class="read_bt"><a asp-action="Index" asp-controller="Tour">Dịch Vụ</a></div>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="container">
-                            <h1 class="banner_taital">Cultural Journeys</h1>
+                            <h1 class="banner_taital">Hành Trình Văn Hóa</h1>
                             <p class="banner_text">
-                                Immerse yourself in the rich history and culture of unique destinations. Our cultural tours provide a deep dive into the traditions, art, and heritage of fascinating regions around the world.
+                                Đắm chìm trong lịch sử và văn hóa độc đáo của những vùng đất mới. Các tour văn hóa của chúng tôi mang đến cho bạn cơ hội khám phá nghệ thuật, truyền thống và di sản đặc sắc trên khắp thế giới.
                             </p>
-                            <div class="read_bt"><a asp-action="Index" asp-controller="Tour">Services</a></div>
+                            <div class="read_bt"><a asp-action="Index" asp-controller="Tour">Dịch Vụ</a></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <!-- banner section end -->
     </div>
@@ -219,7 +220,7 @@
         <div class="container">
             <div class="location_main">
                 <div class="call_text"><img src="~/assetsUser/images/call-icon.png"></div>
-                <div class="call_text"><a href="#">Call +84 932669135</a></div>
+                <div class="call_text"><a href="#">+84 932667135</a></div>
                 <div class="call_text"><img src="~/assetsUser/images/mail-icon.png"></div>
                 <div class="call_text"><a href="#">nguyenminhkiet642002@gmail.com</a></div>
             </div>
@@ -239,9 +240,6 @@
     <div class="copyright_section">
         <div class="container">
             <p class="copyright_text">
-                2024 All Rights Reserved. Design by <a href="https://html.design">
-                    Free html
-                    Templates
                 </a> Phát triển bởi <a href="https://github.com/NguyenMinhKiet">Minh Kiệt</a>
             </p>
         </div>
