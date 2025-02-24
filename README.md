@@ -105,5 +105,5 @@ Khách hàng có thể đánh giá và để lại nhận xét về các tour m�
 
 Nếu bạn có bất kỳ câu hỏi nào hoặc muốn đóng góp cho dự án, vui lòng liên hệ với tôi qua:
 - Email: [nguyenminhkiet@example.com](mailto:nguyenminhkiet@example.com)
-- GitHub: [https://github.com/username](https://github.com/NguyenMinhKiet)
+- GitHub: [https://github.com/NguyenMinhKiet](https://github.com/NguyenMinhKiet)
 
